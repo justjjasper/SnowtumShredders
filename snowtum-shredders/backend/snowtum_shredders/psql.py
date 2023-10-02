@@ -85,5 +85,45 @@ CREATE TABLE IF NOT EXISTS tshirt_skus (
   INDEX (tshirt_id)
 );
 
+CREATE TABLE IF NOT EXISTS hoodies (
+  hoodie_id INTEGER PRIMARY KEY NOT NULL,
+  hoodie_name VARCHAR(255) NOT NULL,
+  hoodie_price NUMERIC NOT NULL,
+  hoodie_image VARCHAR(255) NOT NULL,
+  hoodie_description TEXT
+);
 
+CREATE TABLE IF NOT EXISTS hoodie_skus (
+  hoodie_sku_id INTEGER PRIMARY KEY NOT NULL,
+  hoodie_id INTEGER NOT NULL,
+  hoodie_size VARCHAR(255) NOT NULL,
+  hoodie_sku NUMERIC NOT NULL,
+  FOREIGN KEY (hoodie_id) REFERENCES hoodies(hoodie_id),
+  INDEX (hoodie_id)
+);
+
+CREATE TABLE IF NOT EXISTS headgear (
+  headgear_id INTEGER PRIMARY KEY NOT NULL,
+  headgear_name VARCHAR(255) NOT NULL,
+  headgear_image VARCHAR(255) NOT NULL,
+  headgear_price NUMERIC NOT NULL,
+  headgear_description TEXT,
+  headgear_sku NUMERIC NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS boardbag (
+  boardbag_id INTEGER PRIMARY KEY NOT NULL,
+  boardbag_name VARCHAR(255) NOT NULL,
+  boardbag_price NUMERIC NOT NULL,
+  boardbag_size VARCHAR(255),
+  boardbag_description TEXT,
+  boardbag_sku NUMERIC NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS boardbag_images (
+  boardbag_image_id INTEGER PRIMARY KEY NOT NULL,
+  boardbag_id INTEGER NOT NULL,
+  boardbag_image VARCHAR(255) NOT NULL,
+  FOREIGN KEY (boardbag_id) REFERENCES boardbag(boardbag_id)
+);
 '''
