@@ -19,11 +19,11 @@ db_params = {
   'dbname': PG_DATABASE,
   'user': PG_USER,
   'password': PG_PASSWORD,
-  'host': PG_DATABASE,
+  'host': PG_HOST,
   'port': PG_PORT,
 }
 
-create_table_sql = '''
+create_tables_sql = '''
 CREATE TABLE IF NOT EXISTS snowboards (
   snowboard_id INTEGER PRIMARY KEY NOT NULL,
   snowboard_name VARCHAR(255) NOT NULL,
@@ -44,8 +44,7 @@ CREATE TABLE IF NOT EXISTS snowboard_images (
   snowboard_image_id INTEGER PRIMARY KEY NOT NULL,
   snowboard_id INTEGER NOT NULL,
   snowboard_image VARCHAR(255) NOT NULL,
-  FOREIGN KEY (snowboard_id) REFERENCES snowboards(snowboard_id),
-  INDEX (snowboard_id)
+  FOREIGN KEY (snowboard_id) REFERENCES snowboards(snowboard_id)
 );
 
 CREATE TABLE IF NOT EXISTS snowboard_reviews (
@@ -56,8 +55,7 @@ CREATE TABLE IF NOT EXISTS snowboard_reviews (
   snowboard_review_date DATE NOT NULL,
   snowboard_review_body TEXT NOT NULL,
   snowboard_review_rating INTEGER NOT NULL,
-  FOREIGN KEY (snowboard_id) REFERENCES snowboards(snowboard_id),
-  INDEX (snowboard_id)
+  FOREIGN KEY (snowboard_id) REFERENCES snowboards(snowboard_id)
 );
 
 CREATE TABLE IF NOT EXISTS snowboard_skus (
@@ -65,8 +63,7 @@ CREATE TABLE IF NOT EXISTS snowboard_skus (
   snowboard_id INTEGER NOT NULL,
   snowboard_size NUMERIC NOT NULL,
   snowboard_sku NUMERIC NOT NULL,
-  FOREIGN KEY (snowboard_id) REFERENCES snowboards(snowboard_id),
-  INDEX (snowboard_id)
+  FOREIGN KEY (snowboard_id) REFERENCES snowboards(snowboard_id)
 );
 
 CREATE TABLE IF NOT EXISTS tshirts (
@@ -82,8 +79,7 @@ CREATE TABLE IF NOT EXISTS tshirt_skus (
   tshirt_id INTEGER NOT NULL,
   tshirt_size VARCHAR(255) NOT NULL,
   tshirt_sku NUMERIC NOT NULL,
-  FOREIGN KEY (tshirt_id) REFERENCES tshirts(tshirt_id),
-  INDEX (tshirt_id)
+  FOREIGN KEY (tshirt_id) REFERENCES tshirts(tshirt_id)
 );
 
 CREATE TABLE IF NOT EXISTS hoodies (
@@ -99,8 +95,7 @@ CREATE TABLE IF NOT EXISTS hoodie_skus (
   hoodie_id INTEGER NOT NULL,
   hoodie_size VARCHAR(255) NOT NULL,
   hoodie_sku NUMERIC NOT NULL,
-  FOREIGN KEY (hoodie_id) REFERENCES hoodies(hoodie_id),
-  INDEX (hoodie_id)
+  FOREIGN KEY (hoodie_id) REFERENCES hoodies(hoodie_id)
 );
 
 CREATE TABLE IF NOT EXISTS headgear (
@@ -127,4 +122,30 @@ CREATE TABLE IF NOT EXISTS boardbag_images (
   boardbag_image VARCHAR(255) NOT NULL,
   FOREIGN KEY (boardbag_id) REFERENCES boardbag(boardbag_id)
 );
+
+CREATE INDEX snowboard_images_snowboard_id_index ON snowboard_images(snowboard_id);
+CREATE INDEX snowboard_reviews_snowboard_id_index ON snowboard_reviews(snowboard_id);
+CREATE INDEX snowboard_skus_snowboard_id_index ON snowboard_skus(snowboard_id);
+CREATE INDEX tshirt_skus_tshirt_id_index ON tshirt_skus(tshirt_id);
+CREATE INDEX hoodie_skus_hoodie_id_index ON hoodie_skus(hoodie_id);
+CREATE INDEX boardbag_images_boardbag_id_index ON boardbag_images(boardbag_id);
 '''
+
+# Function to execute PSQL Statements
+def execute_sql(connection, sql_query):
+  with connection.cursor() as cursor:
+    cursor.execute(sql_query)
+    connection.commit()
+
+try:
+  # Connect to PostgreSQL Database
+  conn = psycopg2.connect(**db_params)
+
+  execute_sql(conn, create_tables_sql)
+
+except psycopg2.Error as e:
+  print('Error connecting/creating tables to PSQL', e)
+
+finally:
+  if conn:
+    conn.close()
