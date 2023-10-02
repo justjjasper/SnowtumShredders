@@ -25,10 +25,10 @@ db_params = {
 
 create_table_sql = '''
 CREATE TABLE IF NOT EXISTS snowboards (
-  snowboard_id PRIMARY KEY NOT NULL,
+  snowboard_id INTEGER PRIMARY KEY NOT NULL,
   snowboard_name VARCHAR(255) NOT NULL,
   header_image VARCHAR(255) NOT NULL,
-  header_description VARCHAR(255) NOT NULL,
+  header_description TEXT NOT NULL,
   snowboard_price INTEGER NOT NULL,
   shape VARCHAR(255) NOT NULL,
   sidecut VARCHAR(255) NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS snowboards (
 );
 
 CREATE TABLE IF NOT EXISTS snowboard_images (
-  snowboard_image_id PRIMARY KEY NOT NULL,
+  snowboard_image_id INTEGER PRIMARY KEY NOT NULL,
   snowboard_id INTEGER NOT NULL,
   snowboard_image VARCHAR(255) NOT NULL,
   FOREIGN KEY (snowboard_id) REFERENCES snowboards(snowboard_id),
@@ -55,6 +55,7 @@ CREATE TABLE IF NOT EXISTS snowboard_reviews (
   snowboard_review_author VARCHAR(255) NOT NULL,
   snowboard_review_date DATE NOT NULL,
   snowboard_review_body TEXT NOT NULL,
+  snowboard_review_rating INTEGER NOT NULL,
   FOREIGN KEY (snowboard_id) REFERENCES snowboards(snowboard_id),
   INDEX (snowboard_id)
 );
