@@ -2,26 +2,8 @@
 import psycopg2
 from psycopg2 import sql
 
-# Import environmental variables
-import os
-from dotenv import load_dotenv
-load_dotenv()
-
-PG_USER = os.getenv('PG_USER')
-PG_PASSWORD = os.getenv('PG_PASSWORD')
-PG_HOST = os.getenv('PG_HOST')
-PG_DATABASE = os.getenv('PG_DATABASE')
-PG_PORT = os.getenv('PG_PORT')
-
-
-# Database connection parameters
-db_params = {
-  'dbname': PG_DATABASE,
-  'user': PG_USER,
-  'password': PG_PASSWORD,
-  'host': PG_HOST,
-  'port': PG_PORT,
-}
+# Import function to execute SQL queries
+from index import execute_sql, conn
 
 create_tables_sql = '''
 CREATE TABLE IF NOT EXISTS snowboards (
@@ -131,17 +113,9 @@ CREATE INDEX hoodie_skus_hoodie_id_index ON hoodie_skus(hoodie_id);
 CREATE INDEX boardbag_images_boardbag_id_index ON boardbag_images(boardbag_id);
 '''
 
-# Function to execute PSQL Statements
-def execute_sql(connection, sql_query):
-  with connection.cursor() as cursor:
-    cursor.execute(sql_query)
-    connection.commit()
-
 try:
-  # Connect to PostgreSQL Database
-  conn = psycopg2.connect(**db_params)
-
-  execute_sql(conn, create_tables_sql)
+  # Execute CREATE TABLE statements
+  execute_sql(create_tables_sql)
 
 except psycopg2.Error as e:
   print('Error connecting/creating tables to PSQL', e)
@@ -149,3 +123,5 @@ except psycopg2.Error as e:
 finally:
   if conn:
     conn.close()
+
+#
