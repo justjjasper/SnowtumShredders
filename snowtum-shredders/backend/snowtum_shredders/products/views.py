@@ -1,7 +1,7 @@
 from django.http import JsonResponse
-from .models import Snowboard, SnowboardImage, SnowboardReview, SnowboardSKU
+from .models import Snowboard, SnowboardImage, SnowboardReview, SnowboardSKU, TShirt, Hoodie, Headgear, Boardbag, BoardbagImage
 
-def get_snowboards(request):
+def get_all_snowboards(request):
     snowboards = Snowboard.objects.all()
 
     formatted_snowboards = []
@@ -37,7 +37,7 @@ def get_snowboards(request):
 
     return JsonResponse(formatted_snowboards, safe=False)
 
-def get_collection_snowboards(request):
+def get_snowboards(request):
     # Fetch all snowboards and their corresponding images
     snowboards = Snowboard.objects.all()
     snowboard_data = []
@@ -58,3 +58,34 @@ def get_collection_snowboards(request):
 
     # Return the formatted data as JSON response
     return JsonResponse(snowboard_data, safe=False)
+
+def get_accessories(request):
+    tshirts = list(TShirt.objects.values('tshirt_name', 'tshirt_image', 'tshirt_price'))
+    hoodies = list(Hoodie.objects.values('hoodie_name', 'hoodie_image', 'hoodie_price'))
+    headgear = list(Headgear.objects.values('headgear_name', 'headgear_image', 'headgear_price'))
+
+    # Retrieve the first image for each boardbag
+    boardbag_data = []
+    for boardbag in Boardbag.objects.all():
+        boardbag_images = BoardbagImage.objects.filter(boardbag=boardbag)
+        if boardbag_images.exists():
+            first_image = boardbag_images.first().boardbag_image
+        else:
+            first_image = ""
+
+        boardbag_data.append({
+            'boardbag_name': boardbag.boardbag_name,
+            'boardbag_image': first_image,
+            'boardbag_price': boardbag.boardbag_price,
+        })
+
+    accessories_data = {
+        'tshirts': tshirts,
+        'hoodies': hoodies,
+        'headgear': headgear,
+        'boardbag': boardbag_data,
+    }
+
+    response_data = [accessories_data]
+
+    return JsonResponse(response_data, safe=False)
