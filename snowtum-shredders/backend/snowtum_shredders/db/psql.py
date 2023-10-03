@@ -1,9 +1,9 @@
-# This seed file is a combination of a index.js(Configuration file) and a schema.sql file
+# This is a schema.sql file
 import psycopg2
 from psycopg2 import sql
 
 # Import function to execute SQL queries
-from index import execute_sql, conn
+from index import conn
 
 create_tables_sql = '''
 CREATE TABLE IF NOT EXISTS snowboards (
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS snowboards (
   snowboard_name VARCHAR(255) NOT NULL,
   header_image VARCHAR(255) NOT NULL,
   header_description TEXT NOT NULL,
-  snowboard_price INTEGER NOT NULL,
+  snowboard_price NUMERIC NOT NULL,
   shape VARCHAR(255) NOT NULL,
   sidecut VARCHAR(255) NOT NULL,
   flex VARCHAR(255) NOT NULL,
@@ -113,15 +113,27 @@ CREATE INDEX hoodie_skus_hoodie_id_index ON hoodie_skus(hoodie_id);
 CREATE INDEX boardbag_images_boardbag_id_index ON boardbag_images(boardbag_id);
 '''
 
+file_path = '/Users/jasperbucad/Desktop/snowtum_shredders_csv/'
+
+copy_csv_files = f'''
+COPY snowboards FROM '{file_path}snowboards/snowtum_shredders_snowboards.csv' CSV HEADER;
+'''
+
+# Function to execute PSQL Statements with no returned results
+def execute_sql(sql_query):
+    with conn.cursor() as cursor:
+        cursor.execute(sql_query)
+    conn.commit()
+
 try:
   # Execute CREATE TABLE statements
   execute_sql(create_tables_sql)
 
+ # Execute COPY CSV FILES into database
+  execute_sql(copy_csv_files)
 except psycopg2.Error as e:
   print('Error connecting/creating tables to PSQL', e)
 
 finally:
   if conn:
     conn.close()
-
-#

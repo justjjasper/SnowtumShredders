@@ -25,16 +25,3 @@ db_params = {
 
 # Connection to database
 conn = psycopg2.connect(**db_params)
-
-# Function to execute PSQL Statements with no returned results
-def execute_sql(sql_query):
-    with conn.cursor() as cursor:
-        cursor.execute(sql_query)
-    conn.commit()
-
-# Function to execute PSQL Statements with returned results
-def execute_fetch_sql(sql_query):
-   with conn.cursor() as cursor:
-        cursor.execute(sql_query)
-        result = cursor.fetchall()
-   return result
