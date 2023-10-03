@@ -1,5 +1,5 @@
-# NOTICE. This approach was very vanilla. When using django, you can create schema tables
-  # via each App's models.py
+# NOTICE. ONLY USING COPY_CSV_FILES function. Originally used this file to create tables,
+  # but wanted to learn Django Models to create data schemas.
 
 # This is a schema.sql file
 import psycopg2
@@ -27,27 +27,27 @@ CREATE TABLE IF NOT EXISTS snowboards (
 
 CREATE TABLE IF NOT EXISTS snowboard_images (
   snowboard_image_id INTEGER PRIMARY KEY NOT NULL,
-  snowboard_id INTEGER NOT NULL,
   snowboard_image VARCHAR(255) NOT NULL,
+  snowboard_id INTEGER NOT NULL,
   FOREIGN KEY (snowboard_id) REFERENCES snowboards(snowboard_id)
 );
 
 CREATE TABLE IF NOT EXISTS snowboard_reviews (
   review_id SERIAL PRIMARY KEY NOT NULL,
-  snowboard_id INTEGER NOT NULL,
   snowboard_review_title VARCHAR(255) NOT NULL,
   snowboard_review_author VARCHAR(255) NOT NULL,
   snowboard_review_date DATE NOT NULL,
   snowboard_review_body TEXT NOT NULL,
   snowboard_review_rating INTEGER NOT NULL,
+  snowboard_id INTEGER NOT NULL,
   FOREIGN KEY (snowboard_id) REFERENCES snowboards(snowboard_id)
 );
 
 CREATE TABLE IF NOT EXISTS snowboard_skus (
   snowboard_sku_id INTEGER PRIMARY KEY NOT NULL,
-  snowboard_id INTEGER NOT NULL,
   snowboard_size VARCHAR(255) NOT NULL,
   snowboard_sku NUMERIC NOT NULL,
+  snowboard_id INTEGER NOT NULL,
   FOREIGN KEY (snowboard_id) REFERENCES snowboards(snowboard_id)
 );
 
@@ -61,9 +61,9 @@ CREATE TABLE IF NOT EXISTS tshirts (
 
 CREATE TABLE IF NOT EXISTS tshirt_skus (
   tshirt_sku_id INTEGER PRIMARY KEY NOT NULL,
-  tshirt_id INTEGER NOT NULL,
   tshirt_size VARCHAR(255) NOT NULL,
   tshirt_sku NUMERIC NOT NULL,
+  tshirt_id INTEGER NOT NULL,
   FOREIGN KEY (tshirt_id) REFERENCES tshirts(tshirt_id)
 );
 
@@ -77,9 +77,9 @@ CREATE TABLE IF NOT EXISTS hoodies (
 
 CREATE TABLE IF NOT EXISTS hoodie_skus (
   hoodie_sku_id INTEGER PRIMARY KEY NOT NULL,
-  hoodie_id INTEGER NOT NULL,
   hoodie_size VARCHAR(255) NOT NULL,
   hoodie_sku NUMERIC NOT NULL,
+  hoodie_id INTEGER NOT NULL,
   FOREIGN KEY (hoodie_id) REFERENCES hoodies(hoodie_id)
 );
 
@@ -103,8 +103,8 @@ CREATE TABLE IF NOT EXISTS boardbag (
 
 CREATE TABLE IF NOT EXISTS boardbag_images (
   boardbag_image_id INTEGER PRIMARY KEY NOT NULL,
-  boardbag_id INTEGER NOT NULL,
   boardbag_image VARCHAR(255) NOT NULL,
+  boardbag_id INTEGER NOT NULL,
   FOREIGN KEY (boardbag_id) REFERENCES boardbag(boardbag_id)
 );
 
@@ -149,8 +149,8 @@ def execute_sql(sql_query):
     conn.commit()
 
 try:
-  # Execute CREATE TABLE statements
-  execute_sql(create_tables_sql)
+  # # Execute CREATE TABLE statements
+  # execute_sql(create_tables_sql)
 
  # Execute COPY CSV FILES into database
   execute_sql(copy_csv_files)

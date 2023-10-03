@@ -1,3 +1,4 @@
+# models.py is responsible for creating Table Schemas
 from django.db import models
 
 # Create your models here.
@@ -16,10 +17,16 @@ class Snowboard(models.Model):
     camber_description = models.TextField()
     camber_image = models.CharField(max_length=255)
 
+    class Meta:
+      db_table = 'snowboards'
+
 class SnowboardImage(models.Model):
     snowboard_image_id = models.AutoField(primary_key=True)
     snowboard = models.ForeignKey(Snowboard, on_delete=models.CASCADE)
     snowboard_image = models.CharField(max_length=255)
+
+    class Meta:
+      db_table = 'snowboard_images'
 
 class SnowboardReview(models.Model):
     review_id = models.AutoField(primary_key=True)
@@ -30,11 +37,17 @@ class SnowboardReview(models.Model):
     snowboard_review_body = models.TextField()
     snowboard_review_rating = models.IntegerField()
 
+    class Meta:
+      db_table = 'snowboard_reviews'
+
 class SnowboardSKU(models.Model):
     snowboard_sku_id = models.AutoField(primary_key=True)
     snowboard = models.ForeignKey(Snowboard, on_delete=models.CASCADE)
     snowboard_size = models.CharField(max_length=255)
     snowboard_sku = models.DecimalField(max_digits=10, decimal_places=2)
+
+    class Meta:
+      db_table = 'snowboard_skus'
 
 class TShirt(models.Model):
     tshirt_id = models.AutoField(primary_key=True)
@@ -43,11 +56,17 @@ class TShirt(models.Model):
     tshirt_image = models.CharField(max_length=255)
     tshirt_description = models.TextField()
 
+    class Meta:
+      db_table = 'tshirts'
+
 class TShirtSKU(models.Model):
     tshirt_sku_id = models.AutoField(primary_key=True)
     tshirt = models.ForeignKey(TShirt, on_delete=models.CASCADE)
     tshirt_size = models.CharField(max_length=255)
     tshirt_sku = models.DecimalField(max_digits=10, decimal_places=2)
+
+    class Meta:
+      db_table = 'tshirt_skus'
 
 class Hoodie(models.Model):
     hoodie_id = models.AutoField(primary_key=True)
@@ -56,11 +75,17 @@ class Hoodie(models.Model):
     hoodie_image = models.CharField(max_length=255)
     hoodie_description = models.TextField()
 
+    class Meta:
+      db_table = 'hoodies'
+
 class HoodieSKU(models.Model):
     hoodie_sku_id = models.AutoField(primary_key=True)
     hoodie = models.ForeignKey(Hoodie, on_delete=models.CASCADE)
     hoodie_size = models.CharField(max_length=255)
     hoodie_sku = models.DecimalField(max_digits=10, decimal_places=2)
+
+    class Meta:
+      db_table = 'hoodie_skus'
 
 class Headgear(models.Model):
     headgear_id = models.AutoField(primary_key=True)
@@ -70,6 +95,9 @@ class Headgear(models.Model):
     headgear_description = models.TextField()
     headgear_sku = models.DecimalField(max_digits=10, decimal_places=2)
 
+    class Meta:
+      db_table = 'headgear'
+
 class Boardbag(models.Model):
     boardbag_id = models.AutoField(primary_key=True)
     boardbag_name = models.CharField(max_length=255)
@@ -78,7 +106,13 @@ class Boardbag(models.Model):
     boardbag_description = models.TextField()
     boardbag_sku = models.DecimalField(max_digits=10, decimal_places=2)
 
+    class Meta:
+      db_table = 'boardbag'
+
 class BoardbagImage(models.Model):
     boardbag_image_id = models.AutoField(primary_key=True)
     boardbag = models.ForeignKey(Boardbag, on_delete=models.CASCADE)
     boardbag_image = models.CharField(max_length=255)
+
+    class Meta:
+      db_table = 'boardbag_images'
