@@ -1,7 +1,21 @@
 import Image from "next/image"
 
-export default function NavBar( { params }:any) {
+export default async function NavBar( { params }:any) {
   console.log(params.navbar)
+
+  try {
+    const data = await fetch('http://localhost:8000/collection/snowboards')
+    const response = await data.json()
+
+    const filteredResponse = response.filter((snowboard:any) => {
+      return snowboard.header_description.includes('MEN') && !snowboard.header_description.includes('WOMEN');
+  });
+
+  console.log(filteredResponse)
+  } catch(err) {
+    console.error('ye error', err)
+  }
+
   return (
     <>
       <div className='border-2 border-white'>NavBar</div>
