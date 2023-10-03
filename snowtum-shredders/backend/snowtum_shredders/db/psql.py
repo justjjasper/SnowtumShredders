@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS snowboard_reviews (
 CREATE TABLE IF NOT EXISTS snowboard_skus (
   snowboard_sku_id INTEGER PRIMARY KEY NOT NULL,
   snowboard_id INTEGER NOT NULL,
-  snowboard_size NUMERIC NOT NULL,
+  snowboard_size VARCHAR(255) NOT NULL,
   snowboard_sku NUMERIC NOT NULL,
   FOREIGN KEY (snowboard_id) REFERENCES snowboards(snowboard_id)
 );
@@ -117,6 +117,16 @@ file_path = '/Users/jasperbucad/Desktop/snowtum_shredders_csv/'
 
 copy_csv_files = f'''
 COPY snowboards FROM '{file_path}snowboards/snowtum_shredders_snowboards.csv' CSV HEADER;
+COPY snowboard_images FROM '{file_path}snowboards/snowtum_shredders_snowboard_images.csv' CSV HEADER;
+COPY snowboard_reviews FROM '{file_path}snowboards/snowtum_shredders_snowboard_reviews.csv' CSV HEADER;
+COPY snowboard_skus FROM '{file_path}snowboards/snowtum_shredders_snowboard_skus.csv' CSV HEADER;
+COPY tshirts FROM '{file_path}tshirts/snowtum_shredders_tshirts.csv' CSV HEADER;
+COPY tshirt_skus FROM '{file_path}tshirts/snowtum_shredders_tshirt_skus.csv' CSV HEADER;
+COPY hoodies FROM '{file_path}hoodies/snowtum_shredders_hoodies.csv' CSV HEADER;
+COPY hoodie_skus FROM '{file_path}hoodies/snowtum_shredders_hoodie_skus.csv' CSV HEADER;
+COPY headgear FROM '{file_path}snowtum_shredders_headgear.csv' CSV HEADER;
+COPY boardbag FROM '{file_path}boardbag/snowtum_shredders_boardbag.csv' CSV HEADER;
+COPY boardbag_images FROM '{file_path}boardbag/snowtum_shredders_boardbag_image.csv' CSV HEADER;
 '''
 
 # Function to execute PSQL Statements with no returned results
