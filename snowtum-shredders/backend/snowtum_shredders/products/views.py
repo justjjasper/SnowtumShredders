@@ -37,7 +37,7 @@ def get_all_snowboards(request):
 
     return JsonResponse(formatted_snowboards, safe=False)
 
-def get_snowboards(request):
+def get_snowboard_collection(request):
     # Fetch all snowboards and their corresponding images
     snowboards = Snowboard.objects.all()
     snowboard_data = []
@@ -59,7 +59,7 @@ def get_snowboards(request):
     # Return the formatted data as JSON response
     return JsonResponse(snowboard_data, safe=False)
 
-def get_accessories(request):
+def get_accessory_collection(request):
     tshirts = list(TShirt.objects.values('tshirt_name', 'tshirt_image', 'tshirt_price'))
     hoodies = list(Hoodie.objects.values('hoodie_name', 'hoodie_image', 'hoodie_price'))
     headgear = list(Headgear.objects.values('headgear_name', 'headgear_image', 'headgear_price'))

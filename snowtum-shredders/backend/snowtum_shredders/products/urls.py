@@ -4,6 +4,6 @@ from . import views
 
 urlpatterns = [
   path('allsnowboards/', views.get_all_snowboards),
-  path('snowboards/', views.get_snowboards),
-  path('accessories/', views.get_accessories),
+  path('snowboards/', views.get_snowboard_collection),
+  path('accessories/', views.get_accessory_collection),
 ]
