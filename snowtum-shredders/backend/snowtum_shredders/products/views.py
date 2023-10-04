@@ -1,6 +1,19 @@
 from django.http import JsonResponse
-from .models import Snowboard, SnowboardImage, SnowboardReview, SnowboardSKU, TShirt, TShirtSKU, Hoodie, Headgear, Boardbag, BoardbagImage
+from .models import Snowboard, SnowboardImage, SnowboardReview, SnowboardSKU, TShirt, TShirtSKU, Hoodie, HoodieSKU, Headgear, Boardbag, BoardbagImage
 from django.db import DatabaseError #
+
+def custom_title_case(text):
+        # Split the text by spaces
+        words = text.split(' ')
+
+        # List of words to keep in uppercase
+        uppercase_words = ['sb', 'mfg', 'mars1']  # Add other words as needed
+
+        # Apply title case, but keep specific words in uppercase
+        title_case_words = [word.title() if word not in uppercase_words else word.upper() for word in words]
+
+        # Join the words back together with spaces
+        return ' '.join(title_case_words)
 
 def mega_snowboards(request):
     snowboards = Snowboard.objects.all()
@@ -164,7 +177,7 @@ def get_snowboard_product(request, snowboard_name):
 def get_tshirt_product(request, tshirt_name):
   try:
     # Format queried product name to db product name
-    formatted_tshirt_name = tshirt_name.replace('-', ' ').title()
+    formatted_tshirt_name = custom_title_case(tshirt_name.replace('-', ' '))
 
     # Query from database to get product data
     tshirt = TShirt.objects.get(tshirt_name = formatted_tshirt_name)
@@ -186,8 +199,34 @@ def get_tshirt_product(request, tshirt_name):
 
     return JsonResponse(tshirt_data)
 
-  except Snowboard.DoesNotExist:
+  except TShirt.DoesNotExist:
     # Handle the case where the snowboard with the provided name does not exist
     return JsonResponse({'error': 'Tshirt not found'}, status=404)
 
+def get_hoodie_product(request, hoodie_name):
+    try:
+        formatted_hoodie_name = custom_title_case(hoodie_name.replace('-', ' '))
+
+        hoodie = Hoodie.objects.get(hoodie_name = formatted_hoodie_name)
+
+        hoodie_sizes = list(HoodieSKU.objects.filter(hoodie=hoodie).values_list('hoodie_size', flat=True))
+        hoodie_skus = list(HoodieSKU.objects.filter(hoodie=hoodie).values_list('hoodie_sku', flat=True))
+
+        hoodie_data = {
+            'id': hoodie.hoodie_id,
+            'name': hoodie.hoodie_name,
+            'price': hoodie.hoodie_price,
+            'description': hoodie.hoodie_description,
+            'images': [hoodie.hoodie_image],
+            'sizes': hoodie_sizes,
+            'skus': hoodie_skus
+        }
+
+        return JsonResponse(hoodie_data)
+    except Hoodie.DoesNotExist:
+    # Handle the case where the snowboard with the provided name does not exist
+        return JsonResponse({'error': 'Hoodie not found'}, status=404)
+
+
+# def get_headgear_product(request, headgear_name):
 
