@@ -13,16 +13,36 @@ export default async function AccessoryCollection( { params }: AccessoryParams){
     const data = await fetch('http://localhost:8000/accessories')
     const response = await data.json()
 
-   let products = []
+    // Change list of products depending on route parameter
+    let products = []
 
-  //  if (params.accessory === 'all-accessories') {
-  //   for (let accessories in response) {
-  //     for (let product of accessories) {
-  //       products.push(product)
-  //     }
-  //   }
-  //  }
-    console.log(response)
+    switch (params.accessory) {
+      case 'all-accessories':
+        for (let accessories in response) {
+          for (let product of response[accessories]) {
+            products.push(product)
+          }
+        }
+        products = products
+        break;
+      case 'tshirts':
+        products = response.tshirts
+        break;
+      case 'hoodies':
+        products = response.hoodies
+        break;
+      case 'headgear':
+        products = response.headgear
+        break;
+      case 'boardbag':
+        products = response.boardbag
+        break;
+      default:
+        return (
+          <div>Error in loading page</div>
+        )
+    }
+    console.log(products)
 
     return (
       <div>
