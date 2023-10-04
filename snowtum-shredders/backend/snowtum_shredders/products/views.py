@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from .models import Snowboard, SnowboardImage, SnowboardReview, SnowboardSKU, TShirt, Hoodie, Headgear, Boardbag, BoardbagImage
 from django.db import DatabaseError #
 
-def get_all_snowboards(request):
+def mega_snowboards(request):
     snowboards = Snowboard.objects.all()
 
     formatted_snowboards = []
