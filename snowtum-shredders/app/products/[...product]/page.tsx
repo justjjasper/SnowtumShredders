@@ -22,7 +22,7 @@ export default async function Product({ params }: ProductParams ) {
     return (
       <div>
         {productName} snowboard is awesome.
-        <Image src={`${product.images[0]}`} alt='beaitful board' width={200} height={450}/>
+        <Image src={`${product.images[0]}`} alt='beaitful board' width={200} height={450} priority={true}/>
       </div>
     )
   } catch(err) {

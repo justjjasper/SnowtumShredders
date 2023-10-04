@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from .models import Snowboard, SnowboardImage, SnowboardReview, SnowboardSKU, TShirt, TShirtSKU, Hoodie, HoodieSKU, Headgear, Boardbag, BoardbagImage
+from .models import *
 from django.db import DatabaseError #
 
 def custom_title_case(text):
@@ -228,5 +228,26 @@ def get_hoodie_product(request, hoodie_name):
         return JsonResponse({'error': 'Hoodie not found'}, status=404)
 
 
-# def get_headgear_product(request, headgear_name):
+def get_headgear_product(request, headgear_name):
+    try:
+        formatted_headgear_name = custom_title_case(headgear_name.replace('-', ' '))
+
+        headgear = Headgear.objects.get(headgear_name = formatted_headgear_name)
+
+        headgear_data = {
+            'id': headgear.headgear_id,
+            'name': headgear.headgear_name,
+            'price': headgear.headgear_price,
+            'description': headgear.headgear_description,
+            'images': [headgear.headgear_image],
+            'sizes': ['ONE SIZE'],
+            'skus': [headgear.headgear_sku]
+        }
+
+        return JsonResponse(headgear_data)
+    except Headgear.DoesNotExist:
+    # Handle the case where the snowboard with the provided name does not exist
+        return JsonResponse({'error': 'Headgear not found'}, status=404)
+
+
 
