@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from .models import Snowboard, SnowboardImage, SnowboardReview, SnowboardSKU, TShirt, Hoodie, Headgear, Boardbag, BoardbagImage
+from .models import Snowboard, SnowboardImage, SnowboardReview, SnowboardSKU, TShirt, TShirtSKU, Hoodie, Headgear, Boardbag, BoardbagImage
 from django.db import DatabaseError #
 
 def mega_snowboards(request):
@@ -160,3 +160,34 @@ def get_snowboard_product(request, snowboard_name):
     except Snowboard.DoesNotExist:
         # Handle the case where the snowboard with the provided name does not exist
         return JsonResponse({'error': 'Snowboard not found'}, status=404)
+
+def get_tshirt_product(request, tshirt_name):
+  try:
+    # Format queried product name to db product name
+    formatted_tshirt_name = tshirt_name.replace('-', ' ').title()
+
+    # Query from database to get product data
+    tshirt = TShirt.objects.get(tshirt_name = formatted_tshirt_name)
+
+    # Query related data from other databases
+    tshirt_sizes = list(TShirtSKU.objects.filter(tshirt=tshirt).values_list('tshirt_size', flat=True))
+    tshirt_skus = list(TShirtSKU.objects.filter(tshirt=tshirt).values_list('tshirt_sku', flat=True))
+
+    # Format data into desired object
+    tshirt_data = {
+      'tshirt_id': tshirt.tshirt_id,
+      'tshirt_name': tshirt.tshirt_name,
+      'tshirt_price': tshirt.tshirt_price,
+      'tshirt_description' : tshirt.tshirt_description,
+      'tshirt_image': tshirt.tshirt_image,
+      'tshirt_sizes': tshirt_sizes,
+      'tshirt_skus': tshirt_skus
+    }
+
+    return JsonResponse(tshirt_data)
+
+  except Snowboard.DoesNotExist:
+    # Handle the case where the snowboard with the provided name does not exist
+    return JsonResponse({'error': 'Tshirt not found'}, status=404)
+
+
