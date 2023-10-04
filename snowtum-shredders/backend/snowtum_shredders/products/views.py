@@ -96,7 +96,7 @@ def get_accessory_collection(request):
         'boardbag': boardbag_data,
     }
 
-    response_data = [accessories_data]
+    response_data = accessories_data
 
     return JsonResponse(response_data, safe=False)
   except DatabaseError as e:
@@ -108,8 +108,6 @@ def get_accessory_collection(request):
       return JsonResponse({'error': 'An error occurred'}, status=500)
 
 def get_snowboard_product(request, snowboard_name):
-    print('what is', request)
-
     try:
         # # Retrieve the snowboard name from the request object
         # snowboard_name = request.GET.get('snowboard_name')

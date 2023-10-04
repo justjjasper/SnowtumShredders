@@ -1,3 +1,7 @@
+/* This is a dynamically routed page. Depending on the url, filter out from
+accessory/ collection API
+
+*/
 interface AccessoryParams {
   params: {
     accessory: string
@@ -5,7 +9,9 @@ interface AccessoryParams {
 };
 
 export default function AccessoryCollection( { params }: AccessoryParams){
-  console.log('what is accessoryParams', params.accessory)
+  if (params.accessory === 'all-accessories') {
+
+  }
   return (
     <div>
       {params.accessory}
