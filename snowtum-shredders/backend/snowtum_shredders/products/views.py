@@ -136,11 +136,11 @@ def get_snowboard_product(request, snowboard_name):
 
         # Serialize the data into the desired format
         snowboard_data = {
-            'snowboard_id': snowboard.snowboard_id,
-            'snowboard_name': snowboard.snowboard_name,
-            'header_image': snowboard.header_image,
+            'id': snowboard.snowboard_id,
+            'name': snowboard.snowboard_name,
+            'image': snowboard.header_image,
             'header_description': snowboard.header_description,
-            'snowboard_price': str(snowboard.snowboard_price),  # Convert to string if needed
+            'price': str(snowboard.snowboard_price),  # Convert to string if needed
             'shape': snowboard.shape,
             'sidecut': snowboard.sidecut,
             'flex': snowboard.flex,
@@ -149,10 +149,10 @@ def get_snowboard_product(request, snowboard_name):
             'camber_type': snowboard.camber_type,
             'camber_description': snowboard.camber_description,
             'camber_image': snowboard.camber_image,
-            'snowboard_images': snowboard_images,
-            'snowboard_reviews': list(snowboard_reviews),
-            'snowboard_sizes': snowboard_sizes,
-            'snowboard_skus': snowboard_skus,
+            'images': snowboard_images,
+            'reviews': list(snowboard_reviews),
+            'sizes': snowboard_sizes,
+            'skus': snowboard_skus,
         }
 
         return JsonResponse(snowboard_data)
@@ -175,13 +175,13 @@ def get_tshirt_product(request, tshirt_name):
 
     # Format data into desired object
     tshirt_data = {
-      'tshirt_id': tshirt.tshirt_id,
-      'tshirt_name': tshirt.tshirt_name,
-      'tshirt_price': tshirt.tshirt_price,
-      'tshirt_description' : tshirt.tshirt_description,
-      'tshirt_image': tshirt.tshirt_image,
-      'tshirt_sizes': tshirt_sizes,
-      'tshirt_skus': tshirt_skus
+      'id': tshirt.tshirt_id,
+      'name': tshirt.tshirt_name,
+      'price': tshirt.tshirt_price,
+      'description' : tshirt.tshirt_description,
+      'images': [tshirt.tshirt_image],
+      'sizes': tshirt_sizes,
+      'skus': tshirt_skus
     }
 
     return JsonResponse(tshirt_data)

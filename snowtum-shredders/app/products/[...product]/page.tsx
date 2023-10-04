@@ -7,21 +7,20 @@ interface ProductParams {
   }
 }
 
+// if productType is snowboard... conditional render that section
 export default async function Product({ params }: ProductParams ) {
   const productType = params.product[0]
   const productName = params.product[1]
-  console.log(params.product)
+
 
   try{
     const data = await fetch(`http://localhost:8000/${productType}/${productName}`)
-    const res = await data.json()
-
-    console.log(res)
+    const product = await data.json()
 
     return (
       <div>
-        {params.product[1]} snowboard is awesome.
-        <Image src={`${res.snowboard_images[0]}`} alt='beaitful board' width={200} height={450}/>
+        {productName} snowboard is awesome.
+        <Image src={`${product.images[0]}`} alt='beaitful board' width={200} height={450}/>
       </div>
     )
   } catch(err) {
