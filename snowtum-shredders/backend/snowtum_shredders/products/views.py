@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 from .models import Snowboard, SnowboardImage, SnowboardReview, SnowboardSKU, TShirt, Hoodie, Headgear, Boardbag, BoardbagImage
+from django.db import DatabaseError #
 
 def get_all_snowboards(request):
     snowboards = Snowboard.objects.all()
@@ -38,10 +39,11 @@ def get_all_snowboards(request):
     return JsonResponse(formatted_snowboards, safe=False)
 
 def get_snowboard_collection(request):
-    # Fetch all snowboards and their corresponding images
-    snowboards = Snowboard.objects.all()
-    snowboard_data = []
+  # Fetch all snowboards and their corresponding images
+  snowboards = Snowboard.objects.all()
+  snowboard_data = []
 
+  try:
     for snowboard in snowboards:
         # Get the first image for each snowboard
         snowboard_image = SnowboardImage.objects.filter(snowboard=snowboard).first()
@@ -58,8 +60,16 @@ def get_snowboard_collection(request):
 
     # Return the formatted data as JSON response
     return JsonResponse(snowboard_data, safe=False)
+  except DatabaseError as e:
+      # Handle database-related errors
+      return JsonResponse({'error': 'Database error occurred'}, status=500)
+
+  except Exception as e:
+      # Handle other exceptions or errors
+      return JsonResponse({'error': 'An error occurred'}, status=500)
 
 def get_accessory_collection(request):
+  try:
     tshirts = list(TShirt.objects.values('tshirt_name', 'tshirt_image', 'tshirt_price'))
     hoodies = list(Hoodie.objects.values('hoodie_name', 'hoodie_image', 'hoodie_price'))
     headgear = list(Headgear.objects.values('headgear_name', 'headgear_image', 'headgear_price'))
@@ -89,3 +99,66 @@ def get_accessory_collection(request):
     response_data = [accessories_data]
 
     return JsonResponse(response_data, safe=False)
+  except DatabaseError as e:
+        # Handle database-related errors
+        return JsonResponse({'error': 'Database error occurred'}, status=500)
+
+  except Exception as e:
+      # Handle other exceptions or errors
+      return JsonResponse({'error': 'An error occurred'}, status=500)
+
+def get_snowboard_product(request, snowboard_name):
+    print('what is', request)
+
+    try:
+        # # Retrieve the snowboard name from the request object
+        # snowboard_name = request.GET.get('snowboard_name')
+
+        # if not snowboard_name:
+        #     # Handle the case where snowboard_name is not provided in the request
+        #     return JsonResponse({'error': 'Snowboard name is required'}, status=400)
+
+        # Convert the provided snowboard name to the format stored in the database
+        formatted_snowboard_name = snowboard_name.replace('-', ' ').upper()
+
+        # Query the database to retrieve the snowboard product data
+        snowboard = Snowboard.objects.get(snowboard_name=formatted_snowboard_name)
+
+        # Query related data (images, reviews, sizes, skus)
+        snowboard_images = list(SnowboardImage.objects.filter(snowboard=snowboard).values_list('snowboard_image', flat=True))
+        snowboard_reviews = SnowboardReview.objects.filter(snowboard=snowboard).values(
+            'snowboard_review_title',
+            'snowboard_review_author',
+            'snowboard_review_date',
+            'snowboard_review_body',
+            'snowboard_review_rating'
+        )
+        snowboard_sizes = list(SnowboardSKU.objects.filter(snowboard=snowboard).values_list('snowboard_size', flat=True))
+        snowboard_skus = list(SnowboardSKU.objects.filter(snowboard=snowboard).values_list('snowboard_sku', flat=True))
+
+        # Serialize the data into the desired format
+        snowboard_data = {
+            'snowboard_id': snowboard.snowboard_id,
+            'snowboard_name': snowboard.snowboard_name,
+            'header_image': snowboard.header_image,
+            'header_description': snowboard.header_description,
+            'snowboard_price': str(snowboard.snowboard_price),  # Convert to string if needed
+            'shape': snowboard.shape,
+            'sidecut': snowboard.sidecut,
+            'flex': snowboard.flex,
+            'rider_type': snowboard.rider_type,
+            'tech_story': snowboard.tech_story,
+            'camber_type': snowboard.camber_type,
+            'camber_description': snowboard.camber_description,
+            'camber_image': snowboard.camber_image,
+            'snowboard_images': snowboard_images,
+            'snowboard_reviews': list(snowboard_reviews),
+            'snowboard_sizes': snowboard_sizes,
+            'snowboard_skus': snowboard_skus,
+        }
+
+        return JsonResponse(snowboard_data)
+
+    except Snowboard.DoesNotExist:
+        # Handle the case where the snowboard with the provided name does not exist
+        return JsonResponse({'error': 'Snowboard not found'}, status=404)
