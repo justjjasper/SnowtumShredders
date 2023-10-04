@@ -44,7 +44,7 @@ class SnowboardSKU(models.Model):
     snowboard_sku_id = models.AutoField(primary_key=True)
     snowboard = models.ForeignKey(Snowboard, on_delete=models.CASCADE)
     snowboard_size = models.CharField(max_length=255)
-    snowboard_sku = models.DecimalField(max_digits=10, decimal_places=2)
+    snowboard_sku = models.IntegerField()
 
     class Meta:
       db_table = 'snowboard_skus'
@@ -63,7 +63,7 @@ class TShirtSKU(models.Model):
     tshirt_sku_id = models.AutoField(primary_key=True)
     tshirt = models.ForeignKey(TShirt, on_delete=models.CASCADE)
     tshirt_size = models.CharField(max_length=255)
-    tshirt_sku = models.DecimalField(max_digits=10, decimal_places=2)
+    tshirt_sku = models.IntegerField()
 
     class Meta:
       db_table = 'tshirt_skus'
@@ -82,7 +82,7 @@ class HoodieSKU(models.Model):
     hoodie_sku_id = models.AutoField(primary_key=True)
     hoodie = models.ForeignKey(Hoodie, on_delete=models.CASCADE)
     hoodie_size = models.CharField(max_length=255)
-    hoodie_sku = models.DecimalField(max_digits=10, decimal_places=2)
+    hoodie_sku = models.IntegerField()
 
     class Meta:
       db_table = 'hoodie_skus'
@@ -93,7 +93,7 @@ class Headgear(models.Model):
     headgear_image = models.CharField(max_length=255)
     headgear_price = models.DecimalField(max_digits=10, decimal_places=2)
     headgear_description = models.TextField()
-    headgear_sku = models.DecimalField(max_digits=10, decimal_places=2)
+    headgear_sku = models.IntegerField()
 
     class Meta:
       db_table = 'headgear'
@@ -104,7 +104,7 @@ class Boardbag(models.Model):
     boardbag_price = models.DecimalField(max_digits=10, decimal_places=2)
     boardbag_size = models.CharField(max_length=255)
     boardbag_description = models.TextField()
-    boardbag_sku = models.DecimalField(max_digits=10, decimal_places=2)
+    boardbag_sku = models.IntegerField()
 
     class Meta:
       db_table = 'boardbag'
