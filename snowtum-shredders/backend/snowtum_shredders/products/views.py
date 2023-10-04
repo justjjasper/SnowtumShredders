@@ -227,7 +227,6 @@ def get_hoodie_product(request, hoodie_name):
     # Handle the case where the snowboard with the provided name does not exist
         return JsonResponse({'error': 'Hoodie not found'}, status=404)
 
-
 def get_headgear_product(request, headgear_name):
     try:
         formatted_headgear_name = custom_title_case(headgear_name.replace('-', ' '))
@@ -249,5 +248,26 @@ def get_headgear_product(request, headgear_name):
     # Handle the case where the snowboard with the provided name does not exist
         return JsonResponse({'error': 'Headgear not found'}, status=404)
 
+def get_boardbag_product(request, boardbag_name):
+    try:
+        formatted_boardbag_name = custom_title_case(boardbag_name.replace('-', ' '))
 
+        boardbag = Boardbag.objects.get(boardbag_name = formatted_boardbag_name)
+
+        boardbag_images = list(BoardbagImage.objects.filter(boardbag=boardbag).values_list('boardbag_image', flat=True))
+
+        boardbag_data = {
+            'id': boardbag.boardbag_id,
+            'name': boardbag.boardbag_name,
+            'price': boardbag.boardbag_price,
+            'description': boardbag.boardbag_description,
+            'images': boardbag_images,
+            'sizes': [boardbag.boardbag_size],
+            'skus': [boardbag.boardbag_sku]
+        }
+
+        return JsonResponse(boardbag_data)
+    except Boardbag.DoesNotExist:
+    # Handle the case where the snowboard with the provided name does not exist
+        return JsonResponse({'error': 'Boardbag not found'}, status=404)
 
