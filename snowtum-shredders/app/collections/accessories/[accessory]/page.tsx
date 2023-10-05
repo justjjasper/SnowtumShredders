@@ -46,7 +46,7 @@ export default async function AccessoryCollection( { params }: AccessoryParams){
 
     return (
       <div>
-        hello haha
+        All Accessories Page
       </div>
     )
   } catch(err) {
