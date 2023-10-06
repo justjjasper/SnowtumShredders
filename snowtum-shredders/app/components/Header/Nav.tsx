@@ -7,10 +7,12 @@ import { searchSVG, cartSVG } from "@/app/Misc/Icons"
 
 
 export default function Nav(){
+  // These states regulate the conditional render of adding new Classnames to control CSS animations
   const [snowboardHovered, setSnowboardHovered] = useState(false);
   const [accessoriesHovered, setAccessoriesHovered] = useState(false);
 
   const onMouseEnterSnowboard = () => {
+    setAccessoriesHovered(false)
     setSnowboardHovered(true);
   }
 
@@ -20,6 +22,7 @@ export default function Nav(){
   }
 
   const onMouseEnterAccessories = () => {
+    setSnowboardHovered(false)
     setAccessoriesHovered(true)
   }
 
@@ -30,7 +33,7 @@ export default function Nav(){
 
   return (
     <div className='flex flex-col font-calibre font-bold sticky top-0 backdrop-blur-lg'
-    onMouseLeave={onMouseLeaveSnowboard}>
+      onMouseLeave={onMouseLeaveSnowboard}>
       <div className='flex w-full items-center justify-between px-16 py-8'>
         <Link href='/'>SNOWTUM SHREDDERS</Link>
 
@@ -40,6 +43,10 @@ export default function Nav(){
             className='flex w-8/12 justify-evenly'
             >
             <span
+              /*
+                When the cursor hovers "SNOWBOARD", the "is-active" Class is added
+                to the span tag.
+              */
               className={`header-link ${snowboardHovered ? 'is-active' : ''}`}
               onMouseEnter={onMouseEnterSnowboard}
 

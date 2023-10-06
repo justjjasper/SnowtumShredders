@@ -51,12 +51,22 @@ body {
   transform: scaleX(1);
 }
 
+/*
+Sets up CSS for the actual Element Tag
+*/
 .header-link {
   position: relative;
   text-decoration: none;
   z-index: 50;
 }
 
+/*
+Sets up the PSEUDO ELEMENT properties that is "before" the .header-link Element Tag
+Also animates the "exiting animation"
+
+*KEEP IN MIND* That the additional CSS Classes added onto the ::before, adds on top of the
+pseudo element
+*/
 .header-link::before {
   content: '';
   position: absolute;
@@ -71,11 +81,20 @@ body {
   transition: transform .4s ease-in-out;
 }
 
+/*
+A new class is added on top of Element Tag
+Creates the initial animation
+Once the mouse leaves the Element tag, it persists due to the additional class below
+*/
 .header-link.is-active:hover::before {
   transform-origin: left;
   transform: scaleX(1);
 }
 
+/*
+Once the mouse leaves the Element tag, the "Line" persists due to this existing Element Class added
+Additionally, this overrides the original animations/transforms in the original .header-link
+*/
 .header-link.is-active::before {
   transform-origin: left;
   transform: scaleX(1);
