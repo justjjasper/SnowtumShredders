@@ -29,7 +29,8 @@ export default function Nav(){
   }
 
   return (
-    <div className='flex flex-col border-2 border-white font-calibre font-bold sticky top-0 backdrop-blur-lg'>
+    <div className='flex flex-col font-calibre font-bold sticky top-0 backdrop-blur-lg'
+    onMouseLeave={onMouseLeaveSnowboard}>
       <div className='flex w-full items-center justify-between px-16 py-8'>
         <Link href='/'>SNOWTUM SHREDDERS</Link>
 
@@ -39,10 +40,11 @@ export default function Nav(){
             className='flex w-8/12 justify-evenly'
             >
             <span
-              className=''
-              id='link'
+              // className={`${snowboardHovered ? 'underline' : ''}`}
+              // id={`${snowboardHovered ? 'link' : ''}`}
+              id='header-link'
               onMouseEnter={onMouseEnterSnowboard}
-              onMouseLeave={onMouseLeaveSnowboard}
+
             >
               SNOWBOARDS
             </span>
@@ -73,17 +75,26 @@ export default function Nav(){
           <div className='searchForm hidden'></div>
           <div
             className='snowboards-menu'
-            id= 'link'
             onMouseEnter={onMouseEnterSnowboard}
             onMouseLeave={onMouseLeaveSnowboard}
             >
             <button className='hidden'><span>Snowboards</span></button>
-            <div className='snowboards-menu-list'>
-              <Link id='link' href='/collections/all-snowboards'>ALL</Link>
-              <Link id='link' href='/collections/snowboards-mens'>MEN&apos;S</Link>
-              <Link id='link' href='/collections/snowboards-womens'>WOMEN&apos;S</Link>
-              <Link id='link' href='/collections/snowboards-kids'>KIDS</Link>
-              <Link id='link' href='/collections/split-snowboards'>SPLITBOARDS</Link>
+            <div className='snowboards-menu-list flex flex-col gap-5'>
+              <Link href='/collections/all-snowboards'>
+                <span id='link'>ALL</span>
+              </Link>
+              <Link href='/collections/snowboards-mens'>
+                <span id='link'>MEN&apos;S</span>
+              </Link>
+              <Link href='/collections/snowboards-womens'>
+                <span id='link'>WOMEN&apos;S</span>
+              </Link>
+              <Link href='/collections/snowboards-kids'>
+                <span id='link'>KID&apos;S</span>
+              </Link>
+              <Link href='/collections/split-snowboards'>
+                <span id='link'>SPLITBOARDS</span>
+              </Link>
             </div>
             <div className='hidden'>Divider</div>
           </div>
