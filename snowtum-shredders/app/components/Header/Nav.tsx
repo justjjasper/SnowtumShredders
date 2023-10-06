@@ -40,9 +40,7 @@ export default function Nav(){
             className='flex w-8/12 justify-evenly'
             >
             <span
-              // className={`${snowboardHovered ? 'underline' : ''}`}
-              // id={`${snowboardHovered ? 'link' : ''}`}
-              id='header-link'
+              className={`header-link ${snowboardHovered ? 'is-active' : ''}`}
               onMouseEnter={onMouseEnterSnowboard}
 
             >
@@ -81,19 +79,19 @@ export default function Nav(){
             <button className='hidden'><span>Snowboards</span></button>
             <div className='snowboards-menu-list flex flex-col gap-5'>
               <Link href='/collections/all-snowboards'>
-                <span id='link'>ALL</span>
+                <span id='menu-link'>ALL</span>
               </Link>
               <Link href='/collections/snowboards-mens'>
-                <span id='link'>MEN&apos;S</span>
+                <span id='menu-link'>MEN&apos;S</span>
               </Link>
               <Link href='/collections/snowboards-womens'>
-                <span id='link'>WOMEN&apos;S</span>
+                <span id='menu-link'>WOMEN&apos;S</span>
               </Link>
               <Link href='/collections/snowboards-kids'>
-                <span id='link'>KID&apos;S</span>
+                <span id='menu-link'>KID&apos;S</span>
               </Link>
               <Link href='/collections/split-snowboards'>
-                <span id='link'>SPLITBOARDS</span>
+                <span id='menu-link'>SPLITBOARDS</span>
               </Link>
             </div>
             <div className='hidden'>Divider</div>
