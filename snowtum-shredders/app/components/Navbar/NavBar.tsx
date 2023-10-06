@@ -16,7 +16,7 @@ export default async function NavBar() {
         </ul>
       </nav>
 
-      <div className='flex'>
+      <div className='flex gap-7'>
         <button>
           {searchSVG}
         </button>
