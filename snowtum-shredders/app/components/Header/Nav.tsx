@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect} from 'react'
 import Link from "next/link"
 
 // Import Icons
@@ -7,16 +7,16 @@ import { searchSVG, cartSVG } from "@/app/Misc/Icons"
 
 
 export default function Nav(){
-  // These states regulate the conditional render of adding new Classnames to control CSS animations
-  const [snowboardHovered, setSnowboardHovered] = useState(false);
-  const [accessoriesHovered, setAccessoriesHovered] = useState(false);
+  // Regulates the conditional render of adding new Classnames to control CSS animations
+  const [snowboardHovered, setSnowboardHovered] = useState<boolean>(false);
+  const [accessoriesHovered, setAccessoriesHovered] = useState<boolean>(false);
 
   const onMouseEnterSnowboard = () => {
     setAccessoriesHovered(false)
     setSnowboardHovered(true);
   }
 
-  const onMouseLeaveSnowboard = () => {
+  const onMouseLeave = () => {
     setSnowboardHovered(false)
     setAccessoriesHovered(false)
   }
@@ -26,19 +26,38 @@ export default function Nav(){
     setAccessoriesHovered(true)
   }
 
-  const onMouseLeaveAccessories = () => {
-    setAccessoriesHovered(false)
-    setSnowboardHovered(false)
-  }
+  // Contains X Positions for CSS Padding
+  const [snowboardXPos, setSnowboardPos] = useState<number | undefined>()
+  const [accessoriesXPos, setAccessoriesPos] = useState<number | undefined>()
+
+  // Retrieves X position to create padding left for menu items
+  useEffect(() => {
+    // Create function that retrieves snowboard X position
+    const snowboardResize = () => {
+      const getSnowboardPos = document.getElementById('snowboard-header')
+      const snowboardPos = getSnowboardPos?.getBoundingClientRect()?.x
+      setSnowboardPos(snowboardPos)
+    }
+
+    const accessoriesResize = () => {
+      const getAccessoriesPos = document.getElementById('accessories-header')
+      const accessoriesPos = getAccessoriesPos?.getBoundingClientRect()?.x
+      setAccessoriesPos(accessoriesPos)
+    }
+
+    // Triggers Resize functions when browser size changes
+    window.addEventListener('resize', snowboardResize)
+    window.addEventListener('resize', accessoriesResize)
+  }, [])
+
 
   return (
     <div className='flex flex-col font-calibre font-bold sticky top-0 backdrop-blur-lg'
-      onMouseLeave={onMouseLeaveSnowboard}>
+      onMouseLeave={onMouseLeave}>
       <div className='flex w-full items-center justify-between px-16 py-8'>
         <Link href='/'>SNOWTUM SHREDDERS</Link>
 
-        <nav className='flex flex-grow justify-around'
-          >
+        <nav className='flex flex-grow justify-around'>
           <ul
             className='flex w-8/12 justify-evenly'
             >
@@ -47,6 +66,7 @@ export default function Nav(){
                 When the cursor hovers "SNOWBOARD", the "is-active" Class is added
                 to the span tag.
               */
+              id='snowboard-header'
               className={`header-link ${snowboardHovered ? 'is-active' : ''}`}
               onMouseEnter={onMouseEnterSnowboard}
 
@@ -54,8 +74,9 @@ export default function Nav(){
               SNOWBOARDS
             </span>
             <span
+              id='accessories-header'
+              className=''
               onMouseEnter={onMouseEnterAccessories}
-              onMouseLeave={onMouseLeaveAccessories}
             >
               ACCESSORIES
             </span>
@@ -74,17 +95,20 @@ export default function Nav(){
      </div>
 
       <div
-        className={`dropdownMenu ${snowboardHovered ? 'flex' : 'hidden'} `}>
+        className={`dropdownMenu ${snowboardHovered ? 'flex' : 'hidden'}`}>
         <div className='cartForm'></div>
         <div className='menuList'>
           <div className='searchForm hidden'></div>
           <div
-            className='snowboards-menu'
+            className='snowboards-menu w-screen'
             onMouseEnter={onMouseEnterSnowboard}
-            onMouseLeave={onMouseLeaveSnowboard}
+            onMouseLeave={onMouseLeave}
             >
             <button className='hidden'><span>Snowboards</span></button>
-            <div className='snowboards-menu-list flex flex-col gap-5'>
+            <div
+              className='snowboards-menu-list flex flex-col gap-5'
+              style={{paddingLeft : `${snowboardXPos}px`}}
+            >
               <Link href='/collections/all-snowboards'>
                 <span id='menu-link'>ALL</span>
               </Link>
