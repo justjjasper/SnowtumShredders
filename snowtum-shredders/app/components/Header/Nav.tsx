@@ -110,19 +110,19 @@ export default function Nav(){
             <div className='snowboards-menu-list flex flex-col gap-6 font-medium text-[14px]'
               style={{paddingLeft : `${snowboardXPos}px`}}
             >
-              <Link href='/collections/all-snowboards'>
+              <Link href='/collections/all-snowboards' onClick={onMouseLeave}>
                 <span id='menu-link'>ALL</span>
               </Link>
-              <Link href='/collections/snowboards-mens'>
+              <Link href='/collections/snowboards-mens' onClick={onMouseLeave}>
                 <span id='menu-link'>MEN&apos;S</span>
               </Link>
-              <Link href='/collections/snowboards-womens'>
+              <Link href='/collections/snowboards-womens' onClick={onMouseLeave}>
                 <span id='menu-link'>WOMEN&apos;S</span>
               </Link>
-              <Link href='/collections/snowboards-kids'>
+              <Link href='/collections/snowboards-kids' onClick={onMouseLeave}>
                 <span id='menu-link'>KID&apos;S</span>
               </Link>
-              <Link href='/collections/split-snowboards'>
+              <Link href='/collections/split-snowboards' onClick={onMouseLeave}>
                 <span id='menu-link'>SPLITBOARDS</span>
               </Link>
             </div>
@@ -136,21 +136,21 @@ export default function Nav(){
             <div className='accessories-menu-list flex flex-col gap-6 font-medium text-[14px]'
               style={{paddingLeft: `${accessoriesXPos}px`}}
             >
-              <Link href='/collections/accessories/all-accessories'>
-                  <span id='menu-link'>ALL</span>
-                </Link>
-                <Link href='/collections/accessories/tshirts'>
-                  <span id='menu-link'>T-SHIRTS</span>
-                </Link>
-                <Link href='/collections/accessories/hoodies'>
-                  <span id='menu-link'>HOODIES</span>
-                </Link>
-                <Link href='/collections/accessories/hats-beanies'>
-                  <span id='menu-link'>HATS & BEANIES</span>
-                </Link>
-                <Link href='/collections/accessories/boardbags'>
-                  <span id='menu-link'>BOARD BAGS</span>
-                </Link>
+              <Link href='/collections/accessories/all-accessories' onClick={onMouseLeave}>
+                <span id='menu-link'>ALL</span>
+              </Link>
+              <Link href='/collections/accessories/tshirts' onClick={onMouseLeave}>
+                <span id='menu-link'>T-SHIRTS</span>
+              </Link>
+              <Link href='/collections/accessories/hoodies' onClick={onMouseLeave}>
+                <span id='menu-link'>HOODIES</span>
+              </Link>
+              <Link href='/collections/accessories/hats-beanies' onClick={onMouseLeave}>
+                <span id='menu-link'>HATS & BEANIES</span>
+              </Link>
+              <Link href='/collections/accessories/boardbags' onClick={onMouseLeave}>
+                <span id='menu-link'>BOARD BAGS</span>
+              </Link>
             </div>
             <div className='hidden'>Divider</div>
           </div>

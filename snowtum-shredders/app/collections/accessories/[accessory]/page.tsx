@@ -49,6 +49,7 @@ export default async function AccessoryCollection( { params }: AccessoryParams){
     return (
       <div>
         All Accessories Page
+        {accessoryType}
       </div>
     )
   } catch(err) {

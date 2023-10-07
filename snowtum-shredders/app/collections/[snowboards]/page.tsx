@@ -19,10 +19,13 @@ export default async function SnowboardCollection( { params }: SnowboardCollecti
 
     // Filter out products depending on route parameter
     switch(snowboardCategory) {
-
+      case 'all-snowboards':
+        products = response
+        break;
 
     }
 
+    console.log(products)
     return (
       <div>
         {params.snowboards}
