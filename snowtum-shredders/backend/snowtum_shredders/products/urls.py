@@ -9,6 +9,6 @@ urlpatterns = [
   path('snowboard/<str:snowboard_name>/', views.get_snowboard_product),
   path('tshirt/<str:tshirt_name>/', views.get_tshirt_product),
   path('hoodie/<str:hoodie_name>/', views.get_hoodie_product),
-  path('headgear/<str:headgear_name>/', views.get_headgear_product),
+  path('hats-beanies/<str:headgear_name>/', views.get_headgear_product),
   path('boardbag/<str:boardbag_name>/', views.get_boardbag_product)
 ]

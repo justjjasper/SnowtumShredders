@@ -45,10 +45,14 @@ export default function Nav(){
       setAccessoriesPos(accessoriesPos)
     }
 
+    // Initiate X Positions
+    snowboardResize()
+    accessoriesResize()
+
     // Triggers Resize functions when browser size changes
     window.addEventListener('resize', snowboardResize)
     window.addEventListener('resize', accessoriesResize)
-  }, [])
+  }, [snowboardXPos])
 
 
   return (
@@ -58,29 +62,24 @@ export default function Nav(){
         <Link href='/'>SNOWTUM SHREDDERS</Link>
 
         <nav className='flex flex-grow justify-around'>
-          <ul
-            className='flex w-8/12 justify-evenly'
-            >
-            <span
+          <ul className='flex w-8/12 justify-evenly'>
+            <span className={`header-link ${snowboardHovered ? 'is-active' : ''}`}
+              id='snowboard-header'
+              onMouseEnter={onMouseEnterSnowboard}
               /*
                 When the cursor hovers "SNOWBOARD", the "is-active" Class is added
                 to the span tag.
               */
-              id='snowboard-header'
-              className={`header-link ${snowboardHovered ? 'is-active' : ''}`}
-              onMouseEnter={onMouseEnterSnowboard}
-
             >
               SNOWBOARDS
             </span>
-            <span
+            <span className={`header-link ${accessoriesHovered ? 'is-active' : ''}`}
               id='accessories-header'
-              className=''
               onMouseEnter={onMouseEnterAccessories}
             >
               ACCESSORIES
             </span>
-            <span>TEAM</span>
+            <Link href='/team'>TEAM</Link>
           </ul>
         </nav>
 
@@ -94,19 +93,16 @@ export default function Nav(){
         </div>
      </div>
 
-      <div
-        className={`dropdownMenu ${snowboardHovered ? 'flex' : 'hidden'}`}>
+      <div className='dropdown-menu'>
         <div className='cartForm'></div>
-        <div className='menuList'>
+        <div className='menu-list'>
           <div className='searchForm hidden'></div>
-          <div
-            className='snowboards-menu w-screen'
+          <div className={`snowboards-menu ${snowboardHovered ? 'flex' : 'hidden'}`}
             onMouseEnter={onMouseEnterSnowboard}
             onMouseLeave={onMouseLeave}
             >
             <button className='hidden'><span>Snowboards</span></button>
-            <div
-              className='snowboards-menu-list flex flex-col gap-5'
+            <div className='snowboards-menu-list flex flex-col gap-5'
               style={{paddingLeft : `${snowboardXPos}px`}}
             >
               <Link href='/collections/all-snowboards'>
@@ -127,9 +123,30 @@ export default function Nav(){
             </div>
             <div className='hidden'>Divider</div>
           </div>
-          <div className='accessories-menu'>
+          <div className={`accessories-menu ${accessoriesHovered ? 'flex' : 'hidden'}`}
+            onMouseEnter={onMouseEnterAccessories}
+            onMouseLeave={onMouseLeave}
+          >
             <button className='hidden'><span>Accessories</span></button>
-            <div className='accessories-menu-list'></div>
+            <div className='accessories-menu-list flex flex-col gap-5'
+              style={{paddingLeft: `${accessoriesXPos}px`}}
+            >
+              <Link href='/collections/accessories/all-accessories'>
+                  <span id='menu-link'>ALL</span>
+                </Link>
+                <Link href='/collections/accessories/tshirts'>
+                  <span id='menu-link'>T-SHIRTS</span>
+                </Link>
+                <Link href='/collections/accessories/hoodies'>
+                  <span id='menu-link'>HOODIES</span>
+                </Link>
+                <Link href='/collections/accessories/hats-beanies'>
+                  <span id='menu-link'>HATS & BEANIES</span>
+                </Link>
+                <Link href='/collections/accessories/boardbags'>
+                  <span id='menu-link'>BOARD BAGS</span>
+                </Link>
+            </div>
             <div className='hidden'>Divider</div>
           </div>
         </div>

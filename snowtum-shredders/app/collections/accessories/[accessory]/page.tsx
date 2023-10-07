@@ -31,10 +31,10 @@ export default async function AccessoryCollection( { params }: AccessoryParams){
       case 'hoodies':
         products = response.hoodies
         break;
-      case 'headgear':
+      case 'hats-beanies':
         products = response.headgear
         break;
-      case 'boardbag':
+      case 'boardbags':
         products = response.boardbag
         break;
       default:
