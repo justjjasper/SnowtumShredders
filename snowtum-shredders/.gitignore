@@ -37,4 +37,8 @@ next-env.d.ts
 # venv
 venv
 
+# env
 .env
+
+# config
+config.tsx

@@ -1,6 +1,7 @@
 /* This is a dynamically routed page. Depending on the url, filter out from
 accessory/ collection API
 */
+import { accessoriesAPI } from '@/app/config'
 
 interface AccessoryParams {
   params: {
@@ -10,13 +11,14 @@ interface AccessoryParams {
 
 export default async function AccessoryCollection( { params }: AccessoryParams){
   try {
-    const data = await fetch('http://localhost:8000/accessories')
+    const data = await fetch(`${accessoriesAPI}`)
     const response = await data.json()
 
-    // Change list of products depending on route parameter
     let products = []
+    const accessoryType = params.accessory
 
-    switch (params.accessory) {
+    // Change list of products depending on route parameter
+    switch (accessoryType) {
       case 'all-accessories':
         for (let accessories in response) {
           for (let product of response[accessories]) {
@@ -53,7 +55,7 @@ export default async function AccessoryCollection( { params }: AccessoryParams){
     console.log('Error', err)
     return (
       <div>
-        Error loading page.
+        Error loading Collection of Accessories page.
       </div>
     )
   }

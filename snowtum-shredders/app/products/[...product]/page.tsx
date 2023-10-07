@@ -1,5 +1,6 @@
 // This page is dynamically routed, first param is the product type, second param is product name.
 import Image from "next/image"
+import { serverAPI } from "@/app/config"
 
 interface ProductParams {
   params: {
@@ -16,7 +17,7 @@ export default async function Product({ params }: ProductParams ) {
 
   try{
     // Query from database using productType & productName
-    const data = await fetch(`http://localhost:8000/${productType}/${productName}`)
+    const data = await fetch(`${serverAPI}/${productType}/${productName}`)
     const product = await data.json()
 
     return (
