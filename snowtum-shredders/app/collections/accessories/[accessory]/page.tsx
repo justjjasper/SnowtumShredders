@@ -41,7 +41,7 @@ export default async function AccessoryCollection( { params }: AccessoryParams){
         break;
       default:
         return (
-          <div>Error in loading page</div>
+          <div>Error in loading Accessories page</div>
         )
     }
     console.log(products)
