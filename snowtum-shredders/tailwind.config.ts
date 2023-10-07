@@ -20,6 +20,9 @@ const config: Config = {
     },
     fontFamily: {
       'calibre': ['"calibre"', '"Helvetica Neue"', 'Helvetica', 'Arial', 'Sans-serif']
+    },
+    fontSize: {
+      'web-p-md': '16px'
     }
   },
   plugins: [],
