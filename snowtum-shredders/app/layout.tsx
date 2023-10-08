@@ -21,6 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Header/>
+        {/*Wrapped a div around children pages so they all have a lower z-index than the nav. Also "scooted" up the page*/}
         <div className='relative bottom-[100px] z-20'>
           {children}
         </div>
