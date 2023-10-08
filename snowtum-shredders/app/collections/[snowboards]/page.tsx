@@ -34,7 +34,6 @@ export default async function SnowboardCollection( { params }: SnowboardCollecti
         products = response.filter((snowboard: Product) => {
           return /MEN|EVERYONE/.test(snowboard.header_description) && !snowboard.header_description.includes('WOMEN')
         })
-
         break;
       case 'snowboards-womens':
         products = response.filter((snowboard :Product) => {

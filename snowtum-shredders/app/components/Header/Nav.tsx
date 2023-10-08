@@ -56,7 +56,7 @@ export default function Nav(){
 
 
   return (
-    <div className='flex flex-col font-calibre font-bold sticky top-0 backdrop-blur-lg'
+    <div className='flex flex-col font-calibre font-bold sticky top-0 backdrop-blur-3xl z-50'
       onMouseLeave={onMouseLeave}>
       <div className='flex w-full items-center justify-between px-16 py-8'>
         <Link href='/'>SNOWTUM SHREDDERS</Link>
@@ -76,40 +76,40 @@ export default function Nav(){
             <span className={`header-link ${accessoriesHovered ? 'is-active' : ''}`}
               id='accessories-header'
               onMouseEnter={onMouseEnterAccessories}
-            >
+              >
               ACCESSORIES
             </span>
             <Link id='menu-link'
               href='/team'
               onMouseEnter={onMouseLeave}
-            >
+              >
               TEAM
             </Link>
           </ul>
         </nav>
 
         <div className='flex gap-7'>
-          <button>
+          <button id='menu-link'>
             {searchSVG}
           </button>
-          <button>
+          <button id='menu-link'>
             {cartSVG}
           </button>
         </div>
      </div>
 
-      <div className='dropdown-menu'>
+      <div className='drop-down-menu relative'>
         <div className='cartForm'></div>
         <div className='menu-list'>
           <div className='searchForm hidden'></div>
-          <div className={`snowboards-menu ${snowboardHovered ? 'flex' : 'hidden'} py-8`}
+          <div className={`snowboards-menu ${snowboardHovered ? 'flex' : 'hidden'} absolute`}
             onMouseEnter={onMouseEnterSnowboard}
             onMouseLeave={onMouseLeave}
             >
             <button className='hidden'><span>Snowboards</span></button>
             <div className='snowboards-menu-list flex flex-col gap-6 font-medium text-[14px]'
               style={{paddingLeft : `${snowboardXPos}px`}}
-            >
+              >
               <Link href='/collections/all-snowboards' onClick={onMouseLeave}>
                 <span id='menu-link'>ALL</span>
               </Link>
@@ -128,7 +128,7 @@ export default function Nav(){
             </div>
             <div className='hidden'>Divider</div>
           </div>
-          <div className={`accessories-menu ${accessoriesHovered ? 'flex' : 'hidden'} py-8`}
+          <div className={`accessories-menu ${accessoriesHovered ? 'flex' : 'hidden'} absolute`}
             onMouseEnter={onMouseEnterAccessories}
             onMouseLeave={onMouseLeave}
           >
