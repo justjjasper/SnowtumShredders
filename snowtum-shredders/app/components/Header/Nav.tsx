@@ -56,7 +56,7 @@ export default function Nav(){
 
 
   return (
-    <div className='flex flex-col font-calibre font-bold sticky top-0 backdrop-blur-3xl z-50'
+    <div className='flex flex-col font-calibre font-bold sticky top-0 backdrop-blur-3xl z-50 text-[#FFFFFF]'
       onMouseLeave={onMouseLeave}>
       <div className='flex w-full items-center justify-between px-16 py-8'>
         <Link href='/'>SNOWTUM SHREDDERS</Link>

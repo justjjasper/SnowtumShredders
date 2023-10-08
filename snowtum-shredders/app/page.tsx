@@ -8,7 +8,7 @@ export default function Home() {
         className='relative flex justify-center'
         >
         <Image
-          src='https://capitasnowboarding.com/cdn/shop/files/D_hompage_herobanner.png?v=1690534716'
+          src='https://res.cloudinary.com/jasjasper/image/upload/v1696808288/snowtum-shredders-banner_xcxkev.png'
           alt='Snowtum Shredder Banner'
           width={500}
           height={500}
