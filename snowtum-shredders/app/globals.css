@@ -93,4 +93,15 @@ Additionally, this overrides the original animations/transforms in the original 
   @apply absolute inset-0 -z-10;
 }
 
+.left-banner-text {
+  writing-mode: vertical-rl;
+  transition: transform 0.2s ease-in-out
+}
 
+.left-banner-card:hover span {
+  text-decoration: underline;
+}
+
+.left-banner-card:hover img {
+  transform: scale(1.05);
+}

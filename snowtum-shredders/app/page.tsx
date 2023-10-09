@@ -22,29 +22,48 @@ export default async function Home() {
             className='w-full'
           />
           <Link href='/collections/all-snowboards'
-            className='absolute flex font-calibre font-bold tracking-tighter bg-primary self-end bottom-[93px] py-4 hover:underline w-3/12 justify-center rounded-full'
+            className='absolute w-3/12  flex justify-center self-end bottom-[93px] py-4 rounded-full font-calibre font-bold tracking-tighter bg-primary hover:underline'
             >
               OPEN YOUR MIND
           </Link>
         </section>
 
+        <section className='relative w-full flex justify-center h-[700px]'>
+          <div className='left-banner flex flex-grow bg-secondary py-20 text-primary'>
 
-        <section className='flex relative w-full'>
-          <div className='flex bg-secondary text-primary py-48'>
-            <div className='flex flex-col items-end justify-end rotate-90'>
+            <div className='left-banner-text flex flex-col items-end justify-end pl-16 leading-[37px] border-[#ffffff]'>
              <span className='flex text-[18px]'>{snowboard.rider_type}</span>
-             <span className='flex font-bold whitespace-nowrap text-[56px] leading-[42px]'>{snowboard.name}</span>
+             <span className='flex font-bold whitespace-nowrap text-[56px]'>{snowboard.name}</span>
+            </div>
+
+            <div className="left-banner-card flex flex-col items-center font-calibre rounded-2xl border-2 translate-x-1/2 bg-[url('https://capitasnowboarding.com/cdn/shop/files/000_GRID_PAPER_BG_1_77e3e65d-56ba-4a1f-a70b-76408f3b3cbf.png?v=1690637051')]">
+
+              <Link href='products/snowboard/indoor-survival' className='flex flex-col justify-between h-full'>
+                <Image
+                  src={snowboard.images[0]}
+                  alt='Indoor Survival'
+                  width={278}
+                  height={477}
+                  className='flex pt-10'
+                />
+
+                <div className='flex justify-center bg-primary text-secondary py-3 rounded-b-xl'>
+                  <span className='flex font-bold tracking-tight'>SHOP NOW</span>
+                </div>
+              </Link>
             </div>
           </div>
 
-          <Image
-            src='https://capitasnowboarding.com/cdn/shop/files/D_hompage_productbanner_arthurlongo.jpg?v=1696266979'
-            alt='Arthur Longo Picture'
-            width={500}
-            height={500}
-            className='w-8/12 flex-grow'
-          />
+          <div className='right-banner w-[63%] flex flex-grow'>
+            <Image
+              src='https://capitasnowboarding.com/cdn/shop/files/D_hompage_productbanner_arthurlongo.jpg?v=1696266979'
+              alt='Arthur Longo Picture'
+              width={690}
+              height={960}
+              className='flex w-full'
+            />
 
+          </div>
         </section>
 
         <section className='relative flex w-full items-center justify-center align-center'>
@@ -56,7 +75,7 @@ export default async function Home() {
             className='w-full'
           />
           <div className='flex flex-col absolute justify-center items-center'>
-            <p className='flex text-[3rem] text-[#fefefe] text-center tracking-tight font-medium font-calibre px-10'>
+            <p className='flex text-[3rem] text-[#ffffff] text-center tracking-tight font-medium font-calibre px-10'>
               Snowtum Shredders&apos; Snowboards are handcrafted in San Diego with self-generated clean energy at The MotherShip™.
             </p>
             <Image
