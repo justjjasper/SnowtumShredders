@@ -16,9 +16,9 @@ export default function Home() {
           className='w-full'
         />
         <Link href='/collections/all-snowboards'
-          className='absolute flex border-2 bg-primary self-end'
+          className='absolute flex font-calibre font-bold tracking-tighter bg-primary self-end bottom-[93px] py-4 hover:underline w-3/12 justify-center rounded-full'
           >
-            Open Your Mind
+            OPEN YOUR MIND
         </Link>
       </div>
 
