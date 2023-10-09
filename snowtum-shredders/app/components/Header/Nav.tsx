@@ -80,7 +80,7 @@ export default function Nav(){
               ACCESSORIES
             </span>
             <Link id='menu-link'
-              href='/team'
+              href='/pages/team'
               onMouseEnter={onMouseLeave}
               >
               TEAM

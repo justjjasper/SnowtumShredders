@@ -9,7 +9,7 @@ export default async function Home() {
     const snowboard = await data.json()
     console.log(snowboard)
     return (
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center relative bottom-[100px] z-20">
         <section className='relative flex justify-center'
           style={{width: '100%', height: '100%'}}
           >
@@ -36,7 +36,7 @@ export default async function Home() {
              <span className='flex font-bold whitespace-nowrap text-[56px]'>{snowboard.name}</span>
             </div>
 
-            <div className="left-banner-card flex flex-col items-center font-calibre rounded-2xl border-2 translate-x-1/2 bg-[url('https://capitasnowboarding.com/cdn/shop/files/000_GRID_PAPER_BG_1_77e3e65d-56ba-4a1f-a70b-76408f3b3cbf.png?v=1690637051')]">
+            <div className="left-banner-card flex flex-col items-center font-calibre rounded-2xl border-[1px] translate-x-[70%] bg-[url('https://capitasnowboarding.com/cdn/shop/files/000_GRID_PAPER_BG_1_77e3e65d-56ba-4a1f-a70b-76408f3b3cbf.png?v=1690637051')]">
 
               <Link href='products/snowboard/indoor-survival' className='flex flex-col justify-between h-full'>
                 <Image
@@ -66,7 +66,9 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className='relative flex w-full items-center justify-center align-center'>
+        {/*Must implement Negative Margin Bottom to each last section of
+        the page to remove white space created from 'bottom-100px' */}
+        <section className='relative flex w-full items-center justify-center align-center mb-[-100px]'>
           <Image
             src={backgroundImage}
             alt='Background Grid'
@@ -87,7 +89,6 @@ export default async function Home() {
             />
           </div>
         </section>
-
       </div>
     )
   }catch(err) {
