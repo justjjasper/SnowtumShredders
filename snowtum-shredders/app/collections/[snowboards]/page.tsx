@@ -60,7 +60,7 @@ export default async function SnowboardCollection( { params }: SnowboardCollecti
 
     console.log(products, snowboardCategory)
     return (
-      <div>
+      <div className='relative bottom-[100px] z-20'>
         {params.snowboards}
       </div>
     )

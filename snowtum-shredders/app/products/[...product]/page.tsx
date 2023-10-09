@@ -21,7 +21,7 @@ export default async function Product({ params }: ProductParams ) {
     const product = await data.json()
 
     return (
-      <div>
+      <div className={`${productType === 'snowboard' ? 'bottom-[100px] z-20' : ''} relative `}>
         {productName} snowboard is awesome.
         <Image src={`${product.images[0]}`} alt='beaitful board' width={200} height={450} priority={true}/>
       </div>

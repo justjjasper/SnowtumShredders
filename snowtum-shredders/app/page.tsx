@@ -22,7 +22,7 @@ export default async function Home() {
             className='w-full'
           />
           <Link href='/collections/all-snowboards'
-            className='absolute w-3/12  flex justify-center self-end bottom-[93px] py-4 rounded-full font-calibre font-bold tracking-tighter bg-primary hover:underline'
+            className='absolute bottom-[93px] w-3/12 flex justify-center self-end py-4 rounded-full font-calibre font-bold tracking-tighter bg-primary hover:underline'
             >
               OPEN YOUR MIND
           </Link>

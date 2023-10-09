@@ -47,7 +47,7 @@ export default async function AccessoryCollection( { params }: AccessoryParams){
     console.log(products)
 
     return (
-      <div>
+      <div className='relative bottom-[100px] z-20'>
         All Accessories Page
         {accessoryType}
       </div>
