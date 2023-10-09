@@ -3,7 +3,7 @@ import Link from "next/link"
 export default function Footer() {
 
   return (
-    <div className='flex justify-around items-center'>
+    <div className='flex justify-around items-center mt-[-100px]'>
       <div className='first-column relative flex flex-col'>
         <Link href='/pages/contact' className='hover:underline'>Contact Us</Link>
         <Link href='/pages/terms' className='hover:underline'>Terms and Conditions</Link>
