@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
+
 // Components
 import Header from './components/Header/Header'
 
@@ -19,6 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+      <link href="https://fonts.googleapis.com/css2?family=Contrail+One&family=Holtwood+One+SC&family=Lilita+One&family=Tilt+Neon&display=swap" rel="stylesheet"/>
+      </head>
       <body className={inter.className}>
         <Header/>
         {/*Wrapped a div around children pages so they all have a lower z-index than the nav. Also "scooted" up the page*/}

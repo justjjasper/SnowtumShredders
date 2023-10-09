@@ -19,7 +19,8 @@ const config: Config = {
       secondary: 'black'
     },
     fontFamily: {
-      'calibre': ['"calibre"', '"Helvetica Neue"', 'Helvetica', 'Arial', 'Sans-serif']
+      'calibre': ['"Calibre"', '"Helvetica Neue"', 'Helvetica', 'Arial', 'Sans-serif'],
+      'holtwood': ["'Holtwood One SC'", '"Helvetica Neue"', 'Helvetica', 'Arial', 'Sans-serif'],
     },
     fontSize: {
       'web-p-md': '16px'
