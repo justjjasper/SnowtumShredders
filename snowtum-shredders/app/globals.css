@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Header */
 #menu-link {
   position: relative;
   text-decoration: none;
@@ -89,10 +90,7 @@ Additionally, this overrides the original animations/transforms in the original 
   z-index: -1
 }
 
-.backdrop-hack {
-  @apply absolute inset-0 -z-10;
-}
-
+/* Home Page */
 .left-banner-text {
   writing-mode: vertical-rl;
   transition: transform 0.2s ease-in-out
@@ -104,4 +102,13 @@ Additionally, this overrides the original animations/transforms in the original 
 
 .left-banner-card:hover img {
   transform: scale(1.05);
+}
+
+.backdrop-hack {
+  @apply absolute inset-0 -z-10;
+}
+
+/* Footer */
+.footer a:hover {
+  text-decoration: underline;
 }
