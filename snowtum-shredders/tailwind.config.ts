@@ -12,20 +12,17 @@ const config: Config = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        },
       },
+      colors: {
+        primary: 'white',
+        secondary: 'black'
+      },
+      fontFamily: {
+        'calibre': ['"Calibre"', '"Helvetica Neue"', 'Helvetica', 'Arial', 'Sans-serif'],
+        'holtwood': ["'Holtwood One SC'", '"Helvetica Neue"', 'Helvetica', 'Arial', 'Sans-serif'],
+      }
     },
-    colors: {
-      primary: 'white',
-      secondary: 'black'
-    },
-    fontFamily: {
-      'calibre': ['"Calibre"', '"Helvetica Neue"', 'Helvetica', 'Arial', 'Sans-serif'],
-      'holtwood': ["'Holtwood One SC'", '"Helvetica Neue"', 'Helvetica', 'Arial', 'Sans-serif'],
-    },
-    fontSize: {
-      'web-p-md': '16px'
-    }
-  },
   plugins: [],
 }
 export default config

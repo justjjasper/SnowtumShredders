@@ -1,0 +1,9 @@
+/* Add content-top divider */
+.content-top::after {
+  content: '';
+  display: block;
+  border-bottom: 1px solid white;
+  position: absolute;
+  bottom: 0;
+  width: 100%
+}

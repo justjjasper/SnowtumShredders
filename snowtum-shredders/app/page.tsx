@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { indoorAPI } from './config'
-import { backgroundImage } from './Misc/Data'
+import { backgroundImage } from './assets/images/Data'
 
 export default async function Home() {
   try{
@@ -9,7 +9,7 @@ export default async function Home() {
     const snowboard = await data.json()
     console.log(snowboard)
     return (
-      <div className="flex flex-col items-center relative bottom-[100px] z-20">
+      <main className="flex flex-col items-center relative bottom-[100px] z-20">
         <section className='relative flex justify-center'
           style={{width: '100%', height: '100%'}}
           >
@@ -89,7 +89,7 @@ export default async function Home() {
             />
           </div>
         </section>
-      </div>
+      </main>
     )
   }catch(err) {
     return (
