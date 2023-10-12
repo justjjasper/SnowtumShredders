@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
 // Components
-import Header from './components/Header/Header'
+import NavBar from './components/Header/NavBar'
 import Footer from './components/Footer/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,7 +23,7 @@ export default function RootLayout({
       <link href="https://fonts.googleapis.com/css2?family=Contrail+One&family=Holtwood+One+SC&family=Lilita+One&family=Tilt+Neon&display=swap" rel="stylesheet"/>
       </head>
       <body className={inter.className}>
-        <Header/>
+        <NavBar/>
         {children}
         <Footer/>
       </body>

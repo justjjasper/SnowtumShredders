@@ -6,7 +6,7 @@ import Link from "next/link"
 import { searchSVG, cartSVG } from "@/app/Misc/Icons"
 
 
-export default function HeaderSection(){
+export default function NavBar(){
   // Regulates the conditional render of adding new Classnames to control CSS animations
   const [snowboardHovered, setSnowboardHovered] = useState<boolean>(false);
   const [accessoriesHovered, setAccessoriesHovered] = useState<boolean>(false);

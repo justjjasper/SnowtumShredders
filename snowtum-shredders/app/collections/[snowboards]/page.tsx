@@ -1,7 +1,9 @@
 // This is a dynamic routed page. Depending on the slug, it will call a certain API to get the data
 // If its men, women, kids, filter from header description, for splitboard filter from snowboard name
 import { snowboardsAPI } from '@/app/config'
+import AsideSnowboards from '@/app/components/Collections/AsideSnowboard'
 import './collectionSnowboards.css'
+import Link from 'next/link'
 
 interface SnowboardCollectionParams {
   params: {
@@ -17,7 +19,7 @@ interface Product {
 }
 
 export default async function SnowboardCollection( { params }: SnowboardCollectionParams){
-  console.log('what is snowboardCollectionParams', params.snowboards)
+  // console.log('what is snowboardCollectionParams', params.snowboards)
 
   try {
     const data = await fetch(`${snowboardsAPI}`)
@@ -64,12 +66,12 @@ export default async function SnowboardCollection( { params }: SnowboardCollecti
         )
     }
 
-    console.log(products, snowboardCategory)
     return (
       // Don't forget the bottom-[100px] within the main tag
       <main className='relative bottom-[100px] z-20'>
-        <div className={`bg-[url('https://capitasnowboarding.com/cdn/shop/files/000_GRID_PAPER_BG_1_77e3e65d-56ba-4a1f-a70b-76408f3b3cbf.png?v=1690637051')] h-[1000px] relative pt-32`}>
+        <div className={`relative pt-32 bg-[url('https://capitasnowboarding.com/cdn/shop/files/000_GRID_PAPER_BG_1_77e3e65d-56ba-4a1f-a70b-76408f3b3cbf.png?v=1690637051')]`}>
           <div className='content-container flex flex-col px-16 text-primary font-calibre'>
+
             <section className='content-top relative flex items-end justify-between pb-2'>
               <span className='text-5xl font-bold tracking-tighter'>{categoryHeader}</span>
               {/* Implement filtering method */}
@@ -80,10 +82,12 @@ export default async function SnowboardCollection( { params }: SnowboardCollecti
                 <span className='mx-[8px]'>PRICE: LOW - HIGH</span>
               </div>
             </section>
-            <section className='content-listing'>
-              <aside className='content-aside-filter'></aside>
-              <div className='content-list'></div>
+
+            <section className='content-listing flex py-20'>
+              <AsideSnowboards/>
+              <div className='content-list'> im content </div>
             </section>
+
           </div>
         </div>
       </main>
