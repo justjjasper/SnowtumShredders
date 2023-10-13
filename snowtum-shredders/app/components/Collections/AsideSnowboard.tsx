@@ -1,7 +1,7 @@
 'use client'
-import Link from "next/link"
+import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react"
+import { useState } from "react";
 
 interface CheckboxState {
   'all-snowboards': boolean;
@@ -12,40 +12,28 @@ interface CheckboxState {
 }
 
 export default function AsideSnowboards() {
-  const pathname = usePathname()
-  console.log('what is path name', pathname)
+  const pathname = usePathname();
 
-  const [checkboxState, setCheckboxState] = useState<CheckboxState>({
-    'all-snowboards': false,
-    'snowboards-mens': false,
-    'snowboards-womens': false,
-    'snowboards-kids': false,
-    'split-snowboards': false
-  })
+  // Use local state for the checkbox values
+  const [checkboxState, setCheckboxState] = useState({
+    'all-snowboards': pathname === '/collections/all-snowboards',
+    'snowboards-mens': pathname === '/collections/snowboards-mens',
+    'snowboards-womens': pathname === '/collections/snowboards-womens',
+    'snowboards-kids': pathname === '/collections/snowboards-kids',
+    'split-snowboards': pathname === '/collections/split-snowboards',
+  });
 
-  switch (pathname) {
-    case ('/collections/all-snowboards'):
-      checkboxState['all-snowboards'] = (true)
-      break;
-    case ('/collections/snowboards-mens'):
-      checkboxState['snowboards-mens'] = (true)
-      break;
-    case ('/collections/snowboards-womens'):
-      checkboxState['snowboards-womens'] = (true)
-      break;
-    case ('/collections/snowboards-kids'):
-      checkboxState['snowboards-kids'] = (true)
-      break;
-    case ('/collections/split-snowboards'):
-      checkboxState['split-snowboards'] = (true)
-      break;
-    default:
-      return (
-        <div>
-          Error loading page
-        </div>
-      )
-  }
+  const handleCheckboxChange = (key: keyof CheckboxState) => {
+    // Update the local state immediately
+    const updatedCheckboxState = { ...checkboxState, [key]: true };
+    setCheckboxState(updatedCheckboxState);
+
+    // Navigate based on the updated state
+    if (updatedCheckboxState[key]) {
+      window.location.replace(`/collections/${key}`);
+    }
+  };
+
   return (
     <aside className='content-aside-filter border-2'>
       <div className='aside-filter flex flex-col font-semibold'>
@@ -54,7 +42,7 @@ export default function AsideSnowboards() {
             type='checkbox'
             name='ALL'
             checked={checkboxState['all-snowboards']}
-            onChange={() => {window.location.replace('/collections/all-snowboards')}}
+            onChange={() => handleCheckboxChange('all-snowboards')}
           />
           <Link href='/collections/all-snowboards'>ALL</Link>
         </label>
@@ -64,7 +52,7 @@ export default function AsideSnowboards() {
             name="MEN'S"
             onClick={() => window.location.replace('/collections/snowboards-mens')}
             checked={checkboxState['snowboards-mens']}
-            onChange={() => {window.location.replace('/collections/snowboards-mens')}}
+            onChange={() => handleCheckboxChange('snowboards-mens')}
           />
           <Link href='/collections/snowboards-mens'>MEN&apos;S</Link>
         </label>
@@ -73,7 +61,7 @@ export default function AsideSnowboards() {
               type='checkbox'
               name="WOMEN'S"
               checked={checkboxState['snowboards-womens']}
-              onChange={() => {window.location.replace('/collections/snowboards-womens')}}
+              onChange={() => handleCheckboxChange('snowboards-womens')}
             />
             <Link href='/collections/snowboards-womens'>WOMEN&apos;S</Link>
          </label>
@@ -82,7 +70,7 @@ export default function AsideSnowboards() {
               type='checkbox'
               name="KID'S"
               checked={checkboxState['snowboards-kids']}
-              onChange={() => {window.location.replace('/collections/snowboards-kids')}}
+              onChange={() => handleCheckboxChange('snowboards-kids')}
             />
             <Link href='/collections/snowboards-kids'>KID&apos;S</Link>
          </label>
@@ -91,11 +79,11 @@ export default function AsideSnowboards() {
               type='checkbox'
               name="SPLITBOARDS"
               checked={checkboxState['split-snowboards']}
-              onChange={() => {window.location.replace('/collections/split-snowboards')}}
+              onChange={() => handleCheckboxChange('split-snowboards')}
             />
             <Link href='/collections/split-snowboards'>SPLITBOARDS</Link>
          </label>
       </div>
-  </aside>
-  )
+    </aside>
+  );
 }
