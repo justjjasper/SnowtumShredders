@@ -23,9 +23,19 @@ export default function AsideSnowboards() {
     'split-snowboards': pathname === '/collections/split-snowboards',
   });
 
+  // Safety measure to default back to all-snowboards if all filters have been unchecked
+  const allKeysFalse = Object.values(checkboxState).every(value => value === false);
+  if (allKeysFalse) {
+    setCheckboxState({
+      ...checkboxState,
+      'all-snowboards': true
+    });
+    window.location.replace('/collections/all-snowboards')
+  }
+
   const handleCheckboxChange = (key: keyof CheckboxState) => {
     // Update the local state immediately
-    const updatedCheckboxState = { ...checkboxState, [key]: true };
+    const updatedCheckboxState = { ...checkboxState, [key]: !checkboxState[key] };
     setCheckboxState(updatedCheckboxState);
 
     // Navigate based on the updated state
