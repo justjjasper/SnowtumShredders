@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import './AsideSnowboards.css'
+import './AsideContent.css'
 
 interface CheckboxState {
   'all-snowboards': boolean;
@@ -37,51 +37,55 @@ export default function AsideSnowboards() {
       <div className='aside-filter relative flex flex-col font-semibold mx-5 py-6'>
         <label className='filter flex'>
           <Link href='/collections/all-snowboards' className='flex'>
-          <input
-            type='checkbox'
-            name='ALL'
-            checked={checkboxState['all-snowboards']}
-            onChange={() => handleCheckboxChange('all-snowboards')}
-          />
-          <span className='checkmark'></span>
-            ALL</Link>
+            <input
+              type='checkbox'
+              name='ALL'
+              checked={checkboxState['all-snowboards']}
+              onChange={() => handleCheckboxChange('all-snowboards')}
+            />
+            <span className='checkmark'></span>
+            ALL
+          </Link>
         </label>
         <label className='filter flex'>
           <Link href='/collections/snowboards-mens' className='flex'>
-          <input
-            type='checkbox'
-            name="MEN'S"
-            onClick={() => window.location.replace('/collections/snowboards-mens')}
-            checked={checkboxState['snowboards-mens']}
-            onChange={() => handleCheckboxChange('snowboards-mens')}
-          />
-          <span className='checkmark'></span>
-            MEN&apos;S</Link>
-        </label>
-        <label className='filter flex'>
-            <Link href='/collections/snowboards-womens' className='flex'>
             <input
               type='checkbox'
-              name="WOMEN'S"
-              checked={checkboxState['snowboards-womens']}
-              onChange={() => handleCheckboxChange('snowboards-womens')}
+              name="MEN'S"
+              onClick={() => window.location.replace('/collections/snowboards-mens')}
+              checked={checkboxState['snowboards-mens']}
+              onChange={() => handleCheckboxChange('snowboards-mens')}
             />
             <span className='checkmark'></span>
-              WOMEN&apos;S</Link>
+            MEN&apos;S
+          </Link>
+        </label>
+        <label className='filter flex'>
+          <Link href='/collections/snowboards-womens' className='flex'>
+              <input
+                type='checkbox'
+                name="WOMEN'S"
+                checked={checkboxState['snowboards-womens']}
+                onChange={() => handleCheckboxChange('snowboards-womens')}
+              />
+              <span className='checkmark'></span>
+            WOMEN&apos;S
+            </Link>
          </label>
          <label className='filter flex'>
             <Link href='/collections/snowboards-kids' className='flex'>
-            <input
-              type='checkbox'
-              name="KID'S"
-              checked={checkboxState['snowboards-kids']}
-              onChange={() => handleCheckboxChange('snowboards-kids')}
-            />
-            <span className='checkmark'></span>
-              KID&apos;S</Link>
+              <input
+                type='checkbox'
+                name="KID'S"
+                checked={checkboxState['snowboards-kids']}
+                onChange={() => handleCheckboxChange('snowboards-kids')}
+              />
+              <span className='checkmark'></span>
+              KID&apos;S
+            </Link>
          </label>
          <label className='filter flex'>
-            <Link href='/collections/split-snowboards' className='flex'>
+          <Link href='/collections/split-snowboards' className='flex'>
             <input
               type='checkbox'
               name="SPLITBOARDS"
@@ -89,7 +93,8 @@ export default function AsideSnowboards() {
               onChange={() => handleCheckboxChange('split-snowboards')}
             />
             <span className='checkmark'></span>
-              SPLITBOARDS</Link>
+            SPLITBOARDS
+            </Link>
          </label>
       </div>
     </aside>

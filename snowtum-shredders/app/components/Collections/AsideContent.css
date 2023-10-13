@@ -22,7 +22,8 @@
   border-width: 1px;
 }
 
-/* When filter button is checked, add a white background */
+/* When a sibling element (Input) within the parent element (Label, "filter") has the property of checked
+then the correlating sibling element (element with className="checkmark" will adopt the listed css, add a white background */
 .filter input:checked ~ .checkmark{
   background-color: white;
 }

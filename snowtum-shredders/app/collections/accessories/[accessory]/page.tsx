@@ -2,6 +2,7 @@
 accessory/ collection API
 */
 import { accessoriesAPI } from '@/app/config'
+import AsideAccessories from '@/app/components/Collections/AsideAccessories'
 
 interface AccessoryParams {
   params: {
@@ -47,10 +48,30 @@ export default async function AccessoryCollection( { params }: AccessoryParams){
     console.log(products)
 
     return (
-      <div className='relative bottom-[100px] z-20'>
-        All Accessories Page
-        {accessoryType}
-      </div>
+      // Don't forget the bottom-[100px] within the main tag
+      <main className='relative bottom-[100px] z-20'>
+        <div className={`relative pt-32 bg-[url('https://capitasnowboarding.com/cdn/shop/files/000_GRID_PAPER_BG_1_77e3e65d-56ba-4a1f-a70b-76408f3b3cbf.png?v=1690637051')]`}>
+          <div className='content-container flex flex-col px-16 text-primary font-calibre'>
+
+            <section className='content-top relative flex items-end justify-between pb-2'>
+              <span className='text-5xl font-bold tracking-tighter'>ACCESSORIES</span>
+              {/* Implement filtering method */}
+              <div className='top-sorting-options text-sm font-semibold'>
+                <span className='mx-[8px]'>NEWEST</span>|
+                <span className='mx-[8px]'>FEATURED</span>|
+                <span className='mx-[8px]'>PRICE: HIGH - LOW</span>|
+                <span className='mx-[8px]'>PRICE: LOW - HIGH</span>
+              </div>
+            </section>
+
+            <section className='content-listing flex py-20'>
+              <AsideAccessories/>
+              <div className='content-list'> im content </div>
+            </section>
+
+          </div>
+        </div>
+      </main>
     )
   } catch(err) {
     console.log('Error', err)
