@@ -24,16 +24,6 @@ export default function AsideSnowboards() {
     'split-snowboards': pathname === '/collections/split-snowboards',
   });
 
-  // Safety measure to default back to all-snowboards if all filters have been unchecked
-  const allKeysFalse = Object.values(checkboxState).every(value => value === false);
-  if (allKeysFalse) {
-    setCheckboxState({
-      ...checkboxState,
-      'all-snowboards': true
-    });
-    window.location.replace('/collections/all-snowboards')
-  }
-
   const handleCheckboxChange = (key: keyof CheckboxState) => {
     // Update the local state immediately
     setCheckboxState({ ...checkboxState, [key]: !checkboxState[key] });
@@ -46,16 +36,18 @@ export default function AsideSnowboards() {
     <aside className='content-aside-filter border-[1px] rounded-xl'>
       <div className='aside-filter relative flex flex-col font-semibold mx-5 py-6'>
         <label className='filter flex'>
+          <Link href='/collections/all-snowboards' className='flex'>
           <input
             type='checkbox'
             name='ALL'
             checked={checkboxState['all-snowboards']}
             onChange={() => handleCheckboxChange('all-snowboards')}
           />
-          <span className={`checkmark ${allKeysFalse ? 'bg-primary' : ''}`}></span>
-          <Link href='/collections/all-snowboards'>ALL</Link>
+          <span className='checkmark'></span>
+            ALL</Link>
         </label>
         <label className='filter flex'>
+          <Link href='/collections/snowboards-mens' className='flex'>
           <input
             type='checkbox'
             name="MEN'S"
@@ -64,9 +56,10 @@ export default function AsideSnowboards() {
             onChange={() => handleCheckboxChange('snowboards-mens')}
           />
           <span className='checkmark'></span>
-          <Link href='/collections/snowboards-mens'>MEN&apos;S</Link>
+            MEN&apos;S</Link>
         </label>
         <label className='filter flex'>
+            <Link href='/collections/snowboards-womens' className='flex'>
             <input
               type='checkbox'
               name="WOMEN'S"
@@ -74,9 +67,10 @@ export default function AsideSnowboards() {
               onChange={() => handleCheckboxChange('snowboards-womens')}
             />
             <span className='checkmark'></span>
-            <Link href='/collections/snowboards-womens'>WOMEN&apos;S</Link>
+              WOMEN&apos;S</Link>
          </label>
          <label className='filter flex'>
+            <Link href='/collections/snowboards-kids' className='flex'>
             <input
               type='checkbox'
               name="KID'S"
@@ -84,9 +78,10 @@ export default function AsideSnowboards() {
               onChange={() => handleCheckboxChange('snowboards-kids')}
             />
             <span className='checkmark'></span>
-            <Link href='/collections/snowboards-kids'>KID&apos;S</Link>
+              KID&apos;S</Link>
          </label>
          <label className='filter flex'>
+            <Link href='/collections/split-snowboards' className='flex'>
             <input
               type='checkbox'
               name="SPLITBOARDS"
@@ -94,7 +89,7 @@ export default function AsideSnowboards() {
               onChange={() => handleCheckboxChange('split-snowboards')}
             />
             <span className='checkmark'></span>
-            <Link href='/collections/split-snowboards'>SPLITBOARDS</Link>
+              SPLITBOARDS</Link>
          </label>
       </div>
     </aside>
