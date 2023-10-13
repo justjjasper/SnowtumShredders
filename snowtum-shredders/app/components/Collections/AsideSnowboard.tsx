@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import './AsideSnowboards.css'
 
 interface CheckboxState {
   'all-snowboards': boolean;
@@ -14,7 +15,7 @@ interface CheckboxState {
 export default function AsideSnowboards() {
   const pathname = usePathname();
 
-  // Use local state for the checkbox values
+  // Use local state for the checkbox values, this allows a smoother UX of the checkbox
   const [checkboxState, setCheckboxState] = useState({
     'all-snowboards': pathname === '/collections/all-snowboards',
     'snowboards-mens': pathname === '/collections/snowboards-mens',
@@ -35,28 +36,26 @@ export default function AsideSnowboards() {
 
   const handleCheckboxChange = (key: keyof CheckboxState) => {
     // Update the local state immediately
-    const updatedCheckboxState = { ...checkboxState, [key]: !checkboxState[key] };
-    setCheckboxState(updatedCheckboxState);
+    setCheckboxState({ ...checkboxState, [key]: !checkboxState[key] });
 
     // Navigate based on the updated state
-    if (updatedCheckboxState[key]) {
-      window.location.replace(`/collections/${key}`);
-    }
+    window.location.replace(`/collections/${key}`);
   };
 
   return (
-    <aside className='content-aside-filter border-2'>
-      <div className='aside-filter flex flex-col font-semibold'>
-        <label className='all-filter flex'>
+    <aside className='content-aside-filter border-[1px] rounded-xl'>
+      <div className='aside-filter relative flex flex-col font-semibold mx-5 py-6'>
+        <label className='filter flex'>
           <input
             type='checkbox'
             name='ALL'
             checked={checkboxState['all-snowboards']}
             onChange={() => handleCheckboxChange('all-snowboards')}
           />
+          <span className={`checkmark ${allKeysFalse ? 'bg-primary' : ''}`}></span>
           <Link href='/collections/all-snowboards'>ALL</Link>
         </label>
-        <label className='mens-filter flex'>
+        <label className='filter flex'>
           <input
             type='checkbox'
             name="MEN'S"
@@ -64,33 +63,37 @@ export default function AsideSnowboards() {
             checked={checkboxState['snowboards-mens']}
             onChange={() => handleCheckboxChange('snowboards-mens')}
           />
+          <span className='checkmark'></span>
           <Link href='/collections/snowboards-mens'>MEN&apos;S</Link>
         </label>
-        <label className='womens-filter flex'>
+        <label className='filter flex'>
             <input
               type='checkbox'
               name="WOMEN'S"
               checked={checkboxState['snowboards-womens']}
               onChange={() => handleCheckboxChange('snowboards-womens')}
             />
+            <span className='checkmark'></span>
             <Link href='/collections/snowboards-womens'>WOMEN&apos;S</Link>
          </label>
-         <label className='kids-filter flex'>
+         <label className='filter flex'>
             <input
               type='checkbox'
               name="KID'S"
               checked={checkboxState['snowboards-kids']}
               onChange={() => handleCheckboxChange('snowboards-kids')}
             />
+            <span className='checkmark'></span>
             <Link href='/collections/snowboards-kids'>KID&apos;S</Link>
          </label>
-         <label className='splitboards-filter flex'>
+         <label className='filter flex'>
             <input
               type='checkbox'
               name="SPLITBOARDS"
               checked={checkboxState['split-snowboards']}
               onChange={() => handleCheckboxChange('split-snowboards')}
             />
+            <span className='checkmark'></span>
             <Link href='/collections/split-snowboards'>SPLITBOARDS</Link>
          </label>
       </div>

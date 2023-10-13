@@ -1,0 +1,28 @@
+.aside-filter label{
+  cursor: pointer;
+  margin: 5px 0 5px 0
+}
+
+/* Hide default input checkbox */
+.aside-filter input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Create custom checkmark */
+.checkmark {
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  margin-right: 8px;
+  border-radius: 50%;
+  border-width: 1px;
+}
+
+/* When filter button is checked, add a white background */
+.filter input:checked ~ .checkmark{
+  background-color: white;
+}
