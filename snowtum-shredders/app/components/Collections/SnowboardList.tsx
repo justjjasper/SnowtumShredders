@@ -28,8 +28,8 @@ export default function SnowboardList({ products }: SnowboardListProps) {
                 className='py-5 transition-transform ease-in-out duration-300 hover:scale-110 transform'
               />
             </Link>
-            <div className='product-sizes flex flex-wrap gap-1'>
-              {/* Maps out each Meta Data for the current snowboard*/}
+            <div className='product-sizes flex flex-wrap gap-1 items-center'>
+              {/* Maps out each Size for the current snowboard*/}
               {snowboard.snowboard_meta_data.map((metaData: MetaDataType, i: number) => {
                 const remainder = snowboard.snowboard_meta_data.length - 7
                 const isInactive = metaData.sku === 0

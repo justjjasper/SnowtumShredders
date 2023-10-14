@@ -77,6 +77,7 @@ Additionally, this overrides the original animations/transforms in the original 
   transform: scaleX(1);
 }
 
+/* Attempt to create a blurred backdrop filter for menu */
 .drop-down-menu::before,
 .drop-down-menu .menu-list::before{
   content: '';

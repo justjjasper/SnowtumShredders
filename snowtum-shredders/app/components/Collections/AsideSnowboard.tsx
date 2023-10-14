@@ -33,8 +33,8 @@ export default function AsideSnowboards() {
   };
 
   return (
-    <aside className='content-aside-filter border-[1px] rounded-xl h-56'>
-      <div className='aside-filter relative flex flex-col font-semibold mx-5 py-6'>
+    <aside className='content-aside-filter border-[1px] rounded-xl h-56 sticky top-[150px]'>
+      <div className='aside-filter relative flex flex-col font-semibold mx-5 py-6' >
         <label className='filter flex'>
           <Link href='/collections/all-snowboards' className='flex'>
             <input
