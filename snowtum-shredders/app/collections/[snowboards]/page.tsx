@@ -89,7 +89,7 @@ export default async function SnowboardCollection( { params }: SnowboardCollecti
               <div className='content-list flex flex-row flex-wrap gap-10 flex-grow justify-around px-8'>
                 {products.map((snowboard: Product, i: number) => {
                   const formattedSnowboardName = snowboard.snowboard_name.toLowerCase().replace(/\s+/g, '-');
-
+                  console.log(snowboard)
                   return (
                     <div className='product-container flex flex-col justify-start font-semibold'
                       key={i}

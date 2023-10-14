@@ -61,12 +61,19 @@ def get_snowboard_collection(request):
         # Get the first image for each snowboard
         snowboard_image = SnowboardImage.objects.filter(snowboard=snowboard).first()
 
+        # Fetch related snowboard sizes and SKUs
+        snowboard_skus = SnowboardSKU.objects.filter(snowboard=snowboard)
+
+         # Create an array of objects with snowboard Size and SKU
+        snowboard_meta_data = [{'size': sku.snowboard_size, 'sku': sku.snowboard_sku} for sku in snowboard_skus]
+
         # Create an object with the desired format
         snowboard_obj = {
             'snowboard_name': snowboard.snowboard_name,
             'snowboard_price': float(snowboard.snowboard_price),  # Convert Decimal to float if needed
             'snowboard_image': snowboard_image.snowboard_image if snowboard_image else '',  # Use the image URL or an empty string if no image found
-            'header_description': snowboard.header_description
+            'header_description': snowboard.header_description,
+            'snowboard_meta_data': snowboard_meta_data
         }
 
         snowboard_data.append(snowboard_obj)
