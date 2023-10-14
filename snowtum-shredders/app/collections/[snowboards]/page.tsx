@@ -5,6 +5,7 @@ import AsideSnowboards from '@/app/components/Collections/AsideSnowboard'
 import './collectionSnowboards.css'
 import Link from 'next/link'
 import Image from 'next/image'
+import SnowboardList from '@/app/components/Collections/SnowboardList'
 
 interface SnowboardCollectionParams {
   params: {
@@ -12,11 +13,16 @@ interface SnowboardCollectionParams {
   }
 };
 
-interface Product {
+export interface MetaDataType {
+  size: string;
+  sku: number
+}
+export interface ProductType {
   snowboard_name: string;
   snowboard_price: number;
   snowboard_image: string;
   header_description: string
+  snowboard_meta_data: MetaDataType[]
 }
 
 export default async function SnowboardCollection( { params }: SnowboardCollectionParams){
@@ -26,7 +32,7 @@ export default async function SnowboardCollection( { params }: SnowboardCollecti
     const data = await fetch(`${snowboardsAPI}`)
     const response = await data.json()
 
-    let products: Product[] = []
+    let products: ProductType[] = []
     const snowboardCategory = params.snowboards
     let categoryHeader = ''
     // Filter out products depending on route parameter
@@ -36,25 +42,25 @@ export default async function SnowboardCollection( { params }: SnowboardCollecti
         categoryHeader= 'ALL SNOWBOARDS'
         break;
       case 'snowboards-mens':
-        products = response.filter((snowboard: Product) => {
+        products = response.filter((snowboard: ProductType) => {
           return /MEN|EVERYONE/.test(snowboard.header_description) && !snowboard.header_description.includes('WOMEN')
         }).reverse()
         categoryHeader= 'MEN\'S SNOWBOARDS'
         break;
       case 'snowboards-womens':
-        products = response.filter((snowboard :Product) => {
+        products = response.filter((snowboard :ProductType) => {
           return /WOMEN|EVERYONE/.test(snowboard.header_description)
         }).reverse()
         categoryHeader= 'WOMEN\'S SNOWBOARDS'
         break;
       case 'snowboards-kids':
-        products = response.filter((snowboard: Product) => {
+        products = response.filter((snowboard: ProductType) => {
           return snowboard.header_description.includes('YOUTH')
         }).reverse()
         categoryHeader= 'KID\'S SNOWBOARDS'
         break;
       case 'split-snowboards':
-        products = response.filter((snowboard: Product) => {
+        products = response.filter((snowboard: ProductType) => {
           return snowboard.snowboard_name.includes('SPLIT')
         }).reverse()
         categoryHeader= 'SPLITBOARDS'
@@ -85,35 +91,10 @@ export default async function SnowboardCollection( { params }: SnowboardCollecti
             </section>
 
             <section className='content-listing flex justify-between py-20'>
+              {/* Side Filter*/}
               <AsideSnowboards/>
-              <div className='content-list flex flex-row flex-wrap gap-10 flex-grow justify-around px-8'>
-                {products.map((snowboard: Product, i: number) => {
-                  const formattedSnowboardName = snowboard.snowboard_name.toLowerCase().replace(/\s+/g, '-');
-                  console.log(snowboard)
-                  return (
-                    <div className='product-container flex flex-col justify-start font-semibold'
-                      key={i}
-                    >
-                      <Link className='product-image flex justify-center' href={`/products/snowboard/${formattedSnowboardName}`}>
-                        <Image
-                          src={snowboard.snowboard_image}
-                          width={225}
-                          height={337}
-                          alt={`${snowboard.snowboard_name} Image`}
-                          className='py-5 transition-transform ease-in-out duration-300 hover:scale-110 transform'
-                        />
-                      </Link>
-                      <span className='product-description flex text-xs w-[35ch]'>
-                        {snowboard.header_description.replace(/\s*\/\s*/g, ' ')}
-                      </span>
-                      <span className='product-name flex text-2xl w-[20ch]'>
-                        <Link href={`/products/snowboard/${formattedSnowboardName}`}>{snowboard.snowboard_name}</Link>
-                      </span>
-                      <span className='product-price flex font-normal'>${snowboard.snowboard_price}</span>
-                    </div>
-                  )
-                })}
-              </div>
+              {/* List of Snowboard Products */}
+              <SnowboardList products={products}/>
             </section>
 
           </div>
