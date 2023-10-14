@@ -88,11 +88,13 @@ export default async function SnowboardCollection( { params }: SnowboardCollecti
               <AsideSnowboards/>
               <div className='content-list flex flex-row flex-wrap gap-10 flex-grow justify-around px-8'>
                 {products.map((snowboard: Product, i: number) => {
+                  const formattedSnowboardName = snowboard.snowboard_name.toLowerCase().replace(/\s+/g, '-');
+
                   return (
-                    <div className='flex flex-col justify-start font-semibold'
+                    <div className='product-container flex flex-col justify-start font-semibold'
                       key={i}
                     >
-                      <div className='flex justify-center'>
+                      <Link className='product-image flex justify-center' href={`/products/snowboard/${formattedSnowboardName}`}>
                         <Image
                           src={snowboard.snowboard_image}
                           width={225}
@@ -100,10 +102,14 @@ export default async function SnowboardCollection( { params }: SnowboardCollecti
                           alt={`${snowboard.snowboard_name} Image`}
                           className='py-5 transition-transform ease-in-out duration-300 hover:scale-110 transform'
                         />
-                      </div>
-                      <span className='flex text-xs w-[35ch]'>{snowboard.header_description.replace(/\s*\/\s*/g, ' ')} </span>
-                      <span className='flex text-2xl w-[20ch] py-1'>{snowboard.snowboard_name}</span>
-                      <span className='flex font-normal'>${snowboard.snowboard_price}</span>
+                      </Link>
+                      <span className='product-description flex text-xs w-[35ch]'>
+                        {snowboard.header_description.replace(/\s*\/\s*/g, ' ')}
+                      </span>
+                      <span className='product-name flex text-2xl w-[20ch]'>
+                        <Link href={`/products/snowboard/${formattedSnowboardName}`}>{snowboard.snowboard_name}</Link>
+                      </span>
+                      <span className='product-price flex font-normal'>${snowboard.snowboard_price}</span>
                     </div>
                   )
                 })}

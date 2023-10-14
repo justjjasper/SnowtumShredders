@@ -27,7 +27,7 @@ export default async function Product({ params }: ProductParams ) {
       </div>
     )
   } catch(err) {
-    console.error('Error in fetching single product')
+    console.error('Error in fetching single product', err)
 
     return (
       <div>
