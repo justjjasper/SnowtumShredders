@@ -4,6 +4,7 @@ import { snowboardsAPI } from '@/app/config'
 import AsideSnowboards from '@/app/components/Collections/AsideSnowboard'
 import './collectionSnowboards.css'
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface SnowboardCollectionParams {
   params: {
@@ -83,9 +84,30 @@ export default async function SnowboardCollection( { params }: SnowboardCollecti
               </div>
             </section>
 
-            <section className='content-listing flex py-20'>
+            <section className='content-listing flex justify-between py-20'>
               <AsideSnowboards/>
-              <div className='content-list'> im content </div>
+              <div className='content-list flex flex-row flex-wrap gap-10 px-8'>
+                {products.map((snowboard: Product, i: number) => {
+                  return (
+                    <div className='border-2 flex flex-col'
+                      key={i}
+                    >
+                      <div>
+                        <Image
+                          src={snowboard.snowboard_image}
+                          width={225}
+                          height={337}
+                          alt={`${snowboard.snowboard_name} Image`}
+                          className='transition-transform ease-in-out duration-300 hover:scale-110 transform'
+                        />
+                      </div>
+                      <span className='flex text-xs w-[30ch]'>{snowboard.header_description} </span>
+                      <span className='flex'>{snowboard.snowboard_name}</span>
+                      <span className='flex'>{snowboard.snowboard_price}</span>
+                    </div>
+                  )
+                })}
+              </div>
             </section>
 
           </div>

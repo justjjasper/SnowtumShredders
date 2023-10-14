@@ -44,7 +44,7 @@ export default async function Home() {
                   alt='Indoor Survival'
                   width={278}
                   height={477}
-                  className='flex pt-10'
+                  className='flex pt-10 transition-transform ease-in-out duration-300 hover:scale-105'
                 />
 
                 <div className='flex justify-center bg-primary text-secondary py-3 rounded-b-xl'>
