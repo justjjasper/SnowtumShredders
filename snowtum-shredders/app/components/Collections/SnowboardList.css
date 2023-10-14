@@ -5,7 +5,7 @@
   font-weight:900;
 }
 
-/* In your CSS or in a Tailwind CSS class */
+/* In your CSS or in a Tailwind CSS class, disabled unavailable size */
 .disabled-size::before {
   content: '';
   position: absolute;

@@ -1,0 +1,11 @@
+.top-sorting-options span:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  cursor: pointer;
+}
+
+.selected-sorting-option {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+

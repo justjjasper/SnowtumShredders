@@ -1,6 +1,7 @@
 // This is a dynamic routed page. Depending on the slug, it will call a certain API to get the data
 // If its men, women, kids, filter from header description, for splitboard filter from snowboard name
 import { snowboardsAPI } from '@/app/config'
+import SortingOptions from '@/app/components/Collections/SortingOptions'
 import AsideSnowboards from '@/app/components/Collections/AsideSnowboard'
 import './collectionSnowboards.css'
 import Link from 'next/link'
@@ -26,7 +27,6 @@ export interface ProductType {
 }
 
 export default async function SnowboardCollection( { params }: SnowboardCollectionParams){
-  // console.log('what is snowboardCollectionParams', params.snowboards)
 
   try {
     const data = await fetch(`${snowboardsAPI}`)
@@ -35,6 +35,7 @@ export default async function SnowboardCollection( { params }: SnowboardCollecti
     let products: ProductType[] = []
     const snowboardCategory = params.snowboards
     let categoryHeader = ''
+
     // Filter out products depending on route parameter
     switch(snowboardCategory) {
       case 'all-snowboards':
@@ -82,12 +83,7 @@ export default async function SnowboardCollection( { params }: SnowboardCollecti
             <section className='content-top relative flex items-end justify-between pb-2'>
               <span className='text-5xl font-bold tracking-tighter'>{categoryHeader}</span>
               {/* Implement filtering method */}
-              <div className='top-sorting-options text-sm font-semibold'>
-                <span className='mx-[8px]'>NEWEST</span>|
-                <span className='mx-[8px]'>FEATURED</span>|
-                <span className='mx-[8px]'>PRICE: HIGH - LOW</span>|
-                <span className='mx-[8px]'>PRICE: LOW - HIGH</span>
-              </div>
+              <SortingOptions/>
             </section>
 
             <section className='content-listing flex justify-between py-20'>
