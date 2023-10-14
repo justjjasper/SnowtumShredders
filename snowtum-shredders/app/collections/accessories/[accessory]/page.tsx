@@ -3,7 +3,7 @@ accessory/ collection API
 */
 import { accessoriesAPI } from '@/app/config'
 import AsideAccessories from '@/app/components/Collections/AsideAccessories'
-
+import Image from 'next/image'
 interface AccessoryParams {
   params: {
     accessory: string
@@ -66,7 +66,7 @@ export default async function AccessoryCollection( { params }: AccessoryParams){
 
             <section className='content-listing flex py-20'>
               <AsideAccessories/>
-              <div className='content-list'> im content </div>
+              <div className='content-list flex flex-row flex-wrap gap-10 px-8'> im content </div>
             </section>
 
           </div>

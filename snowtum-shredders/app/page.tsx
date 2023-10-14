@@ -43,7 +43,7 @@ export default async function Home() {
                   src={snowboard.images[0]}
                   alt='Indoor Survival'
                   width={278}
-                  height={477}
+                  height={450}
                   className='flex pt-10 transition-transform ease-in-out duration-300 hover:scale-105'
                 />
 
