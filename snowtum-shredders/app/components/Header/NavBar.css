@@ -75,7 +75,10 @@ Additionally, this overrides the original animations/transforms in the original 
 
 /* Implement blur for menu drop down*/
 
-
+/* Following 2 css is responsible for snowboard-menu backdrop blur
+Within client code, utilize the state of onMouseEnter with conditional rendering
+to add snowboardMenuTrigger class the entire header div
+*/
 .header.snowboardMenuTrigger::after {
   content:'';
   position: relative;
@@ -89,6 +92,10 @@ Additionally, this overrides the original animations/transforms in the original 
   margin-top: -300px
 }
 
+/* Following 2 css is responsible for accessories-menu backdrop blur
+Within client code, utilize the state of onMouseEnter with conditional rendering
+to add accessoriesMenuTrigger class the entire header div
+*/
 .header.accessoriesMenuTrigger::after {
   content:'';
   position: relative;

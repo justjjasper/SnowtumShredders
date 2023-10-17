@@ -57,6 +57,7 @@ export default function NavBar(){
 
 
   return (
+    // **To Implement individual backdrop blur of Snowboard/Accessory dropdown menu** When state of either snowboard/acessories is hovered via onMouseEnter, a class is added to entire header to create backdrop blur.
     <div className={`header flex flex-col font-calibre font-bold sticky top-0 backdrop-blur-3xl z-50 text-[#ffffff] w-full
       ${snowboardHovered ? 'snowboardMenuTrigger' : ''} ${accessoriesHovered ? 'accessoriesMenuTrigger' : ''}`}
       onMouseLeave={onMouseLeave}>
