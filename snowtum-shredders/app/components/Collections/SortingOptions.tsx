@@ -1,15 +1,14 @@
 'use client'
 import { useState } from 'react';
-import '../SortingOptions.css'
-import { SnowboardProductType } from "@/app/collections/[snowboards]/page";
+import './SortingOptions.css'
 import Link from 'next/link';
 
-// need to pass products array and setState products, oging to need setState type
-type SnowboardProductProps = {
-  products: SnowboardProductType[]
-  snowboardCategory: string
+type ProductProps = {
+  productCategory: string
 }
-export default function SortingOptions( {products, snowboardCategory}: SnowboardProductProps) {
+
+export default function SortingOptions( {productCategory}: ProductProps) {
+  // IF passing accesssories, need to add additional condition as variable down into links href such as productCategory = /acccesories/accessoryCategory
   const [activeOption, setActiveOption] = useState('FEATURED'); // State to track the active option
 
   // Updates css for selected filter option
@@ -17,32 +16,40 @@ export default function SortingOptions( {products, snowboardCategory}: Snowboard
     setActiveOption(option)
   };
 
+  /*
+  [searchParams] Based on the sorting option, utilized Next.js Link and the query params as a state and filtered
+  the products "state" back in the Collections page
+  */
   return (
     <div className='top-sorting-options text-sm tracking-tight font-semibold'>
       <Link
         className={`mx-[8px] ${ activeOption === 'NEWEST' ? 'selected-sorting-option' : ''}`}
         onClick={() => handleSorting('NEWEST')}
-        href={`/collections/${snowboardCategory}?sort_by=NEWEST`}
+        href={`/collections/${productCategory}?sort_by=newest`}
         >
           NEWEST
       </Link>
       <Link
         className={`mx-[8px] ${ activeOption === 'FEATURED' ? 'selected-sorting-option' : ''}`}
         onClick={() => handleSorting('FEATURED')}
-        href={`/collections/${snowboardCategory}?sort_by=FEATURED`}
+        href={`/collections/${productCategory}?sort_by=featured`}
         >
         FEATURED
       </Link>/
-      <span
+      <Link
         className={`mx-[8px] ${ activeOption === 'PRICE: HIGH - LOW' ? 'selected-sorting-option' : ''}`}
-        onClick={() => handleSorting('PRICE: HIGH - LOW')}>
+        onClick={() => handleSorting('PRICE: HIGH - LOW')}
+        href={`/collections/${productCategory}?sort_by=price-descending`}
+        >
         PRICE: HIGH - LOW
-      </span>|
-      <span
+      </Link>|
+      <Link
         className={`mx-[8px] ${ activeOption === 'PRICE: LOW - HIGH' ? 'selected-sorting-option' : ''}`}
-        onClick={() => handleSorting('PRICE: LOW - HIGH')}>
+        onClick={() => handleSorting('PRICE: LOW - HIGH')}
+        href={`/collections/${productCategory}?sort_by=price-ascending`}
+        >
         PRICE: LOW - HIGH
-      </span>
+      </Link>
   </div>
   )
 }

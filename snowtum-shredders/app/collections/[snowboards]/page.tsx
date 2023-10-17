@@ -2,7 +2,7 @@
 // If its men, women, kids, filter from header description, for splitboard filter from snowboard name
 import './collectionSnowboards.css'
 import { snowboardsAPI } from '@/app/config'
-import SortingOptions from '@/app/components/Collections/Snowboards/SnowboardSortingOptions'
+import SortingOptions from '@/app/components/Collections/SortingOptions'
 import AsideSnowboards from '@/app/components/Collections/Snowboards/AsideSnowboard'
 import SnowboardList from '@/app/components/Collections/Snowboards/SnowboardList'
 
@@ -21,6 +21,7 @@ export interface MetaDataType {
 }
 
 export interface SnowboardProductType {
+  snowboard_id: number,
   snowboard_name: string;
   snowboard_price: number;
   snowboard_image: string;
@@ -76,18 +77,25 @@ export default async function SnowboardCollection( { params, searchParams }: Sno
         )
     }
 
-    // Filter out any search params, this replaces my state issue of trying to re-render UI after sorting "products"
+    // Filter out any search params, this replaced my state issue of trying to re-render UI after sorting "products"
     let { sort_by } = searchParams
 
     switch(sort_by) {
-      case ('NEWEST'):
-        products = products.reverse()
+      case ('newest'):
+        products = products.sort((a, b) => a.snowboard_id - b.snowboard_id)
         break;
-      case ('FEATURED'):
-        products = products.reverse()
+      case ('featured'):
+        products = products.sort((a, b) => b.snowboard_id - a.snowboard_id)
+        break;
+      case('price-descending'):
+        products = products.sort((a, b) => b.snowboard_price - a.snowboard_price)
+        break;
+      case('price-ascending'):
+        products = products.sort((a, b) => a.snowboard_price - b.snowboard_price)
+        break;
       default:
     }
-    console.log(products)
+
     return (
       // Don't forget the bottom-[100px] within the main tag
       <main className='relative bottom-[100px] z-20'>
@@ -97,7 +105,7 @@ export default async function SnowboardCollection( { params, searchParams }: Sno
             <section className='content-top relative flex items-end justify-between pb-2'>
               <span className='text-5xl font-bold tracking-tighter'>{categoryHeader}</span>
               {/* Implement filtering method */}
-              <SortingOptions products={products} snowboardCategory={snowboardCategory}/>
+              <SortingOptions productCategory={snowboardCategory}/>
             </section>
 
             <section className='content-listing flex justify-between py-20'>
