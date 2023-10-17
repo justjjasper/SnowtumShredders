@@ -15,11 +15,19 @@ export default async function Home() {
           >
           <Image
             src='https://res.cloudinary.com/jasjasper/image/upload/v1696808288/snowtum-shredders-banner_xcxkev.png'
-            alt='Snowtum Shredder Banner'
+            alt='Snowtum Shredder Desktop Banner'
             width={500}
             height={500}
             priority={true}
             className='w-full'
+          />
+            <Image
+            src='https://res.cloudinary.com/jasjasper/image/upload/v1697557655/MobileBanner_khhebe.png'
+            alt='Snowtum Shredder Mobile Banner'
+            width={500}
+            height={500}
+            priority={true}
+            className='w-full hidden'
           />
           <Link href='/collections/all-snowboards'
             className='absolute bottom-[93px] w-3/12 flex justify-center self-end py-4 rounded-full font-calibre font-bold tracking-tighter bg-primary hover:underline'
