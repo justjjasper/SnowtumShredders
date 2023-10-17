@@ -1,16 +1,29 @@
 'use client'
 import { useState } from 'react';
 import './SortingOptions.css'
-import { ProductType } from "@/app/collections/[snowboards]/page";
+import { SnowboardProductType } from "@/app/collections/[snowboards]/page";
 
 // need to pass products array and setState products, oging to need setState type
-export default function SortingOptions() {
+type SnowboardProductProps = {
+  products: SnowboardProductType[]
+  setProducts: React.Dispatch<React.SetStateAction<SnowboardProductType[]>>
+}
+export default function SortingOptions( {products, setProducts}: SnowboardProductProps) {
   const [activeOption, setActiveOption] = useState('FEATURED'); // State to track the active option
 
   //filter the products, based on the
   const handleSorting = (option: string) => {
     //switch case
+    switch(option) {
+      case 'NEWEST':
+        setProducts(products.reverse())
+        break;
+
+      default:
+    }
     setActiveOption(option);
+    console.log('what is products', products)
+
   };
 
   return (

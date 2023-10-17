@@ -2,17 +2,17 @@
 import Link from "next/link";
 import Image from "next/image";
 import './SnowboardList.css'
-import { ProductType, MetaDataType } from "@/app/collections/[snowboards]/page";
+import { SnowboardProductType, MetaDataType } from "@/app/collections/[snowboards]/page";
 
 type SnowboardListProps = {
-  products: ProductType[]
+  products: SnowboardProductType[]
 }
 
 export default function SnowboardList({ products }: SnowboardListProps) {
   return (
-    <div className='content-list flex flex-row flex-wrap gap-10 flex-grow justify-around px-8'>
+    <div className='content-list flex flex-row flex-wrap gap-10 flex-grow justify-between px-24'>
       {/* Maps out each Snowboard Product*/}
-      {products.map((snowboard: ProductType, i: number) => {
+      {products.map((snowboard: SnowboardProductType, i: number) => {
         const formattedSnowboardName = snowboard.snowboard_name.toLowerCase().replace(/\s+/g, '-');
 
         return (
