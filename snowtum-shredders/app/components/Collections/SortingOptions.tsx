@@ -3,11 +3,11 @@ import { useState } from 'react';
 import './SortingOptions.css'
 import Link from 'next/link';
 
-type ProductProps = {
+type SortingOptionsProps = {
   productCategory: string
 }
 
-export default function SortingOptions( {productCategory}: ProductProps) {
+export default function SortingOptions( {productCategory}: SortingOptionsProps) {
   // IF passing accesssories, need to add additional condition as variable down into links href such as productCategory = /acccesories/accessoryCategory
   const [activeOption, setActiveOption] = useState('FEATURED'); // State to track the active option
 
