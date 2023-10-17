@@ -7,7 +7,7 @@ export default async function Home() {
   try{
     const data = await fetch(indoorAPI)
     const snowboard = await data.json()
-    console.log(snowboard)
+
     return (
       <main className="flex flex-col items-center relative bottom-[100px] z-20">
         <section className='relative flex justify-center'

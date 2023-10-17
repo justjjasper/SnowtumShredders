@@ -1,43 +1,38 @@
 'use client'
 import { useState } from 'react';
-import './SortingOptions.css'
+import '../SortingOptions.css'
 import { SnowboardProductType } from "@/app/collections/[snowboards]/page";
+import Link from 'next/link';
 
 // need to pass products array and setState products, oging to need setState type
 type SnowboardProductProps = {
   products: SnowboardProductType[]
-  setProducts: React.Dispatch<React.SetStateAction<SnowboardProductType[]>>
+  snowboardCategory: string
 }
-export default function SortingOptions( {products, setProducts}: SnowboardProductProps) {
+export default function SortingOptions( {products, snowboardCategory}: SnowboardProductProps) {
   const [activeOption, setActiveOption] = useState('FEATURED'); // State to track the active option
 
-  //filter the products, based on the
+  // Updates css for selected filter option
   const handleSorting = (option: string) => {
-    //switch case
-    switch(option) {
-      case 'NEWEST':
-        setProducts(products.reverse())
-        break;
-
-      default:
-    }
-    setActiveOption(option);
-    console.log('what is products', products)
-
+    setActiveOption(option)
   };
 
   return (
     <div className='top-sorting-options text-sm tracking-tight font-semibold'>
-      <span
+      <Link
         className={`mx-[8px] ${ activeOption === 'NEWEST' ? 'selected-sorting-option' : ''}`}
-        onClick={() => handleSorting('NEWEST')}>
+        onClick={() => handleSorting('NEWEST')}
+        href={`/collections/${snowboardCategory}?sort_by=NEWEST`}
+        >
           NEWEST
-      </span>|
-      <span
+      </Link>
+      <Link
         className={`mx-[8px] ${ activeOption === 'FEATURED' ? 'selected-sorting-option' : ''}`}
-        onClick={() => handleSorting('FEATURED')}>
+        onClick={() => handleSorting('FEATURED')}
+        href={`/collections/${snowboardCategory}?sort_by=FEATURED`}
+        >
         FEATURED
-      </span>/
+      </Link>/
       <span
         className={`mx-[8px] ${ activeOption === 'PRICE: HIGH - LOW' ? 'selected-sorting-option' : ''}`}
         onClick={() => handleSorting('PRICE: HIGH - LOW')}>

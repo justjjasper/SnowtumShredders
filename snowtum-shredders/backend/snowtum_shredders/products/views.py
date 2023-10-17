@@ -69,6 +69,7 @@ def get_snowboard_collection(request):
 
         # Create an object with the desired format
         snowboard_obj = {
+            'snowboard_id': snowboard.snowboard_id,
             'snowboard_name': snowboard.snowboard_name,
             'snowboard_price': float(snowboard.snowboard_price),  # Convert Decimal to float if needed
             'snowboard_image': snowboard_image.snowboard_image if snowboard_image else '',  # Use the image URL or an empty string if no image found
@@ -90,9 +91,9 @@ def get_snowboard_collection(request):
 
 def get_accessory_collection(request):
   try:
-    tshirts = list(TShirt.objects.values('tshirt_name', 'tshirt_image', 'tshirt_price'))
-    hoodies = list(Hoodie.objects.values('hoodie_name', 'hoodie_image', 'hoodie_price'))
-    headgear = list(Headgear.objects.values('headgear_name', 'headgear_image', 'headgear_price'))
+    tshirts = list(TShirt.objects.values('tshirt_id', 'tshirt_name', 'tshirt_image', 'tshirt_price'))
+    hoodies = list(Hoodie.objects.values('hoodie_id', 'hoodie_name', 'hoodie_image', 'hoodie_price'))
+    headgear = list(Headgear.objects.values('headgear_id', 'headgear_name', 'headgear_image', 'headgear_price'))
 
     # Retrieve the first image for each boardbag
     boardbag_data = []
@@ -104,6 +105,7 @@ def get_accessory_collection(request):
             first_image = ""
 
         boardbag_data.append({
+            'boardbag_id': boardbag.boardbag_id,
             'boardbag_name': boardbag.boardbag_name,
             'boardbag_image': first_image,
             'boardbag_price': boardbag.boardbag_price,
