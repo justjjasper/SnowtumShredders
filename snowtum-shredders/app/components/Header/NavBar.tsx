@@ -105,54 +105,54 @@ export default function NavBar(){
         <div className='menu-list'>
           <div className='searchForm hidden'></div>
 
-          <div className={`snowboards-menu ${snowboardHovered ? 'flex' : 'hidden'} absolute`}
+          <div className={`snowboards-menu ${snowboardHovered ? 'flex' : 'hidden'} absolute w-full`}
             onMouseEnter={onMouseEnterSnowboard}
             >
             <button className='hidden'><span>Snowboards</span></button>
-            <div className='snowboards-menu-list flex flex-col font-medium text-[14px]'
+            <div className='snowboards-menu-list flex flex-col font-medium text-[14px] w-full'
               style={{paddingLeft : `${snowboardXPos}px`}}
               >
               <Link href='/collections/all-snowboards' onClick={onMouseLeave} className='py-3 leading-8'>
-                <span id='menu-link'>ALL</span>
+                <span id='menu-link' className='w-full'>ALL</span>
               </Link>
               <Link href='/collections/snowboards-mens' onClick={onMouseLeave} className='py-3 leading-8'>
-                <span id='menu-link'>MEN&apos;S</span>
+                <span id='menu-link' className='w-full'>MEN&apos;S</span>
               </Link>
               <Link href='/collections/snowboards-womens' onClick={onMouseLeave} className='py-3 leading-8'>
-                <span id='menu-link'>WOMEN&apos;S</span>
+                <span id='menu-link' className='w-full'>WOMEN&apos;S</span>
               </Link>
               <Link href='/collections/snowboards-kids' onClick={onMouseLeave} className='py-3 leading-8'>
-                <span id='menu-link'>KID&apos;S</span>
+                <span id='menu-link' className='w-full'>KID&apos;S</span>
               </Link>
               <Link href='/collections/split-snowboards' onClick={onMouseLeave} className='py-3 leading-8'>
-                <span id='menu-link'>SPLITBOARDS</span>
+                <span id='menu-link' className='w-full'>SPLITBOARDS</span>
               </Link>
             </div>
             <div className='hidden'>Divider</div>
           </div>
 
           {/* Accessories Menu */}
-          <div className={`accessories-menu ${accessoriesHovered ? 'flex' : 'hidden'} absolute`}
+          <div className={`accessories-menu ${accessoriesHovered ? 'flex' : 'hidden'} absolute w-full`}
             onMouseEnter={onMouseEnterAccessories}
           >
             <button className='hidden'><span>Accessories</span></button>
-            <div className='accessories-menu-list flex flex-col font-medium text-[14px]'
+            <div className='accessories-menu-list flex flex-col font-medium text-[14px] w-full'
               style={{paddingLeft: `${accessoriesXPos}px`}}
             >
               <Link href='/collections/accessories/all-accessories' onClick={onMouseLeave} className='py-3 leading-8'>
-                <span id='menu-link'>ALL</span>
+                <span id='menu-link' className='w-full'>ALL</span>
               </Link>
               <Link href='/collections/accessories/tshirts' onClick={onMouseLeave} className='py-3 leading-8'>
-                <span id='menu-link'>T-SHIRTS</span>
+                <span id='menu-link' className='w-full'>T-SHIRTS</span>
               </Link>
               <Link href='/collections/accessories/hoodies' onClick={onMouseLeave} className='py-3 leading-8'>
-                <span id='menu-link'>HOODIES</span>
+                <span id='menu-link' className='w-full'>HOODIES</span>
               </Link>
               <Link href='/collections/accessories/hats-beanies' onClick={onMouseLeave} className='py-3 leading-8'>
-                <span id='menu-link'>HATS & BEANIES</span>
+                <span id='menu-link' className='w-full'>HATS & BEANIES</span>
               </Link>
               <Link href='/collections/accessories/boardbags' onClick={onMouseLeave} className='py-3 leading-8'>
-                <span id='menu-link'>BOARD BAGS</span>
+                <span id='menu-link' className='w-full'>BOARD BAGS</span>
               </Link>
             </div>
             <div className='hidden'>Divider</div>
