@@ -1,4 +1,5 @@
 'use client'
+import './NavBar.css'
 import { useState, useEffect} from 'react'
 import Link from "next/link"
 
@@ -56,11 +57,11 @@ export default function NavBar(){
 
 
   return (
-    <div className='flex flex-col font-calibre font-bold sticky top-0 backdrop-blur-3xl z-50 text-[#ffffff]'
+    <div className={`header flex flex-col font-calibre font-bold sticky top-0 backdrop-blur-3xl z-50 text-[#ffffff] w-full
+      ${snowboardHovered ? 'snowboardMenuTrigger' : ''} ${accessoriesHovered ? 'accessoriesMenuTrigger' : ''}`}
       onMouseLeave={onMouseLeave}>
-      <div className='flex w-full items-center justify-between px-16 py-8'>
-        <Link href='/' className='font-holtwood text-[22px]'>SNOWTUM SHREDDERS</Link>
-
+      <div className='second flex w-full items-center justify-between px-16 py-8'>
+        <Link href='/' className='font-holtwood text-[22px]' onMouseEnter={onMouseLeave}>SNOWTUM SHREDDERS</Link>
         <nav className='flex flex-grow justify-around'>
           <ul className='flex w-8/12 justify-evenly'>
             <span className={`header-link ${snowboardHovered ? 'is-active' : ''}`}
@@ -98,57 +99,58 @@ export default function NavBar(){
         </div>
      </div>
 
-      <div className='drop-down-menu relative'>
+      <div className='drop-down-menu relative w-full'  onMouseLeave={onMouseLeave}>
         <div className='cartForm'></div>
         <div className='menu-list'>
           <div className='searchForm hidden'></div>
+
           <div className={`snowboards-menu ${snowboardHovered ? 'flex' : 'hidden'} absolute`}
             onMouseEnter={onMouseEnterSnowboard}
-            onMouseLeave={onMouseLeave}
             >
             <button className='hidden'><span>Snowboards</span></button>
-            <div className='snowboards-menu-list flex flex-col gap-6 font-medium text-[14px]'
+            <div className='snowboards-menu-list flex flex-col font-medium text-[14px]'
               style={{paddingLeft : `${snowboardXPos}px`}}
               >
-              <Link href='/collections/all-snowboards' onClick={onMouseLeave}>
+              <Link href='/collections/all-snowboards' onClick={onMouseLeave} className='py-3 leading-8'>
                 <span id='menu-link'>ALL</span>
               </Link>
-              <Link href='/collections/snowboards-mens' onClick={onMouseLeave}>
+              <Link href='/collections/snowboards-mens' onClick={onMouseLeave} className='py-3 leading-8'>
                 <span id='menu-link'>MEN&apos;S</span>
               </Link>
-              <Link href='/collections/snowboards-womens' onClick={onMouseLeave}>
+              <Link href='/collections/snowboards-womens' onClick={onMouseLeave} className='py-3 leading-8'>
                 <span id='menu-link'>WOMEN&apos;S</span>
               </Link>
-              <Link href='/collections/snowboards-kids' onClick={onMouseLeave}>
+              <Link href='/collections/snowboards-kids' onClick={onMouseLeave} className='py-3 leading-8'>
                 <span id='menu-link'>KID&apos;S</span>
               </Link>
-              <Link href='/collections/split-snowboards' onClick={onMouseLeave}>
+              <Link href='/collections/split-snowboards' onClick={onMouseLeave} className='py-3 leading-8'>
                 <span id='menu-link'>SPLITBOARDS</span>
               </Link>
             </div>
             <div className='hidden'>Divider</div>
           </div>
+
+          {/* Accessories Menu */}
           <div className={`accessories-menu ${accessoriesHovered ? 'flex' : 'hidden'} absolute`}
             onMouseEnter={onMouseEnterAccessories}
-            onMouseLeave={onMouseLeave}
           >
             <button className='hidden'><span>Accessories</span></button>
-            <div className='accessories-menu-list flex flex-col gap-6 font-medium text-[14px]'
+            <div className='accessories-menu-list flex flex-col font-medium text-[14px]'
               style={{paddingLeft: `${accessoriesXPos}px`}}
             >
-              <Link href='/collections/accessories/all-accessories' onClick={onMouseLeave}>
+              <Link href='/collections/accessories/all-accessories' onClick={onMouseLeave} className='py-3 leading-8'>
                 <span id='menu-link'>ALL</span>
               </Link>
-              <Link href='/collections/accessories/tshirts' onClick={onMouseLeave}>
+              <Link href='/collections/accessories/tshirts' onClick={onMouseLeave} className='py-3 leading-8'>
                 <span id='menu-link'>T-SHIRTS</span>
               </Link>
-              <Link href='/collections/accessories/hoodies' onClick={onMouseLeave}>
+              <Link href='/collections/accessories/hoodies' onClick={onMouseLeave} className='py-3 leading-8'>
                 <span id='menu-link'>HOODIES</span>
               </Link>
-              <Link href='/collections/accessories/hats-beanies' onClick={onMouseLeave}>
+              <Link href='/collections/accessories/hats-beanies' onClick={onMouseLeave} className='py-3 leading-8'>
                 <span id='menu-link'>HATS & BEANIES</span>
               </Link>
-              <Link href='/collections/accessories/boardbags' onClick={onMouseLeave}>
+              <Link href='/collections/accessories/boardbags' onClick={onMouseLeave} className='py-3 leading-8'>
                 <span id='menu-link'>BOARD BAGS</span>
               </Link>
             </div>

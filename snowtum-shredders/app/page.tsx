@@ -66,8 +66,6 @@ export default async function Home() {
           </div>
         </section>
 
-        {/*Must implement Negative Margin Bottom to each last section of
-        the page to remove white space created from 'bottom-100px' */}
         <section className='relative flex w-full items-center justify-center align-center'>
           <Image
             src={backgroundImage}
