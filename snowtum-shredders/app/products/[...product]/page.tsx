@@ -2,6 +2,7 @@
 import Image from "next/image"
 import { serverURL } from "@/app/config"
 
+// May use unions to have product type be string | string[]
 interface ProductParams {
   params: {
     product: string[]

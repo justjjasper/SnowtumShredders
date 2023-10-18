@@ -1,30 +1,39 @@
 'use client'
 import './NavBar.css'
-import { useState, useEffect} from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from "next/link"
 
 // Import Icons
-import { searchSVG, cartSVG } from "@/app/Misc/Icons"
-
+import { searchSVG, cartSVG, xmarkSVG } from "@/app/Misc/Icons"
 
 export default function NavBar(){
   // Regulates the conditional render of adding new Classnames to control CSS animations
   const [snowboardHovered, setSnowboardHovered] = useState<boolean>(false);
   const [accessoriesHovered, setAccessoriesHovered] = useState<boolean>(false);
+  const [searchHovered, setSearchHovered] = useState<boolean>(false);
 
   const onMouseEnterSnowboard = () => {
     setAccessoriesHovered(false)
+    setSearchHovered(false)
     setSnowboardHovered(true);
+  }
+
+  const onMouseEnterAccessories = () => {
+    setSnowboardHovered(false)
+    setSearchHovered(false)
+    setAccessoriesHovered(true)
+  }
+
+  const onMouseEnterSearch = () => {
+    setSnowboardHovered(false)
+    setAccessoriesHovered(false)
+    setSearchHovered(true)
   }
 
   const onMouseLeave = () => {
     setSnowboardHovered(false)
     setAccessoriesHovered(false)
-  }
-
-  const onMouseEnterAccessories = () => {
-    setSnowboardHovered(false)
-    setAccessoriesHovered(true)
+    setSearchHovered(false)
   }
 
   // Contains X Positions for CSS Padding
@@ -59,7 +68,9 @@ export default function NavBar(){
   return (
     // **To Implement individual backdrop blur of Snowboard/Accessory dropdown menu** When state of either snowboard/acessories is hovered via onMouseEnter, a class is added to entire header to create backdrop blur.
     <div className={`header flex flex-col font-calibre font-bold sticky top-0 backdrop-blur-3xl z-50 text-[#ffffff] w-full
-      ${snowboardHovered ? 'snowboardMenuTrigger' : ''} ${accessoriesHovered ? 'accessoriesMenuTrigger' : ''}`}
+      ${snowboardHovered ? 'snowboardMenuTrigger' : ''}
+      ${accessoriesHovered ? 'accessoriesMenuTrigger' : ''}
+      ${searchHovered ? 'searchMenuTrigger' : ''}`}
       onMouseLeave={onMouseLeave}>
       <div className='second flex w-full items-center justify-between px-16 py-8'>
         <Link href='/' className='font-holtwood text-[22px]' onMouseEnter={onMouseLeave}>SNOWTUM SHREDDERS</Link>
@@ -91,7 +102,9 @@ export default function NavBar(){
         </nav>
 
         <div className='flex gap-7'>
-          <button id='menu-link'>
+          <button id='menu-link'
+            onMouseEnter={onMouseEnterSearch}
+          >
             {searchSVG}
           </button>
           <button id='menu-link'>
@@ -102,9 +115,37 @@ export default function NavBar(){
 
       <div className='drop-down-menu relative w-full'  onMouseLeave={onMouseLeave}>
         <div className='cartForm'></div>
-        <div className='menu-list'>
-          <div className='searchForm hidden'></div>
+        <div className='menu-list w-full'>
+          {/* Search Menu */}
+          <div className={`searchForm ${searchHovered ? 'flex' : 'hidden'} absolute flex-col py-12 justify-start items-center h-[300px] w-full`}>
+              {/*
+                label
+                form
+                  input
+                  svg icon
+                div, id=search result
+                  mapped out items
 
+              */}
+              <label className='flex text-sm mb-1'>SEEK AND YOU WILL FIND</label>
+              <form className='flex flex-col relative justify-center items-center w-[30%]'>
+                <input
+                  id='search-input'
+                  type='text'
+                  placeholder='Type here'
+                  className='w-full'
+                />
+                <span className='absolute self-end mr-4 cursor-pointer'
+                  // Implement a reset of input text field later, need ref
+                  onClick={onMouseLeave}
+                >
+                  {xmarkSVG}
+                </span>
+              </form>
+              <div className='search-result'></div>
+          </div>
+
+          {/* Snowboard Menu */}
           <div className={`snowboards-menu ${snowboardHovered ? 'flex' : 'hidden'} absolute w-full`}
             onMouseEnter={onMouseEnterSnowboard}
             >

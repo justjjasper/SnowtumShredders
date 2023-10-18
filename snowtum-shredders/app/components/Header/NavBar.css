@@ -109,4 +109,29 @@ to add accessoriesMenuTrigger class the entire header div
   margin-top: -300px
 }
 
+/* Search Menu Trigger */
+.header.searchMenuTrigger::after {
+  content:'';
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 300px;
+  z-index: -1
+}
 
+.header.searchMenuTrigger {
+  margin-top: -300px
+}
+
+#search-input {
+  background: none;
+  border-width: 1px;
+  border-radius: 20px;
+  padding: 2px 15px 2px 15px;
+  height: 37px
+}
+
+#search-input::placeholder {
+  color: white;
+  font-size: 14px;
+}
