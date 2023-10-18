@@ -1,6 +1,6 @@
 'use client'
 import './NavBar.css'
-import { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Link from "next/link"
 
 // Import Icons
@@ -64,6 +64,15 @@ export default function NavBar(){
     window.addEventListener('resize', accessoriesResize)
   }, [snowboardXPos])
 
+  // Creates a reference to the input text field, function below clears the input/closes the dropdown menu
+  const searchRef = useRef<HTMLInputElement | null>(null)
+  const handleSearchRef = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (searchRef.current) {
+      searchRef.current.value = ''
+    }
+    onMouseLeave()
+  }
 
   return (
     // **To Implement individual backdrop blur of Snowboard/Accessory dropdown menu** When state of either snowboard/acessories is hovered via onMouseEnter, a class is added to entire header to create backdrop blur.
@@ -134,10 +143,11 @@ export default function NavBar(){
                   type='text'
                   placeholder='Type here'
                   className='w-full'
+                  ref={searchRef}
                 />
                 <span className='absolute self-end mr-4 cursor-pointer'
                   // Implement a reset of input text field later, need ref
-                  onClick={onMouseLeave}
+                  onClick={handleSearchRef}
                 >
                   {xmarkSVG}
                 </span>
