@@ -1,6 +1,7 @@
 'use client'
 import { xmarkSVG } from '@/app/Misc/Icons'
-import { useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { collectionsAPI } from '@/app/config'
 
 interface SearchFormProps {
   searchHovered: boolean;
@@ -17,6 +18,42 @@ export default function SearchForm( {searchHovered, onMouseLeave}: SearchFormPro
     onMouseLeave()
   }
 
+  // Might want to change the property names of each products to be consistent when mapping out
+  const [collections, setCollections] = useState([])
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const getProducts = async () => {
+      try {
+
+        const data = await fetch(`${collectionsAPI}`, { signal: controller.signal })
+        const response = await data.json()
+
+        setCollections(response)
+      } catch(err: any ) {
+        if (err.name === 'AbortError') {
+          // Request was aborted (component unmounted)
+        } else {
+          console.error('Error in retrieving collections API from front end');
+        }
+      }
+    }
+
+    getProducts()
+    // Implement clean up function to cancel or abort request when component is unmounted
+    // Prevents double re-render/triggers from browser console logs
+    return () => {
+      // Abort the network request when unmounted
+      controller.abort();
+    };
+  }, [])
+
+  // When you use a submit button to filter and update collections
+  const handleFilterSubmit = () => {
+    // Implement your filtering logic to update filteredCollections
+
+  }
+  console.log('what is collections', collections)
   return (
     <div className={`searchForm ${searchHovered ? 'flex' : 'hidden'} absolute flex-col py-12 justify-start items-center
       h-[300px] w-full`}>
