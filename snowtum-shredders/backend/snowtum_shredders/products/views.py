@@ -51,6 +51,60 @@ def mega_snowboards(request):
 
     return JsonResponse(formatted_snowboards, safe=False)
 
+def get_product_collections(request):
+    snowboards = Snowboard.objects.all()
+    product_data = []
+
+    try:
+        for snowboard in snowboards:
+            # Get the first image for each snowboard
+            snowboard_image = SnowboardImage.objects.filter(snowboard=snowboard).first()
+
+            # Create an object with the desired format
+            snowboard_obj = {
+                'snowboard_id': snowboard.snowboard_id,
+                'snowboard_name': snowboard.snowboard_name,
+                'snowboard_image': snowboard_image.snowboard_image if snowboard_image else '',  # Use the image URL or an empty string if no image found
+                'header_description': snowboard.header_description,
+            }
+
+            product_data.append(snowboard_obj)
+
+        # Create a list of the other products
+        tshirts = list(TShirt.objects.values('tshirt_id', 'tshirt_name', 'tshirt_image', 'tshirt_description'))
+        hoodies = list(Hoodie.objects.values('hoodie_id', 'hoodie_name', 'hoodie_image', 'hoodie_description'))
+        headgear = list(Headgear.objects.values('headgear_id', 'headgear_name', 'headgear_image', 'headgear_description'))
+
+        # Retrieve the first image for each boardbag
+        boardbag_data = []
+        for boardbag in Boardbag.objects.all():
+            boardbag_images = BoardbagImage.objects.filter(boardbag=boardbag)
+        if boardbag_images.exists():
+            first_image = boardbag_images.first().boardbag_image
+        else:
+            first_image = ""
+
+        boardbag_data.append({
+            'boardbag_id': boardbag.boardbag_id,
+            'boardbag_name': boardbag.boardbag_name,
+            'boardbag_image': first_image,
+            'boardbag_price': boardbag.boardbag_price,
+        })
+
+        # Append individual product lists to the product_data list
+        product_data.extend(tshirts)
+        product_data.extend(hoodies)
+        product_data.extend(headgear)
+        product_data.extend(boardbag_data)
+
+        return JsonResponse(product_data, safe=False)
+    except DatabaseError as e:
+      # Handle database-related errors
+      return JsonResponse({'error': 'Error retrieving product collections from database'}, status=500)
+    except Exception as e:
+      # Handle other exceptions or errors
+      return JsonResponse({'error': 'An error occurred'}, status=500)
+
 def get_snowboard_collection(request):
   # Fetch all snowboards and their corresponding images
   snowboards = Snowboard.objects.all()
@@ -177,7 +231,7 @@ def get_snowboard_product(request, snowboard_name):
             'skus': snowboard_skus,
         }
 
-        return JsonResponse(snowboard_data)
+        return JsonResponse(snowboard_data, safe=False)
 
     except Snowboard.DoesNotExist:
         # Handle the case where the snowboard with the provided name does not exist
@@ -206,7 +260,7 @@ def get_tshirt_product(request, tshirt_name):
       'skus': tshirt_skus
     }
 
-    return JsonResponse(tshirt_data)
+    return JsonResponse(tshirt_data, safe=False)
 
   except TShirt.DoesNotExist:
     # Handle the case where the snowboard with the provided name does not exist
@@ -252,7 +306,7 @@ def get_headgear_product(request, headgear_name):
             'skus': [headgear.headgear_sku]
         }
 
-        return JsonResponse(headgear_data)
+        return JsonResponse(headgear_data, safe=False)
     except Headgear.DoesNotExist:
     # Handle the case where the snowboard with the provided name does not exist
         return JsonResponse({'error': 'Headgear not found'}, status=404)
@@ -275,7 +329,7 @@ def get_boardbag_product(request, boardbag_name):
             'skus': [boardbag.boardbag_sku]
         }
 
-        return JsonResponse(boardbag_data)
+        return JsonResponse(boardbag_data, safe=False)
     except Boardbag.DoesNotExist:
     # Handle the case where the snowboard with the provided name does not exist
         return JsonResponse({'error': 'Boardbag not found'}, status=404)
