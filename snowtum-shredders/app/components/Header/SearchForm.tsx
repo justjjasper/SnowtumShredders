@@ -2,6 +2,8 @@
 import { xmarkSVG } from '@/app/Misc/Icons'
 import { useState, useEffect, useRef } from 'react'
 import { collectionsAPI } from '@/app/config'
+import Fuse from 'fuse.js'
+// limit 8, threshold 3, index name and description
 
 interface SearchFormProps {
   searchHovered: boolean;
@@ -10,6 +12,7 @@ interface SearchFormProps {
 export default function SearchForm( {searchHovered, onMouseLeave}: SearchFormProps ) {
   // Might want to change the property names of each products to be consistent when mapping out
   const [collections, setCollections] = useState([])
+  const [filteredCollections, setFilteredCollections] = useState([])
 
   useEffect(() => {
     const controller = new AbortController();
@@ -46,12 +49,25 @@ export default function SearchForm( {searchHovered, onMouseLeave}: SearchFormPro
     const inputText = e.target.value
     setSearchQuery(inputText)
 
+    // Options for Fuse
+    const options = { keys: ['name', 'description'], limit: 8, threshold: 0.3}
 
+    // Create fuse index
+    const myIndex = Fuse.createIndex(options.keys, collections)
+
+    // Initialize Fuse with index
+    const fuse = new Fuse(collections, options,  myIndex)
+
+    // Initiate fuse search
+    const results = fuse.search(inputText)
+
+    setFilteredCollections(results.map(results => results.item))
   };
 
   const handleCloseSearch = (e: React.FormEvent) => {
     e.preventDefault()
     setSearchQuery('')
+    setFilteredCollections([]); // Clear the filtered results
     onMouseLeave()
   }
 
