@@ -123,6 +123,21 @@ to add accessoriesMenuTrigger class the entire header div
   margin-top: -400px
 }
 
+/* Mobile Menu Trigger */
+.drop-down-menu.mobileMenuTrigger::after {
+  content:'';
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  z-index: -1
+}
+
+.header.mobileMenuTrigger {
+  margin-top: -100vh
+}
+
+
 #search-input {
   background: none;
   border-width: 1px;
@@ -135,3 +150,4 @@ to add accessoriesMenuTrigger class the entire header div
   color: white;
   font-size: 14px;
 }
+

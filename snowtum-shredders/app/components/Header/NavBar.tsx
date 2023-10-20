@@ -8,6 +8,9 @@ import SearchForm from './SearchForm'
 export default function NavBar(){
   const[hamburgerToggle, setHamburgerToggle] = useState<boolean>(false)
 
+  // Regulate Category Mobile Menus
+  const [snowboardMobileMenu, setSnowboardMobileMenu] = useState<boolean>(false)
+
   // Regulates the conditional render of adding new Classnames to control CSS animations
   const [snowboardHovered, setSnowboardHovered] = useState<boolean>(false);
   const [accessoriesHovered, setAccessoriesHovered] = useState<boolean>(false);
@@ -67,16 +70,19 @@ export default function NavBar(){
 
   return (
     // **To Implement individual backdrop blur of Snowboard/Accessory dropdown menu** When state of either snowboard/acessories is hovered via onMouseEnter, a class is added to entire header to create backdrop blur.
-    <div className={`header flex flex-col font-calibre font-bold sticky top-0 backdrop-blur-3xl z-50 text-[#ffffff] w-full
+    <div className={`header flex flex-col font-calibre font-bold sticky top-0 backdrop-blur-[75px] z-50 text-[#ffffff] w-full
       ${snowboardHovered ? 'snowboardMenuTrigger' : ''}
       ${accessoriesHovered ? 'accessoriesMenuTrigger' : ''}
-      ${searchHovered ? 'searchMenuTrigger' : ''}`}
+      ${searchHovered ? 'searchMenuTrigger' : ''}
+      ${hamburgerToggle ? 'mobileMenuTrigger' : ''}`
+    }
+
       onMouseLeave={onMouseLeave}>
 
       {/* "Physical" Navbar */}
       <div className='second flex w-full items-center justify-between px-16 py-8'>
         <Link href='/' className='font-holtwood text-[22px]' onMouseEnter={onMouseLeave}>SNOWTUM SHREDDERS</Link>
-        <nav className='hidden xl:flex flex-grow justify-around'>
+        <nav className='hidden lg:flex flex-grow justify-around'>
           <ul className='flex w-8/12 justify-evenly'>
             <span className={`header-link ${snowboardHovered ? 'is-active' : ''}`}
               id='snowboard-header'
@@ -106,7 +112,7 @@ export default function NavBar(){
         <div className='flex gap-7'>
           <button id='menu-link'
             onMouseEnter={onMouseEnterSearch}
-            className='hidden xl:block'
+            className='hidden lg:block'
           >
             {searchSVG}
           </button>
@@ -114,13 +120,13 @@ export default function NavBar(){
             {cartSVG}
           </button>
           {hamburgerToggle === false && <button id='menu-link'
-            className='block xl:hidden'
+            className='block lg:hidden'
             onClick={() => setHamburgerToggle(!hamburgerToggle)}
           >
             {hambugerSVG}
           </button>}
           {hamburgerToggle === true && <button id='menu-link'
-            className='block xl:hidden'
+            className='block lg:hidden'
             onClick={() => setHamburgerToggle(!hamburgerToggle)}
           >
             {xmarkSVG}
@@ -128,7 +134,8 @@ export default function NavBar(){
         </div>
       </div>
 
-      <div className='drop-down-menu relative w-full'  onMouseLeave={onMouseLeave}>
+      <div className={`drop-down-menu relative w-full ${hamburgerToggle ? 'mobileMenuTrigger' : ''}`}
+        onMouseLeave={onMouseLeave}>
         <div className='cartForm'></div>
         <div className='menu-list w-full'>
           {/* SearchForm Menu */}
