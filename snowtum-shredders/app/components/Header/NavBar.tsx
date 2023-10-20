@@ -17,27 +17,40 @@ export default function NavBar(){
   const [searchHovered, setSearchHovered] = useState<boolean>(false);
 
   const onMouseEnterSnowboard = () => {
-    setAccessoriesHovered(false)
-    setSearchHovered(false)
-    setSnowboardHovered(true);
+    if (!hamburgerToggle) {
+      setAccessoriesHovered(false)
+      setSearchHovered(false)
+      setSnowboardHovered(true);
+    }
+    console.log('onMouseEnterSnowboard triggered')
   }
 
   const onMouseEnterAccessories = () => {
-    setSnowboardHovered(false)
-    setSearchHovered(false)
-    setAccessoriesHovered(true)
+    // Prevents the trigger of snowboardHovered during mobile menu mode
+    if (!hamburgerToggle) {
+      setSnowboardHovered(false)
+      setSearchHovered(false)
+      setAccessoriesHovered(true)
+    }
+    console.log('onMouseEnterAccessories triggered')
   }
 
   const onMouseEnterSearch = () => {
     setSnowboardHovered(false)
     setAccessoriesHovered(false)
     setSearchHovered(true)
+
+    console.log('onMouseEnterSearch triggered')
   }
 
   const onMouseLeave = () => {
-    setSnowboardHovered(false)
-    setAccessoriesHovered(false)
-    setSearchHovered(false)
+    if (!hamburgerToggle) {
+      setSnowboardHovered(false)
+      setAccessoriesHovered(false)
+      setSearchHovered(false)
+    }
+
+    console.log('onMouseLeave triggered')
   }
 
   // Contains X Positions for CSS Padding
@@ -75,8 +88,7 @@ export default function NavBar(){
       ${accessoriesHovered ? 'accessoriesMenuTrigger' : ''}
       ${searchHovered ? 'searchMenuTrigger' : ''}
       ${hamburgerToggle ? 'mobileMenuTrigger' : ''}`
-    }
-
+      }
       onMouseLeave={onMouseLeave}>
 
       {/* "Physical" Navbar */}
@@ -134,19 +146,31 @@ export default function NavBar(){
         </div>
       </div>
 
+                             {/* Implement a way where this condition breaks when screen is larger than lg */}
       <div className={`drop-down-menu relative w-full ${hamburgerToggle ? 'mobileMenuTrigger' : ''}`}
         onMouseLeave={onMouseLeave}>
         <div className='cartForm'></div>
-        <div className='menu-list w-full'>
+        <div className='menu-list w-full relative flex'>
+
           {/* SearchForm Menu */}
           <SearchForm searchHovered={searchHovered} onMouseLeave={onMouseLeave} hamburgerToggle={hamburgerToggle}/>
 
           {/* Snowboard Menu */}
-          <div className={`snowboards-menu ${snowboardHovered ? 'flex' : 'hidden'} absolute w-full`}
+          <div className={`snowboards-menu absolute w-full justify-center
+            lg:${snowboardHovered ? 'flex' : 'hidden'}
+            ${hamburgerToggle ? 'flex' : 'hidden'}
+
+            `}
             onMouseEnter={onMouseEnterSnowboard}
             >
-            <button className='hidden'><span>Snowboards</span></button>
-            <div className='snowboards-menu-list flex flex-col font-medium text-[14px] w-full'
+            <button className={`${hamburgerToggle ? 'block' : 'hidden'}`}
+              onClick={() => setSnowboardMobileMenu(!snowboardMobileMenu)}
+            >
+              <span>Snowboards</span>
+            </button>
+            <div className={`snowboards-menu-list lg:flex flex-col font-medium text-[14px] w-full
+              ${snowboardMobileMenu ? 'flex' : 'hidden'}`
+             }
               style={{paddingLeft : `${snowboardXPos}px`}}
               >
               <Link href='/collections/all-snowboards' onClick={onMouseLeave} className='py-3 leading-8'>
