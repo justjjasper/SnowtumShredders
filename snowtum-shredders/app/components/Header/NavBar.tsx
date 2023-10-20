@@ -1,12 +1,12 @@
 'use client'
 import './NavBar.css'
-import { cartSVG, searchSVG } from '@/app/Misc/Icons'
+import { cartSVG, searchSVG, hambugerSVG, xmarkSVG } from '@/app/Misc/Icons'
 import React, { useState, useEffect } from 'react'
 import Link from "next/link"
 import SearchForm from './SearchForm'
 
 export default function NavBar(){
-  // Searched Products
+  const[hamburgerToggle, setHamburgerToggle] = useState<boolean>(false)
 
   // Regulates the conditional render of adding new Classnames to control CSS animations
   const [snowboardHovered, setSnowboardHovered] = useState<boolean>(false);
@@ -76,7 +76,7 @@ export default function NavBar(){
       {/* "Physical" Navbar */}
       <div className='second flex w-full items-center justify-between px-16 py-8'>
         <Link href='/' className='font-holtwood text-[22px]' onMouseEnter={onMouseLeave}>SNOWTUM SHREDDERS</Link>
-        <nav className='flex flex-grow justify-around'>
+        <nav className='hidden xl:flex flex-grow justify-around'>
           <ul className='flex w-8/12 justify-evenly'>
             <span className={`header-link ${snowboardHovered ? 'is-active' : ''}`}
               id='snowboard-header'
@@ -106,12 +106,25 @@ export default function NavBar(){
         <div className='flex gap-7'>
           <button id='menu-link'
             onMouseEnter={onMouseEnterSearch}
+            className='hidden xl:block'
           >
             {searchSVG}
           </button>
           <button id='menu-link'>
             {cartSVG}
           </button>
+          {hamburgerToggle === false && <button id='menu-link'
+            className='block xl:hidden'
+            onClick={() => setHamburgerToggle(!hamburgerToggle)}
+          >
+            {hambugerSVG}
+          </button>}
+          {hamburgerToggle === true && <button id='menu-link'
+            className='block xl:hidden'
+            onClick={() => setHamburgerToggle(!hamburgerToggle)}
+          >
+            {xmarkSVG}
+          </button>}
         </div>
       </div>
 

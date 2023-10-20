@@ -2,7 +2,7 @@
 import './SearchForm.css'
 import Image from 'next/image'
 import Link from 'next/link'
-import { xmarkSVG } from '@/app/Misc/Icons'
+import { circleXMarkSVG } from '@/app/Misc/Icons'
 import { useState, useEffect, useRef } from 'react'
 import { collectionsAPI } from '@/app/config'
 import Fuse from 'fuse.js'
@@ -76,6 +76,13 @@ export default function SearchForm( {searchHovered, onMouseLeave}: SearchFormPro
   };
 
   const handleCloseSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+    onMouseLeave()
+    setSearchQuery('')
+    setFilteredCollections([]); // Clear the filtered results
+  }
+
+  const handleLinkClick = () => {
     onMouseLeave()
     setSearchQuery('')
     setFilteredCollections([]); // Clear the filtered results
@@ -107,7 +114,7 @@ export default function SearchForm( {searchHovered, onMouseLeave}: SearchFormPro
         <button className='absolute self-end mr-4 cursor-pointer'
           onClick={handleCloseSearch}
         >
-          {xmarkSVG}
+          {circleXMarkSVG}
         </button>
       </form>
       <div className='search-result w-full grid-container px-16 py-8'>
@@ -116,7 +123,7 @@ export default function SearchForm( {searchHovered, onMouseLeave}: SearchFormPro
           return (
             <div key={i} className='item-content flex items-center'>
               <Link href={`/products/${item.category}/${formattedName}`}
-                onClick={handleCloseSearch}
+                onClick={handleLinkClick}
               >
                 <Image
                   src= {`${item.image}`}
@@ -128,7 +135,6 @@ export default function SearchForm( {searchHovered, onMouseLeave}: SearchFormPro
               <span className='text-xs'>{item.name}</span>
             </div>
           )
-
         })}
       </div>
     </div>

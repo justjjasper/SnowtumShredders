@@ -84,12 +84,12 @@ to add snowboardMenuTrigger class the entire header div
   position: relative;
   display: flex;
   width: 100%;
-  height: 300px;
+  height: 350px;
   z-index: -1;
 }
 
 .header.snowboardMenuTrigger {
-  margin-top: -300px
+  margin-top: -350px
 }
 
 /* Following 2 css is responsible for accessories-menu backdrop blur
@@ -101,12 +101,12 @@ to add accessoriesMenuTrigger class the entire header div
   position: relative;
   display: flex;
   width: 100%;
-  height: 300px;
+  height: 350px;
   z-index: -1
 }
 
 .header.accessoriesMenuTrigger {
-  margin-top: -300px
+  margin-top: -350px
 }
 
 /* Search Menu Trigger */
