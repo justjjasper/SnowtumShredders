@@ -70,7 +70,7 @@ export default function NavBar(){
 
   return (
     // **To Implement individual backdrop blur of Snowboard/Accessory dropdown menu** When state of either snowboard/acessories is hovered via onMouseEnter, a class is added to entire header to create backdrop blur.
-    <div className={`header flex flex-col font-calibre font-bold sticky top-0 backdrop-blur-[75px] z-50 text-[#ffffff] w-full
+    <div className={`header flex flex-col font-calibre font-bold sticky top-0 backdrop-blur-[100px] z-50 text-[#ffffff] w-full
       ${snowboardHovered ? 'snowboardMenuTrigger' : ''}
       ${accessoriesHovered ? 'accessoriesMenuTrigger' : ''}
       ${searchHovered ? 'searchMenuTrigger' : ''}
@@ -139,7 +139,7 @@ export default function NavBar(){
         <div className='cartForm'></div>
         <div className='menu-list w-full'>
           {/* SearchForm Menu */}
-          <SearchForm searchHovered={searchHovered} onMouseLeave={onMouseLeave}/>
+          <SearchForm searchHovered={searchHovered} onMouseLeave={onMouseLeave} hamburgerToggle={hamburgerToggle}/>
 
           {/* Snowboard Menu */}
           <div className={`snowboards-menu ${snowboardHovered ? 'flex' : 'hidden'} absolute w-full`}

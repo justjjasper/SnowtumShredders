@@ -10,7 +10,8 @@ import Fuse from 'fuse.js'
 
 interface SearchFormProps {
   searchHovered: boolean;
-  onMouseLeave: () => void
+  onMouseLeave: () => void;
+  hamburgerToggle: boolean
 }
 
 interface ItemType {
@@ -20,7 +21,7 @@ interface ItemType {
   description: string;
   category: string
 }
-export default function SearchForm( {searchHovered, onMouseLeave}: SearchFormProps ) {
+export default function SearchForm( {searchHovered, onMouseLeave, hamburgerToggle}: SearchFormProps ) {
   // Might want to change the property names of each products to be consistent when mapping out
   const [collections, setCollections] = useState([])
   const [filteredCollections, setFilteredCollections] = useState([])
@@ -97,11 +98,14 @@ export default function SearchForm( {searchHovered, onMouseLeave}: SearchFormPro
   };
 
   return (
-    <div className={`searchForm ${searchHovered ? 'flex' : 'hidden'} absolute flex-col py-12 justify-start items-center
-      h-[300px] w-full`}>
+    <div className={`searchForm absolute flex-col py-12 justify-start items-center
+      h-[300px] w-full
+      lg:${searchHovered ? 'flex' : 'hidden'}
+      ${hamburgerToggle ? 'flex' : 'hidden'}`
+      }>
       <label className='flex text-sm mb-1'>SEEK AND YOU WILL FIND</label>
       {/* Use Fuse.js to help with search queries */}
-      <form className='flex flex-col relative justify-center items-center w-[30%]'>
+      <form className='flex flex-col relative justify-center items-center w-[40%] lg:w-[30%]'>
         <input
           id='search-input'
           type='text'
