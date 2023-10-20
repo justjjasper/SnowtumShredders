@@ -8,16 +8,6 @@ interface SearchFormProps {
   onMouseLeave: () => void
 }
 export default function SearchForm( {searchHovered, onMouseLeave}: SearchFormProps ) {
-  // Creates a reference to the input text field, function below clears the input/closes the dropdown menu
-  const searchRef = useRef<HTMLInputElement | null>(null)
-  const handleSearchRef = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (searchRef.current) {
-      searchRef.current.value = ''
-    }
-    onMouseLeave()
-  }
-
   // Might want to change the property names of each products to be consistent when mapping out
   const [collections, setCollections] = useState([])
 
@@ -48,12 +38,31 @@ export default function SearchForm( {searchHovered, onMouseLeave}: SearchFormPro
     };
   }, [])
 
-  // When you use a submit button to filter and update collections
-  const handleFilterSubmit = () => {
-    // Implement your filtering logic to update filteredCollections
+  // Create a state to store the search query
+  const [searchQuery, setSearchQuery] = useState('');
 
+  // Handle the search input change && real-time searching
+  const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputText = e.target.value
+    setSearchQuery(inputText)
+
+
+  };
+
+  const handleCloseSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+    setSearchQuery('')
+    onMouseLeave()
   }
-  console.log('what is collections', collections)
+
+  const handleInputKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      e.preventDefault(); // Prevent the default form submission behavior
+      // Implement your logic for handling the "Enter" key press
+      // For example, you can trigger the search or filtering here.
+    }
+  };
+
   return (
     <div className={`searchForm ${searchHovered ? 'flex' : 'hidden'} absolute flex-col py-12 justify-start items-center
       h-[300px] w-full`}>
@@ -65,11 +74,12 @@ export default function SearchForm( {searchHovered, onMouseLeave}: SearchFormPro
           type='text'
           placeholder='Type here'
           className='w-full'
-          ref={searchRef}
+          value={searchQuery}
+          onChange={handleSearchInputChange}
+          onKeyDown={handleInputKeyDown}
         />
         <button className='absolute self-end mr-4 cursor-pointer'
-          // Implement a reset of input text field later, need ref
-          onClick={handleSearchRef}
+          onClick={handleCloseSearch}
         >
           {xmarkSVG}
         </button>
