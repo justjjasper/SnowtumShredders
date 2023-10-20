@@ -66,19 +66,20 @@ def get_product_collections(request):
                 'name': snowboard.snowboard_name,
                 'image': snowboard_image.snowboard_image if snowboard_image else '',  # Use the image URL or an empty string if no image found
                 'description': snowboard.header_description,
+                'category': 'snowboard'
             }
 
             product_data.append(snowboard_obj)
 
         # Create a list of the other products and format the data
         tshirts = list(TShirt.objects.values('tshirt_id', 'tshirt_name', 'tshirt_image', 'tshirt_description'))
-        tshirt_data = [{'id': tshirt['tshirt_id'], 'name': tshirt['tshirt_name'], 'image': tshirt['tshirt_image'], 'description': tshirt['tshirt_description']} for tshirt in tshirts]
+        tshirt_data = [{'id': tshirt['tshirt_id'], 'name': tshirt['tshirt_name'], 'image': tshirt['tshirt_image'], 'description': tshirt['tshirt_description'], 'category': 'tshirt'} for tshirt in tshirts]
 
         hoodies = list(Hoodie.objects.values('hoodie_id', 'hoodie_name', 'hoodie_image', 'hoodie_description'))
-        hoodie_data = [{'id': hoodie['hoodie_id'], 'name': hoodie['hoodie_name'], 'image': hoodie['hoodie_image'], 'description': hoodie['hoodie_description']} for hoodie in hoodies]
+        hoodie_data = [{'id': hoodie['hoodie_id'], 'name': hoodie['hoodie_name'], 'image': hoodie['hoodie_image'], 'description': hoodie['hoodie_description'], 'category': 'hoodie'} for hoodie in hoodies]
 
         headgear = list(Headgear.objects.values('headgear_id', 'headgear_name', 'headgear_image', 'headgear_description'))
-        headgear_data = [{'id': item['headgear_id'], 'name': item['headgear_name'], 'image': item['headgear_image'], 'description': item['headgear_description']} for item in headgear]
+        headgear_data = [{'id': item['headgear_id'], 'name': item['headgear_name'], 'image': item['headgear_image'], 'description': item['headgear_description'], 'category': 'headgear'} for item in headgear]
 
         # Retrieve the first image for each boardbag
         boardbag_data = []
@@ -94,6 +95,7 @@ def get_product_collections(request):
             'name': boardbag.boardbag_name,
             'image': first_image,
             'price': boardbag.boardbag_price,
+            'category': 'boardbag'
         })
 
         # Append individual product lists to the product_data list

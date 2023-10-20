@@ -1,4 +1,7 @@
 'use client'
+import './SearchForm.css'
+import Image from 'next/image'
+import Link from 'next/link'
 import { xmarkSVG } from '@/app/Misc/Icons'
 import { useState, useEffect, useRef } from 'react'
 import { collectionsAPI } from '@/app/config'
@@ -8,6 +11,13 @@ import Fuse from 'fuse.js'
 interface SearchFormProps {
   searchHovered: boolean;
   onMouseLeave: () => void
+}
+
+interface ItemType {
+  id: number;
+  name: string;
+  image: string;
+  description: string;
 }
 export default function SearchForm( {searchHovered, onMouseLeave}: SearchFormProps ) {
   // Might want to change the property names of each products to be consistent when mapping out
@@ -50,7 +60,7 @@ export default function SearchForm( {searchHovered, onMouseLeave}: SearchFormPro
     setSearchQuery(inputText)
 
     // Options for Fuse
-    const options = { keys: ['name', 'description'], limit: 8, threshold: 0.3}
+    const options = { keys: ['name', 'description'], limit: 8, threshold: 0.3 }
 
     // Create fuse index
     const myIndex = Fuse.createIndex(options.keys, collections)
@@ -61,7 +71,7 @@ export default function SearchForm( {searchHovered, onMouseLeave}: SearchFormPro
     // Initiate fuse search
     const results = fuse.search(inputText)
 
-    setFilteredCollections(results.map(results => results.item))
+    setFilteredCollections(results.slice(0, 8).map(results => results.item))
   };
 
   const handleCloseSearch = (e: React.FormEvent) => {
@@ -100,7 +110,25 @@ export default function SearchForm( {searchHovered, onMouseLeave}: SearchFormPro
           {xmarkSVG}
         </button>
       </form>
-      <div className='search-result'></div>
+      <div className='search-result w-full grid-container px-16 py-8'>
+        {filteredCollections && filteredCollections.map((item: ItemType, i) => {
+          const formatName = item.name.replace(/\s+/g, '-').toLowerCase()
+          return (
+            <div key={i} className='item-content flex items-center'>
+              <Link href={`/products/${formatName}`}>
+                <Image
+                  src= {`${item.image}`}
+                  width={53}
+                  height={80}
+                  alt='Item image'
+                  />
+                </Link>
+              <span className='text-xs'>{item.name}</span>
+            </div>
+          )
+
+        })}
+      </div>
     </div>
   )
 }
