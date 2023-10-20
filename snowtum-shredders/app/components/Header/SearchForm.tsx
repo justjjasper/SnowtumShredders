@@ -18,6 +18,7 @@ interface ItemType {
   name: string;
   image: string;
   description: string;
+  category: string
 }
 export default function SearchForm( {searchHovered, onMouseLeave}: SearchFormProps ) {
   // Might want to change the property names of each products to be consistent when mapping out
@@ -75,10 +76,9 @@ export default function SearchForm( {searchHovered, onMouseLeave}: SearchFormPro
   };
 
   const handleCloseSearch = (e: React.FormEvent) => {
-    e.preventDefault()
+    onMouseLeave()
     setSearchQuery('')
     setFilteredCollections([]); // Clear the filtered results
-    onMouseLeave()
   }
 
   const handleInputKeyDown = (e: React.KeyboardEvent) => {
@@ -112,10 +112,12 @@ export default function SearchForm( {searchHovered, onMouseLeave}: SearchFormPro
       </form>
       <div className='search-result w-full grid-container px-16 py-8'>
         {filteredCollections && filteredCollections.map((item: ItemType, i) => {
-          const formatName = item.name.replace(/\s+/g, '-').toLowerCase()
+          const formattedName = item.name.replace(/\s+/g, '-').toLowerCase()
           return (
             <div key={i} className='item-content flex items-center'>
-              <Link href={`/products/${formatName}`}>
+              <Link href={`/products/${item.category}/${formattedName}`}
+                onClick={handleCloseSearch}
+              >
                 <Image
                   src= {`${item.image}`}
                   width={53}
