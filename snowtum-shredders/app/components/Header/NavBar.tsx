@@ -10,6 +10,7 @@ export default function NavBar(){
 
   // Regulate Category Mobile Menus
   const [snowboardMobileMenu, setSnowboardMobileMenu] = useState<boolean>(false)
+  const [accessoriesMobileMenu, setAccessoriesMobileMenu] = useState<boolean>(false)
 
   // Regulates the conditional render of adding new Classnames to control CSS animations
   const [snowboardHovered, setSnowboardHovered] = useState<boolean>(false);
@@ -26,7 +27,7 @@ export default function NavBar(){
   }
 
   const onMouseEnterAccessories = () => {
-    // Prevents the trigger of snowboardHovered during mobile menu mode
+    // Prevents the trigger of conditional "hovered" CSS during mobile menu mode SINCE they are already applied during hamburgerToggle
     if (!hamburgerToggle) {
       setSnowboardHovered(false)
       setSearchHovered(false)
@@ -87,7 +88,7 @@ export default function NavBar(){
       ${snowboardHovered ? 'snowboardMenuTrigger' : ''}
       ${accessoriesHovered ? 'accessoriesMenuTrigger' : ''}
       ${searchHovered ? 'searchMenuTrigger' : ''}
-      ${hamburgerToggle ? 'mobileMenuTrigger' : ''}`
+      ${hamburgerToggle ? 'mobileDropdownMenuTrigger' : ''}`
       }
       onMouseLeave={onMouseLeave}>
 
@@ -147,23 +148,26 @@ export default function NavBar(){
       </div>
 
                              {/* Implement a way where this condition breaks when screen is larger than lg */}
-      <div className={`drop-down-menu relative w-full ${hamburgerToggle ? 'mobileMenuTrigger' : ''}`}
+      {/* Dropdown Menu Extension */}
+      <div className={`drop-down-menu relative w-full
+        ${hamburgerToggle ? 'mobileDropdownMenuTrigger' : ''}`}
         onMouseLeave={onMouseLeave}>
         <div className='cartForm'></div>
-        <div className='menu-list w-full relative flex'>
+        {/* Menu list */}
+        <div className='menu-list w-full relative flex flex-col'>
 
           {/* SearchForm Menu */}
           <SearchForm searchHovered={searchHovered} onMouseLeave={onMouseLeave} hamburgerToggle={hamburgerToggle}/>
 
           {/* Snowboard Menu */}
-          <div className={`snowboards-menu absolute w-full justify-center
+          <div className={`snowboards-menu absolute w-full flex-col
             lg:${snowboardHovered ? 'flex' : 'hidden'}
             ${hamburgerToggle ? 'flex' : 'hidden'}
 
             `}
             onMouseEnter={onMouseEnterSnowboard}
             >
-            <button className={`${hamburgerToggle ? 'block' : 'hidden'}`}
+            <button className={`${hamburgerToggle ? 'flex' : 'hidden'}`}
               onClick={() => setSnowboardMobileMenu(!snowboardMobileMenu)}
             >
               <span>Snowboards</span>
@@ -193,11 +197,21 @@ export default function NavBar(){
           </div>
 
           {/* Accessories Menu */}
-          <div className={`accessories-menu ${accessoriesHovered ? 'flex' : 'hidden'} absolute w-full`}
+          <div className={`accessories-menu absolute w-full flex-col
+            lg:${accessoriesHovered ? 'flex' : 'hidden'}
+            ${hamburgerToggle ? 'flex' : 'hidden'}
+            `
+          }
             onMouseEnter={onMouseEnterAccessories}
           >
-            <button className='hidden'><span>Accessories</span></button>
-            <div className='accessories-menu-list flex flex-col font-medium text-[14px] w-full'
+            <button className={`${hamburgerToggle ? 'flex' : 'hidden'}`}
+               onClick={() => setAccessoriesMobileMenu(!accessoriesMobileMenu)}
+            >
+              <span>Accessories</span>
+              </button>
+            <div className={`accessories-menu-list lg:flex flex-col font-medium text-[14px] w-full
+              ${accessoriesMobileMenu ? 'flex' : 'hidden'}`
+            }
               style={{paddingLeft: `${accessoriesXPos}px`}}
             >
               <Link href='/collections/accessories/all-accessories' onClick={onMouseLeave} className='py-3 leading-8'>
