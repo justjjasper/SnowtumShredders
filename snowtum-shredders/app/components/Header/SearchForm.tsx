@@ -98,8 +98,7 @@ export default function SearchForm( {searchHovered, onMouseLeave, hamburgerToggl
   };
 
   return (
-    <div className={`searchForm relative flex-col py-12 justify-start items-center
-      h-[300px] w-full
+    <div className={`searchForm relative flex-col py-8 lg:py-12 justify-start items-center w-full
       lg:${searchHovered ? 'flex' : 'hidden'}
       ${hamburgerToggle ? 'flex' : 'hidden'}`
       }>
@@ -121,8 +120,10 @@ export default function SearchForm( {searchHovered, onMouseLeave, hamburgerToggl
           {circleXMarkSVG}
         </button>
       </form>
-      <div className='search-result w-full grid-container px-16 py-8'>
-        {filteredCollections && filteredCollections.map((item: ItemType, i) => {
+      <div className={`search-result w-full grid-container px-16 py-8
+        ${filteredCollections.length === 0 ? 'hidden' : ''}`
+        }>
+        {filteredCollections.map((item: ItemType, i) => {
           const formattedName = item.name.replace(/\s+/g, '-').toLowerCase()
           return (
             <div key={i} className='item-content flex items-center'>

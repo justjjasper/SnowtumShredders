@@ -88,7 +88,7 @@ export default function NavBar(){
     const handleResize = () => {
       // Check the screen width and set hamburgerToggle accordingly
       if (window.innerWidth > 1024) {
-        setHamburgerToggle(false);
+        setHamburgerToggle(false)
       }
     };
 
@@ -106,7 +106,7 @@ export default function NavBar(){
 
   return (
     // **To Implement individual backdrop blur of Snowboard/Accessory dropdown menu** When state of either snowboard/acessories is hovered via onMouseEnter, a class is added to entire header to create backdrop blur.
-    <div className={`header flex flex-col font-calibre font-bold sticky top-0 backdrop-blur-[100px] z-50 text-[#ffffff] w-full
+    <div className={`header flex flex-col font-calibre sticky font-bold top-0 backdrop-blur-[100px] z-50 text-[#ffffff] w-full
       ${snowboardHovered ? 'snowboardMenuTrigger' : ''}
       ${accessoriesHovered ? 'accessoriesMenuTrigger' : ''}
       ${searchHovered ? 'searchMenuTrigger' : ''}
@@ -176,7 +176,7 @@ export default function NavBar(){
         onMouseLeave={onMouseLeave}>
         <div className='cartForm'></div>
         {/* Menu list */}
-        <div className='menu-list w-full relative flex flex-col'>
+        <div className='menu-list w-full relative flex flex-col gap-10'>
 
           {/* SearchForm Menu */}
           <SearchForm searchHovered={searchHovered} onMouseLeave={onMouseLeave} hamburgerToggle={hamburgerToggle}/>
@@ -192,7 +192,7 @@ export default function NavBar(){
               <button className={`${hamburgerToggle ? 'flex' : 'hidden'}`}
                 onClick={() => setSnowboardMobileMenu(!snowboardMobileMenu)}
               >
-                <span>Snowboards</span>
+                <span  id='menu-link'>Snowboards</span>
               </button>
               <div className={`snowboards-menu-list lg:flex flex-col font-medium text-[14px] w-full
                 ${snowboardMobileMenu ? 'flex' : 'hidden'}`
@@ -229,7 +229,7 @@ export default function NavBar(){
             <button className={`${hamburgerToggle ? 'flex' : 'hidden'}`}
                onClick={() => setAccessoriesMobileMenu(!accessoriesMobileMenu)}
             >
-              <span>Accessories</span>
+              <span  id='menu-link'>Accessories</span>
               </button>
             <div className={`accessories-menu-list lg:flex flex-col font-medium text-[14px] w-full
               ${accessoriesMobileMenu ? 'flex' : 'hidden'}`
