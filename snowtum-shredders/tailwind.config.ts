@@ -21,7 +21,11 @@ const config: Config = {
       fontFamily: {
         'calibre': ['"Calibre"', '"Helvetica Neue"', 'Helvetica', 'Arial', 'Sans-serif'],
         'holtwood': ["'Holtwood One SC'", '"Helvetica Neue"', 'Helvetica', 'Arial', 'Sans-serif'],
-      }
+      },
+    },
+    screens: {
+      'max-lg': { 'max': '1024px'}
+      // => @media (max-width: 1024px) { ... }
     },
   plugins: [],
 }

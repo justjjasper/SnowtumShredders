@@ -149,8 +149,8 @@ export default function NavBar(){
 
                              {/* Implement a way where this condition breaks when screen is larger than lg */}
       {/* Dropdown Menu Extension */}
-      <div className={`drop-down-menu relative w-full
-        ${hamburgerToggle ? 'mobileDropdownMenuTrigger' : ''}`}
+      <div className={`drop-down-menu relative w-full lg:hidden
+        ${hamburgerToggle ? 'mobileDropdownMenuTrigger' : ''} `}
         onMouseLeave={onMouseLeave}>
         <div className='cartForm'></div>
         {/* Menu list */}
