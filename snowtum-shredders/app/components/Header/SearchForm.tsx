@@ -99,6 +99,7 @@ export default function SearchForm( {searchHovered, onMouseLeave, hamburgerToggl
 
   return (
     <div className={`searchForm relative flex-col py-8 lg:py-12 justify-start items-center w-full
+      lg:h-[450px]
       lg:${searchHovered ? 'flex' : 'hidden'}
       ${hamburgerToggle ? 'flex' : 'hidden'}`
       }>

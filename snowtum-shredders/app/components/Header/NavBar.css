@@ -79,9 +79,10 @@ Additionally, this overrides the original animations/transforms in the original 
 Within client code, utilize the state of onMouseEnter with conditional rendering
 to add snowboardMenuTrigger class the entire header div
 */
+/* Keepin mind, original positions snowboard/accessories/search menuTrigger is absolute */
 .header.snowboardMenuTrigger::after {
   content:'';
-  position: relative;
+  position: absolute;
   display: flex;
   width: 100%;
   height: 350px;
@@ -98,7 +99,7 @@ to add accessoriesMenuTrigger class the entire header div
 */
 .header.accessoriesMenuTrigger::after {
   content:'';
-  position: relative;
+  position: absolute;
   display: flex;
   width: 100%;
   height: 350px;
@@ -112,7 +113,7 @@ to add accessoriesMenuTrigger class the entire header div
 /* Search Menu Trigger */
 .header.searchMenuTrigger::after {
   content:'';
-  position: relative;
+  position: absolute;
   display: flex;
   width: 100%;
   height: 400px;
@@ -131,11 +132,11 @@ to add accessoriesMenuTrigger class the entire header div
   width: 100%;
   height: 100vh;
   z-index: -1;
-  margin-top: -100vh
 }
 
+/* "Duct-Tape Fix" where it solved issue of white space when mobileDropdownMenu activated */
 .header.mobileDropdownMenuTrigger {
-  margin-top: -100vh;
+  margin-top: -1000px;
 }
 
 

@@ -171,12 +171,12 @@ export default function NavBar(){
 
       {/* Dropdown Menu Extension */}
       <div className={`drop-down-menu relative w-full
-        ${hamburgerToggle ? 'mobileDropdownMenuTrigger px-10' : ''}
+        ${hamburgerToggle ? 'mobileDropdownMenuTrigger px-20' : ''}
         `}
         onMouseLeave={onMouseLeave}>
         <div className='cartForm'></div>
         {/* Menu list */}
-        <div className='menu-list w-full relative flex flex-col gap-10'>
+        <div className='menu-list w-full relative flex flex-col'>
 
           {/* SearchForm Menu */}
           <SearchForm searchHovered={searchHovered} onMouseLeave={onMouseLeave} hamburgerToggle={hamburgerToggle}/>
@@ -184,7 +184,7 @@ export default function NavBar(){
           {/* Snowboard Menu */}
           <div className={`snowboards-menu relative w-full flex-col
             lg:${snowboardHovered ? 'flex' : 'hidden'}
-            ${hamburgerToggle ? 'flex divider py-2' : 'hidden'}
+            ${hamburgerToggle ? 'flex divider py-3' : 'hidden'}
 
             `}
             onMouseEnter={onMouseEnterSnowboard}
@@ -221,7 +221,7 @@ export default function NavBar(){
           {/* Accessories Menu */}
           <div className={`accessories-menu relative w-full flex-col
             lg:${accessoriesHovered ? 'flex' : 'hidden'}
-            ${hamburgerToggle ? 'flex divider py-2' : 'hidden'}
+            ${hamburgerToggle ? 'flex divider py-3' : 'hidden'}
             `
           }
             onMouseEnter={onMouseEnterAccessories}
