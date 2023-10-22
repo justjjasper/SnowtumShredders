@@ -82,6 +82,28 @@ export default function NavBar(){
     window.addEventListener('resize', accessoriesResize)
   }, [snowboardXPos])
 
+  // If window width passes 1024px, remove mobileDropdownMenuTrigger className from drop-down-menu div
+  useEffect(() => {
+    // Add an event listener for window resize
+    const handleResize = () => {
+      // Check the screen width and set hamburgerToggle accordingly
+      if (window.innerWidth > 1024) {
+        setHamburgerToggle(false);
+      }
+    };
+
+    // Attach the event listener
+    window.addEventListener('resize', handleResize);
+
+    // Call handleResize initially to set the initial state
+    handleResize();
+
+    // Remove the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     // **To Implement individual backdrop blur of Snowboard/Accessory dropdown menu** When state of either snowboard/acessories is hovered via onMouseEnter, a class is added to entire header to create backdrop blur.
     <div className={`header flex flex-col font-calibre font-bold sticky top-0 backdrop-blur-[100px] z-50 text-[#ffffff] w-full
@@ -150,7 +172,7 @@ export default function NavBar(){
                              {/* Implement a way where this condition breaks when screen is larger than lg */}
       {/* Dropdown Menu Extension */}
       <div className={`drop-down-menu relative w-full lg:hidden
-        ${hamburgerToggle ? 'mobileDropdownMenuTrigger' : ''} `}
+        ${hamburgerToggle ? 'mobileDropdownMenuTrigger' : 'hidden'} `}
         onMouseLeave={onMouseLeave}>
         <div className='cartForm'></div>
         {/* Menu list */}
