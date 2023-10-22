@@ -151,3 +151,13 @@ to add accessoriesMenuTrigger class the entire header div
   font-size: 14px;
 }
 
+.divider::after {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  border-radius: 12px;
+  background-color: white;
+}

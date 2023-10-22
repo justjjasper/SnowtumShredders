@@ -171,7 +171,7 @@ export default function NavBar(){
 
       {/* Dropdown Menu Extension */}
       <div className={`drop-down-menu relative w-full
-        ${hamburgerToggle ? 'mobileDropdownMenuTrigger' : ''}
+        ${hamburgerToggle ? 'mobileDropdownMenuTrigger px-10' : ''}
         `}
         onMouseLeave={onMouseLeave}>
         <div className='cartForm'></div>
@@ -182,46 +182,46 @@ export default function NavBar(){
           <SearchForm searchHovered={searchHovered} onMouseLeave={onMouseLeave} hamburgerToggle={hamburgerToggle}/>
 
           {/* Snowboard Menu */}
-          <div className={`snowboards-menu absolute w-full flex-col
+          <div className={`snowboards-menu relative w-full flex-col
             lg:${snowboardHovered ? 'flex' : 'hidden'}
-            ${hamburgerToggle ? 'flex' : 'hidden'}
+            ${hamburgerToggle ? 'flex divider py-2' : 'hidden'}
 
             `}
             onMouseEnter={onMouseEnterSnowboard}
             >
-            <button className={`${hamburgerToggle ? 'flex' : 'hidden'}`}
-              onClick={() => setSnowboardMobileMenu(!snowboardMobileMenu)}
-            >
-              <span>Snowboards</span>
-            </button>
-            <div className={`snowboards-menu-list lg:flex flex-col font-medium text-[14px] w-full
-              ${snowboardMobileMenu ? 'flex' : 'hidden'}`
-             }
-              style={{paddingLeft : `${snowboardXPos}px`}}
+              <button className={`${hamburgerToggle ? 'flex' : 'hidden'}`}
+                onClick={() => setSnowboardMobileMenu(!snowboardMobileMenu)}
               >
-              <Link href='/collections/all-snowboards' onClick={onMouseLeave} className='py-3 leading-8'>
-                <span id='menu-link' className='w-full'>ALL</span>
-              </Link>
-              <Link href='/collections/snowboards-mens' onClick={onMouseLeave} className='py-3 leading-8'>
-                <span id='menu-link' className='w-full'>MEN&apos;S</span>
-              </Link>
-              <Link href='/collections/snowboards-womens' onClick={onMouseLeave} className='py-3 leading-8'>
-                <span id='menu-link' className='w-full'>WOMEN&apos;S</span>
-              </Link>
-              <Link href='/collections/snowboards-kids' onClick={onMouseLeave} className='py-3 leading-8'>
-                <span id='menu-link' className='w-full'>KID&apos;S</span>
-              </Link>
-              <Link href='/collections/split-snowboards' onClick={onMouseLeave} className='py-3 leading-8'>
-                <span id='menu-link' className='w-full'>SPLITBOARDS</span>
-              </Link>
-            </div>
-            <div className='hidden'>Divider</div>
+                <span>Snowboards</span>
+              </button>
+              <div className={`snowboards-menu-list lg:flex flex-col font-medium text-[14px] w-full
+                ${snowboardMobileMenu ? 'flex' : 'hidden'}`
+              }
+                style={{paddingLeft : `${snowboardXPos}px`}}
+                >
+                <Link href='/collections/all-snowboards' onClick={onMouseLeave} className='py-3 leading-8'>
+                  <span id='menu-link' className='w-full'>ALL</span>
+                </Link>
+                <Link href='/collections/snowboards-mens' onClick={onMouseLeave} className='py-3 leading-8'>
+                  <span id='menu-link' className='w-full'>MEN&apos;S</span>
+                </Link>
+                <Link href='/collections/snowboards-womens' onClick={onMouseLeave} className='py-3 leading-8'>
+                  <span id='menu-link' className='w-full'>WOMEN&apos;S</span>
+                </Link>
+                <Link href='/collections/snowboards-kids' onClick={onMouseLeave} className='py-3 leading-8'>
+                  <span id='menu-link' className='w-full'>KID&apos;S</span>
+                </Link>
+                <Link href='/collections/split-snowboards' onClick={onMouseLeave} className='py-3 leading-8'>
+                  <span id='menu-link' className='w-full'>SPLITBOARDS</span>
+                </Link>
+              </div>
+            <div className={`${hamburgerToggle ? 'divider' : 'hidden'}`}></div>
           </div>
 
           {/* Accessories Menu */}
-          <div className={`accessories-menu absolute w-full flex-col
+          <div className={`accessories-menu relative w-full flex-col
             lg:${accessoriesHovered ? 'flex' : 'hidden'}
-            ${hamburgerToggle ? 'flex' : 'hidden'}
+            ${hamburgerToggle ? 'flex divider py-2' : 'hidden'}
             `
           }
             onMouseEnter={onMouseEnterAccessories}
@@ -252,7 +252,6 @@ export default function NavBar(){
                 <span id='menu-link' className='w-full'>BOARD BAGS</span>
               </Link>
             </div>
-            <div className='hidden'>Divider</div>
           </div>
         </div>
       </div>
