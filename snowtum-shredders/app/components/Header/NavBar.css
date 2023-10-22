@@ -134,9 +134,9 @@ to add accessoriesMenuTrigger class the entire header div
   z-index: -1;
 }
 
-/* "Duct-Tape Fix" where it solved issue of white space when mobileDropdownMenu activated */
+/* "Duct-Tape Fix" where margin-top: -925px solved issue of white space when mobileDropdownMenu activated */
 .header.mobileDropdownMenuTrigger {
-  margin-top: -1000px;
+  margin-top: -925px;
 }
 
 

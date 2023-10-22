@@ -44,13 +44,16 @@ export default function NavBar(){
     console.log('onMouseEnterSearch triggered')
   }
 
+  // Temporary solution to fix clicking on link peristence bug, new bug issue when "entering back header". Not what we want since we want to re enter header for cart icon
   const onMouseLeave = () => {
     if (!hamburgerToggle) {
       setSnowboardHovered(false)
       setAccessoriesHovered(false)
       setSearchHovered(false)
+      setSnowboardMobileMenu(false)
+      setAccessoriesMobileMenu(false)
     }
-
+    setHamburgerToggle(false)
     console.log('onMouseLeave triggered')
   }
 
@@ -106,16 +109,25 @@ export default function NavBar(){
 
   return (
     // **To Implement individual backdrop blur of Snowboard/Accessory dropdown menu** When state of either snowboard/acessories is hovered via onMouseEnter, a class is added to entire header to create backdrop blur.
+    // Implement my-[-280/560px] to combat relative white space when snowboard/accessoriesMobileMenu is set to true
     <div className={`header flex flex-col font-calibre sticky font-bold top-0 backdrop-blur-[100px] z-50 text-[#ffffff] w-full
       ${snowboardHovered ? 'snowboardMenuTrigger' : ''}
       ${accessoriesHovered ? 'accessoriesMenuTrigger' : ''}
       ${searchHovered ? 'searchMenuTrigger' : ''}
-      ${hamburgerToggle ? 'mobileDropdownMenuTrigger' : ''}`
+      ${hamburgerToggle ? 'mobileDropdownMenuTrigger' : ''}
+      ${snowboardMobileMenu ? 'my-[-280px]' : ''}
+      ${accessoriesMobileMenu ? 'my-[-280px]' : ''}
+      ${accessoriesMobileMenu && snowboardMobileMenu ? 'my-[-560px]' : ''}
+      `
       }
       onMouseLeave={onMouseLeave}>
 
       {/* "Physical" Navbar */}
-      <div className='second flex w-full items-center justify-between px-16 py-8'>
+      <div className={`physical-navbar flex w-full items-center justify-between px-16 py-8
+        ${snowboardMobileMenu ? '' : ''}
+      `}
+
+      >
         <Link href='/' className='font-holtwood text-[22px]' onMouseEnter={onMouseLeave}>SNOWTUM SHREDDERS</Link>
         <nav className='hidden lg:flex flex-grow justify-around'>
           <ul className='flex w-8/12 justify-evenly'>
@@ -252,6 +264,18 @@ export default function NavBar(){
                 <span id='menu-link' className='w-full'>BOARD BAGS</span>
               </Link>
             </div>
+          </div>
+
+          { /* Team Mobile Menu*/}
+          <div className={`team-mobile-menu relative
+            ${hamburgerToggle ? 'flex divider py-3' : 'hidden'}`
+          }
+          >
+            <Link href='/pages/team' className='w-full'>
+              <span id='menu-link'>
+              Team
+              </span>
+            </Link>
           </div>
         </div>
       </div>
