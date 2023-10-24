@@ -1,6 +1,6 @@
 'use client'
 import './NavBar.css'
-import { cartSVG, searchSVG, hambugerSVG, xmarkSVG, circlePlusSVG } from '@/app/Misc/Icons'
+import { cartSVG, searchSVG, hambugerSVG, xmarkSVG, circlePlusSVG, circleMinusSVG } from '@/app/Misc/Icons'
 import React, { useState, useEffect } from 'react'
 import Link from "next/link"
 import SearchForm from './SearchForm'
@@ -214,7 +214,7 @@ export default function NavBar(){
                   <span id='menu-link'>
                     Snowboards
                   </span>
-                  {circlePlusSVG}
+                  {snowboardMobileMenu ? circleMinusSVG : circlePlusSVG}
                 </span>
               </button>
 
@@ -261,7 +261,7 @@ export default function NavBar(){
                   <span id='menu-link'>
                     Accessories
                   </span>
-                  {circlePlusSVG}
+                  {accessoriesMobileMenu ? circleMinusSVG : circlePlusSVG}
                 </span>
             </button>
 
