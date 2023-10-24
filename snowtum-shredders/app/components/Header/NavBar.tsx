@@ -128,12 +128,12 @@ export default function NavBar(){
       onMouseLeave={onMouseLeave}>
 
       {/* "Physical" Navbar */}
-      <div className={`physical-navbar flex w-full items-center justify-between px-3 md:px-16 py-3 md:py-8
+      <div className={`physical-navbar flex w-full items-center justify-between px-2 xsm:px-3 md:px-16 py-3 md:py-8
         ${snowboardMobileMenu ? '' : ''}
       `}
 
       >
-        <Link href='/' className='font-holtwood text-[22px]' onMouseEnter={onMouseLeave}>SNOWTUM SHREDDERS</Link>
+        <Link href='/' className='font-holtwood xsm:text-[22px]' onMouseEnter={onMouseLeave}>SNOWTUM SHREDDERS</Link>
         <nav className='hidden lg:flex flex-grow justify-around'>
           <ul className='flex w-8/12 justify-evenly'>
             <span className={`header-link ${snowboardHovered ? 'is-active' : ''}`}
@@ -161,7 +161,7 @@ export default function NavBar(){
           </ul>
         </nav>
 
-        <div className='flex gap-7'>
+        <div className='flex gap-3 xsm:gap-7'>
           <button id='menu-link'
             onMouseEnter={onMouseEnterSearch}
             className='hidden lg:block'

@@ -18,7 +18,7 @@ export default async function Home() {
             width={500}
             height={500}
             priority={true}
-            className='w-full hidden md:block'
+            className='w-full'
           />
 
         <div className='mobileImage h-[500px]'>
@@ -27,7 +27,7 @@ export default async function Home() {
         src='https://res.cloudinary.com/jasjasper/image/upload/v1697557655/MobileBanner_khhebe.png'
         alt='Snowtum Shredder Mobile Banner'
         priority={true}
-        className='block md:hidden w-full'
+        className='hidden w-full'
         height={900}
         width={500}
         objectFit='cover'

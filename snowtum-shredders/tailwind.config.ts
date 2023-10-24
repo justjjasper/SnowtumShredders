@@ -24,8 +24,8 @@ const config: Config = {
       },
     },
     screens: {
-      'max-lg': { 'max': '1024px'}
-      // => @media (max-width: 1024px) { ... }
+      'xsm': '560px',
+      //=> @media (min-width: 560px) aka smallest browser screen
     },
   plugins: [],
 }
