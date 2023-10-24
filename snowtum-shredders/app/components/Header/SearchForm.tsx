@@ -105,7 +105,7 @@ export default function SearchForm( {searchHovered, onMouseLeave, hamburgerToggl
       }>
       <label className='flex text-sm mb-1'>SEEK AND YOU WILL FIND</label>
       {/* Use Fuse.js to help with search queries */}
-      <form className='flex flex-col relative justify-center items-center w-[40%] lg:w-[30%]'>
+      <form className='flex flex-col relative justify-center items-center w-full sm:w-[65%] lg:w-[30%]'>
         <input
           id='search-input'
           type='text'

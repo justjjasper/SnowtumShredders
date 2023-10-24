@@ -188,7 +188,7 @@ export default function NavBar(){
 
       {/* Dropdown Menu Extension */}
       <div className={`drop-down-menu relative w-full
-        ${hamburgerToggle ? 'mobileDropdownMenuTrigger px-20' : ''}
+        ${hamburgerToggle ? 'mobileDropdownMenuTrigger px-5 md:px-20' : ''}
         `}
         onMouseLeave={onMouseLeave}>
         <div className='cartForm'></div>
