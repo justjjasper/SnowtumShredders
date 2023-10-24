@@ -42,14 +42,14 @@ export default async function Home() {
         </section>
 
         <section className='relative w-full flex flex-col-reverse md:flex-row justify-center'>
-          <div className='left-banner flex flex-grow justify-between md:justify-start px-5 md:px-0 bg-secondary py-3 md:py-20 text-primary'>
+          <div className='left-banner flex flex-grow justify-between md:justify-start px-5 md:px-0 bg-secondary py-7 md:py-20 text-primary'>
 
             <div className='left-banner-text flex flex-col md:items-end justify-end md:pl-16 md:leading-[37px] border-[#ffffff]'>
              <span className='flex md:text-[18px]'>{snowboard.rider_type}</span>
              <span className='flex font-bold whitespace-nowrap md:text-[56px]'>{snowboard.name}</span>
             </div>
 
-            <div className="left-banner-card flex flex-col items-center font-calibre rounded-2xl border-[1px] md:translate-x-[70%] mt-[-45%] md:mt-[0px] bg-[url('https://capitasnowboarding.com/cdn/shop/files/000_GRID_PAPER_BG_1_77e3e65d-56ba-4a1f-a70b-76408f3b3cbf.png?v=1690637051')] md:w-[280px] md:h-[537px] h-[350px] w-[170px]">
+            <div className="left-banner-card flex flex-col items-center font-calibre rounded-2xl border-[1px] md:translate-x-[70%] mt-[-42%] md:mt-[0px] bg-[url('https://capitasnowboarding.com/cdn/shop/files/000_GRID_PAPER_BG_1_77e3e65d-56ba-4a1f-a70b-76408f3b3cbf.png?v=1690637051')] md:w-[280px] md:h-[537px] h-[350px] w-[170px]">
 
 
               <Link href='products/snowboard/indoor-survival' className='flex flex-col justify-between h-full'>
