@@ -10,8 +10,7 @@ export default async function Home() {
 
     return (
       <main className="flex flex-col items-center relative bottom-[100px] z-20">
-        <section className='relative flex justify-center'
-          style={{width: '100%', height: '100%'}}
+        <section className="relative flex justify-center w-full"
           >
           <Image
             src='https://res.cloudinary.com/jasjasper/image/upload/v1696808288/snowtum-shredders-banner_xcxkev.png'
@@ -19,16 +18,22 @@ export default async function Home() {
             width={500}
             height={500}
             priority={true}
-            className='w-full'
+            className='w-full hidden md:block'
           />
-            <Image
-            src='https://res.cloudinary.com/jasjasper/image/upload/v1697557655/MobileBanner_khhebe.png'
-            alt='Snowtum Shredder Mobile Banner'
-            width={500}
-            height={500}
-            priority={true}
-            className='w-full hidden'
-          />
+
+        <div className='mobileImage h-[500px]'>
+
+        <Image
+        src='https://res.cloudinary.com/jasjasper/image/upload/v1697557655/MobileBanner_khhebe.png'
+        alt='Snowtum Shredder Mobile Banner'
+        priority={true}
+        className='block md:hidden w-full'
+        height={900}
+        width={500}
+        objectFit='cover'
+        />
+        </div>
+
           <Link href='/collections/all-snowboards'
             className='absolute bottom-[10%] w-3/12 flex justify-center self-end py-4 rounded-full font-calibre font-bold tracking-tighter bg-primary hover:underline min-w-[340px]'
             >
