@@ -1,6 +1,6 @@
 'use client'
 import './NavBar.css'
-import { cartSVG, searchSVG, hambugerSVG, xmarkSVG } from '@/app/Misc/Icons'
+import { cartSVG, searchSVG, hambugerSVG, xmarkSVG, circlePlusSVG } from '@/app/Misc/Icons'
 import React, { useState, useEffect } from 'react'
 import Link from "next/link"
 import SearchForm from './SearchForm'
@@ -107,6 +107,11 @@ export default function NavBar(){
     };
   }, []);
 
+  const checker = () => {
+    console.log('[before]snowboardmobilemeu ', snowboardMobileMenu)
+    setSnowboardMobileMenu(!snowboardMobileMenu)
+  }
+
   return (
     // **To Implement individual backdrop blur of Snowboard/Accessory dropdown menu** When state of either snowboard/acessories is hovered via onMouseEnter, a class is added to entire header to create backdrop blur.
     // Implement my-[-280/560px] to combat relative white space when snowboard/accessoriesMobileMenu is set to true
@@ -197,17 +202,26 @@ export default function NavBar(){
           <div className={`snowboards-menu relative w-full flex-col
             lg:${snowboardHovered ? 'flex' : 'hidden'}
             ${hamburgerToggle ? 'flex divider py-3' : 'hidden'}
-
             `}
             onMouseEnter={onMouseEnterSnowboard}
             >
               <button className={`${hamburgerToggle ? 'flex' : 'hidden'}`}
-                onClick={() => setSnowboardMobileMenu(!snowboardMobileMenu)}
+                onClick={checker}
               >
-                <span  id='menu-link'>Snowboards</span>
+                <span
+                  className='flex justify-between items-center w-full'
+                >
+                  <span id='menu-link'>
+                    Snowboards
+                  </span>
+                  {circlePlusSVG}
+                </span>
               </button>
+
               <div className={`snowboards-menu-list lg:flex flex-col font-medium text-[14px] w-full
-                ${snowboardMobileMenu ? 'flex' : 'hidden'}`
+                ${hamburgerToggle ? 'snowboards-mobile-menu-list' : 'hidden'}
+                ${snowboardMobileMenu ? 'flex active' : 'hidden'}
+                `
               }
                 style={{paddingLeft : `${snowboardXPos}px`}}
                 >
@@ -241,10 +255,20 @@ export default function NavBar(){
             <button className={`${hamburgerToggle ? 'flex' : 'hidden'}`}
                onClick={() => setAccessoriesMobileMenu(!accessoriesMobileMenu)}
             >
-              <span  id='menu-link'>Accessories</span>
-              </button>
+              <span
+                className='flex items-center justify-between w-full'
+                >
+                  <span id='menu-link'>
+                    Accessories
+                  </span>
+                  {circlePlusSVG}
+                </span>
+            </button>
+
             <div className={`accessories-menu-list lg:flex flex-col font-medium text-[14px] w-full
-              ${accessoriesMobileMenu ? 'flex' : 'hidden'}`
+              ${accessoriesMobileMenu ? 'flex' : 'hidden'}
+              ${accessoriesMobileMenu ? 'flex active' : 'hidden'}
+              `
             }
               style={{paddingLeft: `${accessoriesXPos}px`}}
             >
@@ -272,7 +296,7 @@ export default function NavBar(){
           }
           >
             <Link href='/pages/team' className='w-full'>
-              <span id='menu-link'>
+              <span>
               Team
               </span>
             </Link>

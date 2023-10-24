@@ -163,3 +163,15 @@ to add accessoriesMenuTrigger class the entire header div
   border-radius: 12px;
   background-color: white;
 }
+
+/* CSS for menu-list height animation*/
+.snowboards-mobile-menu-list {
+  max-height: 50px;
+  overflow: hidden;
+  transition: max-height 10s ease-in-out
+}
+
+.snowboards-mobile-menu-list.active {
+  max-height: 500px;
+  transition: max-height 10s ease-in-out
+}
