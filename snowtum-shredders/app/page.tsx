@@ -41,15 +41,16 @@ export default async function Home() {
           </Link>
         </section>
 
-        <section className='relative w-full flex justify-center h-[700px]'>
-          <div className='left-banner flex flex-grow bg-secondary py-20 text-primary'>
+        <section className='relative w-full flex flex-col-reverse md:flex-row justify-center'>
+          <div className='left-banner flex flex-grow justify-between md:justify-start px-5 md:px-0 bg-secondary py-3 md:py-20 text-primary'>
 
-            <div className='left-banner-text flex flex-col items-end justify-end pl-16 leading-[37px] border-[#ffffff]'>
-             <span className='flex text-[18px]'>{snowboard.rider_type}</span>
-             <span className='flex font-bold whitespace-nowrap text-[56px]'>{snowboard.name}</span>
+            <div className='left-banner-text flex flex-col md:items-end justify-end md:pl-16 md:leading-[37px] border-[#ffffff]'>
+             <span className='flex md:text-[18px]'>{snowboard.rider_type}</span>
+             <span className='flex font-bold whitespace-nowrap md:text-[56px]'>{snowboard.name}</span>
             </div>
 
-            <div className="left-banner-card flex flex-col items-center font-calibre rounded-2xl border-[1px] translate-x-[70%] bg-[url('https://capitasnowboarding.com/cdn/shop/files/000_GRID_PAPER_BG_1_77e3e65d-56ba-4a1f-a70b-76408f3b3cbf.png?v=1690637051')]">
+            <div className="left-banner-card flex flex-col items-center font-calibre rounded-2xl border-[1px] md:translate-x-[70%] mt-[-45%] md:mt-[0px] bg-[url('https://capitasnowboarding.com/cdn/shop/files/000_GRID_PAPER_BG_1_77e3e65d-56ba-4a1f-a70b-76408f3b3cbf.png?v=1690637051')] md:w-[280px] md:h-[537px] h-[350px] w-[170px]">
+
 
               <Link href='products/snowboard/indoor-survival' className='flex flex-col justify-between h-full'>
                 <Image
@@ -58,16 +59,17 @@ export default async function Home() {
                   width={278}
                   height={450}
                   className='flex pt-10 transition-transform ease-in-out duration-300 hover:scale-105'
-                />
+                  />
 
                 <div className='flex justify-center bg-primary text-secondary py-3 rounded-b-xl'>
                   <span className='flex font-bold tracking-tight'>SHOP NOW</span>
                 </div>
               </Link>
+
             </div>
           </div>
 
-          <div className='right-banner w-[63%] flex flex-grow'>
+          <div className='right-banner md:w-[63%] flex flex-grow'>
             <Image
               src='https://capitasnowboarding.com/cdn/shop/files/D_hompage_productbanner_arthurlongo.jpg?v=1696266979'
               alt='Arthur Longo Picture'
