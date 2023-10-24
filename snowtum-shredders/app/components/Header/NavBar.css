@@ -80,17 +80,17 @@ Within client code, utilize the state of onMouseEnter with conditional rendering
 to add snowboardMenuTrigger class the entire header div
 */
 /* Keepin mind, original positions snowboard/accessories/search menuTrigger is absolute */
+/* Removed the heights of each menuTrigger::after ???*/
 .header.snowboardMenuTrigger::after {
   content:'';
   position: absolute;
   display: flex;
   width: 100%;
-  height: 350px;
   z-index: -1;
 }
 
 .header.snowboardMenuTrigger {
-  margin-top: -350px
+  margin-top: -280px
 }
 
 /* Following 2 css is responsible for accessories-menu backdrop blur
@@ -102,13 +102,17 @@ to add accessoriesMenuTrigger class the entire header div
   position: absolute;
   display: flex;
   width: 100%;
-  height: 350px;
   z-index: -1
 }
 
 .header.accessoriesMenuTrigger {
-  margin-top: -350px
+  margin-top: -280px
 }
+
+/* Following 2 css is responsible for search-menu backdrop blur
+Within client code, utilize the state of onMouseEnter with conditional rendering
+to add searchMenuTrigger class the entire header div
+*/
 
 /* Search Menu Trigger */
 .header.searchMenuTrigger::after {
@@ -116,12 +120,11 @@ to add accessoriesMenuTrigger class the entire header div
   position: absolute;
   display: flex;
   width: 100%;
-  height: 400px;
   z-index: -1
 }
 
 .header.searchMenuTrigger {
-  margin-top: -400px
+  margin-top: -450px
 }
 
 /* Mobile Menu Trigger */
@@ -166,12 +169,23 @@ to add accessoriesMenuTrigger class the entire header div
 
 /* CSS for menu-list height animation*/
 .snowboards-mobile-menu-list {
-  max-height: 50px;
+  max-height: 0px;
   overflow: hidden;
-  transition: max-height 10s ease-in-out
+  transition: max-height 0.5s ease-in-out
 }
 
 .snowboards-mobile-menu-list.active {
   max-height: 500px;
-  transition: max-height 10s ease-in-out
+  transition: max-height 0.5s ease-in-out
+}
+
+.accessories-mobile-menu-list {
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out
+}
+
+.accessories-mobile-menu-list.active {
+  max-height: 500px;
+  transition: max-height 0.5s ease-in-out
 }

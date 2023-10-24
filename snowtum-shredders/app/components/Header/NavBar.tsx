@@ -115,14 +115,14 @@ export default function NavBar(){
   return (
     // **To Implement individual backdrop blur of Snowboard/Accessory dropdown menu** When state of either snowboard/acessories is hovered via onMouseEnter, a class is added to entire header to create backdrop blur.
     // Implement my-[-280/560px] to combat relative white space when snowboard/accessoriesMobileMenu is set to true
-    <div className={`header flex flex-col font-calibre sticky font-bold top-0 backdrop-blur-[100px] z-50 text-[#ffffff] w-full
+    <div className={`header flex flex-col font-calibre sticky font-bold top-0 backdrop-blur-[3000px] z-50 text-[#ffffff] w-full
       ${snowboardHovered ? 'snowboardMenuTrigger' : ''}
       ${accessoriesHovered ? 'accessoriesMenuTrigger' : ''}
       ${searchHovered ? 'searchMenuTrigger' : ''}
-      ${hamburgerToggle ? 'mobileDropdownMenuTrigger' : ''}
-      ${snowboardMobileMenu ? 'my-[-280px]' : ''}
-      ${accessoriesMobileMenu ? 'my-[-280px]' : ''}
-      ${accessoriesMobileMenu && snowboardMobileMenu ? 'my-[-560px]' : ''}
+      ${hamburgerToggle ? 'mobileDropdownMenuTrigger my-[-48px]' : ''}
+      ${snowboardMobileMenu ? 'mt-[-280px]' : ''}
+      ${accessoriesMobileMenu ? 'mt-[-280px]' : ''}
+      ${accessoriesMobileMenu && snowboardMobileMenu ? 'mt-[-560px]' : ''}
       `
       }
       onMouseLeave={onMouseLeave}>
@@ -220,7 +220,7 @@ export default function NavBar(){
 
               <div className={`snowboards-menu-list lg:flex flex-col font-medium text-[14px] w-full
                 ${hamburgerToggle ? 'snowboards-mobile-menu-list' : 'hidden'}
-                ${snowboardMobileMenu ? 'flex active' : 'hidden'}
+                ${snowboardMobileMenu ? 'flex active' : 'flex'}
                 `
               }
                 style={{paddingLeft : `${snowboardXPos}px`}}
@@ -266,8 +266,8 @@ export default function NavBar(){
             </button>
 
             <div className={`accessories-menu-list lg:flex flex-col font-medium text-[14px] w-full
-              ${accessoriesMobileMenu ? 'flex' : 'hidden'}
-              ${accessoriesMobileMenu ? 'flex active' : 'hidden'}
+              ${hamburgerToggle ? 'accessories-mobile-menu-list' : 'hidden'}
+              ${accessoriesMobileMenu ? 'flex active' : 'flex'}
               `
             }
               style={{paddingLeft: `${accessoriesXPos}px`}}
@@ -296,7 +296,7 @@ export default function NavBar(){
           }
           >
             <Link href='/pages/team' className='w-full'>
-              <span>
+              <span id='menu-link'>
               Team
               </span>
             </Link>
