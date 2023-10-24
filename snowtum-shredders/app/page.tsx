@@ -81,16 +81,16 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className='relative flex w-full items-center justify-center align-center'>
+        <section className='relative flex w-full items-center justify-center align-center h-[260px] lg:h-[450px] xl:h-auto'>
           <Image
             src={backgroundImage}
             alt='Background Grid'
             width={500}
             height={100}
-            className='w-full'
+            className='w-full h-full'
           />
           <div className='flex flex-col absolute justify-center items-center'>
-            <p className='flex text-[3rem] text-[#ffffff] text-center tracking-tight font-medium font-calibre px-10'>
+            <p className='flex text-lg md:text-3xl lg:text-[2.5rem] text-[#ffffff] text-center tracking-tight font-medium font-calibre px-10'>
               Snowtum Shredders&apos; Snowboards are handcrafted in San Diego with self-generated clean energy at The MotherShip™.
             </p>
             <Image

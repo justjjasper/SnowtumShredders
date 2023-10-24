@@ -128,7 +128,7 @@ export default function NavBar(){
       onMouseLeave={onMouseLeave}>
 
       {/* "Physical" Navbar */}
-      <div className={`physical-navbar flex w-full items-center justify-between px-2 xsm:px-3 md:px-16 py-3 md:py-8
+      <div className={`physical-navbar flex w-full items-center justify-between px-5 xsm:px-3 md:px-16 py-3 md:py-8
         ${snowboardMobileMenu ? '' : ''}
       `}
 

@@ -21,30 +21,30 @@ export default function SortingOptions( {productCategory}: SortingOptionsProps) 
   the products "state" back in the Collections page
   */
   return (
-    <div className='top-sorting-options text-sm tracking-tight font-semibold'>
+    <div className='top-sorting-options text-[10px] sm:text-sm tracking-tight font-semibold'>
       <Link
-        className={`mx-[8px] ${ activeOption === 'NEWEST' ? 'selected-sorting-option' : ''}`}
+        className={`mr-[2px] sm:mr-[4px] ${ activeOption === 'NEWEST' ? 'selected-sorting-option' : ''}`}
         onClick={() => handleSorting('NEWEST')}
         href={`/collections/${productCategory}?sort_by=newest`}
         >
           NEWEST
-      </Link>
+      </Link> |
       <Link
-        className={`mx-[8px] ${ activeOption === 'FEATURED' ? 'selected-sorting-option' : ''}`}
+        className={`mx-[4px] sm:mx-[8px] ${ activeOption === 'FEATURED' ? 'selected-sorting-option' : ''}`}
         onClick={() => handleSorting('FEATURED')}
         href={`/collections/${productCategory}?sort_by=featured`}
         >
         FEATURED
       </Link>/
       <Link
-        className={`mx-[8px] ${ activeOption === 'PRICE: HIGH - LOW' ? 'selected-sorting-option' : ''}`}
+        className={`mx-[4px] sm:mx-[8px] ${ activeOption === 'PRICE: HIGH - LOW' ? 'selected-sorting-option' : ''}`}
         onClick={() => handleSorting('PRICE: HIGH - LOW')}
         href={`/collections/${productCategory}?sort_by=price-descending`}
         >
         PRICE: HIGH - LOW
       </Link>|
       <Link
-        className={`mx-[8px] ${ activeOption === 'PRICE: LOW - HIGH' ? 'selected-sorting-option' : ''}`}
+        className={`mr-[2px] sm:mr-[4px] ${ activeOption === 'PRICE: LOW - HIGH' ? 'selected-sorting-option' : ''}`}
         onClick={() => handleSorting('PRICE: LOW - HIGH')}
         href={`/collections/${productCategory}?sort_by=price-ascending`}
         >
