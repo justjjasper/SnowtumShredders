@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { circlePlusSVG, circleXMarkSVG } from "@/app/Misc/Icons";
 import '../AsideContent.css'
 
 interface CheckboxState {
@@ -14,6 +15,7 @@ interface CheckboxState {
 
 export default function AsideSnowboards() {
   const pathname = usePathname();
+  const [filterToggle, setFilterToggle] = useState<boolean>(false)
 
   // Use local state for the checkbox values, this allows a smoother UX of the checkbox
   const [checkboxState, setCheckboxState] = useState({
@@ -33,8 +35,18 @@ export default function AsideSnowboards() {
   };
 
   return (
-    <aside className='content-aside-filter border-[1px] rounded-xl h-56 sticky top-[150px]'>
-      <div className='aside-filter relative flex flex-col font-semibold mx-5 py-6' >
+    <aside className='content-aside-filter flex flex-col border-[1px] px-5 xl:px-none rounded-3xl xl:rounded-xl bg-secondary xl: bg-none xl:h-56 xl:sticky top-[150px] w-[90%] xl:w-auto'>
+      <div className={`xl:hidden flex relative py-3 justify-between items-center
+        ${filterToggle ? 'divider': ''}`
+      }
+        onClick={() => setFilterToggle(!filterToggle)}
+      >
+        <span className='text-lg xl:text-xl font-semibold'>FILTERS</span>
+        {filterToggle ? circleXMarkSVG : circlePlusSVG}
+      </div>
+      <div className={`aside-filter text-xs md:text-base xl:flex relative flex-col font-semibold py-6
+        ${filterToggle ? 'flex' : 'hidden'}
+      `} >
         <label className='filter flex'>
           <Link href='/collections/all-snowboards' className='flex'>
             <input

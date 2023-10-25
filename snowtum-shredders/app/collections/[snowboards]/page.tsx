@@ -100,6 +100,7 @@ export default async function SnowboardCollection( { params, searchParams }: Sno
       // Don't forget the bottom-[100px] within the main tag
       <main className='relative bottom-[100px] z-20'>
         <div className={`relative pt-32 bg-[url('https://capitasnowboarding.com/cdn/shop/files/000_GRID_PAPER_BG_1_77e3e65d-56ba-4a1f-a70b-76408f3b3cbf.png?v=1690637051')]`}>
+
           <div className='content-container flex flex-col px-5 md:px-16 text-primary font-calibre'>
 
             <section className='content-top relative flex flex-col lg:flex-row lg:items-end justify-between pb-2'>
@@ -108,7 +109,7 @@ export default async function SnowboardCollection( { params, searchParams }: Sno
               <SortingOptions productCategory={snowboardCategory}/>
             </section>
 
-            <section className='content-listing flex justify-between py-20'>
+            <section className='content-listing flex flex-col items-center xl:items-start xl:flex-row justify-between py-6 sm:py-7 xl:py-20'>
               {/* Side Filter*/}
               <AsideSnowboards/>
               {/* List of Snowboard Products */}

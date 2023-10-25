@@ -44,7 +44,7 @@ export default function SortingOptions( {productCategory}: SortingOptionsProps) 
         PRICE: HIGH - LOW
       </Link>|
       <Link
-        className={`mr-[2px] sm:mr-[4px] ${ activeOption === 'PRICE: LOW - HIGH' ? 'selected-sorting-option' : ''}`}
+        className={`mx-[2px] sm:mx-[4px] ${ activeOption === 'PRICE: LOW - HIGH' ? 'selected-sorting-option' : ''}`}
         onClick={() => handleSorting('PRICE: LOW - HIGH')}
         href={`/collections/${productCategory}?sort_by=price-ascending`}
         >

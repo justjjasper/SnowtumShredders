@@ -107,11 +107,6 @@ export default function NavBar(){
     };
   }, []);
 
-  const checker = () => {
-    console.log('[before]snowboardmobilemeu ', snowboardMobileMenu)
-    setSnowboardMobileMenu(!snowboardMobileMenu)
-  }
-
   return (
     // **To Implement individual backdrop blur of Snowboard/Accessory dropdown menu** When state of either snowboard/acessories is hovered via onMouseEnter, a class is added to entire header to create backdrop blur.
     // Implement my-[-280/560px] to combat relative white space when snowboard/accessoriesMobileMenu is set to true
@@ -206,7 +201,7 @@ export default function NavBar(){
             onMouseEnter={onMouseEnterSnowboard}
             >
               <button className={`${hamburgerToggle ? 'flex' : 'hidden'}`}
-                onClick={checker}
+                onClick={() => setSnowboardMobileMenu(!snowboardMobileMenu)}
               >
                 <span
                   className='flex justify-between items-center w-full'
