@@ -9,7 +9,7 @@ type AccessoryListProps = {
   products: SnowboardProductType[]
 }
 
-
+// Need to adjust accessory collection API to incorporate meta_data
 export default function AccessoryList({ products }: AccessoryListProps) {
   const [numOfSize, setNumOfSize] = useState<number>(7)
 

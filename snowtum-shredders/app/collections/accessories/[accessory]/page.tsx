@@ -10,6 +10,7 @@ interface AccessoryParams {
   }
 };
 
+
 export default async function AccessoryCollection( { params }: AccessoryParams){
   try {
     const data = await fetch(`${accessoriesAPI}`)
@@ -46,7 +47,7 @@ export default async function AccessoryCollection( { params }: AccessoryParams){
           <div>Error in loading Accessories page</div>
         )
     }
-    console.log(products)
+    // console.log(products)
 
     return (
       // Don't forget the bottom-[100px] within the main tag

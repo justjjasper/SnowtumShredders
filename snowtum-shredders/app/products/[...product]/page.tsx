@@ -14,7 +14,7 @@ export default async function Product({ params }: ProductParams ) {
   // Get dynamic route parameters for productType and productName
   const productType = params.product[0]
   const productName = params.product[1]
-
+  console.log('what are products', params)
 
   try{
     // Query from database using productType & productName
