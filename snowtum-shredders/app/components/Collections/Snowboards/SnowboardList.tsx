@@ -3,12 +3,36 @@ import Link from "next/link";
 import Image from "next/image";
 import './SnowboardList.css'
 import { SnowboardProductType, MetaDataType } from "@/app/collections/[snowboards]/page";
+import { useEffect, useState } from "react";
 
 type SnowboardListProps = {
   products: SnowboardProductType[]
 }
 
+
 export default function SnowboardList({ products }: SnowboardListProps) {
+  const [numOfSize, setNumOfSize] = useState<number>(7)
+
+  useEffect(() => {
+    const handleNumOfSize = () => {
+      if(window.innerWidth < 560) {
+        setNumOfSize(3)
+      } else {
+        setNumOfSize(7)
+      }
+    }
+
+    // Attach the event listener
+    window.addEventListener('resize', handleNumOfSize);
+
+    // Call handleNumOfSize initially to set the initial state
+    handleNumOfSize();
+
+    // Remove the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('resize', handleNumOfSize);
+    };
+  }, [])
   // sm:gap-20 xl:gap-24
   return (
     <div className='content-list flex flex-row flex-wrap gap-y-12 lg:gap-20 xl:gap-24 justify-start px-3 lg:px-24'>
@@ -35,7 +59,7 @@ export default function SnowboardList({ products }: SnowboardListProps) {
                 const remainder = snowboard.snowboard_meta_data.length - 7
                 const isInactive = metaData.sku === 0
 
-                if (i < 7) {
+                if (i < numOfSize) {
                   return (
                     <Link
                       href={isInactive ? '#' : `/products/snowboard/${formattedSnowboardName}`}
@@ -47,7 +71,7 @@ export default function SnowboardList({ products }: SnowboardListProps) {
                   );
                 }
 
-                if (i === 8) {
+                if (i === numOfSize + 1) {
                   return (
                     <Link
                       href={`/products/snowboard/${formattedSnowboardName}`}
