@@ -152,9 +152,15 @@ def get_snowboard_collection(request):
 
 def get_accessory_collection(request):
   try:
-    tshirts = list(TShirt.objects.values('tshirt_id', 'tshirt_name', 'tshirt_image', 'tshirt_price'))
-    hoodies = list(Hoodie.objects.values('hoodie_id', 'hoodie_name', 'hoodie_image', 'hoodie_price'))
-    headgear = list(Headgear.objects.values('headgear_id', 'headgear_name', 'headgear_image', 'headgear_price'))
+    # Create a list of the other products and format the data
+    tshirts = list(TShirt.objects.values('tshirt_id', 'tshirt_name', 'tshirt_image', 'tshirt_description'))
+    tshirt_data = [{'id': tshirt['tshirt_id'], 'name': tshirt['tshirt_name'], 'image': tshirt['tshirt_image'], 'description': tshirt['tshirt_description'], 'category': 'tshirt'} for tshirt in tshirts]
+
+    hoodies = list(Hoodie.objects.values('hoodie_id', 'hoodie_name', 'hoodie_image', 'hoodie_description'))
+    hoodie_data = [{'id': hoodie['hoodie_id'], 'name': hoodie['hoodie_name'], 'image': hoodie['hoodie_image'], 'description': hoodie['hoodie_description'], 'category': 'hoodie'} for hoodie in hoodies]
+
+    headgear = list(Headgear.objects.values('headgear_id', 'headgear_name', 'headgear_image', 'headgear_description'))
+    headgear_data = [{'id': item['headgear_id'], 'name': item['headgear_name'], 'image': item['headgear_image'], 'description': item['headgear_description'], 'category': 'headgear'} for item in headgear]
 
     # Retrieve the first image for each boardbag
     boardbag_data = []
@@ -166,16 +172,17 @@ def get_accessory_collection(request):
             first_image = ""
 
         boardbag_data.append({
-            'boardbag_id': boardbag.boardbag_id,
-            'boardbag_name': boardbag.boardbag_name,
-            'boardbag_image': first_image,
-            'boardbag_price': boardbag.boardbag_price,
+            'id': boardbag.boardbag_id,
+            'name': boardbag.boardbag_name,
+            'image': first_image,
+            'price': boardbag.boardbag_price,
+            'category': 'boardbag'
         })
 
     accessories_data = {
-        'tshirts': tshirts,
-        'hoodies': hoodies,
-        'headgear': headgear,
+        'tshirts': tshirt_data,
+        'hoodies': hoodie_data,
+        'headgear': headgear_data,
         'boardbag': boardbag_data,
     }
 

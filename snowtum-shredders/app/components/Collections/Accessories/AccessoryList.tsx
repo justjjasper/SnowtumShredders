@@ -5,12 +5,12 @@ import '../ProductSizes.css'
 import { SnowboardProductType, MetaDataType } from "@/app/collections/[snowboards]/page";
 import { useEffect, useState } from "react";
 
-type SnowboardListProps = {
+type AccessoryListProps = {
   products: SnowboardProductType[]
 }
 
 
-export default function SnowboardList({ products }: SnowboardListProps) {
+export default function AccessoryList({ products }: AccessoryListProps) {
   const [numOfSize, setNumOfSize] = useState<number>(7)
 
   useEffect(() => {

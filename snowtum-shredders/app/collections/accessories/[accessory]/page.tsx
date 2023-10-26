@@ -3,7 +3,7 @@ accessory/ collection API
 */
 import { accessoriesAPI } from '@/app/config'
 import AsideAccessories from '@/app/components/Collections/Accessories/AsideAccessories'
-import Image from 'next/image'
+import SortingOptions from '@/app/components/Collections/SortingOptions'
 interface AccessoryParams {
   params: {
     accessory: string
@@ -17,6 +17,7 @@ export default async function AccessoryCollection( { params }: AccessoryParams){
 
     let products = []
     const accessoryType = params.accessory
+    const productCategory = `accessories/${accessoryType}` // added accessories to filter properly when passed as prop to Sorting Options
 
     // Change list of products depending on route parameter
     switch (accessoryType) {
@@ -57,7 +58,7 @@ export default async function AccessoryCollection( { params }: AccessoryParams){
             <section className='content-top relative flex flex-col lg:flex-row lg:items-end justify-between pb-2'>
               <span className='text-3xl lg:text-5xl font-bold tracking-tighter'>ACCESSORIES</span>
               {/* Implement filtering method */}
-
+              <SortingOptions productCategory={productCategory}/>
             </section>
 
             <section className='content-listing flex flex-col items-center xl:items-start xl:flex-row justify-between py-6 sm:py-7 xl:py-20'>
