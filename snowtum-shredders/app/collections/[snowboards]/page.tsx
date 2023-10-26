@@ -101,7 +101,7 @@ export default async function SnowboardCollection( { params, searchParams }: Sno
       <main className='relative bottom-[100px] z-20'>
         <div className={`relative pt-32 bg-[url('https://capitasnowboarding.com/cdn/shop/files/000_GRID_PAPER_BG_1_77e3e65d-56ba-4a1f-a70b-76408f3b3cbf.png?v=1690637051')]`}>
 
-          <div className='content-container flex flex-col px-5 md:px-16 text-primary font-calibre'>
+          <div className='content-container flex flex-col px-3 md:px-16 text-primary font-calibre'>
 
             <section className='content-top relative flex flex-col lg:flex-row lg:items-end justify-between pb-2'>
               <span className='text-3xl lg:text-5xl font-bold tracking-tighter'>{categoryHeader}</span>

@@ -11,7 +11,7 @@ type SnowboardListProps = {
 export default function SnowboardList({ products }: SnowboardListProps) {
   // sm:gap-20 xl:gap-24
   return (
-    <div className='content-list flex flex-row flex-wrap gap-y-12 lg:gap-20 xl:gap-24 justify-start px-5 lg:px-24'>
+    <div className='content-list flex flex-row flex-wrap gap-y-12 lg:gap-20 xl:gap-24 justify-start px-3 lg:px-24'>
       {/* Maps out each Snowboard Product*/}
       {products.map((snowboard: SnowboardProductType, i: number) => {
         const formattedSnowboardName = snowboard.snowboard_name.toLowerCase().replace(/\s+/g, '-');
@@ -61,10 +61,10 @@ export default function SnowboardList({ products }: SnowboardListProps) {
                 return null
               })}
             </div>
-            <span className='product-description flex mt-3 text-[11px] xsm:text-xs w-[23ch] md:w-[35ch]'>
+            <span className='product-description flex mt-3 text-[11px] xsm:text-xs w-[25ch] md:w-[35ch]'>
               {snowboard.header_description.replace(/\s*\/\s*/g, ' ')}
             </span>
-            <span className='product-name flex py-[1.5px] xsm:py-0 text-[15px] md:text-2xl w-[20ch]'>
+            <span className='product-name flex py-[5px] leading-[1.2rem] xsm:py-0 md:text-2xl w-[17ch] xsm:w-[20ch]'>
               <Link href={`/products/snowboard/${formattedSnowboardName}`}>{snowboard.snowboard_name}</Link>
             </span>
             <span className='product-price flex font-normal text-[11px] xsm:text-sm md:text-base'>${snowboard.snowboard_price}</span>
