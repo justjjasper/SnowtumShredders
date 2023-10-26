@@ -22,10 +22,14 @@ const config: Config = {
         'calibre': ['"Calibre"', '"Helvetica Neue"', 'Helvetica', 'Arial', 'Sans-serif'],
         'holtwood': ["'Holtwood One SC'", '"Helvetica Neue"', 'Helvetica', 'Arial', 'Sans-serif'],
       },
-    },
-    screens: {
-      'xsm': '560px',
-      //=> @media (min-width: 560px) aka smallest browser screen
+      screens: {
+        'xsm': '560px',
+        //=> @media (min-width: 560px) aka smallest browser screen
+        'sm': '640px',
+        'md': '768px',
+        'lg': '1024px',
+        'xl': '1280px',
+      },
     },
   plugins: [],
 }

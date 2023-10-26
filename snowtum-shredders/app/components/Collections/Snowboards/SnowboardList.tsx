@@ -9,14 +9,15 @@ type SnowboardListProps = {
 }
 
 export default function SnowboardList({ products }: SnowboardListProps) {
+  // sm:gap-20 xl:gap-24
   return (
-    <div className='content-list flex flex-row flex-wrap gap-10 flex-grow justify-between px-24'>
+    <div className='content-list flex flex-row flex-wrap md:gap-20 xl:gap-24 justify-start px-5 lg:px-24'>
       {/* Maps out each Snowboard Product*/}
       {products.map((snowboard: SnowboardProductType, i: number) => {
         const formattedSnowboardName = snowboard.snowboard_name.toLowerCase().replace(/\s+/g, '-');
 
         return (
-          <div className='product-container flex flex-col justify-start font-semibold w-3/12'
+          <div className='product-container flex flex-col sm:border-2 justify-start font-semibold w-6/12 lg:w-3/12'
             key={i}
           >
             <Link className='product-image flex mb-5' href={`/products/snowboard/${formattedSnowboardName}`}>

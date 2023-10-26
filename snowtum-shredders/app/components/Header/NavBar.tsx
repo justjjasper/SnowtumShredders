@@ -128,7 +128,7 @@ export default function NavBar(){
       `}
 
       >
-        <Link href='/' className='font-holtwood xsm:text-[22px]' onMouseEnter={onMouseLeave}>SNOWTUM SHREDDERS</Link>
+        <Link href='/' className='font-holtwood sm:text-[22px]' onMouseEnter={onMouseLeave}>SNOWTUM SHREDDERS</Link>
         <nav className='hidden lg:flex flex-grow justify-around'>
           <ul className='flex w-8/12 justify-evenly'>
             <span className={`header-link ${snowboardHovered ? 'is-active' : ''}`}
