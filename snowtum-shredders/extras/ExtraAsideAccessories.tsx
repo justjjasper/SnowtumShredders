@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import './AsideContent.css'
+import '../AsideContent.css'
 
 interface CheckboxState {
   'all-accessories': boolean;

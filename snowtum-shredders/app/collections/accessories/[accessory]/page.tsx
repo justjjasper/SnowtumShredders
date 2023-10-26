@@ -2,7 +2,7 @@
 accessory/ collection API
 */
 import { accessoriesAPI } from '@/app/config'
-import AsideAccessories from '@/app/components/Collections/AsideAccessories'
+import AsideAccessories from '@/app/components/Collections/Accessories/AsideAccessories'
 import Image from 'next/image'
 interface AccessoryParams {
   params: {
@@ -51,22 +51,20 @@ export default async function AccessoryCollection( { params }: AccessoryParams){
       // Don't forget the bottom-[100px] within the main tag
       <main className='relative bottom-[100px] z-20'>
         <div className={`relative pt-32 bg-[url('https://capitasnowboarding.com/cdn/shop/files/000_GRID_PAPER_BG_1_77e3e65d-56ba-4a1f-a70b-76408f3b3cbf.png?v=1690637051')]`}>
-          <div className='content-container flex flex-col px-16 text-primary font-calibre'>
 
-            <section className='content-top relative flex items-end justify-between pb-2'>
-              <span className='text-5xl font-bold tracking-tighter'>ACCESSORIES</span>
+          <div className='content-container flex flex-col px-3 md:px-16 text-primary font-calibre'>
+
+            <section className='content-top relative flex flex-col lg:flex-row lg:items-end justify-between pb-2'>
+              <span className='text-3xl lg:text-5xl font-bold tracking-tighter'>ACCESSORIES</span>
               {/* Implement filtering method */}
-              <div className='top-sorting-options text-sm font-semibold'>
-                <span className='mx-[8px]'>NEWEST</span>|
-                <span className='mx-[8px]'>FEATURED</span>|
-                <span className='mx-[8px]'>PRICE: HIGH - LOW</span>|
-                <span className='mx-[8px]'>PRICE: LOW - HIGH</span>
-              </div>
+
             </section>
 
-            <section className='content-listing flex py-20'>
+            <section className='content-listing flex flex-col items-center xl:items-start xl:flex-row justify-between py-6 sm:py-7 xl:py-20'>
+              {/* Side Filter*/}
               <AsideAccessories/>
-              <div className='content-list flex flex-row flex-wrap gap-10 px-8'> im content </div>
+              {/* List of Snowboard Products */}
+
             </section>
 
           </div>

@@ -6,24 +6,24 @@ import { circlePlusSVG, circleXMarkSVG } from "@/app/Misc/Icons";
 import '../AsideContent.css'
 
 interface CheckboxState {
-  'all-snowboards': boolean;
-  'snowboards-mens': boolean;
-  'snowboards-womens': boolean;
-  'snowboards-kids': boolean;
-  'split-snowboards': boolean;
+  'all-accessories': boolean;
+  'tshirts': boolean;
+  'hoodies': boolean;
+  'hats-beanies': boolean;
+  'boardbags': boolean;
 }
 
 export default function AsideSnowboards() {
   const pathname = usePathname();
   const [filterToggle, setFilterToggle] = useState<boolean>(false)
 
-  // Use local state for the checkbox values, this allows a smoother UX of the checkbox
-  const [checkboxState, setCheckboxState] = useState({
-    'all-snowboards': pathname === '/collections/all-snowboards',
-    'snowboards-mens': pathname === '/collections/snowboards-mens',
-    'snowboards-womens': pathname === '/collections/snowboards-womens',
-    'snowboards-kids': pathname === '/collections/snowboards-kids',
-    'split-snowboards': pathname === '/collections/split-snowboards',
+   // Use local state for the checkbox values, this allows a smoother UX of the checkbox
+   const [checkboxState, setCheckboxState] = useState({
+    'all-accessories': pathname === '/collections/accessories/all-accessories',
+    'tshirts': pathname === '/collections/accessories/tshirts',
+    'hoodies': pathname === '/collections/accessories/hoodies',
+    'hats-beanies': pathname === '/collections/accessories/hats-beanies',
+    'boardbags': pathname === '/collections/accessories/boardbags',
   });
 
   const handleCheckboxChange = (key: keyof CheckboxState) => {
@@ -48,63 +48,63 @@ export default function AsideSnowboards() {
         ${filterToggle ? 'flex' : 'hidden'}
       `} >
         <label className='filter flex'>
-          <Link href='/collections/all-snowboards' className='flex'>
+          <Link href='/collections/accessories/all-accessories' className='flex'>
             <input
               type='checkbox'
               name='ALL'
-              checked={checkboxState['all-snowboards']}
-              onChange={() => handleCheckboxChange('all-snowboards')}
+              checked={checkboxState['all-accessories']}
+              onChange={() => handleCheckboxChange('all-accessories')}
             />
             <span className='checkmark'></span>
             ALL
           </Link>
         </label>
         <label className='filter flex'>
-          <Link href='/collections/snowboards-mens' className='flex'>
+          <Link href='/collections/accessories/tshirts' className='flex'>
             <input
               type='checkbox'
-              name="MEN'S"
-              checked={checkboxState['snowboards-mens']}
-              onChange={() => handleCheckboxChange('snowboards-mens')}
+              name="T-SHIRTS"
+              checked={checkboxState['tshirts']}
+              onChange={() => handleCheckboxChange('tshirts')}
             />
             <span className='checkmark'></span>
-            MEN&apos;S
+            T-SHIRTS
           </Link>
         </label>
         <label className='filter flex'>
-          <Link href='/collections/snowboards-womens' className='flex'>
+          <Link href='/collections/accessories/hoodies' className='flex'>
               <input
                 type='checkbox'
-                name="WOMEN'S"
-                checked={checkboxState['snowboards-womens']}
-                onChange={() => handleCheckboxChange('snowboards-womens')}
+                name="HOODIES"
+                checked={checkboxState['hoodies']}
+                onChange={() => handleCheckboxChange('hoodies')}
               />
               <span className='checkmark'></span>
-            WOMEN&apos;S
+            HOODIES
             </Link>
          </label>
          <label className='filter flex'>
-            <Link href='/collections/snowboards-kids' className='flex'>
+            <Link href='/collections/accessories/hats-beanies' className='flex'>
               <input
                 type='checkbox'
-                name="KID'S"
-                checked={checkboxState['snowboards-kids']}
-                onChange={() => handleCheckboxChange('snowboards-kids')}
+                name="HATS & BEANIES"
+                checked={checkboxState['hats-beanies']}
+                onChange={() => handleCheckboxChange('hats-beanies')}
               />
               <span className='checkmark'></span>
-              KID&apos;S
+              HATS & BEANIES
             </Link>
          </label>
          <label className='filter flex'>
-          <Link href='/collections/split-snowboards' className='flex'>
+          <Link href='/collections/accessories/boardbags' className='flex'>
             <input
               type='checkbox'
-              name="SPLITBOARDS"
-              checked={checkboxState['split-snowboards']}
-              onChange={() => handleCheckboxChange('split-snowboards')}
+              name="BOARD BAGS"
+              checked={checkboxState['boardbags']}
+              onChange={() => handleCheckboxChange('boardbags')}
             />
             <span className='checkmark'></span>
-            SPLITBOARDS
+            BOARD BAGS
             </Link>
          </label>
       </div>
