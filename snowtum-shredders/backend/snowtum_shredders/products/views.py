@@ -231,10 +231,10 @@ def get_snowboard_product(request, snowboard_name):
             'snowboard_review_body',
             'snowboard_review_rating'
         )
-        # snowboard_sizes = list(SnowboardSKU.objects.filter(snowboard=snowboard).values_list('snowboard_size', flat=True))
-        # snowboard_skus = list(SnowboardSKU.objects.filter(snowboard=snowboard).values_list('snowboard_sku', flat=True))
+        # Query and Create a list of objects of the "filterd" snowboard with property snowboard_size & snowboard_sku
         snowboard_meta_datas = list(SnowboardSKU.objects.filter(snowboard=snowboard).values('snowboard_size', 'snowboard_sku'))
-        snowboard_meta_data_list = [{'size':snowboard_meta_data['snowboard_size'], 'sku':snowboard_meta_data['snowboard_sku']} for snowboard_meta_data in snowboard_meta_datas]
+        # Renames each iteration of the object to 'size' and 'sku' for the array within snowboard_meta_datas
+        formatted_meta_data = [{'size':snowboard_meta_data['snowboard_size'], 'sku':snowboard_meta_data['snowboard_sku']} for snowboard_meta_data in snowboard_meta_datas]
 
         # Serialize the data into the desired format
         snowboard_data = {
@@ -253,7 +253,7 @@ def get_snowboard_product(request, snowboard_name):
             'camber_image': snowboard.camber_image,
             'images': snowboard_images,
             'reviews': list(snowboard_reviews),
-            'meta_data': snowboard_meta_data_list
+            'meta_data': formatted_meta_data
         }
 
         return JsonResponse(snowboard_data, safe=False)
@@ -270,9 +270,10 @@ def get_tshirt_product(request, tshirt_name):
     # Query from database to get product data
     tshirt = TShirt.objects.get(tshirt_name = formatted_tshirt_name)
 
-    # Query related data from other databases
-    tshirt_sizes = list(TShirtSKU.objects.filter(tshirt=tshirt).values_list('tshirt_size', flat=True))
-    tshirt_skus = list(TShirtSKU.objects.filter(tshirt=tshirt).values_list('tshirt_sku', flat=True))
+    # Query and create list of tshirt objects with property of 'tshirt_size' and 'tshirt_sku'
+    tshirt_meta_datas = list(TShirtSKU.objects.filter(tshirt=tshirt).values('tshirt_size','tshirt_sku'))
+    # Iterate through tshirt_meta_datas and rename each object to 'size' and 'sku'
+    formatted_tshirt_meta_data = [{'size': tshirt_meta_data['tshirt_size'], 'sku': tshirt_meta_data['tshirt_sku']} for tshirt_meta_data in tshirt_meta_datas]
 
     # Format data into desired object
     tshirt_data = {
@@ -281,8 +282,7 @@ def get_tshirt_product(request, tshirt_name):
       'price': tshirt.tshirt_price,
       'description' : tshirt.tshirt_description,
       'images': [tshirt.tshirt_image],
-      'sizes': tshirt_sizes,
-      'skus': tshirt_skus
+      'meta_data': formatted_tshirt_meta_data
     }
 
     return JsonResponse(tshirt_data, safe=False)
