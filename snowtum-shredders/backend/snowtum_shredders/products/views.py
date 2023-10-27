@@ -231,8 +231,10 @@ def get_snowboard_product(request, snowboard_name):
             'snowboard_review_body',
             'snowboard_review_rating'
         )
-        snowboard_sizes = list(SnowboardSKU.objects.filter(snowboard=snowboard).values_list('snowboard_size', flat=True))
-        snowboard_skus = list(SnowboardSKU.objects.filter(snowboard=snowboard).values_list('snowboard_sku', flat=True))
+        # snowboard_sizes = list(SnowboardSKU.objects.filter(snowboard=snowboard).values_list('snowboard_size', flat=True))
+        # snowboard_skus = list(SnowboardSKU.objects.filter(snowboard=snowboard).values_list('snowboard_sku', flat=True))
+        snowboard_meta_datas = list(SnowboardSKU.objects.filter(snowboard=snowboard).values('snowboard_size', 'snowboard_sku'))
+        snowboard_meta_data_list = [{'size':snowboard_meta_data['snowboard_size'], 'sku':snowboard_meta_data['snowboard_sku']} for snowboard_meta_data in snowboard_meta_datas]
 
         # Serialize the data into the desired format
         snowboard_data = {
@@ -251,8 +253,7 @@ def get_snowboard_product(request, snowboard_name):
             'camber_image': snowboard.camber_image,
             'images': snowboard_images,
             'reviews': list(snowboard_reviews),
-            'sizes': snowboard_sizes,
-            'skus': snowboard_skus,
+            'meta_data': snowboard_meta_data_list
         }
 
         return JsonResponse(snowboard_data, safe=False)

@@ -14,13 +14,13 @@ export default async function Product({ params }: ProductParams ) {
   // Get dynamic route parameters for productType and productName
   const productType = params.product[0]
   const productName = params.product[1]
-  console.log('what are products', params)
+  // console.log('what are products', params)
 
   try{
     // Query from database using productType & productName
     const data = await fetch(`${serverURL}/${productType}/${productName}`)
     const product = await data.json()
-
+    console.log('what is product[roduct page]', product)
     return (
       <div className={`${productType === 'snowboard' ? 'bottom-[100px] z-20' : ''} relative `}>
         {productName} snowboard is awesome.
