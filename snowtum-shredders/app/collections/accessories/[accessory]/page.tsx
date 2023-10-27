@@ -7,16 +7,32 @@ import SortingOptions from '@/app/components/Collections/SortingOptions'
 interface AccessoryParams {
   params: {
     accessory: string
+  },
+  searchParams: {
+    sort_by: string
   }
 };
 
+export interface MetaDataType {
+  size: string;
+  sku: number;
+}
 
-export default async function AccessoryCollection( { params }: AccessoryParams){
+export interface AccessoryProductType {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  header_description: string
+  meta_data: MetaDataType[]
+}
+
+export default async function AccessoryCollection( { params, searchParams }: AccessoryParams){
   try {
     const data = await fetch(`${accessoriesAPI}`)
     const response = await data.json()
 
-    let products = []
+    let products: AccessoryProductType[] = []
     const accessoryType = params.accessory
     const productCategory = `accessories/${accessoryType}` // added accessories to filter properly when passed as prop to Sorting Options
 
@@ -47,8 +63,26 @@ export default async function AccessoryCollection( { params }: AccessoryParams){
           <div>Error in loading Accessories page</div>
         )
     }
-    // console.log(products)
 
+    let { sort_by } = searchParams
+
+    switch(sort_by) {
+      case ('newest'):
+        products = products.sort((a, b) => a.id - b.id)
+        break;
+      case ('featured'):
+        products = products.sort((a, b) => b.id - a.id)
+        break;
+      case('price-descending'):
+        products = products.sort((a, b) => b.price - a.price)
+        break;
+      case('price-ascending'):
+        products = products.sort((a, b) => a.price - b.price)
+        break;
+      default:
+    }
+
+    console.log(products)
     return (
       // Don't forget the bottom-[100px] within the main tag
       <main className='relative bottom-[100px] z-20'>

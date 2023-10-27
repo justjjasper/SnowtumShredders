@@ -153,14 +153,23 @@ def get_snowboard_collection(request):
 def get_accessory_collection(request):
   try:
     # Create a list of the other products and format the data
-    tshirts = list(TShirt.objects.values('tshirt_id', 'tshirt_name', 'tshirt_image', 'tshirt_description'))
-    tshirt_data = [{'id': tshirt['tshirt_id'], 'name': tshirt['tshirt_name'], 'image': tshirt['tshirt_image'], 'description': tshirt['tshirt_description'], 'category': 'tshirt'} for tshirt in tshirts]
+    tshirts = list(TShirt.objects.values('tshirt_id', 'tshirt_name', 'tshirt_price', 'tshirt_image', 'tshirt_description'))
+    tshirt_data = [{'id': tshirt['tshirt_id'], 'name': tshirt['tshirt_name'], 'price': tshirt['tshirt_price'], 'image': tshirt['tshirt_image'], 'description': tshirt['tshirt_description'], 'category': 'tshirt'} for tshirt in tshirts]
 
-    hoodies = list(Hoodie.objects.values('hoodie_id', 'hoodie_name', 'hoodie_image', 'hoodie_description'))
-    hoodie_data = [{'id': hoodie['hoodie_id'], 'name': hoodie['hoodie_name'], 'image': hoodie['hoodie_image'], 'description': hoodie['hoodie_description'], 'category': 'hoodie'} for hoodie in hoodies]
+     # Add the meta_data to tshirt_data
+    for tshirt in tshirt_data:
+        tshirt['meta_data'] = [{'size': sku['tshirt_size'], 'sku': sku['tshirt_sku']} for sku in TShirtSKU.objects.filter(tshirt_id=tshirt['id']).values('tshirt_size', 'tshirt_sku')]
 
-    headgear = list(Headgear.objects.values('headgear_id', 'headgear_name', 'headgear_image', 'headgear_description'))
-    headgear_data = [{'id': item['headgear_id'], 'name': item['headgear_name'], 'image': item['headgear_image'], 'description': item['headgear_description'], 'category': 'headgear'} for item in headgear]
+    hoodies = list(Hoodie.objects.values('hoodie_id', 'hoodie_name', 'hoodie_price', 'hoodie_image', 'hoodie_description'))
+    hoodie_data = [{'id': hoodie['hoodie_id'], 'name': hoodie['hoodie_name'], 'price': hoodie['hoodie_price'], 'image': hoodie['hoodie_image'], 'description': hoodie['hoodie_description'], 'category': 'hoodie'} for hoodie in hoodies]
+
+    # Add the meta_data to hoodie_data
+    for hoodie in hoodie_data:
+        hoodie['meta_data'] = [{'size': sku['hoodie_size'], 'sku': sku['hoodie_sku']} for sku in HoodieSKU.objects.filter(hoodie_id=hoodie['id']).values('hoodie_size', 'hoodie_sku')]
+
+    headgear = list(Headgear.objects.values('headgear_id', 'headgear_name', 'headgear_price', 'headgear_image', 'headgear_description', 'headgear_sku'))
+    headgear_data = [{'id': item['headgear_id'], 'name': item['headgear_name'], 'price': item['headgear_price'], 'image': item['headgear_image'], 'description': item['headgear_description'], 'category': 'headgear', 'meta_data': [{'size': 'One Size', 'sku': item['headgear_sku']}]} for item in headgear]
+
 
     # Retrieve the first image for each boardbag
     boardbag_data = []
@@ -176,7 +185,8 @@ def get_accessory_collection(request):
             'name': boardbag.boardbag_name,
             'image': first_image,
             'price': boardbag.boardbag_price,
-            'category': 'boardbag'
+            'category': 'boardbag',
+            'meta_data': [{'size': boardbag.boardbag_size, 'sku': boardbag.boardbag_sku}]
         })
 
     accessories_data = {
