@@ -270,7 +270,7 @@ def get_tshirt_product(request, tshirt_name):
     # Query from database to get product data
     tshirt = TShirt.objects.get(tshirt_name = formatted_tshirt_name)
 
-    # Query and create list of tshirt objects with property of 'tshirt_size' and 'tshirt_sku'
+    # Query and create list of filtered tshirt objects with property of 'tshirt_size' and 'tshirt_sku'
     tshirt_meta_datas = list(TShirtSKU.objects.filter(tshirt=tshirt).values('tshirt_size','tshirt_sku'))
     # Iterate through tshirt_meta_datas and rename each object to 'size' and 'sku'
     formatted_tshirt_meta_data = [{'size': tshirt_meta_data['tshirt_size'], 'sku': tshirt_meta_data['tshirt_sku']} for tshirt_meta_data in tshirt_meta_datas]
@@ -293,12 +293,16 @@ def get_tshirt_product(request, tshirt_name):
 
 def get_hoodie_product(request, hoodie_name):
     try:
+        #Reformat provided hoodie name
         formatted_hoodie_name = custom_title_case(hoodie_name.replace('-', ' '))
 
+        # Query the filtered hoodie
         hoodie = Hoodie.objects.get(hoodie_name = formatted_hoodie_name)
 
-        hoodie_sizes = list(HoodieSKU.objects.filter(hoodie=hoodie).values_list('hoodie_size', flat=True))
-        hoodie_skus = list(HoodieSKU.objects.filter(hoodie=hoodie).values_list('hoodie_sku', flat=True))
+        # Create a list of the filtered hoodie with an object of 'hoodie_size' and 'hoodie_sku'
+        hoodie_meta_datas = list(HoodieSKU.objects.filter(hoodie=hoodie).values('hoodie_size', 'hoodie_sku'))
+        # Format the list of hoodie_meta_datas
+        formatted_hoodie_meta_data = [{'size': hoodie_meta_data['hoodie_size'], 'sku': hoodie_meta_data['hoodie_sku']} for hoodie_meta_data in hoodie_meta_datas]
 
         hoodie_data = {
             'id': hoodie.hoodie_id,
@@ -306,8 +310,7 @@ def get_hoodie_product(request, hoodie_name):
             'price': hoodie.hoodie_price,
             'description': hoodie.hoodie_description,
             'images': [hoodie.hoodie_image],
-            'sizes': hoodie_sizes,
-            'skus': hoodie_skus
+            'meta_data': formatted_hoodie_meta_data
         }
 
         return JsonResponse(hoodie_data)
