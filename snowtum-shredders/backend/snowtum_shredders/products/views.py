@@ -348,14 +348,14 @@ def get_boardbag_product(request, boardbag_name):
 
         boardbag_images = list(BoardbagImage.objects.filter(boardbag=boardbag).values_list('boardbag_image', flat=True))
 
+        boardbag_meta_data = [{'size': boardbag.boardbag_size, 'sku': boardbag.boardbag_sku}]
         boardbag_data = {
             'id': boardbag.boardbag_id,
             'name': boardbag.boardbag_name,
             'price': boardbag.boardbag_price,
             'description': boardbag.boardbag_description,
             'images': boardbag_images,
-            'sizes': [boardbag.boardbag_size],
-            'skus': [boardbag.boardbag_sku]
+            'meta_data': boardbag_meta_data
         }
 
         return JsonResponse(boardbag_data, safe=False)
