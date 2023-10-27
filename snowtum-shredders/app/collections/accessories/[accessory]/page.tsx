@@ -1,9 +1,11 @@
 /* This is a dynamically routed page. Depending on the url, filter out from
 accessory/ collection API
 */
+import '@/app/collections/[snowboards]/collectionSnowboards.css'
 import { accessoriesAPI } from '@/app/config'
 import AsideAccessories from '@/app/components/Collections/Accessories/AsideAccessories'
 import SortingOptions from '@/app/components/Collections/SortingOptions'
+import AccessoryList from '@/app/components/Collections/Accessories/AccessoryList'
 interface AccessoryParams {
   params: {
     accessory: string
@@ -23,7 +25,8 @@ export interface AccessoryProductType {
   name: string;
   price: number;
   image: string;
-  header_description: string
+  description: string;
+  category: string;
   meta_data: MetaDataType[]
 }
 
@@ -82,7 +85,6 @@ export default async function AccessoryCollection( { params, searchParams }: Acc
       default:
     }
 
-    console.log(products)
     return (
       // Don't forget the bottom-[100px] within the main tag
       <main className='relative bottom-[100px] z-20'>
@@ -100,7 +102,7 @@ export default async function AccessoryCollection( { params, searchParams }: Acc
               {/* Side Filter*/}
               <AsideAccessories/>
               {/* List of Snowboard Products */}
-
+              <AccessoryList products={products} />
             </section>
 
           </div>

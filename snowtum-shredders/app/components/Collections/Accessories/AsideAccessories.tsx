@@ -35,7 +35,7 @@ export default function AsideSnowboards() {
   };
 
   return (
-    <aside className='content-aside-filter flex flex-col border-[1px] px-5 xl:px-none rounded-3xl xl:rounded-xl bg-secondary xl: bg-none xl:h-56 xl:sticky top-[150px] w-[90%] xl:w-auto'>
+    <aside className='content-aside-filter flex flex-col border-[1px] px-5 xl:px-none rounded-3xl xl:rounded-xl bg-secondary xl: bg-none xl:h-56 xl:sticky top-[150px] w-[90%] xl:w-[275px]'>
       <div className={`xl:hidden flex relative py-3 justify-between items-center
         ${filterToggle ? 'divider': ''}`
       }
