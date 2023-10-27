@@ -324,14 +324,15 @@ def get_headgear_product(request, headgear_name):
 
         headgear = Headgear.objects.get(headgear_name = formatted_headgear_name)
 
+        headgear_meta_data = [{'size': 'One Size', 'sku': headgear.headgear_sku}]
+
         headgear_data = {
             'id': headgear.headgear_id,
             'name': headgear.headgear_name,
             'price': headgear.headgear_price,
             'description': headgear.headgear_description,
             'images': [headgear.headgear_image],
-            'sizes': ['ONE SIZE'],
-            'skus': [headgear.headgear_sku]
+            'meta_data': headgear_meta_data
         }
 
         return JsonResponse(headgear_data, safe=False)
