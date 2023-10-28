@@ -22,19 +22,19 @@ export default async function Product({ params }: ProductParams ) {
     const product = await data.json()
     console.log('what is product[roduct page]', product)
     return (
-      <main className='flex flex-col relative bottom-[100px] z-20'>
+      <main className='flex flex-col relative bottom-[100px] z-20 font-calibre'>
         {productType === 'snowboard' &&
-          <section>
+          <section className='flex justify-center items-center'>
             <Image
               src={product.image}
               width={500}
               height={500}
-              alt={`${product.name} Image`}
+              alt={`${product.name} Hero Banner`}
               priority={true}
-              className='w-full'
+              className='w-full h-[35em]'
             />
+            <span className='flex absolute text-[6rem] font-bold tracking-tighter text-primary'>{product.name}</span>
           </section>}
-
       </main>
     )
   } catch(err) {
