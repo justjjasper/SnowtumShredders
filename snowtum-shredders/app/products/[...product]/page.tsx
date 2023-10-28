@@ -22,10 +22,20 @@ export default async function Product({ params }: ProductParams ) {
     const product = await data.json()
     console.log('what is product[roduct page]', product)
     return (
-      <div className={`${productType === 'snowboard' ? 'bottom-[100px] z-20' : ''} relative `}>
-        {productName} snowboard is awesome.
-        <Image src={`${product.images[0]}`} alt='beaitful board' width={200} height={450} priority={true}/>
-      </div>
+      <main className='flex flex-col relative bottom-[100px] z-20'>
+        {productType === 'snowboard' &&
+          <section>
+            <Image
+              src={product.image}
+              width={500}
+              height={500}
+              alt={`${product.name} Image`}
+              priority={true}
+              className='w-full'
+            />
+          </section>}
+
+      </main>
     )
   } catch(err) {
     console.error('Error in fetching single product', err)
@@ -37,3 +47,13 @@ export default async function Product({ params }: ProductParams ) {
     )
   }
 }
+
+
+
+
+// return (
+//   <div className={`${productType === 'snowboard' ? 'bottom-[100px] z-20' : ''} relative `}>
+//     {productName} snowboard is awesome.
+//     <Image src={`${product.images[0]}`} alt='beaitful board' width={200} height={450} priority={true}/>
+//   </div>
+// )
