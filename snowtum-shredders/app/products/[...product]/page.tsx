@@ -1,6 +1,7 @@
 // This page is dynamically routed, first param is the product type, second param is product name.
 import Image from "next/image"
 import { serverURL } from "@/app/config"
+import ContentContainer from "./ProductComponents/ContentContainer"
 
 // May use unions to have product type be string | string[]
 interface ProductParams {
@@ -35,6 +36,13 @@ export default async function Product({ params }: ProductParams ) {
             />
             <span className='flex absolute text-[6rem] font-bold tracking-tighter text-primary'>{product.name}</span>
           </section>}
+
+          <main className='main-content'>
+            <div className='product-gallery hidden'></div>
+            <ContentContainer/>
+            <section className='product-detail-container hidden'></section>
+            <section className='product-reviews-container hidden'></section>
+          </main>
       </main>
     )
   } catch(err) {
