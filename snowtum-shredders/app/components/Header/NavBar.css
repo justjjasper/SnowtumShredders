@@ -1,4 +1,8 @@
-/* Header */
+/* Header backdrop color */
+.header {
+  background-color: hsla(0, 0%, 0%, 0.5)
+}
+
 #menu-link {
   position: relative;
   text-decoration: none;
@@ -102,7 +106,7 @@ to add accessoriesMenuTrigger class the entire header div
   position: absolute;
   display: flex;
   width: 100%;
-  z-index: -1
+  z-index: -1;
 }
 
 .header.accessoriesMenuTrigger {
@@ -120,7 +124,7 @@ to add searchMenuTrigger class the entire header div
   position: absolute;
   display: flex;
   width: 100%;
-  z-index: -1
+  z-index: -1;
 }
 
 .header.searchMenuTrigger {
