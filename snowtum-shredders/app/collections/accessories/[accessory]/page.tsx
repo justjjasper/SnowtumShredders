@@ -1,7 +1,7 @@
 /* This is a dynamically routed page. Depending on the url, filter out from
 accessory/ collection API
 */
-import '@/app/collections/[snowboards]/collectionSnowboards.css'
+import '@/app/components/Collections/CollectionsPage.css'
 import { accessoriesAPI } from '@/app/config'
 import AsideAccessories from '@/app/components/Collections/Accessories/AsideAccessories'
 import SortingOptions from '@/app/components/Collections/SortingOptions'

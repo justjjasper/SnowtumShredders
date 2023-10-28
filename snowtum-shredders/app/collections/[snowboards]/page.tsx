@@ -1,6 +1,6 @@
 // This is a dynamic routed page. Depending on the slug, it will call a certain API to get the data
 // If its men, women, kids, filter from header description, for splitboard filter from snowboard name
-import './collectionSnowboards.css'
+import '@/app/components/Collections/CollectionsPage.css'
 import { snowboardsAPI } from '@/app/config'
 import SortingOptions from '@/app/components/Collections/SortingOptions'
 import AsideSnowboards from '@/app/components/Collections/Snowboards/AsideSnowboard'
