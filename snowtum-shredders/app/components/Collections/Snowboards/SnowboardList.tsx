@@ -76,7 +76,7 @@ export default function SnowboardList({ products }: SnowboardListProps) {
                     <Link
                       href={`/products/snowboard/${formattedSnowboardName}`}
                       key={i}
-                      className='relative flex justify-center font-normal text-[9px] md:text-xs py-[1px] rounded-xl w-1/7 xsm:w-1/5'
+                      className='relative flex justify-center font-normal whitespace-nowrap text-[9px] md:text-xs py-[1px] rounded-xl w-1/7 xsm:w-1/5'
                     >
                       {`+${remainder} more`}
                     </Link>
