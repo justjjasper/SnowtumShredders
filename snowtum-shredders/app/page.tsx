@@ -21,7 +21,7 @@ export default async function Home() {
             className='w-full'
           />
 
-        <div className='mobileImage h-[500px]'>
+        {/* <div className='mobileImage h-[500px]'>
 
         <Image
         src='https://res.cloudinary.com/jasjasper/image/upload/v1697557655/MobileBanner_khhebe.png'
@@ -30,9 +30,8 @@ export default async function Home() {
         className='hidden w-full'
         height={900}
         width={500}
-        objectFit='cover'
         />
-        </div>
+        </div> */}
 
           <Link href='/collections/all-snowboards'
             className='absolute bottom-[10%] w-3/12 flex justify-center self-end py-4 rounded-full font-calibre font-bold tracking-tighter bg-primary hover:underline min-w-[340px]'

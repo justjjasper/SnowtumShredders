@@ -1,10 +1,16 @@
 'use client'
+import { upArrowVectorSVG,downArrowVectorSVG } from '@/app/Misc/Icons'
 
-export default function ProductThumbs() {
+interface ProductThumbsProps {
+  images: string[];
+}
+
+export default function ProductThumbs( {images}: ProductThumbsProps ) {
+  console.log('[productThumbs] images:', images)
   return (
-    <div className='product-thumbs relative w-[10rem] h-[10rem] border-2 border-secondary'>
+    <div className='product-thumbs swiper relative flex flex-col items-center h-[10rem] border-2 border-secondary'>
       Product Thumbs
-      <button className='product-thumb-nav-prev'></button>
+      <button className='product-thumb-nav-prev'>{upArrowVectorSVG}</button>
         <div className='product-thumbs-slider'>
           <div className='swiper-wrapper'>
             {/* mapped out images*/}
@@ -14,7 +20,7 @@ export default function ProductThumbs() {
 
           </div>
         </div>
-      <button className='product-thumb-nav-next'></button>
+      <button className='product-thumb-nav-next'>{downArrowVectorSVG}</button>
     </div>
   )
 }
