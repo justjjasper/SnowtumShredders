@@ -1,0 +1,19 @@
+.product-content{
+  display: grid;
+  grid-template-areas:
+    'thumb main info';
+  grid-template-columns: .3fr 1fr 400px;
+  gap: 1.5rem;
+}
+
+.product-content:nth-child(1) {
+  grid-area: thumb;
+}
+
+.product-content:nth-child(2) {
+  grid-area: main
+}
+
+.product-content:nth-child(3) {
+  grid-area: info
+}
