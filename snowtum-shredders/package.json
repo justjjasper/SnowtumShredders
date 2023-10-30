@@ -13,7 +13,8 @@
     "fuse.js": "^6.6.2",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "swiper": "^11.0.3"
   },
   "devDependencies": {
     "@types/node": "latest",

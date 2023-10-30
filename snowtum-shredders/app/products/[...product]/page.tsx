@@ -21,7 +21,7 @@ export default async function Product({ params }: ProductParams ) {
     // Query from database using productType & productName
     const data = await fetch(`${serverURL}/${productType}/${productName}`)
     const product = await data.json()
-    console.log('what is product[roduct page]', product)
+    // console.log('what is product[roduct page]', product)
     return (
       <main className='flex flex-col relative bottom-[100px] z-20 font-calibre'>
         {productType === 'snowboard' &&
@@ -41,7 +41,7 @@ export default async function Product({ params }: ProductParams ) {
             {/* Carousel loops back in product-gallery unlike ContentContainer's Carousel */}
             <div className='product-gallery hidden'></div>
             {/* Pass array of product images as props */}
-            <ContentContainer images={product.images}/>
+            <ContentContainer images={product.images} name={product.name}/>
             <section className='product-detail-container hidden'></section>
             <section className='product-reviews-container hidden'></section>
           </main>

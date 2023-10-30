@@ -7,10 +7,14 @@ import { useState, useEffect } from 'react'
 
 interface ContentContainerProps {
   images: string[];
+  name: string
 }
 
 // Top Level Components, contains props and state for Carousels(Product Thumbs/Product Main)
-export default function ContentContainer( {images}: ContentContainerProps ) {
+// Possibly have thumbsSwipper state here, and passed as props to ProductThumbs/ProductMain
+export default function ContentContainer( {images, name}: ContentContainerProps ) {
+  const [thumbsSwiper, setThumbsSwiper] = useState<null | HTMLElement>(null)
+
   const [currIndex, setCurrIndex] = useState<number>(0)
 
   const handleNext = () => {
@@ -33,7 +37,9 @@ export default function ContentContainer( {images}: ContentContainerProps ) {
         <div className='product-container mt-[58px]'> {/* Responsible for top margin? */}
         {/* Grid layout grid-template-areas "thumb main info" grid-template-columns(.3fr 1fr 400px) */}
           <div className='product-content'>
-            <ProductThumbs images={images} />
+            {/* Uses Swiper.js for carousel */}
+            <ProductThumbs images={images} name={name} setThumbsSwiper={setThumbsSwiper}/>
+             {/* Uses Swiper.js for carousel */}
             <ProductMain/>
             <ProductInfoContainer/>
           </div>
