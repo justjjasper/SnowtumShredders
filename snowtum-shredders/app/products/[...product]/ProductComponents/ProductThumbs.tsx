@@ -1,5 +1,4 @@
 'use client'
-import './ProductThumbs.css'
 import { upArrowVectorSVG,downArrowVectorSVG } from '@/app/Misc/Icons'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -35,8 +34,7 @@ export default function ProductThumbs( {images, name, setThumbsSwiper}: ProductT
   }
 
   return (
-
-    <div className='product-thumbs relative flex flex-col items-center justify-evenly border-[1px] border-secondary w-44'>
+    <div className='product-thumbs relative flex flex-col items-center justify-evenly border-[1px] w-[100%]'>
 
       <button className={`product-thumb-nav-prev ${disablePrev ? 'cursor-not-allowed' : ''}`}
         onClick={handlePrev}
@@ -45,7 +43,7 @@ export default function ProductThumbs( {images, name, setThumbsSwiper}: ProductT
       </button>
 
       <Swiper
-        className='product-thumbs-swiper'
+        className='product-thumbs-swiper h-[460px] border-[1px]'
         modules={[Navigation, FreeMode, Thumbs]}
         slidesPerView={3}
         spaceBetween={30}
@@ -56,8 +54,6 @@ export default function ProductThumbs( {images, name, setThumbsSwiper}: ProductT
           disabledClass: 'swiper-button-disabled'
         }}
         direction='vertical'
-
-
         onSlideChange={(swiper) => {
           // Check is swiper is in first slide
           setDisablePrev(swiper.isBeginning)
@@ -65,27 +61,16 @@ export default function ProductThumbs( {images, name, setThumbsSwiper}: ProductT
           // Check if swiper is in last slide
           setDisableNext(swiper.isEnd)
         }}
-
         onSwiper={(swiper) => {
           console.log('onSwiper')
           setDisablePrev(swiper.isBeginning)
           setDisableNext(swiper.isEnd)
           setThumbsSwiper(swiper)
         }}
-
-        onReachEnd={() => {
-          setDisableNext(true)
-          console.log('onReachEnd', disableNext)
-        }}
         >
-
-        {/* <button className='product-thumb-nav-prev' onClick={() => swiper.slidePrev()}>{upArrowVectorSVG}</button> */}
-
           {images.map((image:string, index:number) => {
             return (
-              <SwiperSlide  key={index}>
-                <div className='flex items-center justify-center h-[132px] border-[1px] rounded-lg'>
-
+              <SwiperSlide  key={index} className='flex items-center justify-center border-[1px] rounded-lg cursor-pointer'>
                 <Image
                   src={image}
                   height={100}
@@ -93,12 +78,9 @@ export default function ProductThumbs( {images, name, setThumbsSwiper}: ProductT
                   alt={name}
                   className='block h-full object-contain'
                   />
-                </div>
               </SwiperSlide>
             )
           })}
-
-      {/* <button className='product-thumb-nav-next' onClick={() => swiper.slideNext()}>{downArrowVectorSVG}</button> */}
       </Swiper>
 
       <button className={`product-thumb-nav-next ${disableNext ? 'cursor-not-allowed' : ''}`}

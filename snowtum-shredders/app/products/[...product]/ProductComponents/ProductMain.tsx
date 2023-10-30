@@ -10,14 +10,12 @@ interface ProductMainProps {
   images: string[];
   name: string;
   thumbsSwiper: null | SwiperCore;
-  setThumbsSwiper: (newThumbsSwiper: null | SwiperCore) => void
 }
-export default function ProductMain( {images, name, thumbsSwiper, setThumbsSwiper}: ProductMainProps ) {
+export default function ProductMain( {images, name, thumbsSwiper}: ProductMainProps ) {
   return (
     <Swiper
-      className='product-main h-[80vh] w-[40rem] border-2 border-secondary'
-      modules= {[Navigation, FreeMode, Thumbs]}
-      navigation={true}
+      className='product-main h-[80vh] w-[100%] border-2 border-secondary'
+      modules= {[FreeMode, Thumbs]}
       thumbs={{
         swiper:
           thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null
@@ -25,13 +23,14 @@ export default function ProductMain( {images, name, thumbsSwiper, setThumbsSwipe
       >
       {images.map((image:string, index:number) => {
         return (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={index} className='h-[100%]'>
             <Image
               src={image}
               height={200}
               width={200}
               alt={name}
-            />
+              className='h-full w-auto'
+              />
           </SwiperSlide>
         )
       })}

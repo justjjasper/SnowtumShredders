@@ -41,7 +41,7 @@ export default function ContentContainer( {images, name}: ContentContainerProps 
             {/* Uses Swiper.js for carousel */}
             <ProductThumbs images={images} name={name} setThumbsSwiper={setThumbsSwiper}/>
              {/* Uses Swiper.js for carousel */}
-            <ProductMain images={images} name={name} thumbsSwiper={thumbsSwiper} setThumbsSwiper={setThumbsSwiper}/>
+            <ProductMain images={images} name={name} thumbsSwiper={thumbsSwiper}/>
             <ProductInfoContainer/>
           </div>
         </div>
