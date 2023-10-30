@@ -3,14 +3,15 @@ import './ProductThumbs.css'
 import { upArrowVectorSVG,downArrowVectorSVG } from '@/app/Misc/Icons'
 import Image from 'next/image'
 import { useState } from 'react'
-import { Navigation, Pagination, FreeMode } from 'swiper/modules'
+import { Navigation, FreeMode, Thumbs } from 'swiper/modules'
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react'
+import SwiperCore from 'swiper'
 import 'swiper/css'
 
 interface ProductThumbsProps {
   images: string[];
   name: string;
-  setThumbsSwiper: (newThumbsSwiper: null | HTMLElement) => void
+  setThumbsSwiper: (newThumbsSwiper: null | SwiperCore) => void
 }
 
 export default function ProductThumbs( {images, name, setThumbsSwiper}: ProductThumbsProps ) {
@@ -35,7 +36,7 @@ export default function ProductThumbs( {images, name, setThumbsSwiper}: ProductT
 
   return (
 
-    <div className='product-thumbs relative flex flex-col items-center justify-evenly border-[1px] border-secondary h-[580px] w-full'>
+    <div className='product-thumbs relative flex flex-col items-center justify-evenly border-[1px] border-secondary w-44'>
 
       <button className={`product-thumb-nav-prev ${disablePrev ? 'cursor-not-allowed' : ''}`}
         onClick={handlePrev}
@@ -45,11 +46,10 @@ export default function ProductThumbs( {images, name, setThumbsSwiper}: ProductT
 
       <Swiper
         className='product-thumbs-swiper'
-        modules={[Navigation]}
+        modules={[Navigation, FreeMode, Thumbs]}
         slidesPerView={3}
         spaceBetween={30}
         freeMode={true}
-        pagination={{ clickable: true }}
         navigation={{
           nextEl: '.product-thumb-nav-next',
           prevEl: '.product-thumb-nav-prev',
@@ -70,6 +70,7 @@ export default function ProductThumbs( {images, name, setThumbsSwiper}: ProductT
           console.log('onSwiper')
           setDisablePrev(swiper.isBeginning)
           setDisableNext(swiper.isEnd)
+          setThumbsSwiper(swiper)
         }}
 
         onReachEnd={() => {
@@ -82,7 +83,7 @@ export default function ProductThumbs( {images, name, setThumbsSwiper}: ProductT
 
           {images.map((image:string, index:number) => {
             return (
-              <SwiperSlide  key={index} className=''>
+              <SwiperSlide  key={index}>
                 <div className='flex items-center justify-center h-[132px] border-[1px] rounded-lg'>
 
                 <Image
