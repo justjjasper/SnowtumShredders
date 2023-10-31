@@ -2,7 +2,7 @@
 import { upArrowVectorSVG,downArrowVectorSVG } from '@/app/Misc/Icons'
 import Image from 'next/image'
 import { useState } from 'react'
-import { Navigation, FreeMode, Thumbs } from 'swiper/modules'
+import { Navigation, FreeMode } from 'swiper/modules'
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react'
 import SwiperCore from 'swiper'
 import 'swiper/css'
@@ -44,7 +44,7 @@ export default function ProductThumbs( {images, name, setThumbsSwiper}: ProductT
 
       <Swiper
         className='product-thumbs-swiper h-[460px] border-[1px]'
-        modules={[Navigation, FreeMode, Thumbs]}
+        modules={[Navigation, FreeMode]}
         slidesPerView={3}
         spaceBetween={30}
         freeMode={true}
@@ -62,7 +62,6 @@ export default function ProductThumbs( {images, name, setThumbsSwiper}: ProductT
           setDisableNext(swiper.isEnd)
         }}
         onSwiper={(swiper) => {
-          console.log('onSwiper')
           setDisablePrev(swiper.isBeginning)
           setDisableNext(swiper.isEnd)
           setThumbsSwiper(swiper)
@@ -91,66 +90,3 @@ export default function ProductThumbs( {images, name, setThumbsSwiper}: ProductT
     </div>
   )
 }
-
-
-
-
-
-
-// const swiper = new Swiper('.product-thumbs-swiper',  {
-//   // Configure modules
-//   modules: [Navigation],
-
-//   // Optional parameters
-//   direction: 'vertical',
-
-//   // Navigation Arrows
-//   navigation: {
-//     nextEl: '.product-thumb-nav-next',
-//     prevEl: '.product-thumb-nav-prev'
-//   },
-
-//   slidesPerView: 3,
-//   spaceBetween: 30
-// })
-
-// interface ProductThumbsProps {
-//   images: string[];
-//   name: string;
-// }
-
-
-// export default function ProductThumbs( {images, name}: ProductThumbsProps ) {
-//   console.log('[productThumbs] images:', images)
-//   useEffect(() => {
-
-//     // // console.log('is document there', document)
-//     // if (document) {
-//     //   console.log('window check?', document)
-//     //   swiper.navigation.init()
-//     // }
-//   })
-//   return (
-//     <div className='product-thumbs swiper product-thumbs-swiper relative flex flex-col items-center border-2 border-secondary'>
-//       Product Thumbs
-//       <button className='product-thumb-nav-prev' onClick={() => swiper.navigation.prevEl}>{upArrowVectorSVG}</button>
-//         <div className='product-thumbs-slider'>
-//           <div className='swiper-wrapper'>
-//             {images.map((image:string, index:number) => {
-//               return (
-//                 <div  key={index} className='swiper-slide'>
-//                   <Image
-//                     src={image}
-//                     height={100}
-//                     width={100}
-//                     alt={name}
-//                     />
-//                 </div>
-//               )
-//             })}
-//           </div>
-//         </div>
-//       <button className='product-thumb-nav-next' onClick={() => swiper.navigation.nextEl}>{downArrowVectorSVG}</button>
-//     </div>
-//   )
-// }
