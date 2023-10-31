@@ -2,8 +2,8 @@
 import { upArrowVectorSVG,downArrowVectorSVG } from '@/app/Misc/Icons'
 import Image from 'next/image'
 import { useState } from 'react'
-import { Navigation, FreeMode } from 'swiper/modules'
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react'
+import { Navigation } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore from 'swiper'
 import 'swiper/css'
 
@@ -15,38 +15,23 @@ interface ProductThumbsProps {
 
 export default function ProductThumbs( {images, name, setThumbsSwiper}: ProductThumbsProps ) {
   // console.log('[productThumbs] images:', images)
-  const swiper = useSwiper()
-
   const [disablePrev, setDisablePrev] = useState<boolean>(false)
   const [disableNext, setDisableNext] = useState<boolean>(false)
-
-  const handlePrev = () => {
-    if (swiper !== null) {
-      swiper.slidePrev()
-    }
-    console.log('what is disablePrev', disablePrev)
-  }
-
-  const handleNext = () => {
-    if (swiper !== null) {
-      swiper.slidePrev()
-    }
-  }
 
   return (
     <div className='product-thumbs relative flex flex-col items-center justify-evenly border-[1px] w-[100%]'>
 
       <button className={`product-thumb-nav-prev ${disablePrev ? 'cursor-not-allowed' : ''}`}
-        onClick={handlePrev}
-        disabled={disablePrev}>
+        disabled={disablePrev}
+        >
         {upArrowVectorSVG(disablePrev)}
       </button>
 
       <Swiper
         className='product-thumbs-swiper h-[460px] border-[1px]'
-        modules={[Navigation, FreeMode]}
+        modules={[Navigation]}
         slidesPerView={3}
-        spaceBetween={30}
+        spaceBetween={20}
         freeMode={true}
         navigation={{
           nextEl: '.product-thumb-nav-next',
@@ -83,7 +68,6 @@ export default function ProductThumbs( {images, name, setThumbsSwiper}: ProductT
       </Swiper>
 
       <button className={`product-thumb-nav-next ${disableNext ? 'cursor-not-allowed' : ''}`}
-        onClick={handleNext}
         disabled={disableNext}>
           {downArrowVectorSVG(disableNext)}
       </button>

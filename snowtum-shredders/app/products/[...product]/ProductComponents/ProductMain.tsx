@@ -3,8 +3,9 @@
 import Image from "next/image"
 import { magnifyingPlusSVG } from "@/app/Misc/Icons"
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { FreeMode, Thumbs } from 'swiper/modules'
+import { Thumbs } from 'swiper/modules'
 import SwiperCore from 'swiper'
+import { useState } from "react"
 
 interface ProductMainProps {
   images: string[];
@@ -12,14 +13,23 @@ interface ProductMainProps {
   thumbsSwiper: null | SwiperCore;
 }
 export default function ProductMain( {images, name, thumbsSwiper}: ProductMainProps ) {
+  const [mainSwiper, setMainSwiper] = useState<SwiperCore>()
+
+  const dummySwiper = () => {
+    thumbsSwiper?.slideTo(1)
+    mainSwiper?.slideTo(1)
+  }
   return (
+    <div className='w-[500px]'>
+      <button onClick={dummySwiper}>Move slide</button>
     <Swiper
       className='product-main w-[100%] border-2 border-secondary'
-      modules= {[FreeMode, Thumbs]}
+      modules= {[Thumbs]}
       thumbs={{
         swiper:
-          thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null
+        thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null
       }}
+      onSwiper={setMainSwiper}
       >
 
       {images.map((image:string, index:number) => {
@@ -39,5 +49,6 @@ export default function ProductMain( {images, name, thumbsSwiper}: ProductMainPr
         )
       })}
     </Swiper>
+      </div>
   )
 }
