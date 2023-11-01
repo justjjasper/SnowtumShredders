@@ -2,14 +2,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import '../ProductSizes.css'
-import { AccessoryProductType, MetaDataType } from "@/app/collections/accessories/[accessory]/page";
+import { AccessoryProductType } from "@/app/collections/accessories/[accessory]/page";
+import { MetaDataType } from "@/app/types";
 import { useEffect, useState } from "react";
 
 type AccessoryListProps = {
   products: AccessoryProductType[]
 }
 
-// Need to adjust accessory collection API to incorporate meta_data
 export default function AccessoryList({ products }: AccessoryListProps) {
   const [numOfSize, setNumOfSize] = useState<number>(4)
 

@@ -2,7 +2,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import '../ProductSizes.css'
-import { SnowboardProductType, MetaDataType } from "@/app/collections/[snowboards]/page";
+import { SnowboardProductType } from "@/app/collections/[snowboards]/page";
+import { MetaDataType } from "@/app/types";
 import { useEffect, useState } from "react";
 
 type SnowboardListProps = {
@@ -33,7 +34,7 @@ export default function SnowboardList({ products }: SnowboardListProps) {
       window.removeEventListener('resize', handleNumOfSize);
     };
   }, [])
-  // sm:gap-20 xl:gap-24
+
   return (
     <div className='content-list flex flex-row flex-wrap gap-y-12 lg:gap-20 xl:gap-24 justify-start px-3 lg:px-24'>
       {/* Maps out each Snowboard Product*/}

@@ -6,7 +6,7 @@ interface ProductReviewType {
   snowboard_review_rating: number
 }
 
-interface ProductMetaDataType {
+export interface MetaDataType {
   size: string;
   sku: number;
 }
@@ -25,5 +25,5 @@ export interface ProductType {
   camber_description: string;
   images: string[];
   reviews: ProductReviewType[]
-  meta_data: ProductMetaDataType[]
+  meta_data: MetaDataType[]
 }

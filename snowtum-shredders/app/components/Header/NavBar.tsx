@@ -57,7 +57,7 @@ export default function NavBar(){
     console.log('onMouseLeave triggered')
   }
 
-  // Contains X Positions for CSS Padding
+  // Contains X Positions for Dropdown Menu CSS Padding
   const [snowboardXPos, setSnowboardPos] = useState<number | undefined>()
   const [accessoriesXPos, setAccessoriesPos] = useState<number | undefined>()
 
@@ -109,7 +109,7 @@ export default function NavBar(){
 
   return (
     // **To Implement individual backdrop blur of Snowboard/Accessory dropdown menu** When state of either snowboard/acessories is hovered via onMouseEnter, a class is added to entire header to create backdrop blur.
-    // Implement my-[-280/560px] to combat relative white space when snowboard/accessoriesMobileMenu is set to true
+    //[MobileMenu] Implement my-[-280/560px] to combat relative white space when snowboard/accessoriesMobileMenu is set to true
     <div className={`header flex flex-col font-calibre sticky font-bold top-0 backdrop-blur-[35px] z-50 text-[#ffffff] w-full
       ${snowboardHovered ? 'snowboardMenuTrigger' : ''}
       ${accessoriesHovered ? 'accessoriesMenuTrigger' : ''}
