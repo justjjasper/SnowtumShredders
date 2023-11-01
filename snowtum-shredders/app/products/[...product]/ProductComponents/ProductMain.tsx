@@ -41,6 +41,7 @@ export default function ProductMain() {
                 width={200}
                 alt={name}
                 className='h-[530px] w-auto'
+                priority={true}
                 />
             </div>
           </SwiperSlide>

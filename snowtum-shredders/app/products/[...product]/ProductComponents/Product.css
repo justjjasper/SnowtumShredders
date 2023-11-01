@@ -17,3 +17,23 @@
 .product-content:nth-child(3) {
   grid-area: info
 }
+
+
+/* Product Info Container css */
+.product-info-sizes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+/* In your CSS or in a Tailwind CSS class, disabled unavailable size */
+.disabled-size::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(40deg, transparent 49%, gray 49%, gray 51%, transparent 51%);
+  pointer-events: none; /* This makes sure the overlay doesn't block interactions with the content beneath it */
+}

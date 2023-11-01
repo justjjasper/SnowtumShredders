@@ -64,6 +64,7 @@ export default function ProductThumbs() {
                   width={100}
                   alt={name}
                   className='block h-full object-contain'
+                  priority={true}
                   />
               </SwiperSlide>
             )
