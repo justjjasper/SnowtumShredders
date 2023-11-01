@@ -1,11 +1,12 @@
 'use client'
 import { upArrowVectorSVG,downArrowVectorSVG } from '@/app/Misc/Icons'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore from 'swiper'
 import 'swiper/css'
+import { ProductContext } from './ContentContainer'
 
 interface ProductThumbsProps {
   images: string[];
@@ -13,7 +14,9 @@ interface ProductThumbsProps {
   setThumbsSwiper: (newThumbsSwiper: null | SwiperCore) => void
 }
 
-export default function ProductThumbs( {images, name, setThumbsSwiper}: ProductThumbsProps ) {
+export default function ProductThumbs() {
+  const { images, name, setThumbsSwiper }: ProductThumbsProps = useContext(ProductContext)
+
   // console.log('[productThumbs] images:', images)
   const [disablePrev, setDisablePrev] = useState<boolean>(false)
   const [disableNext, setDisableNext] = useState<boolean>(false)

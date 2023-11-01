@@ -5,20 +5,22 @@ import { magnifyingPlusSVG } from "@/app/Misc/Icons"
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Thumbs } from 'swiper/modules'
 import SwiperCore from 'swiper'
-import { useState } from "react"
+import { useState, useContext } from "react"
+import { ProductContext } from "./ContentContainer"
 
 interface ProductMainProps {
   images: string[];
   name: string;
   thumbsSwiper: null | SwiperCore;
 }
-export default function ProductMain( {images, name, thumbsSwiper}: ProductMainProps ) {
-  const [mainSwiper, setMainSwiper] = useState<SwiperCore>()
+export default function ProductMain() {
+  const { images, name, thumbsSwiper, mainSwiper, setMainSwiper } = useContext(ProductContext)
 
   const dummySwiper = () => {
     thumbsSwiper?.slideTo(1)
     mainSwiper?.slideTo(1)
   }
+
   return (
     <div className='w-[500px]'>
       <button onClick={dummySwiper}>Move slide</button>
