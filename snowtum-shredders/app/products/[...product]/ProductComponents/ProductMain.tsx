@@ -7,23 +7,19 @@ import { Thumbs } from 'swiper/modules'
 import SwiperCore from 'swiper'
 import { useState, useContext } from "react"
 import { ProductContext } from "./ContentContainer"
+import { ProductType } from "@/app/types"
 
 interface ProductMainProps {
-  images: string[];
-  name: string;
+  product: ProductType
   thumbsSwiper: null | SwiperCore;
+  setMainSwiper: (newMainSwiper: null | SwiperCore) => void
 }
-export default function ProductMain() {
-  const { images, name, thumbsSwiper, mainSwiper, setMainSwiper } = useContext(ProductContext)
 
-  const dummySwiper = () => {
-    thumbsSwiper?.slideTo(1)
-    mainSwiper?.slideTo(1)
-  }
+export default function ProductMain() {
+  const { product, thumbsSwiper, setMainSwiper }: ProductMainProps = useContext(ProductContext)
+  const { images, name } = product
 
   return (
-    <div className='w-[500px]'>
-      <button onClick={dummySwiper}>Move slide</button>
     <Swiper
       className='product-main w-[100%] border-2 border-secondary'
       modules= {[Thumbs]}
@@ -51,6 +47,5 @@ export default function ProductMain() {
         )
       })}
     </Swiper>
-      </div>
   )
 }

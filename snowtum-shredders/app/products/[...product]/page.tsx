@@ -41,7 +41,7 @@ export default async function Product({ params }: ProductParams ) {
             {/* Carousel loops back in product-gallery unlike ContentContainer's Carousel */}
             <div className='product-gallery hidden'></div>
             {/* Pass array of product images as props */}
-            <ContentContainer images={product.images} name={product.name}/>
+            <ContentContainer product={product}/>
             <section className='product-detail-container hidden'></section>
             <section className='product-reviews-container hidden'></section>
           </main>

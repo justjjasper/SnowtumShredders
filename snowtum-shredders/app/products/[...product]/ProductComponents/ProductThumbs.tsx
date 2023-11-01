@@ -7,17 +7,17 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore from 'swiper'
 import 'swiper/css'
 import { ProductContext } from './ContentContainer'
+import { ProductType } from '@/app/types'
 
 interface ProductThumbsProps {
-  images: string[];
-  name: string;
+  product: ProductType
   setThumbsSwiper: (newThumbsSwiper: null | SwiperCore) => void
 }
 
 export default function ProductThumbs() {
-  const { images, name, setThumbsSwiper }: ProductThumbsProps = useContext(ProductContext)
+  const { product, setThumbsSwiper }: ProductThumbsProps = useContext(ProductContext)
+  const { images, name } = product
 
-  // console.log('[productThumbs] images:', images)
   const [disablePrev, setDisablePrev] = useState<boolean>(false)
   const [disableNext, setDisableNext] = useState<boolean>(false)
 
@@ -39,7 +39,7 @@ export default function ProductThumbs() {
         navigation={{
           nextEl: '.product-thumb-nav-next',
           prevEl: '.product-thumb-nav-prev',
-          disabledClass: 'swiper-button-disabled'
+          disabledClass: 'swiper-button-disabled' // <-- Disabled default navigation arrows
         }}
         direction='vertical'
         onSlideChange={(swiper) => {

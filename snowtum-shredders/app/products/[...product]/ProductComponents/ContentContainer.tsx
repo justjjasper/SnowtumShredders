@@ -5,16 +5,15 @@ import ProductMain from "./ProductMain"
 import ProductThumbs from "./ProductThumbs"
 import SwiperCore from 'swiper'
 import { useState, createContext } from 'react'
+import { ProductType } from '@/app/types'
 
 interface ContentContainerProps {
-  images: string[];
-  name: string
+  product: ProductType
 }
 
 // Create types for Product Context
 interface ProductContextData {
-  images: string[];
-  name: string;
+  product: ProductType
   thumbsSwiper: null | SwiperCore;
   setThumbsSwiper: (newThumbsSwiper: null | SwiperCore) => void
   mainSwiper: null | SwiperCore;
@@ -23,8 +22,22 @@ interface ProductContextData {
 
 // Create a context provider to manage data being passed to child components
 export const ProductContext = createContext<ProductContextData>({
-  images: [],
-  name: '',
+  product: {
+    id: 0,
+    name: '',
+    header_description: '',
+    price: '',
+    shape: '',
+    sidecut: '',
+    flex: '',
+    rider_type: '',
+    tech_story: '',
+    camber_type: '',
+    camber_description: '',
+    images: [],
+    reviews: [],
+    meta_data: []
+  },
   thumbsSwiper: null,
   setThumbsSwiper: () => {},
   mainSwiper: null,
@@ -33,7 +46,7 @@ export const ProductContext = createContext<ProductContextData>({
 
 // Top Level Components, contains props and state for Carousels(Product Thumbs/Product Main)
 // Possibly have thumbsSwipper state here, and passed as props to ProductThumbs/ProductMain
-export default function ContentContainer( {images, name}: ContentContainerProps ) {
+export default function ContentContainer( {product}: ContentContainerProps ) {
   // Declare swiper instances from ContentContainer level, manages swiper methods such as swiper.slideTo(index)
   const [thumbsSwiper, setThumbsSwiper] = useState<null | SwiperCore>(null)
   const [mainSwiper, setMainSwiper] = useState<null | SwiperCore>(null)
@@ -56,8 +69,7 @@ export default function ContentContainer( {images, name}: ContentContainerProps 
 
   // Values for Context Provider
   const store = {
-    images,
-    name,
+    product,
     thumbsSwiper,
     setThumbsSwiper,
     mainSwiper,
