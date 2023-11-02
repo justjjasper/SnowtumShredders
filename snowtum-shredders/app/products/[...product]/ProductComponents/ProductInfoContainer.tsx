@@ -47,7 +47,9 @@ export default function ProductInfoContainer() {
                   onClick={() => {
                     handleSwipers(index)
                     setSelectedSize(index)
+
                   }}
+                  data-for={id.toString()}
                   >
                   <input
                     className='invisible opacity-0 w-0 h-0'
@@ -56,7 +58,7 @@ export default function ProductInfoContainer() {
                     value={item.size}
                     id={id.toString()}
                     />
-                  <label className='text-[18px]' htmlFor={id.toString()}>{item.size}</label>
+                  <span className='text-[18px] cursor-pointer'>{item.size}</span>
                 </div>
               )
             })}
