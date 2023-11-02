@@ -29,7 +29,9 @@ export default function ProductMain() {
       }}
       onSwiper={setMainSwiper}
       >
-
+      <button className='product-main-magnify absolute z-2 top-[20px] right-[10px]'>
+        {magnifyingPlusSVG}
+      </button>
       {images.map((image:string, index:number) => {
         return (
           <SwiperSlide key={index} className='h-[100%] cursor-pointer'>

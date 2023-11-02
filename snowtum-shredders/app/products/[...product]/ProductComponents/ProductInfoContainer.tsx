@@ -17,8 +17,8 @@ export default function ProductInfoContainer() {
   return (
     <div className='product-info-container pt-6 border-0'>
       <div className='product-info flex flex-col'>
-        <span className='font-bold'>{header_description}</span>
-        <span className='text-5xl font-bold mt-[15px]'>{name}</span>
+        <span className='font-extrabold tracking-tighter'>{header_description}</span>
+        <span className='text-5xl font-black mt-[15px]'>{name}</span>
         <span className='text-2xl font-bold mt-[20px]'>${price}</span>
         <div className='product-info-review-container flex items-center my-[20px]'>
           <span className='flex'>
@@ -65,7 +65,7 @@ export default function ProductInfoContainer() {
             })}
           </div>
           <span className='variant-select hidden'>Please select a variant.</span>
-          <button className='add-to-cart flex justify-center items-center rounded-full font-bold w-full mt-[30px] py-[19px] gap-2 bg-secondary text-primary hover:underline'>
+          <button className='add-to-cart flex justify-center items-center rounded-full font-bold w-full mt-[40px] py-[19px] gap-2 bg-secondary text-primary hover:underline'>
             <span className='uppercase'>Add to cart</span>
             {cartSVG('23')}
           </button>

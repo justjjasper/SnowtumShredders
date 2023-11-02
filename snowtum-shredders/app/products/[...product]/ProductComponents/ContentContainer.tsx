@@ -77,8 +77,8 @@ export default function ContentContainer( {product}: ContentContainerProps ) {
   }
 
   return (
-    <section className='content-container'>
-      <div className='content lg:px-16'> {/* <---- Responsible for mx */}
+    <section className='content-container max-width-screen-[1920px]'> {/* <---- Responsible for max width of 1920px */}
+      <div className='content-wider lg:px-16'> {/* <---- Responsible for px */}
         <div className='product-container mt-[58px]'> {/* Responsible for top margin? */}
         {/* Grid layout grid-template-areas "thumb main info" grid-template-columns(.3fr 1fr 400px) */}
         <ProductContext.Provider value={store}>
