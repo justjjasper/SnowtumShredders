@@ -37,3 +37,15 @@
   background: linear-gradient(40deg, transparent 49%, gray 49%, gray 51%, transparent 51%);
   pointer-events: none; /* This makes sure the overlay doesn't block interactions with the content beneath it */
 }
+
+.border-error {
+  border-color: red;
+  width: calc(100% + 10px);
+  height: calc(100% + 10px);
+  top: -5px;
+  left: -5px
+}
+
+.variant-select {
+  color: red
+}
