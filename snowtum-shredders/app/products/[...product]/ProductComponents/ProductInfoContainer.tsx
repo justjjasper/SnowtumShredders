@@ -5,7 +5,7 @@ import { ProductContext } from './ContentContainer'
 import { starFilledSVG } from '@/app/Misc/Icons'
 
 export default function ProductInfoContainer() {
-  const { product: { header_description, name, price, reviews, meta_data }, mainSwiper, thumbsSwiper  } = useContext(ProductContext)
+  const { product: { id, header_description, name, price, reviews, meta_data }, mainSwiper, thumbsSwiper  } = useContext(ProductContext)
 
   const handleSwipers = (index: number) => {
     mainSwiper?.slideTo(index)
@@ -49,13 +49,19 @@ export default function ProductInfoContainer() {
                     setSelectedSize(index)
                   }}
                   >
-                  <input type='radio' className='hidden' name='Size'/>
-                  <span className='text-[18px]'>{item.size}</span>
+                  <input
+                    className='invisible opacity-0 w-0 h-0'
+                    type='radio'
+                    name='Size'
+                    value={item.size}
+                    id={id.toString()}
+                    />
+                  <label className='text-[18px]' htmlFor={id.toString()}>{item.size}</label>
                 </div>
               )
             })}
           </div>
-          <span className='variant-select'>Please select a variant.</span>
+          <span className='variant-select hidden'>Please select a variant.</span>
         </div>
       </div>
     </div>
