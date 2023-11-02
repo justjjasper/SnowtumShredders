@@ -164,7 +164,7 @@ export default function NavBar(){
             {searchSVG}
           </button>
           <button id='menu-link'>
-            {cartSVG}
+            {cartSVG('31')}
           </button>
           {hamburgerToggle === false && <button id='menu-link'
             className='block lg:hidden'

@@ -34,7 +34,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background: linear-gradient(45deg, transparent 49%, gray 49%, gray 51%, transparent 51%);
+  background: linear-gradient(45deg, transparent 49%, black 49%, gray 51%, transparent 51%);
   pointer-events: none; /* This makes sure the overlay doesn't block interactions with the content beneath it */
 }
 

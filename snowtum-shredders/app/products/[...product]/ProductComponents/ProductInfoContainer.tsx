@@ -2,7 +2,7 @@
 
 import { useContext, useState } from 'react'
 import { ProductContext } from './ContentContainer'
-import { starFilledSVG } from '@/app/Misc/Icons'
+import { starFilledSVG, cartSVG } from '@/app/Misc/Icons'
 
 export default function ProductInfoContainer() {
   const { product: { id, header_description, name, price, reviews, meta_data }, mainSwiper, thumbsSwiper  } = useContext(ProductContext)
@@ -15,12 +15,12 @@ export default function ProductInfoContainer() {
   const [selectedSize, setSelectedSize] = useState<number | null>(null)
 
   return (
-    <div className='product-info-container pt-6 border-2 border-secondary'>
+    <div className='product-info-container pt-6 border-0'>
       <div className='product-info flex flex-col'>
         <span className='font-bold'>{header_description}</span>
-        <span className='text-5xl font-bold'>{name}</span>
-        <span className='text-2xl font-bold'>${price}</span>
-        <div className='product-info-review-container flex items-center'>
+        <span className='text-5xl font-bold mt-[15px]'>{name}</span>
+        <span className='text-2xl font-bold mt-[20px]'>${price}</span>
+        <div className='product-info-review-container flex items-center my-[20px]'>
           <span className='flex'>
             {starFilledSVG}
             {starFilledSVG}
@@ -33,11 +33,12 @@ export default function ProductInfoContainer() {
         <div className='product-info-form'>
           {/* input hidden for now, responsible for identifying product SKU? */}
           <input type='hidden'/>
-          <div className='product-info-sizes relative'>
+          <div className='product-info-sizes relative mt-[20px]'>
             <div className='border-error hidden absolute border-[1px] rounded-lg'></div>
             {meta_data.map((item, index) => {
               const noStock = item.sku === 0
 
+              // When creating a submit post, get the input value? and send that to the server only reason i can think of adding a data-for attached to a input radio
               return (
                 <div className={`product-info-size relative text-center border-[1px] rounded-full px-3 py-2 hover:text-primary hover:bg-secondary hover:cursor-pointer ${noStock ? 'disabled-size opacity-50 text-gray-400' : ''}
                 ${selectedSize === index ? 'bg-secondary text-primary' : ''}
@@ -64,6 +65,11 @@ export default function ProductInfoContainer() {
             })}
           </div>
           <span className='variant-select hidden'>Please select a variant.</span>
+          <button className='add-to-cart flex justify-center items-center rounded-full font-bold w-full mt-[30px] py-[19px] gap-2 bg-secondary text-primary hover:underline'>
+            <span className='uppercase'>Add to cart</span>
+            {cartSVG('23')}
+          </button>
+
         </div>
       </div>
     </div>

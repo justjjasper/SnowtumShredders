@@ -21,7 +21,7 @@ export default function ProductMain() {
 
   return (
     <Swiper
-      className='product-main w-[100%] border-2 border-secondary'
+      className='product-main w-[100%] border-0 border-secondary'
       modules= {[Thumbs]}
       thumbs={{
         swiper:

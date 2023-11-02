@@ -22,7 +22,7 @@ export default function ProductThumbs() {
   const [disableNext, setDisableNext] = useState<boolean>(false)
 
   return (
-    <div className='product-thumbs relative flex flex-col items-center justify-evenly border-[1px] w-[100%]'>
+    <div className='product-thumbs relative flex flex-col items-center justify-evenly border-0 w-[100%]'>
 
       <button className={`product-thumb-nav-prev ${disablePrev ? 'cursor-not-allowed' : ''}`}
         disabled={disablePrev}
@@ -31,7 +31,7 @@ export default function ProductThumbs() {
       </button>
 
       <Swiper
-        className='product-thumbs-swiper h-[460px] border-[1px]'
+        className='product-thumbs-swiper h-[465px] border-0 my-3'
         modules={[Navigation]}
         slidesPerView={3}
         spaceBetween={20}
