@@ -253,8 +253,8 @@ def get_snowboard_product(request, snowboard_name):
             'camber_image': snowboard.camber_image,
             'images': snowboard_images,
             'reviews': list(snowboard_reviews),
-            'video': snowboard.snowboard.video,
-            'meta_data': formatted_meta_data
+            'meta_data': formatted_meta_data,
+            'video': snowboard.video
         }
 
         return JsonResponse(snowboard_data, safe=False)

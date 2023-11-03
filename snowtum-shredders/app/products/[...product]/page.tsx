@@ -22,7 +22,8 @@ export default async function Product({ params }: ProductParams ) {
     // Query from database using productType & productName
     const data = await fetch(`${serverURL}/${productType}/${productName}`)
     const product = await data.json()
-    // console.log('what is product[roduct page]', product)
+
+    console.log('what is product[roduct page]', product)
     return (
       <main className='flex flex-col relative bottom-[100px] z-20 font-calibre'>
         {productType === 'snowboard' &&

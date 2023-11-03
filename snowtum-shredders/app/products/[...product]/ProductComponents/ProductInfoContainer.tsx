@@ -20,7 +20,7 @@ export default function ProductInfoContainer() {
         <span className='font-extrabold tracking-tighter'>{header_description}</span>
         <span className='text-5xl font-black mt-[15px]'>{name}</span>
         <span className='text-2xl font-bold mt-[20px]'>${price}</span>
-        <div className='product-info-review-container flex items-center my-[20px]'>
+        {reviews && <div className='product-info-review-container flex items-center my-[20px]'>
           <span className='flex'>
             {starFilledSVG}
             {starFilledSVG}
@@ -29,7 +29,7 @@ export default function ProductInfoContainer() {
             {starFilledSVG}
             </span>
           <span className='underline tracking-tighter text-sm font-bold pl-2'>{reviews.length} reviews</span>
-        </div>
+        </div> }
         <div className='product-info-form'>
           {/* input hidden for now, responsible for identifying product SKU? */}
           <input type='hidden'/>

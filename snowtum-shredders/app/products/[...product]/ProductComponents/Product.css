@@ -49,3 +49,20 @@
 .variant-select {
   color: red
 }
+
+
+/* ProductTech css*/
+.product-tech {
+  display: grid;
+  grid-template-columns: 456px 1fr;
+  grid-template-rows: minmax(0, auto);
+}
+/* Product Tech Video css */
+.product-tech-video {
+  grid-column: 1/span 2;
+   /* Same as
+   grid-column-start: 1;
+   grid-column-end: span 2;
+   */
+  aspect-ratio: 1434/772;
+}
