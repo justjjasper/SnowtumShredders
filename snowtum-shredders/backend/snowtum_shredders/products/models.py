@@ -16,6 +16,7 @@ class Snowboard(models.Model):
     camber_type = models.CharField(max_length=255)
     camber_description = models.TextField()
     camber_image = models.CharField(max_length=255)
+    video = models.CharField(max_length=255)
 
     class Meta:
       db_table = 'snowboards'

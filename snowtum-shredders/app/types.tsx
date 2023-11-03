@@ -24,6 +24,7 @@ export interface ProductType {
   camber_type: string;
   camber_description: string;
   images: string[];
-  reviews: ProductReviewType[]
-  meta_data: MetaDataType[]
+  reviews: ProductReviewType[];
+  video: string;
+  meta_data: MetaDataType[];
 }

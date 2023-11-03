@@ -36,7 +36,8 @@ export const ProductContext = createContext<ProductContextData>({
     camber_description: '',
     images: [],
     reviews: [],
-    meta_data: []
+    meta_data: [],
+    video: ''
   },
   thumbsSwiper: null,
   setThumbsSwiper: () => {},
