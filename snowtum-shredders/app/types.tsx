@@ -23,6 +23,7 @@ export interface ProductType {
   tech_story: string;
   camber_type: string;
   camber_description: string;
+  camber_image: string;
   images: string[];
   reviews: ProductReviewType[];
   video: string;

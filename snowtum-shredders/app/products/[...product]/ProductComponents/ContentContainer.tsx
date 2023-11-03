@@ -34,6 +34,7 @@ export const ProductContext = createContext<ProductContextData>({
     tech_story: '',
     camber_type: '',
     camber_description: '',
+    camber_image: '',
     images: [],
     reviews: [],
     meta_data: [],

@@ -69,12 +69,12 @@
 }
 
 /* Product Tech Specs  */
-.spec-type {
+.spec-type, .product-tech-subtitle {
   font-weight: 700;
   color: #666666;
 }
 
-.spec-value {
+.spec-value, .product-tech-title {
   font-weight: 800;
   font-size: 1.5rem;
 }
