@@ -36,7 +36,7 @@ export default async function Product({ params }: ProductParams ) {
               priority={true}
               className='w-full h-[35em]'
             />
-            <span className='flex absolute text-[6rem] font-bold tracking-tighter text-primary'>{product.name}</span>
+            <span className='flex absolute text-[6rem] font-bold tracking-tighter text-primary text-center leading-[6rem]'>{product.name}</span>
           </section>}
 
           <main className='main-content'>
