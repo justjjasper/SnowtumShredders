@@ -29,7 +29,7 @@ export default function ProductTech( {product}: ProductTechProps ) {
                 <span className='spec-type uppercase'>flex</span>
                 <span className='spec-value'>{flex}</span>
                 <div className='spec-level'>
-                  <div className='spec-dot' style={{'--dot-position': flexValue, '--dot-size': '20px'} as React.CSSProperties}></div>
+                  <div className='spec-dot' style={{'--dot-position': flexValue} as React.CSSProperties}></div>
                   <div className='spec-line'></div>
                   <div className='spec-line'></div>
                   <div className='spec-line'></div>
