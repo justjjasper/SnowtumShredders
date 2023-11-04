@@ -8,7 +8,8 @@ import { useState, createContext } from 'react'
 import { ProductType } from '@/app/types'
 
 interface ContentContainerProps {
-  product: ProductType
+  product: ProductType;
+  productType: string;
 }
 
 // Create types for Product Context
@@ -48,7 +49,7 @@ export const ProductContext = createContext<ProductContextData>({
 
 // Top Level Components, contains props and state for Carousels(Product Thumbs/Product Main)
 // Possibly have thumbsSwipper state here, and passed as props to ProductThumbs/ProductMain
-export default function ContentContainer( {product}: ContentContainerProps ) {
+export default function ContentContainer( {product, productType}: ContentContainerProps ) {
   // Declare swiper instances from ContentContainer level, manages swiper methods such as swiper.slideTo(index)
   const [thumbsSwiper, setThumbsSwiper] = useState<null | SwiperCore>(null)
   const [mainSwiper, setMainSwiper] = useState<null | SwiperCore>(null)
@@ -90,7 +91,7 @@ export default function ContentContainer( {product}: ContentContainerProps ) {
             <ProductThumbs/>
              {/* Uses Swiper.js for carousel */}
             <ProductMain/>
-            <ProductInfoContainer/>
+            <ProductInfoContainer productType={productType}/>
           </div>
 
         </ProductContext.Provider>

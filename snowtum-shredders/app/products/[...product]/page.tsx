@@ -25,7 +25,7 @@ export default async function Product({ params }: ProductParams ) {
 
     console.log('what is product[roduct page]', product)
     return (
-      <main className='flex flex-col relative bottom-[100px] z-20 font-calibre'>
+      <main className={`flex flex-col relative bottom-[100px] z-20 font-calibre ${product.flex ? '' : 'mt-[100px]'}`}>
         {productType === 'snowboard' &&
           <section className='flex justify-center items-center'>
             <Image
@@ -43,10 +43,10 @@ export default async function Product({ params }: ProductParams ) {
             {/* Carousel loops back in product-gallery unlike ContentContainer's Carousel */}
             <div className='product-gallery hidden'></div>
             {/* Pass array of product images as props */}
-            <ContentContainer product={product}/>
+            <ContentContainer product={product} productType={productType}/>
             <section className='product-detail-container hidden'></section>
             <section className='product-reviews-container hidden'></section>
-            <ProductTech product={product}/>
+            { product.flex && <ProductTech product={product}/> }
           </main>
       </main>
     )
