@@ -7,7 +7,7 @@ export default function ProductAccessoryDetail ( {product}: {product: ProductTyp
     const lines = inputString.split('\\n');
     console.log(lines)
     const jsxLines = lines.map((line, index) => (
-      <span key={index}>
+      <span key={index} className='text-lg'>
         {`• ${line}`}
     </span>
     ));
@@ -20,7 +20,7 @@ export default function ProductAccessoryDetail ( {product}: {product: ProductTyp
       <div className='content-wider lg:px-16'>
         <div className='product-detail-accessory border-[1px] rounded-[30px] p-[30px] my-[100px]'>
           <div className='product-detail-accessory-content flex flex-col mx-6'>
-            <span className='product-detail-title uppercase'>product details</span>
+            <span className='product-detail-title uppercase font-extrabold text-lg'>product details</span>
             {convertStringToJSX(product.description)}
           </div>
         </div>
