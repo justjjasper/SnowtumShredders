@@ -1,5 +1,3 @@
-'use client'
-
 import Image from "next/image"
 import { magnifyingPlusSVG } from "@/app/Misc/Icons"
 import { Swiper, SwiperSlide } from 'swiper/react'

@@ -8,7 +8,7 @@ export default function ProductInfoContainer( {productType}: {productType: strin
   const { product: { id, header_description, name, price, reviews, meta_data }, mainSwiper, thumbsSwiper  } = useContext(ProductContext)
 
   const handleSwipers = (index: number) => {
-    if (productType === 'boardbag') return
+    if (productType !== 'snowboard') return
     mainSwiper?.slideTo(index)
     thumbsSwiper?.slideTo(index)
   }
@@ -60,7 +60,7 @@ export default function ProductInfoContainer( {productType}: {productType: strin
                     value={item.size}
                     id={id.toString()}
                     />
-                  <span className='text-[18px] cursor-pointer'>{item.size}</span>
+                  <span className='text-[18px] cursor-pointer whitespace-nowrap'>{item.size}</span>
                 </div>
               )
             })}

@@ -28,4 +28,5 @@ export interface ProductType {
   reviews: ProductReviewType[];
   video: string;
   meta_data: MetaDataType[];
+  description: string;
 }

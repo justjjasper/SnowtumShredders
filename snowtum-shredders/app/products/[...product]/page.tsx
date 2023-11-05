@@ -3,6 +3,7 @@ import Image from "next/image"
 import { serverURL } from "@/app/config"
 import ContentContainer from "./ProductComponents/ContentContainer"
 import ProductTech from "./ProductComponents/ProductTech"
+import ProductAccessoryDetail from "./ProductComponents/ProductAccessoryDetail"
 
 // May use unions to have product type be string | string[]
 interface ProductParams {
@@ -47,6 +48,7 @@ export default async function Product({ params }: ProductParams ) {
             <section className='product-detail-container hidden'></section>
             <section className='product-reviews-container hidden'></section>
             { product.flex && <ProductTech product={product}/> }
+            { product.description && <ProductAccessoryDetail product={product}/> }
           </main>
       </main>
     )

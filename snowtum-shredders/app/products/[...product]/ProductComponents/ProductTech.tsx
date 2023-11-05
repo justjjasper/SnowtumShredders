@@ -12,7 +12,7 @@ export default function ProductTech( {product}: ProductTechProps ) {
   const flexValue = flex.split(' ')[1]
   console.log(flexValue)
   return (
-    <section className='content-container-product-tech max-width-screen-[1920px]'> {/* <---- Responsible for max width of 1920px */}
+    <section className='content-container-product-tech max-w-[1920px]'> {/* <---- Responsible for max width of 1920px */}
       <div className='content-wider lg:px-16'> {/* Responsible for px */}
         <div className='product-tech py-[87px] px-[85px] rounded-[32px] border-[1px] mt-[40px]'> {/* Responsible for mt */}
 
