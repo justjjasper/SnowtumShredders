@@ -142,3 +142,17 @@
   border-bottom: 1px solid gray ; /* Add a dashed line with your desired style and color */
   opacity: 0.3;
 }
+
+/* //? ReviewsContent */
+.spr-icon-star-empty {
+  /* Add any other styles you need for the star icons here */
+  color: gray;
+  border-bottom: 1px solid transparent;
+  height: auto; /* Adjust the height as needed, prevents the addition of border-bottom pushing content below down */
+}
+
+.spr-icon-star-hover {
+  text-decoration: none;
+  color: gray;
+  border-bottom: 1px solid;
+}
