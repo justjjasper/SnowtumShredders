@@ -19,7 +19,7 @@
 }
 
 
-/* Product Info Container css */
+/* //? Product Info Container css */
 .product-info-sizes {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -51,7 +51,7 @@
 }
 
 
-/* ProductTech css*/
+/* //? ProductTech css*/
 .product-tech {
   display: grid;
   grid-template-columns: 456px 1fr;
@@ -116,4 +116,29 @@
   width: 1px;
   overflow: hidden;
   white-space: nowrap;
+}
+
+/* //?  ProductReviews.css */
+.spr-container {
+  padding: 24px;
+  border-color: #ECECEC;
+}
+
+.spr-review, .spr-form {
+  border-color: #ECECEC;
+}
+
+/* Add this CSS to create a horizontal line under the spr-header */
+.spr-header {
+  position: relative; /* Make sure the pseudo-element is positioned relative to this div */
+}
+
+.spr-header::after {
+  content: ''; /* Required for pseudo-elements */
+  position: absolute; /* Position the pseudo-element */
+  bottom: 0; /* Position it at the bottom of the spr-header */
+  left: 0; /* Align it with the left edge of the spr-header */
+  width: 100%; /* Make it extend the full width of the spr-header */
+  border-bottom: 1px solid gray ; /* Add a dashed line with your desired style and color */
+  opacity: 0.3;
 }
