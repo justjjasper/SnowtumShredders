@@ -5,7 +5,7 @@ export default function ProductAccessoryDetail ( {product}: {product: ProductTyp
   // Converts product description to format
   function convertStringToJSX(inputString:string) {
     const lines = inputString.split('\\n');
-    console.log(lines)
+
     const jsxLines = lines.map((line, index) => (
       <span key={index} className='text-lg'>
         {`• ${line}`}
@@ -16,7 +16,7 @@ export default function ProductAccessoryDetail ( {product}: {product: ProductTyp
   }
 
   return (
-    <section className='content-container-product-accessory-detail max-width-screen-[1920px]'>
+    <section className='content-container-product-accessory-detail max-w-[1920px]'>
       <div className='content-wider lg:px-16'>
         <div className='product-detail-accessory border-[1px] rounded-[30px] p-[30px] my-[100px]'>
           <div className='product-detail-accessory-content flex flex-col mx-6'>

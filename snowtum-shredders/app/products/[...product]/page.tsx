@@ -4,6 +4,8 @@ import { serverURL } from "@/app/config"
 import ContentContainer from "./ProductComponents/ContentContainer"
 import ProductTech from "./ProductComponents/ProductTech"
 import ProductAccessoryDetail from "./ProductComponents/ProductAccessoryDetail"
+import ProductReviews from "./ProductComponents/ProductReviews"
+import { ReviewType } from "@/app/types"
 
 // May use unions to have product type be string | string[]
 interface ProductParams {
@@ -24,7 +26,7 @@ export default async function Product({ params }: ProductParams ) {
     const data = await fetch(`${serverURL}/${productType}/${productName}`)
     const product = await data.json()
 
-    console.log('what is product[roduct page]', product)
+    // console.log('what is product[roduct page]', product.reviews)
     return (
       <main className={`flex flex-col relative bottom-[100px] z-20 font-calibre ${product.flex ? '' : 'mt-[100px]'}`}>
         {productType === 'snowboard' &&
@@ -49,6 +51,7 @@ export default async function Product({ params }: ProductParams ) {
             <section className='product-reviews-container hidden'></section>
             { product.flex && <ProductTech product={product}/> }
             { product.description && <ProductAccessoryDetail product={product}/> }
+            { product.reviews && <ProductReviews reviews={product.reviews} product_id={product.id}/>}
           </main>
       </main>
     )

@@ -225,6 +225,7 @@ def get_snowboard_product(request, snowboard_name):
         # Query related data (images, reviews, sizes, skus)
         snowboard_images = list(SnowboardImage.objects.filter(snowboard=snowboard).values_list('snowboard_image', flat=True))
         snowboard_reviews = SnowboardReview.objects.filter(snowboard=snowboard).values(
+            'review_id',
             'snowboard_review_title',
             'snowboard_review_author',
             'snowboard_review_date',

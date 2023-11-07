@@ -30,3 +30,12 @@ export interface ProductType {
   meta_data: MetaDataType[];
   description: string;
 }
+
+export interface ReviewType {
+  review_id: number;
+  snowboard_review_title: string;
+  snowboard_review_author: string;
+  snowboard_review_date: string;
+  snowboard_review_body: string;
+  snowboard_review_rating: number
+}

@@ -10,7 +10,7 @@ export default function ProductTech( {product}: ProductTechProps ) {
   const { name, shape, sidecut, flex, rider_type, tech_story, camber_type, camber_description, camber_image, video } = product
 
   const flexValue = flex.split(' ')[1]
-  console.log(flexValue)
+
   return (
     <section className='content-container-product-tech max-w-[1920px]'> {/* <---- Responsible for max width of 1920px */}
       <div className='content-wider lg:px-16'> {/* Responsible for px */}

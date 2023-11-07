@@ -16,7 +16,7 @@ export default function ProductInfoContainer( {productType}: {productType: strin
   const [selectedSize, setSelectedSize] = useState<number | null>(null)
 
   return (
-    <div className='product-info-container pt-6 border-0'>
+    <div className='product-info-container pt-6 border-0 max-w-[1920px]'>
       <div className='product-info flex flex-col'>
         <span className='font-extrabold tracking-tighter'>{header_description || 'ACCESSORIES'}</span>
         <span className='text-5xl font-black mt-[15px]'>{name}</span>
