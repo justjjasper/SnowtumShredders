@@ -92,7 +92,7 @@ export default function ContentContainer( {product, productType}: ContentContain
             <ProductThumbs/>
              {/* Uses Swiper.js for carousel */}
             <ProductMain/>
-            <ProductInfoContainer productType={productType}/>
+            <ProductInfoContainer productType={productType} />
           </div>
 
         </ProductContext.Provider>

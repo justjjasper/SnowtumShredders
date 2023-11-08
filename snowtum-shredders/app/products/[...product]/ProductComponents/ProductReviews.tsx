@@ -30,7 +30,8 @@ export default function ProductReviews ( {reviews, product_id}: ProductReviewsPr
                 {/* Attach dashed line at the end of spr-header */}
                 <div className='spr-header'>
                   <h2 className='spr-header-title font-bold text-[36px]'>Customer Reviews</h2>
-                  <div className='spr-summary pt-2 pb-5'>
+                  <div className='spr-summary pt-2'>
+                    {/* //! Implement average star rating logic cssf */}
                     <span className='spr-starrating' aria-label={`${ratingAvg.toFixed(1)} of 5 stars`} role='img'>
                       5 icon stars
                     <i aria-hidden={true}/>

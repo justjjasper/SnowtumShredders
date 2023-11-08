@@ -14,6 +14,16 @@ interface ProductParams {
   }
 }
 
+export const calcAvgStarRating = (reviews: ReviewType[]) => {
+  if (reviews.length === 0) {
+    return 0
+  }
+
+  const totalRating = reviews.reduce((total, review) => total += review.snowboard_review_rating, 0)
+
+  return totalRating / reviews.length
+}
+
 // if productType is snowboard... conditional render that section
 export default async function Product({ params }: ProductParams ) {
   // Get dynamic route parameters for productType and productName

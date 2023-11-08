@@ -129,19 +129,19 @@
 }
 
 /* Add this CSS to create a horizontal line under the spr-header */
-.spr-header {
-  position: relative; /* Make sure the pseudo-element is positioned relative to this div */
+/* .spr-header {
+  position: relative;
 }
 
 .spr-header::after {
-  content: ''; /* Required for pseudo-elements */
-  position: absolute; /* Position the pseudo-element */
-  bottom: 0; /* Position it at the bottom of the spr-header */
-  left: 0; /* Align it with the left edge of the spr-header */
-  width: 100%; /* Make it extend the full width of the spr-header */
-  border-bottom: 1px solid gray ; /* Add a dashed line with your desired style and color */
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-bottom: 1px solid gray;
   opacity: 0.3;
-}
+} */
 
 /* //? ReviewsContent */
 .spr-icon-star {

@@ -46,7 +46,7 @@ export default function ProductReviewsForm ( {product_id}: ProductReviewsFormPro
 
   return (
     // ! Be wary that there are solo value attr with each input in the form
-    <div className='spr-form ' id={`form_${product_id}`}>
+    <div className='spr-form mt-[24px] pt-[24px] border-t-[1px]' id={`form_${product_id}`}>
       {/* //TODO: Fill in server api later */}
       <form method='post' action='FILL THIS IN LATER' id={`new-review-form_${product_id}`} >
         {/* These two inputs are for structuring body data to send to the server with "HTML" post */}
@@ -68,7 +68,6 @@ export default function ProductReviewsForm ( {product_id}: ProductReviewsFormPro
         <fieldset className='spr-form-review'>
           <div className='spr-form-review-rating mb-[15px]'>
             <label className='spr-form-label' htmlFor='review[rating]'>Rating</label>
-            {/* //! LOOK BACK AT THIS UGH Star Rating logic*/}
             <div className='spr-form-input spr-starrating flex gap-1'>
               {/* //TODO each a tag contains an onClick func */}
               <a href='#'

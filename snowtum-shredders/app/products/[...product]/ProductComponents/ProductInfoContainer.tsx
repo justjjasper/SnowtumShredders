@@ -2,7 +2,8 @@
 
 import { useContext, useState } from 'react'
 import { ProductContext } from './ContentContainer'
-import { starFilledSVG, cartSVG } from '@/app/Misc/Icons'
+import { starFilledSVG, starEmptySVG, cartSVG } from '@/app/Misc/Icons'
+import { calcAvgStarRating } from '../page'
 
 export default function ProductInfoContainer( {productType}: {productType: string}) {
   const { product: { id, header_description, name, price, reviews, meta_data }, mainSwiper, thumbsSwiper  } = useContext(ProductContext)
@@ -15,6 +16,8 @@ export default function ProductInfoContainer( {productType}: {productType: strin
 
   const [selectedSize, setSelectedSize] = useState<number | null>(null)
 
+  const starWidth = (calcAvgStarRating(reviews) * 100).toString()+ '%'
+
   return (
     <div className='product-info-container pt-6 border-0 max-w-[1920px]'>
       <div className='product-info flex flex-col'>
@@ -22,13 +25,22 @@ export default function ProductInfoContainer( {productType}: {productType: strin
         <span className='text-5xl font-black mt-[15px]'>{name}</span>
         <span className='text-2xl font-bold mt-[20px]'>${price}</span>
         {reviews && <div className='product-info-review-container flex items-center my-[20px]'>
-          <span className='flex'>
-            {starFilledSVG}
-            {starFilledSVG}
-            {starFilledSVG}
-            {starFilledSVG}
-            {starFilledSVG}
+          <span className='star-rating flex relative'>
+            <span className='stars-empty'>
+              {starEmptySVG}
+              {starEmptySVG}
+              {starEmptySVG}
+              {starEmptySVG}
+              {starEmptySVG}
             </span>
+            <span className='star-filled absolute overflow-hidden whitespace-nowrap' style={{ width: starWidth}}>
+              {starFilledSVG}
+              {starFilledSVG}
+              {starFilledSVG}
+              {starFilledSVG}
+              {starFilledSVG}
+            </span>
+          </span>
           <span className='underline tracking-tighter text-sm font-bold pl-2'>{reviews.length} reviews</span>
         </div> }
         <div className='product-info-form'>
