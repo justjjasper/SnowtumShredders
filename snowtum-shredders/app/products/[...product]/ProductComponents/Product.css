@@ -152,7 +152,7 @@
 }
 
 /* Custom underline for svgs starrating */
-.spr-icon-star-hover {
+.spr-icon-star-underline {
   text-decoration: none;
   color: gray;
   border-bottom: 1px solid;
@@ -160,5 +160,5 @@
 
 /* Change custom underline to blue if starrating are selected */
 .spr-icon-star-not-empty {
-  color: blue
+  color: gold
 }
