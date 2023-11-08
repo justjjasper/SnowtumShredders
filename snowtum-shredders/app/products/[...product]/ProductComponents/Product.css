@@ -144,15 +144,21 @@
 }
 
 /* //? ReviewsContent */
-.spr-icon-star-empty {
+.spr-icon-star {
   /* Add any other styles you need for the star icons here */
   color: gray;
   border-bottom: 1px solid transparent;
   height: auto; /* Adjust the height as needed, prevents the addition of border-bottom pushing content below down */
 }
 
+/* Custom underline for svgs starrating */
 .spr-icon-star-hover {
   text-decoration: none;
   color: gray;
   border-bottom: 1px solid;
+}
+
+/* Change custom underline to blue if starrating are selected */
+.spr-icon-star-not-empty {
+  color: blue
 }

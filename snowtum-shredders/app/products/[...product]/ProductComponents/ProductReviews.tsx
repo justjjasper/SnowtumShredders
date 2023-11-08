@@ -19,7 +19,7 @@ export default function ProductReviews ( {reviews, product_id}: ProductReviewsPr
   }
 
   const ratingAvg = calculateRatingAverage(reviews)
-  console.log(reviews)
+
   return (
     <section className='content-container-product-reviews max-w-[1920px]'>  {/* <---- Responsible for max width of 1920px */}
       <div className='content-wider lg:px-16'>  {/* Responsible for px */}
