@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 interface ProductReviewsFormProps {
   product_id: number
@@ -36,6 +36,12 @@ export default function ProductReviewsForm ( {product_id}: ProductReviewsFormPro
   const selectRating = (e: React.MouseEvent<HTMLAnchorElement>, starRating: number) => {
     e.preventDefault()
     setRating(starRating)
+  }
+
+  const [charCount, setCharCount] = useState<number>(0)
+  const handleTextareaInput = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
+    const text = e.target.value
+    setCharCount(text.length)
   }
 
   return (
@@ -118,23 +124,24 @@ export default function ProductReviewsForm ( {product_id}: ProductReviewsFormPro
             <input className='spr-form-input' type='text' id={`review_title_${product_id}`} name='review[title]' placeholder='Give your review a title'/>
           </div>
 
-          {/* // ! Handle character limit function later */}
           <div className='spr-form-review-body'>
             <label className='spr-form-label' htmlFor={`review_body_${product_id}`}>
                 Body of Review
               <span role='status' aria-live='polite' aria-atomic='true'>
-                <span className='spr-form-review-body-charactersremaining'>(This is dynamic,1500)</span>
+                <span className='spr-form-review-body-charactersremaining'>{`(${1500 - charCount})`}</span>
                 {/* This second span is for screen readers to count  */}
                 <span className='visuallyhidden'>charactersremaining</span>
               </span>
             </label>
+
             <div className='spr-form-input'>
               <textarea className='spr-form-input'
                   id={`review_body_${product_id}`}
                   data-product-id={product_id}
                   name='review[body]'
                   rows={10}
-                  placeholder='Write your comments here'>
+                  placeholder='Write your comments here'
+                  onChange={handleTextareaInput}>
               </textarea>
             </div>
           </div>
