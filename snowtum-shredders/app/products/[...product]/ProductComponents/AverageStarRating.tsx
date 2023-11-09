@@ -1,6 +1,6 @@
-import { starEmptySVG, starFilledSVG } from "../Misc/Icons";
-import { calcAvgStarRating } from "../products/[...product]/page";
-import { ReviewType } from "../types";
+import { starEmptySVG, starFilledSVG } from "../../../Misc/Icons";
+import { calcAvgStarRating } from "../page";
+import { ReviewType } from "../../../types";
 
 interface AverageStarRatingProp {
   reviews: ReviewType[]

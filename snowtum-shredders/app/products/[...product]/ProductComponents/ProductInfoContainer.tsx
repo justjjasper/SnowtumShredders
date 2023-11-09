@@ -2,9 +2,8 @@
 
 import { useContext, useState } from 'react'
 import { ProductContext } from './ContentContainer'
-import { starFilledSVG, starEmptySVG, cartSVG } from '@/app/Misc/Icons'
-import { calcAvgStarRating } from '../page'
-import AverageStarRating from '@/app/components/AverageStarRating'
+import { cartSVG } from '@/app/Misc/Icons'
+import AverageStarRating from '@/app/products/[...product]/ProductComponents/AverageStarRating'
 
 export default function ProductInfoContainer( {productType}: {productType: string}) {
   const { product: { id, header_description, name, price, reviews, meta_data }, mainSwiper, thumbsSwiper  } = useContext(ProductContext)

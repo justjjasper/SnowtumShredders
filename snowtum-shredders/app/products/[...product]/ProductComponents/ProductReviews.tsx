@@ -3,7 +3,7 @@ import { ReviewType } from "@/app/types"
 import ProductReviewsForm from "./ProductReviewsForm";
 import ReviewsContent from "./ReviewsContent";
 import { calcAvgStarRating } from "../page";
-import AverageStarRating from "@/app/components/AverageStarRating";
+import AverageStarRating from "@/app/products/[...product]/ProductComponents/AverageStarRating";
 import React, { useState } from "react";
 
 interface ProductReviewsProps {
