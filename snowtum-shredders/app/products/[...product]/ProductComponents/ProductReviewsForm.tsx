@@ -46,7 +46,7 @@ export default function ProductReviewsForm ( {product_id}: ProductReviewsFormPro
 
   return (
     // ! Be wary that there are solo value attr with each input in the form
-    <div className='spr-form mt-[24px] pt-[24px] border-t-[1px]' id={`form_${product_id}`}>
+    <div className='spr-form hidden mt-[24px] pt-[24px] border-t-[1px]' id={`form_${product_id}`}>
       {/* //TODO: Fill in server api later */}
       <form method='post' action='FILL THIS IN LATER' id={`new-review-form_${product_id}`} >
         {/* These two inputs are for structuring body data to send to the server with "HTML" post */}

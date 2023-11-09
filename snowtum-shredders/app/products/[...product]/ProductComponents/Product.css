@@ -128,21 +128,6 @@
   border-color: #ECECEC;
 }
 
-/* Add this CSS to create a horizontal line under the spr-header */
-/* .spr-header {
-  position: relative;
-}
-
-.spr-header::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  border-bottom: 1px solid gray;
-  opacity: 0.3;
-} */
-
 /* //? ReviewsContent */
 .spr-icon-star {
   /* Add any other styles you need for the star icons here */
@@ -161,4 +146,19 @@
 /* Change custom underline to blue if starrating are selected */
 .spr-icon-star-not-empty {
   color: gold
+}
+
+/* Add this CSS to create a horizontal line on top of each spr-review */
+.spr-review {
+  position: relative;
+}
+
+.spr-review::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-bottom: 1px solid gray;
+  opacity: 0.3;
 }

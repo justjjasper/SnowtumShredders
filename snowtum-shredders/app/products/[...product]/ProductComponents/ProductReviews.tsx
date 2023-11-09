@@ -1,6 +1,8 @@
 import { ReviewType } from "@/app/types"
 import ProductReviewsForm from "./ProductReviewsForm";
 import ReviewsContent from "./ReviewsContent";
+import { calcAvgStarRating } from "../page";
+import AverageStarRating from "@/app/components/AverageStarRating";
 
 interface ProductReviewsProps {
   reviews: ReviewType[];
@@ -8,17 +10,7 @@ interface ProductReviewsProps {
 }
 
 export default function ProductReviews ( {reviews, product_id}: ProductReviewsProps ) {
-  const calculateRatingAverage = (reviews: ReviewType[]) => {
-    let ratingAvg = 0
-
-    for (let review of reviews) {
-      ratingAvg += review.snowboard_review_rating
-    }
-
-    return ratingAvg / reviews.length
-  }
-
-  const ratingAvg = calculateRatingAverage(reviews)
+  const ratingAvg = calcAvgStarRating(reviews)
 
   return (
     <section className='content-container-product-reviews max-w-[1920px]'>  {/* <---- Responsible for max width of 1920px */}
@@ -27,20 +19,18 @@ export default function ProductReviews ( {reviews, product_id}: ProductReviewsPr
           <div className='page-width'>
             <div className='reviews'>
               <div className='spr-container'>
-                {/* Attach dashed line at the end of spr-header */}
                 <div className='spr-header'>
                   <h2 className='spr-header-title font-bold text-[36px]'>Customer Reviews</h2>
-                  <div className='spr-summary pt-2'>
-                    {/* //! Implement average star rating logic cssf */}
+
+                  <div className='spr-summary flex items-center pt-2'>
                     <span className='spr-starrating' aria-label={`${ratingAvg.toFixed(1)} of 5 stars`} role='img'>
-                      5 icon stars
-                    <i aria-hidden={true}/>
+                      <AverageStarRating reviews={reviews} />
                     </span>
                     <span className='spr-summary-caption'>
                       <span className='spr-summary-actions-togglereviews'>Read all {reviews.length === 1 ? reviews.length + ' review' : reviews.length + ' reviews'}</span>
-                      <span className='spr-summary-actions'>
-                        <a href='#' className='spr-summary-actions-newreview uppercase underline'>Write a review</a>
-                      </span>
+                    </span>
+                    <span className='spr-summary-actions ml-auto'>
+                      <a href='#' className='spr-summary-actions-newreview uppercase underline'>Write a review</a>
                     </span>
                   </div>
                 </div>
