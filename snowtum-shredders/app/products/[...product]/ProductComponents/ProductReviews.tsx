@@ -22,15 +22,15 @@ export default function ProductReviews ( {reviews, product_id}: ProductReviewsPr
                 <div className='spr-header'>
                   <h2 className='spr-header-title font-bold text-[36px]'>Customer Reviews</h2>
 
-                  <div className='spr-summary flex items-center pt-2'>
+                  <div className='spr-summary flex items-center pt-2 text-[14px]'>
                     <span className='spr-starrating' aria-label={`${ratingAvg.toFixed(1)} of 5 stars`} role='img'>
                       <AverageStarRating reviews={reviews} />
                     </span>
-                    <span className='spr-summary-caption'>
+                    <span className='spr-summary-caption ml-2'>
                       <span className='spr-summary-actions-togglereviews'>Read all {reviews.length === 1 ? reviews.length + ' review' : reviews.length + ' reviews'}</span>
                     </span>
                     <span className='spr-summary-actions ml-auto'>
-                      <a href='#' className='spr-summary-actions-newreview uppercase underline'>Write a review</a>
+                      <a href='#' className='spr-summary-actions-newreview uppercase underline font-bold'>Write a review</a>
                     </span>
                   </div>
                 </div>

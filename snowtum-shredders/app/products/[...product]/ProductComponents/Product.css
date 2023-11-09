@@ -149,11 +149,11 @@
 }
 
 /* Add this CSS to create a horizontal line on top of each spr-review */
-.spr-review {
+.spr-review, .spr-pagination {
   position: relative;
 }
 
-.spr-review::after {
+.spr-review::after, .spr-pagination::after {
   content: '';
   position: absolute;
   top: 0;
