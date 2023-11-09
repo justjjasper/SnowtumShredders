@@ -44,11 +44,15 @@ export default function ProductReviewsForm ( {product_id}: ProductReviewsFormPro
     setCharCount(text.length)
   }
 
+  const handleOnSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    console.log('button submit')
+  }
   return (
     // ! Be wary that there are solo value attr with each input in the form
-    <div className='spr-form hidden mt-[24px] pt-[24px] border-t-[1px]' id={`form_${product_id}`}>
+    <div className='spr-form mt-[24px] pt-[24px] border-t-[1px]' id={`form_${product_id}`}>
       {/* //TODO: Fill in server api later */}
-      <form method='post' action='FILL THIS IN LATER' id={`new-review-form_${product_id}`} >
+      <form method='post' action='FILL THIS IN LATER' id={`new-review-form_${product_id}`} onSubmit={handleOnSubmit}>
         {/* These two inputs are for structuring body data to send to the server with "HTML" post */}
         <input type='hidden' name='review[rating]'/>
         <input type='hidden' name='product_id' value={product_id}/>
