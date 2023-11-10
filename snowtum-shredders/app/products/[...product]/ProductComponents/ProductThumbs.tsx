@@ -7,7 +7,6 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore from 'swiper'
 import 'swiper/css'
 import { ProductContext } from './ContentContainer'
-import { ProductType } from '@/app/types'
 
 interface ProductThumbsProps {
   product: ProductType

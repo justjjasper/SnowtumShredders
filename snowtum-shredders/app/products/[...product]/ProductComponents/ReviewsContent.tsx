@@ -1,5 +1,5 @@
-import { ReviewType } from "@/app/types";
 import { starFilledSVG, starEmptySVG } from "@/app/Misc/Icons";
+
 interface ReviewsContentProps {
   reviews: ReviewType[];
   product_id: number;

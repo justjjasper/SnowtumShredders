@@ -7,14 +7,6 @@ interface FormStarsProps {
   setRating: (starRating: number) => void
 }
 
-interface HoveredType {
-  star1: boolean;
-  star2: boolean;
-  star3: boolean;
-  star4: boolean;
-  star5: boolean;
-}
-
 export default function FormStars( {rating, setRating}: FormStarsProps) {
   // Controls hover state for respective star
   const [hovered, setHovered] = useState<HoveredType>({

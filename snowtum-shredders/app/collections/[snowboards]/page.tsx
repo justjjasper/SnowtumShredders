@@ -2,7 +2,6 @@
 // If its men, women, kids, filter from header description, for splitboard filter from snowboard name
 import '@/app/components/Collections/CollectionsPage.css'
 import { snowboardsAPI } from '@/app/config'
-import { MetaDataType } from '@/app/types'
 import SortingOptions from '@/app/components/Collections/SortingOptions'
 import AsideSnowboards from '@/app/components/Collections/Snowboards/AsideSnowboard'
 import SnowboardList from '@/app/components/Collections/Snowboards/SnowboardList'
@@ -15,15 +14,6 @@ interface SnowboardCollectionParams {
     sort_by: string
   }
 };
-
-export interface SnowboardProductType {
-  snowboard_id: number,
-  snowboard_name: string;
-  snowboard_price: number;
-  snowboard_image: string;
-  header_description: string
-  snowboard_meta_data: MetaDataType[]
-}
 
 export default async function SnowboardCollection( { params, searchParams }: SnowboardCollectionParams){
 

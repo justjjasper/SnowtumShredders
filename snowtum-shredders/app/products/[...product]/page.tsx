@@ -5,7 +5,6 @@ import ContentContainer from "./ProductComponents/ContentContainer"
 import ProductTech from "./ProductComponents/ProductTech"
 import ProductAccessoryDetail from "./ProductComponents/ProductAccessoryDetail"
 import ProductReviews from "./ProductComponents/ProductReviews"
-import { ReviewType } from "@/app/types"
 
 // May use unions to have product type be string | string[]
 interface ProductParams {

@@ -1,5 +1,5 @@
 'use client'
-import { ReviewType } from "@/app/types"
+
 import ProductReviewsForm from "./ProductReviewsForm";
 import ReviewsContent from "./ReviewsContent";
 import { calcAvgStarRating } from "../page";

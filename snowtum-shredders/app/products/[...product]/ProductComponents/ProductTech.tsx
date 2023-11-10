@@ -1,4 +1,3 @@
-import { ProductType } from "@/app/types"
 import Image from "next/image"
 import React from "react"
 

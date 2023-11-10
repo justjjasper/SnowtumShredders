@@ -1,4 +1,3 @@
-import { ProductType } from "@/app/types"
 import React from "react";
 
 export default function ProductAccessoryDetail ( {product}: {product: ProductType}) {

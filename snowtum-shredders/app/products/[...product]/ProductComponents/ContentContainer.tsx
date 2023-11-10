@@ -5,7 +5,6 @@ import ProductMain from "./ProductMain"
 import ProductThumbs from "./ProductThumbs"
 import SwiperCore from 'swiper'
 import { useState, createContext } from 'react'
-import { ProductType } from '@/app/types'
 
 interface ContentContainerProps {
   product: ProductType;
