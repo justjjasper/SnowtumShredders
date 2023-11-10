@@ -111,56 +111,45 @@ export default function NavBar(){
     // **To Implement individual backdrop blur of Snowboard/Accessory dropdown menu** When state of either snowboard/acessories is hovered via onMouseEnter, a class is added to entire header to create backdrop blur.
     //[MobileMenu] Implement my-[-280/560px] to combat relative white space when snowboard/accessoriesMobileMenu is set to true
     <div className={`header flex flex-col font-calibre sticky font-bold top-0 backdrop-blur-[35px] z-50 text-[#ffffff] w-full
-      ${snowboardHovered ? 'snowboardMenuTrigger' : ''}
-      ${accessoriesHovered ? 'accessoriesMenuTrigger' : ''}
-      ${searchHovered ? 'searchMenuTrigger' : ''}
-      ${hamburgerToggle ? 'mobileDropdownMenuTrigger my-[-48px]' : ''}
-      ${snowboardMobileMenu ? 'my-[-380px]' : ''}
-      ${accessoriesMobileMenu ? 'my-[-380px]' : ''}
-      ${accessoriesMobileMenu && snowboardMobileMenu ? 'my-[-560px]' : ''}
-      `
-      }
-      onMouseLeave={onMouseLeave}>
+        ${snowboardHovered ? 'snowboardMenuTrigger' : ''}
+        ${accessoriesHovered ? 'accessoriesMenuTrigger' : ''}
+        ${searchHovered ? 'searchMenuTrigger' : ''}
+        ${hamburgerToggle ? 'mobileDropdownMenuTrigger my-[-48px]' : ''}
+        ${snowboardMobileMenu ? 'my-[-380px]' : ''}
+        ${accessoriesMobileMenu ? 'my-[-380px]' : ''}
+        ${accessoriesMobileMenu && snowboardMobileMenu ? 'my-[-560px]' : ''}`}
+        onMouseLeave={onMouseLeave}>
 
       {/* "Physical" Navbar */}
       <div className={`physical-navbar flex w-full items-center justify-between px-3 md:px-16 py-3 md:py-8
-        ${snowboardMobileMenu ? '' : ''}
-      `}
-
-      >
+        ${snowboardMobileMenu ? '' : ''}`}>
         <Link href='/' className='font-holtwood sm:text-[22px]' onMouseEnter={onMouseLeave}>SNOWTUM SHREDDERS</Link>
         <nav className='hidden lg:flex flex-grow justify-around'>
           <ul className='flex w-8/12 justify-evenly'>
+            {/* When the cursor hovers "SNOWBOARD", the "is-active" class is added to the span tag */}
             <span className={`header-link ${snowboardHovered ? 'is-active' : ''}`}
-              id='snowboard-header'
-              onMouseEnter={onMouseEnterSnowboard}
-              /*
-                When the cursor hovers "SNOWBOARD", the "is-active" Class is added
-                to the span tag.
-              */
-            >
-              SNOWBOARDS
+                  id='snowboard-header'
+                  onMouseEnter={onMouseEnterSnowboard}>
+                  SNOWBOARDS
             </span>
+
             <span className={`header-link ${accessoriesHovered ? 'is-active' : ''}`}
-              id='accessories-header'
-              onMouseEnter={onMouseEnterAccessories}
-              >
-              ACCESSORIES
+                  id='accessories-header'
+                  onMouseEnter={onMouseEnterAccessories}>
+                  ACCESSORIES
             </span>
             <Link id='menu-link'
-              href='/pages/team'
-              onMouseEnter={onMouseLeave}
-              >
-              TEAM
+                  href='/pages/team'
+                  onMouseEnter={onMouseLeave}>
+                  TEAM
             </Link>
           </ul>
         </nav>
 
         <div className='flex gap-3 xsm:gap-7'>
           <button id='menu-link'
-            onMouseEnter={onMouseEnterSearch}
-            className='hidden lg:block'
-          >
+                  onMouseEnter={onMouseEnterSearch}
+                  className='hidden lg:block'>
             {searchSVG}
           </button>
           <button id='menu-link'>
@@ -195,17 +184,13 @@ export default function NavBar(){
 
           {/* Snowboard Menu */}
           <div className={`snowboards-menu relative w-full flex-col
-            lg:${snowboardHovered ? 'flex' : 'hidden'}
-            ${hamburgerToggle ? 'flex divider py-3' : 'hidden'}
-            `}
-            onMouseEnter={onMouseEnterSnowboard}
-            >
+               lg:${snowboardHovered ? 'flex' : 'hidden'}
+               ${hamburgerToggle ? 'flex divider py-3' : 'hidden'} `}
+               onMouseEnter={onMouseEnterSnowboard}>
+
               <button className={`${hamburgerToggle ? 'flex' : 'hidden'}`}
-                onClick={() => setSnowboardMobileMenu(!snowboardMobileMenu)}
-              >
-                <span
-                  className='flex justify-between items-center w-full'
-                >
+                      onClick={() => setSnowboardMobileMenu(!snowboardMobileMenu)}>
+                <span className='flex justify-between items-center w-full'>
                   <span id='menu-link'>
                     Snowboards
                   </span>
@@ -214,91 +199,72 @@ export default function NavBar(){
               </button>
 
               <div className={`snowboards-menu-list lg:flex flex-col font-medium text-[14px] w-full
-                ${hamburgerToggle ? 'snowboards-mobile-menu-list' : 'hidden'}
-                ${snowboardMobileMenu ? 'flex active' : 'flex'}
-                `
-              }
-                style={{paddingLeft : `${snowboardXPos}px`}}
-                >
-                <Link href='/collections/all-snowboards' onClick={onMouseLeave} className='py-3 leading-8'>
-                  <span id='menu-link' className='w-full'>ALL</span>
-                </Link>
-                <Link href='/collections/snowboards-mens' onClick={onMouseLeave} className='py-3 leading-8'>
-                  <span id='menu-link' className='w-full'>MEN&apos;S</span>
-                </Link>
-                <Link href='/collections/snowboards-womens' onClick={onMouseLeave} className='py-3 leading-8'>
-                  <span id='menu-link' className='w-full'>WOMEN&apos;S</span>
-                </Link>
-                <Link href='/collections/snowboards-kids' onClick={onMouseLeave} className='py-3 leading-8'>
-                  <span id='menu-link' className='w-full'>KID&apos;S</span>
-                </Link>
-                <Link href='/collections/split-snowboards' onClick={onMouseLeave} className='py-3 leading-8'>
-                  <span id='menu-link' className='w-full'>SPLITBOARDS</span>
-                </Link>
+                   ${hamburgerToggle ? 'snowboards-mobile-menu-list' : 'hidden'}
+                   ${snowboardMobileMenu ? 'flex active' : 'flex'}`}
+                   style={{paddingLeft : `${snowboardXPos}px`}}>
+                   <Link href='/collections/all-snowboards' onClick={onMouseLeave} className='py-3 leading-8'>
+                     <span id='menu-link' className='w-full'>ALL</span>
+                   </Link>
+                   <Link href='/collections/snowboards-mens' onClick={onMouseLeave} className='py-3 leading-8'>
+                     <span id='menu-link' className='w-full'>MEN&apos;S</span>
+                   </Link>
+                   <Link href='/collections/snowboards-womens' onClick={onMouseLeave} className='py-3 leading-8'>
+                     <span id='menu-link' className='w-full'>WOMEN&apos;S</span>
+                   </Link>
+                   <Link href='/collections/snowboards-kids' onClick={onMouseLeave} className='py-3 leading-8'>
+                     <span id='menu-link' className='w-full'>KID&apos;S</span>
+                   </Link>
+                   <Link href='/collections/split-snowboards' onClick={onMouseLeave} className='py-3 leading-8'>
+                     <span id='menu-link' className='w-full'>SPLITBOARDS</span>
+                   </Link>
               </div>
             <div className={`${hamburgerToggle ? 'divider' : 'hidden'}`}></div>
           </div>
 
           {/* Accessories Menu */}
           <div className={`accessories-menu relative w-full flex-col
-            lg:${accessoriesHovered ? 'flex' : 'hidden'}
-            ${hamburgerToggle ? 'flex divider py-3' : 'hidden'}
-            `
-          }
-            onMouseEnter={onMouseEnterAccessories}
-          >
-            <button className={`${hamburgerToggle ? 'flex' : 'hidden'}`}
-               onClick={() => setAccessoriesMobileMenu(!accessoriesMobileMenu)}
-            >
-              <span
-                className='flex items-center justify-between w-full'
-                >
-                  <span id='menu-link'>
-                    Accessories
-                  </span>
-                  {accessoriesMobileMenu ? circleMinusSVG : circlePlusSVG}
-                </span>
-            </button>
+               lg:${accessoriesHovered ? 'flex' : 'hidden'}
+               ${hamburgerToggle ? 'flex divider py-3' : 'hidden'}`}
+               onMouseEnter={onMouseEnterAccessories}>
+               <button className={`${hamburgerToggle ? 'flex' : 'hidden'}`}
+                       onClick={() => setAccessoriesMobileMenu(!accessoriesMobileMenu)}>
+                      <span className='flex items-center justify-between w-full'>
+                        <span id='menu-link'>Accessories</span>
+                        {accessoriesMobileMenu ? circleMinusSVG : circlePlusSVG}
+                      </span>
+               </button>
 
             <div className={`accessories-menu-list lg:flex flex-col font-medium text-[14px] w-full
-              ${hamburgerToggle ? 'accessories-mobile-menu-list' : 'hidden'}
-              ${accessoriesMobileMenu ? 'flex active' : 'flex'}
-              `
-            }
-              style={{paddingLeft: `${accessoriesXPos}px`}}
-            >
-              <Link href='/collections/accessories/all-accessories' onClick={onMouseLeave} className='py-3 leading-8'>
-                <span id='menu-link' className='w-full'>ALL</span>
-              </Link>
-              <Link href='/collections/accessories/tshirts' onClick={onMouseLeave} className='py-3 leading-8'>
-                <span id='menu-link' className='w-full'>T-SHIRTS</span>
-              </Link>
-              <Link href='/collections/accessories/hoodies' onClick={onMouseLeave} className='py-3 leading-8'>
-                <span id='menu-link' className='w-full'>HOODIES</span>
-              </Link>
-              <Link href='/collections/accessories/hats-beanies' onClick={onMouseLeave} className='py-3 leading-8'>
-                <span id='menu-link' className='w-full'>HATS & BEANIES</span>
-              </Link>
-              <Link href='/collections/accessories/boardbags' onClick={onMouseLeave} className='py-3 leading-8'>
-                <span id='menu-link' className='w-full'>BOARD BAGS</span>
-              </Link>
-            </div>
+                ${hamburgerToggle ? 'accessories-mobile-menu-list' : 'hidden'}
+                ${accessoriesMobileMenu ? 'flex active' : 'flex'}`}
+                style={{paddingLeft: `${accessoriesXPos}px`}}>
+                <Link href='/collections/accessories/all-accessories' onClick={onMouseLeave} className='py-3 leading-8'>
+                  <span id='menu-link' className='w-full'>ALL</span>
+                </Link>
+                <Link href='/collections/accessories/tshirts' onClick={onMouseLeave} className='py-3 leading-8'>
+                  <span id='menu-link' className='w-full'>T-SHIRTS</span>
+                </Link>
+                <Link href='/collections/accessories/hoodies' onClick={onMouseLeave} className='py-3 leading-8'>
+                  <span id='menu-link' className='w-full'>HOODIES</span>
+                </Link>
+                <Link href='/collections/accessories/hats-beanies' onClick={onMouseLeave} className='py-3 leading-8'>
+                  <span id='menu-link' className='w-full'>HATS & BEANIES</span>
+                </Link>
+                <Link href='/collections/accessories/boardbags' onClick={onMouseLeave} className='py-3 leading-8'>
+                  <span id='menu-link' className='w-full'>BOARD BAGS</span>
+                </Link>
+             </div>
           </div>
 
           { /* Team Mobile Menu*/}
           <div className={`team-mobile-menu relative
-            ${hamburgerToggle ? 'flex divider py-3' : 'hidden'}`
-          }
-          >
-            <Link href='/pages/team' className='w-full'>
-              <span id='menu-link'>
-              Team
-              </span>
-            </Link>
+               ${hamburgerToggle ? 'flex divider py-3' : 'hidden'}`}>
+              <Link href='/pages/team' className='w-full'>
+                <span id='menu-link'>Team</span>
+              </Link>
           </div>
         </div>
       </div>
-
     </div>
   )
 }

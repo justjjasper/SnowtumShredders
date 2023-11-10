@@ -24,11 +24,11 @@ export default function ProductReviewsForm ( {product_id}: ProductReviewsFormPro
     // ! Be wary that there are solo value attr with each input in the form
     <div className='spr-form mt-[24px] pt-[24px] border-t-[1px]' id={`form_${product_id}`}>
       {/* //TODO: Fill in server api later */}
-      <form method='post' action='FILL THIS IN LATER' id={`new-review-form_${product_id}`} onSubmit={handleOnSubmit}>
+      <form method='post' action='FILL THIS IN LATER' id={`new-review-form_${product_id}`} onSubmit={handleOnSubmit} className='new-review-form pt-[24px]'>
         {/* These two inputs are for structuring body data to send to the server with "HTML" post */}
         <input type='hidden' name='review[rating]'/>
         <input type='hidden' name='product_id' value={product_id}/>
-        <h3 className='spr-form-title'>Write a review</h3>
+        <h3 className='spr-form-title text-[14px] leading-[22px]'>Write a review</h3>
 
         <fieldset className='spr-form-contact'>
           <div className='spr-form-contact-name'>
@@ -53,7 +53,7 @@ export default function ProductReviewsForm ( {product_id}: ProductReviewsFormPro
             <label className='spr-form-label' htmlFor={`review_body_${product_id}`}>
                 Body of Review
               <span role='status' aria-live='polite' aria-atomic='true'>
-                <span className='spr-form-review-body-charactersremaining'>{`(${1500 - charCount})`}</span>
+                <span className='spr-form-review-body-charactersremaining'> {`(${1500 - charCount})`}</span>
                 {/* This second span is for screen readers to count  */}
                 <span className='visuallyhidden'>charactersremaining</span>
               </span>
@@ -72,8 +72,8 @@ export default function ProductReviewsForm ( {product_id}: ProductReviewsFormPro
           </div>
         </fieldset>
 
-        <fieldset className='spr-form-actions'>
-          <button className='spr-button uppercase flex' type='submit'>Submit Review</button>
+        <fieldset className='spr-form-actions flex'>
+          <button className='spr-button uppercase flex h-[65px] bg-[#fff] border-[1px] min-w-[340px] py-[21px] px-[20px] rounded-[30px] ml-auto font-bold justify-center tracking-wide' type='submit'>Submit Review</button>
         </fieldset>
       </form>
     </div>

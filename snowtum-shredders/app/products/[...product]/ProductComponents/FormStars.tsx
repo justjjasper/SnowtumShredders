@@ -38,7 +38,7 @@ export default function FormStars( {rating, setRating}: FormStarsProps) {
   }
 
   return (
-    <div className='spr-form-review-rating mb-[15px]'>
+    <div className='spr-form-review-rating'>
       <label className='spr-form-label' htmlFor='review[rating]'>Rating</label>
       <div className='spr-form-input spr-starrating flex gap-1'>
         {/* //TODO each a tag contains an onClick func */}

@@ -162,3 +162,30 @@
   border-bottom: 1px solid gray;
   opacity: 0.3;
 }
+
+/* //? Product Reviews Form */
+.spr-form-contact-name, .spr-form-contact-email, .spr-form-review-rating, .spr-form-review-title, .spr-form-review-body {
+  margin-bottom: 15px;
+}
+
+.spr-form-label + .spr-form-input {
+  margin: 0;
+  font-size: 13px;
+}
+
+input.spr-form-input, textarea.spr-form-input {
+  border: 1px solid;
+  min-height: 20px;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%
+}
+
+.spr-form-label {
+  font-size: 12px;
+  line-height: 20px;
+}
+
+textarea {
+  line-height: 1.15;
+}
