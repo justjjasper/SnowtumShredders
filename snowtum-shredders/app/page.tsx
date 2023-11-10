@@ -10,8 +10,7 @@ export default async function Home() {
 
     return (
       <main className="flex flex-col items-center relative bottom-[100px] z-20">
-        <section className="relative flex justify-center w-full"
-          >
+        <section className="relative flex justify-center w-full">
           <Image
             src='https://res.cloudinary.com/jasjasper/image/upload/v1696808288/snowtum-shredders-banner_xcxkev.png'
             alt='Snowtum Shredder Desktop Banner'
@@ -22,7 +21,6 @@ export default async function Home() {
           />
 
         {/* <div className='mobileImage h-[500px]'>
-
         <Image
         src='https://res.cloudinary.com/jasjasper/image/upload/v1697557655/MobileBanner_khhebe.png'
         alt='Snowtum Shredder Mobile Banner'
@@ -49,7 +47,6 @@ export default async function Home() {
             </div>
 
             <div className="left-banner-card flex flex-col items-center font-calibre rounded-2xl border-[1px] md:translate-x-[70%] mt-[-42%] md:mt-[0px] bg-[url('https://capitasnowboarding.com/cdn/shop/files/000_GRID_PAPER_BG_1_77e3e65d-56ba-4a1f-a70b-76408f3b3cbf.png?v=1690637051')] md:w-[280px] md:h-[537px] h-[350px] w-[170px]">
-
 
               <Link href='products/snowboard/indoor-survival' className='flex flex-col justify-between h-full'>
                 <Image

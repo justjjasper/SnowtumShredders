@@ -15,6 +15,7 @@ export default function ProductReviews ( {reviews, product_id}: ProductReviewsPr
   const ratingAvg = calcAvgStarRating(reviews)
 
   const [toggleForm, setToggleForm] = useState<boolean>(false)
+  const [formSubmitted, setFormSubmitted] = useState<boolean>(false)
 
   const handleToggle = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
@@ -38,7 +39,7 @@ export default function ProductReviews ( {reviews, product_id}: ProductReviewsPr
                     <span className='spr-summary-caption ml-2'>
                       <span className='spr-summary-actions-togglereviews'>Read all {reviews.length === 1 ? reviews.length + ' review' : reviews.length + ' reviews'}</span>
                     </span>
-                    <span className='spr-summary-actions ml-auto'>
+                    <span className={`spr-summary-actions ml-auto ${formSubmitted ? 'hidden' : ''}`}>
                       <a href='#' className='spr-summary-actions-newreview uppercase underline font-bold' onClick={handleToggle}>Write a review</a>
                     </span>
                   </div>
@@ -46,7 +47,11 @@ export default function ProductReviews ( {reviews, product_id}: ProductReviewsPr
                 {/* Top of spr-content has a dashed line */}
                 <div className='spr-content'>
                   {/* Form to write a new review*/}
-                  { toggleForm && <ProductReviewsForm product_id={product_id}/> }
+                  { toggleForm && <ProductReviewsForm
+                                    product_id={product_id}
+                                    formSubmitted={formSubmitted}
+                                    setFormSubmitted={setFormSubmitted}/>
+                  }
                   <ReviewsContent reviews={reviews} product_id={product_id}/>
                 </div>
               </div>
