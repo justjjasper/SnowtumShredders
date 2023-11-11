@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from .models import *
 from django.db import DatabaseError #
+from rest_framework.decorators import api_view
 
 def custom_title_case(text):
         # Split the text by spaces
@@ -365,3 +366,9 @@ def get_boardbag_product(request, boardbag_name):
     # Handle the case where the snowboard with the provided name does not exist
         return JsonResponse({'error': 'Boardbag not found'}, status=404)
 
+@api_view(['POST'])
+def post_review(request):
+    if request.method == 'POST':
+        data = request.data
+        print(data)
+        return JsonResponse({ 'message': 'it worked'}, status=201)

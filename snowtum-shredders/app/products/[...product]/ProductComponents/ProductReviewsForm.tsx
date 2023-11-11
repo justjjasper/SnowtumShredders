@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import FormStars from './FormStars'
 import { submitReview } from '@/app/serverActions/submitReview'
+import { postReviewAPI } from '@/app/config';
 
 interface ProductReviewsFormProps {
   product_id: number;
@@ -21,23 +22,37 @@ export default function ProductReviewsForm ( {product_id, formSubmitted, setForm
   }
 
   // Handles form validation/edge case. Passes form to serverside function submitReview for backend logic
-  const handleSubmit = (e: FormData) => {
+  const handleSubmit = async (e: FormData) => {
     const name = e.get('review[author]')?.toString()
     const email = e.get('review[email]')?.toString()
     const title = e.get('review[title]')?.toString()
     const body = e.get('review[body]')?.toString()
     e.set('review[rating]', rating.toString())
 
-    if (!name || !email || !title || !body || !rating ) {
-      setFormError(!formError)
-      return
+    const csrfToken = document.cookie.replace(
+      /(?:(?:^|.*;\s*)csrftoken\s*=\s*([^;]*).*$)|^.*$/,
+      '$1'
+    )
+
+    const reviewBody = {
+      name,
+      email,
+      title,
+      body,
+      rating
     }
+
+    // ? Dont forget to uncomment
+    // if (!name || !email || !title || !body || !rating ) {
+    //   setFormError(!formError)
+    //   return
+    // }
 
     // TODO handle logic
     //  if posting review was successful, close the Write Review Span from parent component
     // change submitReview to a variable = await and ??
-    submitReview(e)
-    setFormSubmitted(true)
+    submitReview(e, reviewBody, csrfToken)
+    // setFormSubmitted(true)
   }
 
   return (
