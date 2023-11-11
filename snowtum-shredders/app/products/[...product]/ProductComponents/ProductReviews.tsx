@@ -21,6 +21,7 @@ export default function ProductReviews ( {reviews, product_id}: ProductReviewsPr
     e.preventDefault()
     setToggleForm(!toggleForm)
   }
+  console.log('revs', reviews)
 
   return (
     <section className='content-container-product-reviews max-w-[1920px]'>  {/* <---- Responsible for max width of 1920px */}

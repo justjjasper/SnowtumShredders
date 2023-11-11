@@ -229,6 +229,7 @@ def get_snowboard_product(request, snowboard_name):
             'review_id',
             'snowboard_review_title',
             'snowboard_review_author',
+            'snowboard_review_email',
             'snowboard_review_date',
             'snowboard_review_body',
             'snowboard_review_rating'

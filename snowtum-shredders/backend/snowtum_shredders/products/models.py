@@ -34,6 +34,7 @@ class SnowboardReview(models.Model):
     snowboard = models.ForeignKey(Snowboard, on_delete=models.CASCADE)
     snowboard_review_title = models.CharField(max_length=255)
     snowboard_review_author = models.CharField(max_length=255)
+    snowboard_review_email = models.CharField(max_length=255)
     snowboard_review_date = models.DateField()
     snowboard_review_body = models.TextField()
     snowboard_review_rating = models.IntegerField()
