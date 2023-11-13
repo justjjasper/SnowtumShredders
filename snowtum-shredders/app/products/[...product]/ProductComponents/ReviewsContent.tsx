@@ -1,5 +1,6 @@
 import { starFilledSVG, starEmptySVG } from "@/app/Misc/Icons";
 import Link from "next/link";
+import Report from './Report'
 
 interface ReviewsContentProps {
   reviews: ReviewType[];
@@ -59,14 +60,7 @@ export default function ReviewsContent( {reviews, product_id, page, productName}
             <div className='spr-review-content text-[12px] mb-[24px]'>
               <p>{review.snowboard_review_body}</p>
             </div>
-            <div className='spr-review-footer flex'>
-              {/* //TODO contains onClikck function */}
-              <a className='spr-review-reportreview uppercase underline text-[10px] font-bold ml-auto'
-                  id={`report_${review.review_id}`}
-                  href='#'>
-                  Report as Inappropriate
-              </a>
-            </div>
+            <Report review_id={review.review_id}/>
           </div>
 
         )
