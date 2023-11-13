@@ -3,7 +3,6 @@ accessory/ collection API
 */
 import '@/app/components/Collections/CollectionsPage.css'
 import { accessoriesAPI } from '@/app/config'
-import { MetaDataType } from '@/app/types'
 import AsideAccessories from '@/app/components/Collections/Accessories/AsideAccessories'
 import SortingOptions from '@/app/components/Collections/SortingOptions'
 import AccessoryList from '@/app/components/Collections/Accessories/AccessoryList'

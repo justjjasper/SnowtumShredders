@@ -16,7 +16,6 @@ interface SnowboardCollectionParams {
 };
 
 export default async function SnowboardCollection( { params, searchParams }: SnowboardCollectionParams){
-
   try {
     const data = await fetch(`${snowboardsAPI}`)
     const response = await data.json()

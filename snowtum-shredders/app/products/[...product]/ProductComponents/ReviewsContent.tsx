@@ -1,21 +1,36 @@
 import { starFilledSVG, starEmptySVG } from "@/app/Misc/Icons";
+import Pagination from "./Pagination";
+import Link from "next/link";
 
 interface ReviewsContentProps {
   reviews: ReviewType[];
   product_id: number;
+  page: string;
 }
 
-export default function ReviewsContent( {reviews, product_id}: ReviewsContentProps ) {
+// ! Use Param Queries as state as to to control product reviews pagination
+// if there are no query params, just use the first page of the review pagination
+//
+export default function ReviewsContent( {reviews, product_id, page}: ReviewsContentProps ) {
   function formatDate(inputDate: string) {
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short', day: 'numeric' };
     return new Date(inputDate).toLocaleDateString('en-US', options);
   }
 
+  let currentPage = 1
+  let reviewsPerPage = Number(page) || 1
+
+  const totalPages = Math.ceil(reviews.length / reviewsPerPage)
+
+  const indexOfLastReview = currentPage * reviewsPerPage
+  const indexOfFirstReview = indexOfLastReview - reviewsPerPage
+  const currentReviews = reviews.slice(indexOfFirstReview, indexOfLastReview)
+
   return (
     <div className='spr-reviews mt-[24px]' id={`reviews_${product_id}`}>
 
       {/* mapped out review divs */}
-      { reviews.map((review, i) => {
+      { currentReviews.map((review, i) => {
         const rating = review.snowboard_review_rating
         const emptyStarCount = 5 - rating
 
@@ -62,9 +77,16 @@ export default function ReviewsContent( {reviews, product_id}: ReviewsContentPro
       <div className='spr-pagination relative pt-[10px]'>
         <div>
           {/* mapped out paginaton spans*/}
-          <span className='spr-pagination-page is-active'>1</span>
+          {/* <span className='spr-pagination-page is-active'>1</span>
           <span className='spr-pagination-page'><a>2</a></span>
-          <span className='spr-pagination-next absolute right-0'><a>Next</a></span>
+          <span>
+           <Link href='http://localhost:3000/products/snowboard/indoor-survival?page=3#spr-container'>3</Link>
+          </span>
+          <span>
+           <Link href='http://localhost:3000/products/snowboard/indoor-survival?page=4#spr-container'>4</Link>
+          </span>
+          <span className='spr-pagination-next absolute right-0'><a>Next</a></span> */}
+
         </div>
       </div>
     </div>

@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import '../ProductSizes.css'
 import { AccessoryProductType } from "@/app/collections/accessories/[accessory]/page";
-import { MetaDataType } from "@/app/types";
 import { useEffect, useState } from "react";
 
 type AccessoryListProps = {

@@ -15,7 +15,7 @@ export default function ProductAccessoryDetail ( {product}: {product: ProductTyp
   }
 
   return (
-    <section className='content-container-product-accessory-detail max-w-[1920px]'>
+    <section className='content-container-product-accessory-detail'>
       <div className='content-wider lg:px-16'>
         <div className='product-detail-accessory border-[1px] rounded-[30px] p-[30px] my-[100px]'>
           <div className='product-detail-accessory-content flex flex-col mx-6'>

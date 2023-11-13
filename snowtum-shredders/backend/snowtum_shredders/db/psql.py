@@ -140,6 +140,7 @@ COPY boardbag FROM '{file_path}boardbag/snowtum_shredders_boardbag.csv' CSV HEAD
 COPY boardbag_images FROM '{file_path}boardbag/snowtum_shredders_boardbag_image.csv' CSV HEADER;
 UPDATE boardbag_images
 SET boardbag_image = CONCAT('https://', boardbag_image);
+SELECT setval('snowboard_reviews_review_id_seq', (SELECT MAX(review_id) FROM snowboard_reviews));
 '''
 
 # Function to execute PSQL Statements with no returned results

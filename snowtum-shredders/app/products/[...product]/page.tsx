@@ -10,6 +10,9 @@ import ProductReviews from "./ProductComponents/ProductReviews"
 interface ProductParams {
   params: {
     product: string[]
+  },
+  searchParams: {
+    page: string
   }
 }
 
@@ -24,11 +27,11 @@ export const calcAvgStarRating = (reviews: ReviewType[]) => {
 }
 
 // if productType is snowboard... conditional render that section
-export default async function Product({ params }: ProductParams ) {
+export default async function Product({ params, searchParams }: ProductParams ) {
   // Get dynamic route parameters for productType and productName
   const productType = params.product[0]
   const productName = params.product[1]
-  // console.log('what are products', params)
+  const { page } = searchParams
 
   try{
     // Query from database using productType & productName
@@ -60,7 +63,7 @@ export default async function Product({ params }: ProductParams ) {
             <section className='product-reviews-container hidden'></section>
             { product.flex && <ProductTech product={product}/> }
             { product.description && <ProductAccessoryDetail product={product}/> }
-            { product.reviews && <ProductReviews reviews={product.reviews} product_id={product.id}/>}
+            { product.reviews && <ProductReviews reviews={product.reviews} product_id={product.id} page={page}/>}
           </main>
       </main>
     )

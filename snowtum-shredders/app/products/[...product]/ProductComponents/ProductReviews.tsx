@@ -8,12 +8,13 @@ import React, { useState } from "react";
 
 interface ProductReviewsProps {
   reviews: ReviewType[];
-  product_id: number
+  product_id: number;
+  page: string
 }
 
-export default function ProductReviews ( {reviews, product_id}: ProductReviewsProps ) {
+export default function ProductReviews ( {reviews, product_id, page}: ProductReviewsProps ) {
   const ratingAvg = calcAvgStarRating(reviews)
-
+  console.log('producreviews', page)
   const [toggleForm, setToggleForm] = useState<boolean>(false)
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false)
 
@@ -21,7 +22,6 @@ export default function ProductReviews ( {reviews, product_id}: ProductReviewsPr
     e.preventDefault()
     setToggleForm(!toggleForm)
   }
-  console.log('revs', reviews)
 
   return (
     <section className='content-container-product-reviews max-w-[1920px]'>  {/* <---- Responsible for max width of 1920px */}
@@ -29,7 +29,7 @@ export default function ProductReviews ( {reviews, product_id}: ProductReviewsPr
         <div className='product-reviews border-[1px] rounded-[30px] tracking-normal my-[80px]'> {/* Responsible for my/border */}
           <div className='page-width'>
             <div className='reviews'>
-              <div className='spr-container'>
+              <div className='spr-container' id='spr-container'>
                 <div className='spr-header'>
                   <h2 className='spr-header-title font-bold text-[36px]'>Customer Reviews</h2>
 
@@ -53,7 +53,7 @@ export default function ProductReviews ( {reviews, product_id}: ProductReviewsPr
                                     formSubmitted={formSubmitted}
                                     setFormSubmitted={setFormSubmitted}/>
                   }
-                  <ReviewsContent reviews={reviews} product_id={product_id}/>
+                  <ReviewsContent reviews={reviews} product_id={product_id} page={page}/>
                 </div>
               </div>
             </div>

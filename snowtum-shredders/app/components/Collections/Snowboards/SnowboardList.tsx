@@ -2,8 +2,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import '../ProductSizes.css'
-import { SnowboardProductType } from "@/app/collections/[snowboards]/page";
-import { MetaDataType } from "@/app/types";
 import { useEffect, useState } from "react";
 
 type SnowboardListProps = {

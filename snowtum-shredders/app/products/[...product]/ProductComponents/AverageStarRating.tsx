@@ -5,7 +5,7 @@ interface AverageStarRatingProp {
   reviews: ReviewType[]
 }
 export default function AverageStarRating ( {reviews}: AverageStarRatingProp) {
-  const starWidth = (calcAvgStarRating(reviews) * 100).toString()+ '%'
+  const starWidth = (calcAvgStarRating(reviews) * 10 * 2).toString()+ '%'
 
   return (
     <span className='star-rating flex relative'>

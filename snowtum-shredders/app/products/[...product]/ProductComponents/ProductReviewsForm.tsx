@@ -23,7 +23,7 @@ export default function ProductReviewsForm ( {product_id, formSubmitted, setForm
 
   // Handles form validation/edge case. Passes form to serverside function submitReview for backend logic
   const handleSubmit = async (e: FormData) => {
-    const name = e.get('review[author]')?.toString()
+    const author = e.get('review[author]')?.toString()
     const email = e.get('review[email]')?.toString()
     const title = e.get('review[title]')?.toString()
     const body = e.get('review[body]')?.toString()
@@ -35,11 +35,13 @@ export default function ProductReviewsForm ( {product_id, formSubmitted, setForm
     )
 
     const reviewBody = {
-      name,
+      snowboard_id: product_id,
+      author,
       email,
       title,
       body,
-      rating
+      rating,
+      date: ''
     }
 
     // ? Dont forget to uncomment
@@ -52,7 +54,7 @@ export default function ProductReviewsForm ( {product_id, formSubmitted, setForm
     //  if posting review was successful, close the Write Review Span from parent component
     // change submitReview to a variable = await and ??
     submitReview(e, reviewBody, csrfToken)
-    // setFormSubmitted(true)
+    setFormSubmitted(true)
   }
 
   return (

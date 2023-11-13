@@ -2,6 +2,7 @@ from django.http import JsonResponse
 from .models import *
 from django.db import DatabaseError #
 from rest_framework.decorators import api_view
+from datetime import datetime
 
 def custom_title_case(text):
         # Split the text by spaces
@@ -370,6 +371,38 @@ def get_boardbag_product(request, boardbag_name):
 @api_view(['POST'])
 def post_review(request):
     if request.method == 'POST':
-        data = request.data
-        print(data)
-        return JsonResponse({ 'message': 'it worked'}, status=201)
+        body = request.data
+
+        # Get snowboard_id
+        snowboard_id = body.get('snowboard_id')
+
+        # Change body['date'] to proper Model Format
+        date_string = body['date']
+        parsed_date = datetime.strptime(date_string, "%b %d, %Y").date()
+
+        # Check if corresponding snowboard exist
+        try:
+            snowboard = Snowboard.objects.get(pk=snowboard_id)
+        except Snowboard.DoesNotExist:
+            return JsonResponse({'message': 'Snowboard not found while posting review'}, status=404)
+
+        # Create new snowboard review instance
+        new_review = SnowboardReview(
+            snowboard=snowboard,
+            snowboard_review_title=body['title'],
+            snowboard_review_author=body['author'],
+            snowboard_review_email=body['email'],
+            snowboard_review_date=parsed_date,
+            snowboard_review_body=body['body'],
+            snowboard_review_rating=body['rating']
+        )
+
+         # Save new SnowboardReview Instance to database
+        try:
+            new_review.save()
+            print('Review saved successfully')
+        except Exception as e:
+            print(f'Error saving review: {e}')
+
+        print('what is the body title', body)
+        return JsonResponse({ 'message': body}, status=201)

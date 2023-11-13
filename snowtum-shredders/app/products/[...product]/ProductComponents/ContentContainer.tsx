@@ -80,7 +80,7 @@ export default function ContentContainer( {product, productType}: ContentContain
   }
 
   return (
-    <section className='content-container-product-main max-w-[1920px]'> {/* <---- Responsible for max width of 1920px */}
+    <section className='content-container-product-main max-w-[1920px] overflow-hidden'> {/* <---- Responsible for max width of 1920px */}
       <div className='content-wider lg:px-16'> {/* <---- Responsible for px */}
         <div className='product-container mt-[58px]'> {/* Responsible for top margin? */}
         {/* Grid layout grid-template-areas "thumb main info" grid-template-columns(.3fr 1fr 400px) */}
