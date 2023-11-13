@@ -163,6 +163,12 @@
   opacity: 0.3;
 }
 
+.is-active {
+  font-weight: 700;
+  text-decoration: none;
+  pointer-events: none;
+}
+
 /* //? Product Reviews Form */
 .spr-form-contact-name, .spr-form-contact-email, .spr-form-review-rating, .spr-form-review-title, .spr-form-review-body {
   margin-bottom: 15px;

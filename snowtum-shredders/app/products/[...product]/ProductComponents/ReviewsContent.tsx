@@ -1,24 +1,22 @@
 import { starFilledSVG, starEmptySVG } from "@/app/Misc/Icons";
-import Pagination from "./Pagination";
 import Link from "next/link";
 
 interface ReviewsContentProps {
   reviews: ReviewType[];
   product_id: number;
   page: string;
+  productName: string;
 }
 
-// ! Use Param Queries as state as to to control product reviews pagination
-// if there are no query params, just use the first page of the review pagination
-//
-export default function ReviewsContent( {reviews, product_id, page}: ReviewsContentProps ) {
+// Used param queries as state for product reviews page/ pagination
+export default function ReviewsContent( {reviews, product_id, page, productName}: ReviewsContentProps ) {
   function formatDate(inputDate: string) {
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short', day: 'numeric' };
     return new Date(inputDate).toLocaleDateString('en-US', options);
   }
 
-  let currentPage = 1
-  let reviewsPerPage = Number(page) || 1
+  let currentPage = Number(page) || 1
+  let reviewsPerPage = 3
 
   const totalPages = Math.ceil(reviews.length / reviewsPerPage)
 
@@ -37,12 +35,12 @@ export default function ReviewsContent( {reviews, product_id, page}: ReviewsCont
         // Create an array for filled star icons
         const filledStars = Array(rating).fill(
           starFilledSVG
-        );
+        )
 
         // Create an array for empty star icons
         const emptyStars = Array(emptyStarCount).fill(
           starEmptySVG
-        );
+        )
 
         return (
           <div className='spr-review mt-[24px] py-[24px]' id={`spr-review-${review.review_id}`} key={i}>
@@ -75,18 +73,23 @@ export default function ReviewsContent( {reviews, product_id, page}: ReviewsCont
       })}
       {/* has horizontal line above */}
       <div className='spr-pagination relative pt-[10px]'>
-        <div>
-          {/* mapped out paginaton spans*/}
-          {/* <span className='spr-pagination-page is-active'>1</span>
-          <span className='spr-pagination-page'><a>2</a></span>
-          <span>
-           <Link href='http://localhost:3000/products/snowboard/indoor-survival?page=3#spr-container'>3</Link>
+        <div className='flex justify-center'>
+          <span className={`spr-pagination-prev absolute left-0 cursor-pointer underline ${currentPage === 1 ? 'hidden' : ''}`}>
+            <Link href={`http://localhost:3000/products/snowboard/${productName}?page=${currentPage - 1}#spr-container`}>Previous</Link>
           </span>
-          <span>
-           <Link href='http://localhost:3000/products/snowboard/indoor-survival?page=4#spr-container'>4</Link>
+          {Array.from({ length: totalPages }, (_, index:number) => (
+            <span key={index}
+              className={`spr-pagination-page underline mx-1 ${index + 1 === currentPage ? 'is-active' : ''}`}>
+              <Link
+                href={`http://localhost:3000/products/snowboard/${productName}?page=${index + 1}#spr-container`}>
+                  {index + 1}
+              </Link>
+            </span>
+          ))}
+          <span className={`spr-pagination-next absolute right-0 cursor-pointer underline ${currentPage === totalPages ? 'hidden' : ''}`}>
+            <Link href={`http://localhost:3000/products/snowboard/${productName}?page=${currentPage + 1}#spr-container`}
+            className="text-center">Next</Link>
           </span>
-          <span className='spr-pagination-next absolute right-0'><a>Next</a></span> */}
-
         </div>
       </div>
     </div>

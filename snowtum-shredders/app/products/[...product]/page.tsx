@@ -63,7 +63,7 @@ export default async function Product({ params, searchParams }: ProductParams ) 
             <section className='product-reviews-container hidden'></section>
             { product.flex && <ProductTech product={product}/> }
             { product.description && <ProductAccessoryDetail product={product}/> }
-            { product.reviews && <ProductReviews reviews={product.reviews} product_id={product.id} page={page}/>}
+            { product.reviews && <ProductReviews reviews={product.reviews} product_id={product.id} page={page} productName={productName}/>}
           </main>
       </main>
     )

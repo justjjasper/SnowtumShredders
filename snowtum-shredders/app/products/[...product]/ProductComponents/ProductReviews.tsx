@@ -9,10 +9,11 @@ import React, { useState } from "react";
 interface ProductReviewsProps {
   reviews: ReviewType[];
   product_id: number;
-  page: string
+  page: string;
+  productName: string;
 }
 
-export default function ProductReviews ( {reviews, product_id, page}: ProductReviewsProps ) {
+export default function ProductReviews ( {reviews, product_id, page, productName}: ProductReviewsProps ) {
   const ratingAvg = calcAvgStarRating(reviews)
   console.log('producreviews', page)
   const [toggleForm, setToggleForm] = useState<boolean>(false)
@@ -53,7 +54,7 @@ export default function ProductReviews ( {reviews, product_id, page}: ProductRev
                                     formSubmitted={formSubmitted}
                                     setFormSubmitted={setFormSubmitted}/>
                   }
-                  <ReviewsContent reviews={reviews} product_id={product_id} page={page}/>
+                  <ReviewsContent reviews={reviews} product_id={product_id} page={page} productName={productName}/>
                 </div>
               </div>
             </div>
