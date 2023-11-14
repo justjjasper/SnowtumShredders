@@ -17,7 +17,6 @@ export default function Report( {review_id}: {review_id: number} ) {
 
   return (
     <div className='spr-review-footer flex'>
-      {/* //TODO contains onClikck function */}
       { reported ? (
         <span className='spr-review-reportreview uppercase text-[9px] font-bold ml-auto'>This review has been reported</span>
       ) : (

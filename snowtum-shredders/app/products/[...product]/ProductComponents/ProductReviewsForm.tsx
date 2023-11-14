@@ -2,7 +2,6 @@
 import React, { useState } from 'react'
 import FormStars from './FormStars'
 import { submitReview } from '@/app/serverActions/submitReview'
-import { postReviewAPI } from '@/app/config';
 
 interface ProductReviewsFormProps {
   product_id: number;
@@ -44,15 +43,12 @@ export default function ProductReviewsForm ( {product_id, formSubmitted, setForm
       date: ''
     }
 
-    // ? Dont forget to uncomment
-    // if (!name || !email || !title || !body || !rating ) {
-    //   setFormError(!formError)
-    //   return
-    // }
 
-    // TODO handle logic
-    //  if posting review was successful, close the Write Review Span from parent component
-    // change submitReview to a variable = await and ??
+    if (!author || !email || !title || !body || !rating ) {
+      setFormError(!formError)
+      return
+    }
+
     submitReview(e, reviewBody, csrfToken)
     setFormSubmitted(true)
   }

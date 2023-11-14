@@ -56,7 +56,7 @@ export default function ProductThumbs() {
         >
           {images.map((image:string, index:number) => {
             return (
-              <SwiperSlide  key={index} className='flex items-center justify-center border-[1px] rounded-lg cursor-pointer'>
+              <SwiperSlide key={index} className='flex items-center justify-center border-[1px] rounded-lg cursor-pointer'>
                 <Image
                   src={image}
                   height={100}

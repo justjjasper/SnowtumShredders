@@ -5,6 +5,7 @@ import ContentContainer from "./ProductComponents/ContentContainer"
 import ProductTech from "./ProductComponents/ProductTech"
 import ProductAccessoryDetail from "./ProductComponents/ProductAccessoryDetail"
 import ProductReviews from "./ProductComponents/ProductReviews"
+import ProductGallery from "./ProductComponents/ProductGallery"
 
 // May use unions to have product type be string | string[]
 interface ProductParams {
@@ -35,7 +36,9 @@ export default async function Product({ params, searchParams }: ProductParams ) 
 
   try{
     // Query from database using productType & productName
-    const data = await fetch(`${serverURL}/${productType}/${productName}`)
+    const data = await fetch(`${serverURL}/${productType}/${productName}`, {
+      cache: 'no-store'
+    })
     const product = await data.json()
 
     // console.log('what is product[roduct page]', product.reviews)
@@ -56,8 +59,7 @@ export default async function Product({ params, searchParams }: ProductParams ) 
 
           <main className='main-content'>
             {/* Carousel loops back in product-gallery unlike ContentContainer's Carousel */}
-            <div className='product-gallery hidden'></div>
-            {/* Pass array of product images as props */}
+            <ProductGallery images={product.images} name={product.name}/>
             <ContentContainer product={product} productType={productType}/>
             <section className='product-detail-container hidden'></section>
             <section className='product-reviews-container hidden'></section>
