@@ -35,16 +35,16 @@ export default function ProductGallery( {images, name}: ProductGalleryProps ) {
             </SwiperSlide>
           )
         })}
+        <button className='product-gallery-close'>
+          {circleXMarkSVG('black')}
+        </button>
+        <button className='product-gallery-nav-prev absolute left-[40px]' type='button'>
+          {leftVectorSVG}
+        </button>
+        <button className='product-gallery-nav-next absolute right-[40px]' type='button'>
+          {rightVectorSVG}
+        </button>
       </Swiper>
-      <button>
-        {circleXMarkSVG('black')}
-      </button>
-      <button className='product-gallery-nav-prev absolute left-[40px]' type='button'>
-        {leftVectorSVG}
-      </button>
-      <button className='product-gallery-nav-next absolute right-[40px]' type='button'>
-        {rightVectorSVG}
-      </button>
     </div>
   )
 }
