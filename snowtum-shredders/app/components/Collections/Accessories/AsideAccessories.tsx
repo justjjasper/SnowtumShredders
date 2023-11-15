@@ -42,7 +42,7 @@ export default function AsideSnowboards() {
         onClick={() => setFilterToggle(!filterToggle)}
       >
         <span className='text-lg xl:text-xl font-semibold'>FILTERS</span>
-        {filterToggle ? circleXMarkSVG : circlePlusSVG}
+        {filterToggle ? circleXMarkSVG('white') : circlePlusSVG}
       </div>
       <div className={`aside-filter text-xs md:text-base xl:flex relative flex-col font-semibold py-6
         ${filterToggle ? 'flex' : 'hidden'}
