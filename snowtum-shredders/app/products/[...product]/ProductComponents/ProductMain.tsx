@@ -6,14 +6,8 @@ import SwiperCore from 'swiper'
 import { useContext } from "react"
 import { ProductContext } from "./ContentContainer"
 
-interface ProductMainProps {
-  product: ProductType
-  thumbsSwiper: null | SwiperCore;
-  setMainSwiper: (newMainSwiper: null | SwiperCore) => void
-}
-
 export default function ProductMain() {
-  const { product, thumbsSwiper, setMainSwiper }: ProductMainProps = useContext(ProductContext)
+  const { product, thumbsSwiper, setMainSwiper, toggleGallery, setToggleGallery } = useContext(ProductContext)
   const { images, name } = product
 
   return (
@@ -25,6 +19,7 @@ export default function ProductMain() {
         thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null
       }}
       onSwiper={setMainSwiper}
+      onClick={() => setToggleGallery(!toggleGallery)}
       >
       <button className='product-main-magnify absolute z-2 top-[20px] right-[10px]'>
         {magnifyingPlusSVG}

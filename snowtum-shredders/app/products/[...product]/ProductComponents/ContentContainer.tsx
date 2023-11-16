@@ -18,7 +18,9 @@ interface ProductContextData {
   thumbsSwiper: null | SwiperCore;
   setThumbsSwiper: (newThumbsSwiper: null | SwiperCore) => void
   mainSwiper: null | SwiperCore;
-  setMainSwiper: (newMainSwiper: null | SwiperCore) => void
+  setMainSwiper: (newMainSwiper: null | SwiperCore) => void;
+  toggleGallery: boolean;
+  setToggleGallery: (prevState: boolean) => void;
 }
 
 // Create a context provider to manage data being passed to child components
@@ -45,7 +47,9 @@ export const ProductContext = createContext<ProductContextData>({
   thumbsSwiper: null,
   setThumbsSwiper: () => {},
   mainSwiper: null,
-  setMainSwiper: () => {}
+  setMainSwiper: () => {},
+  toggleGallery: false,
+  setToggleGallery: () => {}
 })
 
 // Top Level Components, contains props and state for Carousels(Product Thumbs/Product Main)
@@ -54,6 +58,7 @@ export default function ContentContainer( {product, productType}: ContentContain
   // Declare swiper instances from ContentContainer level, manages swiper methods such as swiper.slideTo(index)
   const [thumbsSwiper, setThumbsSwiper] = useState<null | SwiperCore>(null)
   const [mainSwiper, setMainSwiper] = useState<null | SwiperCore>(null)
+  const [toggleGallery, setToggleGallery] = useState<boolean>(false)
 
   const { images, name } = product
 
@@ -79,7 +84,9 @@ export default function ContentContainer( {product, productType}: ContentContain
     thumbsSwiper,
     setThumbsSwiper,
     mainSwiper,
-    setMainSwiper
+    setMainSwiper,
+    toggleGallery,
+    setToggleGallery
   }
 
   return (
@@ -87,8 +94,7 @@ export default function ContentContainer( {product, productType}: ContentContain
       <div className='content-wider lg:px-16'> {/* <---- Responsible for px */}
         <div className='product-container mt-[58px]'> {/* Responsible for top margin? */}
         <ProductContext.Provider value={store}>
-          {/* Carousel loops back in product-gallery unlike ContentContainer's Carousel */}
-          <ProductGallery images={images} name={name}/>
+          <ProductGallery images={images} name={name} toggleGallery={toggleGallery} setToggleGallery={setToggleGallery}/>
           {/* Grid layout for .product-content grid-template-areas "thumb main info" grid-template-columns(.3fr 1fr 400px) */}
           <div className='product-content w-full'>
             <ProductThumbs/>

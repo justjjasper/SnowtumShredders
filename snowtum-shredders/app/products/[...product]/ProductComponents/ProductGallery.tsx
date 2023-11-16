@@ -8,11 +8,13 @@ import Image from 'next/image'
 
 interface ProductGalleryProps {
   images: string[];
-  name: string
+  name: string;
+  toggleGallery: boolean;
+  setToggleGallery: (prevState: boolean) => void
 }
-export default function ProductGallery( {images, name}: ProductGalleryProps ) {
+export default function ProductGallery( {images, name, toggleGallery, setToggleGallery}: ProductGalleryProps ) {
   return (
-    <div className='product-gallery  bg-primary fixed top-0 left-0 w-full h-full overflow-hidden'>
+    <div className={`product-gallery ${toggleGallery ? '' : 'invisible opacity-0 pointer-events-none'} bg-primary fixed top-0 left-0 w-full h-full overflow-hidden`}>
       <Swiper
         modules={[Navigation, EffectFade]}
         navigation={{
@@ -42,7 +44,7 @@ export default function ProductGallery( {images, name}: ProductGalleryProps ) {
             </SwiperSlide>
           )
         })}
-        <button className='product-gallery-close'>
+        <button className='product-gallery-close' onClick={() => setToggleGallery(!toggleGallery)}>
           {circleXMarkSVG('black')}
         </button>
         <button className='product-gallery-nav-prev absolute left-[40px]' type='button'>

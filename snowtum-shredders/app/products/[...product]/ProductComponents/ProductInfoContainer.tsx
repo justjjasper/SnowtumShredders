@@ -6,7 +6,7 @@ import { cartSVG } from '@/app/Misc/Icons'
 import AverageStarRating from '@/app/products/[...product]/ProductComponents/AverageStarRating'
 
 export default function ProductInfoContainer( {productType}: {productType: string}) {
-  const { product: { id, header_description, name, price, reviews, meta_data }, mainSwiper, thumbsSwiper  } = useContext(ProductContext)
+  const { product: { id, header_description, name, price, reviews, meta_data }, mainSwiper, thumbsSwiper } = useContext(ProductContext)
 
   const handleSwipers = (index: number) => {
     if (productType !== 'snowboard') return
