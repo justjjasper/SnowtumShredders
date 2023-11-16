@@ -14,7 +14,7 @@ interface ProductGalleryProps {
 }
 export default function ProductGallery( {images, name, toggleGallery, setToggleGallery}: ProductGalleryProps ) {
   return (
-    <div className={`product-gallery ${toggleGallery ? '' : 'invisible opacity-0 pointer-events-none'} bg-primary fixed top-0 left-0 w-full h-full overflow-hidden`}>
+    <div className={`product-gallery ${toggleGallery ? '' : 'invisible opacity-0 pointer-events-none'} bg-primary fixed top-0 left-0 w-full h-full overflow-hidden z-50`}>
       <Swiper
         modules={[Navigation, EffectFade]}
         navigation={{
@@ -35,10 +35,9 @@ export default function ProductGallery( {images, name, toggleGallery, setToggleG
               <div className='product-gallery-item w-full h-full'>
                 <Image
                   src={image}
-                  height={100}
-                  width={100}
+                  height={500}
+                  width={200}
                   alt= {name}
-                  className='h-auto'
                 />
               </div>
             </SwiperSlide>

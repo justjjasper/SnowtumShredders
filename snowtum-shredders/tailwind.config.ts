@@ -8,29 +8,29 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        },
-      },
-      colors: {
-        primary: 'white',
-        secondary: 'black'
-      },
-      fontFamily: {
-        'calibre': ['"Calibre"', '"Helvetica Neue"', 'Helvetica', 'Arial', 'Sans-serif'],
-        'holtwood': ["'Holtwood One SC'", '"Helvetica Neue"', 'Helvetica', 'Arial', 'Sans-serif'],
-      },
-      screens: {
-        'xsm': '560px',
-        //=> @media (min-width: 560px) aka smallest browser screen
-        'sm': '640px',
-        'md': '768px',
-        'lg': '1024px',
-        'xl': '1280px',
-      },
     },
+    colors: {
+      primary: 'white',
+      secondary: 'black'
+    },
+    fontFamily: {
+      'calibre': ['"Calibre"', '"Helvetica Neue"', 'Helvetica', 'Arial', 'Sans-serif'],
+      'holtwood': ["'Holtwood One SC'", '"Helvetica Neue"', 'Helvetica', 'Arial', 'Sans-serif'],
+    },
+    screens: {
+      'xsm': '560px',
+      //=> @media (min-width: 560px) aka smallest browser screen
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+    },
+    zIndex: {
+      '40': '40',
+      '50': '50',
+      '9999': '9999'
+    }
+  },
   plugins: [],
 }
 export default config

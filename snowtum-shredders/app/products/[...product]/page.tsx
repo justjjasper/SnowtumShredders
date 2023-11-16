@@ -5,7 +5,6 @@ import ContentContainer from "./ProductComponents/ContentContainer"
 import ProductTech from "./ProductComponents/ProductTech"
 import ProductAccessoryDetail from "./ProductComponents/ProductAccessoryDetail"
 import ProductReviews from "./ProductComponents/ProductReviews"
-import ProductGallery from "./ProductComponents/ProductGallery"
 
 // May use unions to have product type be string | string[]
 interface ProductParams {
@@ -43,7 +42,7 @@ export default async function Product({ params, searchParams }: ProductParams ) 
 
     // console.log('what is product[roduct page]', product.reviews)
     return (
-      <main className={`flex flex-col relative bottom-[100px] z-20 font-calibre ${product.flex ? '' : 'mt-[100px]'}`}>
+      <main className={`flex flex-col relative bottom-[100px] font-calibre ${product.flex ? '' : 'mt-[100px]'}`}>
         {productType === 'snowboard' &&
           <section className='flex justify-center items-center'>
             <Image

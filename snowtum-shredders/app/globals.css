@@ -26,10 +26,6 @@
   text-decoration: underline;
 }
 
-.backdrop-hack {
-  @apply absolute inset-0 -z-10;
-}
-
 /* Footer */
 .footer a:hover {
   text-decoration: underline;

@@ -21,7 +21,7 @@ export default function ProductMain() {
       onSwiper={setMainSwiper}
       onClick={() => setToggleGallery(!toggleGallery)}
       >
-      <button className='product-main-magnify absolute z-2 top-[20px] right-[10px]'>
+      <button className='product-main-magnify absolute top-[20px] right-[10px]'>
         {magnifyingPlusSVG}
       </button>
       {images.map((image:string, index:number) => {

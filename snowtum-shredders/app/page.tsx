@@ -9,7 +9,7 @@ export default async function Home() {
     const snowboard = await data.json()
 
     return (
-      <main className="flex flex-col items-center relative bottom-[100px] z-20">
+      <main className="flex flex-col items-center relative bottom-[100px]">
         <section className="relative flex justify-center w-full">
           <Image
             src='https://res.cloudinary.com/jasjasper/image/upload/v1696808288/snowtum-shredders-banner_xcxkev.png'
