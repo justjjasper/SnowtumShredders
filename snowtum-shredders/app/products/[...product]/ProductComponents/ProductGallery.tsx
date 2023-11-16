@@ -12,7 +12,7 @@ interface ProductGalleryProps {
 }
 export default function ProductGallery( {images, name}: ProductGalleryProps ) {
   return (
-    <div className='product-gallery  fixed z-20 top-0 left-0 w-full h-full overflow-hidden'>
+    <div className='product-gallery  bg-primary fixed top-0 left-0 w-full h-full overflow-hidden'>
       <Swiper
         modules={[Navigation, EffectFade]}
         navigation={{
@@ -25,16 +25,18 @@ export default function ProductGallery( {images, name}: ProductGalleryProps ) {
         fadeEffect={{
           crossFade: true
         }}
+        className=''
       >
         {images.map((image, index) => {
           return (
             <SwiperSlide key={index} >
-              <div className='product-gallery-item w-[1440px]'>
+              <div className='product-gallery-item w-full h-full'>
                 <Image
                   src={image}
                   height={100}
                   width={100}
                   alt= {name}
+                  className='h-auto'
                 />
               </div>
             </SwiperSlide>

@@ -5,6 +5,7 @@ import ProductMain from "./ProductMain"
 import ProductThumbs from "./ProductThumbs"
 import SwiperCore from 'swiper'
 import { useState, createContext } from 'react'
+import ProductGallery from './ProductGallery'
 
 interface ContentContainerProps {
   product: ProductType;
@@ -54,6 +55,8 @@ export default function ContentContainer( {product, productType}: ContentContain
   const [thumbsSwiper, setThumbsSwiper] = useState<null | SwiperCore>(null)
   const [mainSwiper, setMainSwiper] = useState<null | SwiperCore>(null)
 
+  const { images, name } = product
+
   const [currIndex, setCurrIndex] = useState<number>(0)
 
   const handleNext = () => {
@@ -83,13 +86,12 @@ export default function ContentContainer( {product, productType}: ContentContain
     <section className='content-container-product-main max-w-[1920px] overflow-hidden'> {/* <---- Responsible for max width of 1920px */}
       <div className='content-wider lg:px-16'> {/* <---- Responsible for px */}
         <div className='product-container mt-[58px]'> {/* Responsible for top margin? */}
-        {/* Grid layout grid-template-areas "thumb main info" grid-template-columns(.3fr 1fr 400px) */}
         <ProductContext.Provider value={store}>
-
+          {/* Carousel loops back in product-gallery unlike ContentContainer's Carousel */}
+          <ProductGallery images={images} name={name}/>
+          {/* Grid layout for .product-content grid-template-areas "thumb main info" grid-template-columns(.3fr 1fr 400px) */}
           <div className='product-content w-full'>
-            {/* Uses Swiper.js for carousel */}
             <ProductThumbs/>
-             {/* Uses Swiper.js for carousel */}
             <ProductMain/>
             <ProductInfoContainer productType={productType} />
           </div>

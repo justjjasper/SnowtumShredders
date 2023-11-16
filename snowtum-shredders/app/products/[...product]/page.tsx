@@ -58,8 +58,6 @@ export default async function Product({ params, searchParams }: ProductParams ) 
           </section>}
 
           <main className='main-content'>
-            {/* Carousel loops back in product-gallery unlike ContentContainer's Carousel */}
-            <ProductGallery images={product.images} name={product.name}/>
             <ContentContainer product={product} productType={productType}/>
             <section className='product-detail-container hidden'></section>
             <section className='product-reviews-container hidden'></section>
