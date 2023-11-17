@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { circlePlusSVG, circleXMarkFilterSVG } from "@/app/Misc/Icons";
+import { circlePlusSVG, circleXMarkThickSVG } from "@/app/Misc/Icons";
 import '../AsideContent.css'
 
 interface CheckboxState {
@@ -42,7 +42,7 @@ export default function AsideSnowboards() {
         onClick={() => setFilterToggle(!filterToggle)}
       >
         <span className='text-lg xl:text-xl font-semibold'>FILTERS</span>
-        {filterToggle ? circleXMarkFilterSVG : circlePlusSVG}
+        {filterToggle ? circleXMarkThickSVG : circlePlusSVG}
       </div>
       <div className={`aside-filter text-xs md:text-base xl:flex relative flex-col font-semibold py-6
         ${filterToggle ? 'flex' : 'hidden'}

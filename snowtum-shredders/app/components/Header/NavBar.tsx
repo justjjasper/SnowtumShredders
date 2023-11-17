@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react'
 import Link from "next/link"
 import SearchForm from './SearchForm'
 
+// TODO Use redux selector to get the state of product name, quantity, price
 export default function NavBar(){
   const[hamburgerToggle, setHamburgerToggle] = useState<boolean>(false)
 

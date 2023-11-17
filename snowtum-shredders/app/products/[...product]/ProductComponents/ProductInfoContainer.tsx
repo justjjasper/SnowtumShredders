@@ -1,5 +1,5 @@
 'use client'
-
+// TODO Implement useDispatch, send product id, name, price
 import { useContext, useState } from 'react'
 import { ProductContext } from './ContentContainer'
 import { cartSVG } from '@/app/Misc/Icons'
@@ -15,6 +15,18 @@ export default function ProductInfoContainer( {productType}: {productType: strin
   }
 
   const [selectedSize, setSelectedSize] = useState<number | null>(null)
+  const [sizeError, setSizeError] = useState<boolean>(false)
+
+  const addToCart = () => {
+    if (!selectedSize && !sizeError) {
+      setSizeError(true)
+      setTimeout(() => {
+        setSizeError(false)
+      }, 4000)
+    }
+
+    // ? Server Action POST Request
+  }
 
   return (
     <div className='product-info-container pt-6 border-0 max-w-[1920px]'>
@@ -30,7 +42,7 @@ export default function ProductInfoContainer( {productType}: {productType: strin
           {/* input hidden for now, responsible for identifying product SKU? */}
           <input type='hidden'/>
           <div className='product-info-sizes relative mt-[20px]'>
-            <div className='border-error hidden absolute border-[1px] rounded-lg'></div>
+            { sizeError && <div className='border-error absolute border-[1px] rounded-lg'></div> }
             {meta_data.map((item, index) => {
               const noStock = item.sku === 0
 
@@ -38,6 +50,7 @@ export default function ProductInfoContainer( {productType}: {productType: strin
               return (
                 <div className={`product-info-size relative text-center border-[1px] rounded-full px-3 py-2 hover:text-primary hover:bg-secondary hover:cursor-pointer ${noStock ? 'disabled-size opacity-50 text-gray-400' : ''}
                 ${selectedSize === index ? 'bg-secondary text-primary' : ''}
+                ${sizeError ? 'pointer-events-none' : ''}
                 `}
                   key={index}
                   data-index={index}
@@ -60,8 +73,10 @@ export default function ProductInfoContainer( {productType}: {productType: strin
               )
             })}
           </div>
-          <span className='variant-select hidden'>Please select a variant.</span>
-          <button className='add-to-cart flex justify-center items-center rounded-full font-bold w-full mt-[40px] py-[19px] gap-2 bg-secondary text-primary hover:underline'>
+          <span className={`variant-select relative top-[10px] ${sizeError ? 'visible' : 'invisible'}`}>Please select a variant.</span>
+          <button className='add-to-cart flex justify-center items-center rounded-full font-bold w-full mt-[20px] py-[19px] gap-2 bg-secondary text-primary hover:underline'
+            onClick={addToCart}
+            >
             <span className='uppercase'>Add to cart</span>
             {cartSVG('23')}
           </button>
