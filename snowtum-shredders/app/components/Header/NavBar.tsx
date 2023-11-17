@@ -13,15 +13,18 @@ export default function NavBar(){
   const [accessoriesMobileMenu, setAccessoriesMobileMenu] = useState<boolean>(false)
 
   // Regulates the conditional render of adding new Classnames to control CSS animations
-  const [snowboardHovered, setSnowboardHovered] = useState<boolean>(false);
-  const [accessoriesHovered, setAccessoriesHovered] = useState<boolean>(false);
-  const [searchHovered, setSearchHovered] = useState<boolean>(false);
+  const [snowboardHovered, setSnowboardHovered] = useState<boolean>(false)
+  const [accessoriesHovered, setAccessoriesHovered] = useState<boolean>(false)
+  const [searchHovered, setSearchHovered] = useState<boolean>(false)
+  const [cartHovered, setCartHovered] = useState<boolean>(false)
+
 
   const onMouseEnterSnowboard = () => {
     if (!hamburgerToggle) {
       setAccessoriesHovered(false)
       setSearchHovered(false)
-      setSnowboardHovered(true);
+      setCartHovered(false)
+      setSnowboardHovered(true)
     }
     console.log('onMouseEnterSnowboard triggered')
   }
@@ -31,6 +34,7 @@ export default function NavBar(){
     if (!hamburgerToggle) {
       setSnowboardHovered(false)
       setSearchHovered(false)
+      setCartHovered(false)
       setAccessoriesHovered(true)
     }
     console.log('onMouseEnterAccessories triggered')
@@ -39,9 +43,20 @@ export default function NavBar(){
   const onMouseEnterSearch = () => {
     setSnowboardHovered(false)
     setAccessoriesHovered(false)
+    setCartHovered(false)
     setSearchHovered(true)
 
     console.log('onMouseEnterSearch triggered')
+  }
+
+  const onMouseEnterCart = () => {
+    if (!hamburgerToggle) {
+      setAccessoriesHovered(false)
+      setSearchHovered(false)
+      setSnowboardHovered(false)
+      setCartHovered(true)
+    }
+    console.log('onMouseEnterCart triggered')
   }
 
   // Temporary solution to fix clicking on link peristence bug, new bug issue when "entering back header". Not what we want since we want to re enter header for cart icon
@@ -56,6 +71,7 @@ export default function NavBar(){
     setHamburgerToggle(false)
     console.log('onMouseLeave triggered')
   }
+
 
   // Contains X Positions for Dropdown Menu CSS Padding
   const [snowboardXPos, setSnowboardPos] = useState<number | undefined>()
@@ -127,33 +143,39 @@ export default function NavBar(){
         <nav className='hidden lg:flex flex-grow justify-around'>
           <ul className='flex w-8/12 justify-evenly'>
             {/* When the cursor hovers "SNOWBOARD", the "is-active" class is added to the span tag */}
-            <span className={`header-link ${snowboardHovered ? 'is-active' : ''}`}
-                  id='snowboard-header'
-                  onMouseEnter={onMouseEnterSnowboard}>
-                  SNOWBOARDS
-            </span>
+            <button className={`header-link ${snowboardHovered ? 'is-active' : ''}`}
+              id='snowboard-header'
+              onMouseEnter={onMouseEnterSnowboard}>
+              SNOWBOARDS
+            </button>
 
-            <span className={`header-link ${accessoriesHovered ? 'is-active' : ''}`}
-                  id='accessories-header'
-                  onMouseEnter={onMouseEnterAccessories}>
-                  ACCESSORIES
-            </span>
+            <button className={`header-link ${accessoriesHovered ? 'is-active' : ''}`}
+              id='accessories-header'
+              onMouseEnter={onMouseEnterAccessories}>
+              ACCESSORIES
+            </button>
             <Link id='menu-link'
-                  href='/pages/team'
-                  onMouseEnter={onMouseLeave}>
-                  TEAM
+              href='/pages/team'
+              onMouseEnter={onMouseLeave}>
+              TEAM
             </Link>
           </ul>
         </nav>
 
         <div className='flex gap-3 xsm:gap-7'>
           <button id='menu-link'
-                  onMouseEnter={onMouseEnterSearch}
-                  className='hidden lg:block'>
-            {searchSVG}
+              onMouseEnter={onMouseEnterSearch}
+              className='hidden lg:block'>
+              {searchSVG}
           </button>
           <button id='menu-link'>
-            {cartSVG('31')}
+            <span>
+             {cartSVG('31')}
+             <span className='cart-count flex absolute top-[-5px] right-[-10px] bg-primary text-secondary rounded-[50%] w-[22px] h-[22px] items-center justify-center border-[1.5px]'>
+                2
+             </span>
+            </span>
+
           </button>
           {hamburgerToggle === false && <button id='menu-link'
             className='block lg:hidden'
@@ -175,7 +197,10 @@ export default function NavBar(){
         ${hamburgerToggle ? 'mobileDropdownMenuTrigger px-5 md:px-20' : ''}
         `}
         onMouseLeave={onMouseLeave}>
-        <div className='cartForm'></div>
+        <div className={`cartForm
+          lg:${cartHovered ? 'flex' : 'hidden'}`}>
+
+        </div>
         {/* Menu list */}
         <div className='menu-list w-full relative flex flex-col'>
 
@@ -199,24 +224,24 @@ export default function NavBar(){
               </button>
 
               <div className={`snowboards-menu-list lg:flex flex-col font-medium text-[14px] w-full
-                   ${hamburgerToggle ? 'snowboards-mobile-menu-list' : 'hidden'}
-                   ${snowboardMobileMenu ? 'flex active' : 'flex'}`}
-                   style={{paddingLeft : `${snowboardXPos}px`}}>
-                   <Link href='/collections/all-snowboards' onClick={onMouseLeave} className='py-3 leading-8'>
-                     <span id='menu-link' className='w-full'>ALL</span>
-                   </Link>
-                   <Link href='/collections/snowboards-mens' onClick={onMouseLeave} className='py-3 leading-8'>
-                     <span id='menu-link' className='w-full'>MEN&apos;S</span>
-                   </Link>
-                   <Link href='/collections/snowboards-womens' onClick={onMouseLeave} className='py-3 leading-8'>
-                     <span id='menu-link' className='w-full'>WOMEN&apos;S</span>
-                   </Link>
-                   <Link href='/collections/snowboards-kids' onClick={onMouseLeave} className='py-3 leading-8'>
-                     <span id='menu-link' className='w-full'>KID&apos;S</span>
-                   </Link>
-                   <Link href='/collections/split-snowboards' onClick={onMouseLeave} className='py-3 leading-8'>
-                     <span id='menu-link' className='w-full'>SPLITBOARDS</span>
-                   </Link>
+                ${hamburgerToggle ? 'snowboards-mobile-menu-list' : 'hidden'}
+                ${snowboardMobileMenu ? 'flex active' : 'flex'}`}
+                style={{paddingLeft : `${snowboardXPos}px`}}>
+                <Link href='/collections/all-snowboards' onClick={onMouseLeave} className='py-3 leading-8'>
+                  <span id='menu-link' className='w-full'>ALL</span>
+                </Link>
+                <Link href='/collections/snowboards-mens' onClick={onMouseLeave} className='py-3 leading-8'>
+                  <span id='menu-link' className='w-full'>MEN&apos;S</span>
+                </Link>
+                <Link href='/collections/snowboards-womens' onClick={onMouseLeave} className='py-3 leading-8'>
+                  <span id='menu-link' className='w-full'>WOMEN&apos;S</span>
+                </Link>
+                <Link href='/collections/snowboards-kids' onClick={onMouseLeave} className='py-3 leading-8'>
+                  <span id='menu-link' className='w-full'>KID&apos;S</span>
+                </Link>
+                <Link href='/collections/split-snowboards' onClick={onMouseLeave} className='py-3 leading-8'>
+                  <span id='menu-link' className='w-full'>SPLITBOARDS</span>
+                </Link>
               </div>
             <div className={`${hamburgerToggle ? 'divider' : 'hidden'}`}></div>
           </div>
@@ -227,11 +252,11 @@ export default function NavBar(){
                ${hamburgerToggle ? 'flex divider py-3' : 'hidden'}`}
                onMouseEnter={onMouseEnterAccessories}>
                <button className={`${hamburgerToggle ? 'flex' : 'hidden'}`}
-                       onClick={() => setAccessoriesMobileMenu(!accessoriesMobileMenu)}>
-                      <span className='flex items-center justify-between w-full'>
-                        <span id='menu-link'>Accessories</span>
-                        {accessoriesMobileMenu ? circleMinusSVG : circlePlusSVG}
-                      </span>
+                onClick={() => setAccessoriesMobileMenu(!accessoriesMobileMenu)}>
+                <span className='flex items-center justify-between w-full'>
+                  <span id='menu-link'>Accessories</span>
+                  {accessoriesMobileMenu ? circleMinusSVG : circlePlusSVG}
+                </span>
                </button>
 
             <div className={`accessories-menu-list lg:flex flex-col font-medium text-[14px] w-full

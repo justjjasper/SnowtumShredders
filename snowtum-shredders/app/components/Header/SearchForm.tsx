@@ -2,7 +2,7 @@
 import './SearchForm.css'
 import Image from 'next/image'
 import Link from 'next/link'
-import { circleXMarkSVG } from '@/app/Misc/Icons'
+import { circleXMarkFilterSVG } from '@/app/Misc/Icons'
 import { useState, useEffect, useRef } from 'react'
 import { collectionsAPI } from '@/app/config'
 import Fuse from 'fuse.js'
@@ -118,7 +118,7 @@ export default function SearchForm( {searchHovered, onMouseLeave, hamburgerToggl
         <button className='absolute self-end mr-4 cursor-pointer'
           onClick={handleCloseSearch}
         >
-          {circleXMarkSVG}
+          {circleXMarkFilterSVG}
         </button>
       </form>
       <div className={`search-result w-full grid-container px-16 py-8
