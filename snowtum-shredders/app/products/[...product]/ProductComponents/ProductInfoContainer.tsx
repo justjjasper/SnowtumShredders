@@ -3,6 +3,7 @@
 import { useContext, useState } from 'react'
 import { ProductContext } from './ContentContainer'
 import { cartSVG } from '@/app/Misc/Icons'
+import { throttle } from '@/app/Misc/HelperFunc'
 import AverageStarRating from '@/app/products/[...product]/ProductComponents/AverageStarRating'
 
 export default function ProductInfoContainer( {productType}: {productType: string}) {
@@ -26,7 +27,10 @@ export default function ProductInfoContainer( {productType}: {productType: strin
     }
 
     // ? Server Action POST Request
+    console.log('clicked shop')
   }
+
+  const throttleAddToCart = throttle(addToCart, 3000)
 
   return (
     <div className='product-info-container pt-6 border-0 max-w-[1920px]'>
@@ -75,7 +79,7 @@ export default function ProductInfoContainer( {productType}: {productType: strin
           </div>
           <span className={`variant-select relative top-[10px] ${sizeError ? 'visible' : 'invisible'}`}>Please select a variant.</span>
           <button className='add-to-cart flex justify-center items-center rounded-full font-bold w-full mt-[20px] py-[19px] gap-2 bg-secondary text-primary hover:underline'
-            onClick={addToCart}
+            onClick={throttleAddToCart}
             >
             <span className='uppercase'>Add to cart</span>
             {cartSVG('23')}
