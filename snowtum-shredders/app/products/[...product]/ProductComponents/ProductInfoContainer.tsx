@@ -1,5 +1,5 @@
 'use client'
-// TODO Implement useDispatch, send product id, name, price
+// TODO Implement useDispatch, send product id, name, price, value(item.size), item.sku for purchasing/data cap
 import { useContext, useState } from 'react'
 import { ProductContext } from './ContentContainer'
 import { cartSVG } from '@/app/Misc/Icons'
@@ -19,15 +19,23 @@ export default function ProductInfoContainer( {productType}: {productType: strin
   const [sizeError, setSizeError] = useState<boolean>(false)
 
   const addToCart = () => {
-    if (!selectedSize && !sizeError) {
+    if (selectedSize === null && !sizeError) {
       setSizeError(true)
       setTimeout(() => {
         setSizeError(false)
       }, 4000)
     }
 
-    // ? Server Action POST Request
-    console.log('clicked shop')
+    // ? useDispatch, add cartInfo to Cart Component
+    const cartInfo = {
+      id,
+      name,
+      price,
+      size: selectedSize !== null ? meta_data[selectedSize]?.size : undefined,
+      sku: selectedSize !== null ? meta_data[selectedSize]?.sku : undefined,
+    }
+
+    console.log(cartInfo)
   }
 
   const throttleAddToCart = throttle(addToCart, 3000)
@@ -45,7 +53,7 @@ export default function ProductInfoContainer( {productType}: {productType: strin
         <div className='product-info-form'>
           {/* input hidden for now, responsible for identifying product SKU? */}
           <input type='hidden'/>
-          <div className='product-info-sizes relative mt-[20px]'>
+          <div className='product-info-sizes relative mt-[12px]'>
             { sizeError && <div className='border-error absolute border-[1px] rounded-lg'></div> }
             {meta_data.map((item, index) => {
               const noStock = item.sku === 0
@@ -63,14 +71,14 @@ export default function ProductInfoContainer( {productType}: {productType: strin
                     setSelectedSize(index)
 
                   }}
-                  data-for={id.toString()}
+                  data-for={id.toString() + item.size.toString()}
                   >
                   <input
                     className='invisible opacity-0 w-0 h-0'
                     type='radio'
                     name='Size'
                     value={item.size}
-                    id={id.toString()}
+                    id={id.toString() + item.size.toString()}
                     />
                   <span className='text-[18px] cursor-pointer whitespace-nowrap'>{item.size}</span>
                 </div>

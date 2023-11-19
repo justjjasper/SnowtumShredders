@@ -165,11 +165,12 @@ export default function NavBar(){
 
         <div className='flex gap-3 xsm:gap-7'>
           <button id='menu-link'
-              onMouseEnter={onMouseEnterSearch}
-              className='hidden lg:block'>
-              {searchSVG}
+            onMouseEnter={onMouseEnterSearch}
+            className='hidden lg:block'>
+            {searchSVG}
           </button>
-          <button id='menu-link'>
+          <button id='menu-link'
+            onMouseEnter={onMouseEnterCart}>
             <span>
              {cartSVG('31')}
              <span className='cart-count flex absolute top-[-5px] right-[-10px] bg-primary text-secondary rounded-[50%] w-[22px] h-[22px] items-center justify-center border-[1.5px]'>
@@ -198,9 +199,34 @@ export default function NavBar(){
         ${hamburgerToggle ? 'mobileDropdownMenuTrigger px-5 md:px-20' : ''}
         `}
         onMouseLeave={onMouseLeave}>
-        <div className={`cartForm
+        {/* Cart */}
+        <div className={`cart-form
           lg:${cartHovered ? 'flex' : 'hidden'}`}>
-
+          <form className=''>
+            <div className='cart-container'>
+              <span className='msg-empty-cart hidden'>CART EMPTY</span>
+              <div id='cart-info-hidden' data-id='id + size' data-limit='sku'></div>
+              <div id='cart-info'>
+                {/* //? This is going to be Dyanmic for each item added to cart */}
+                <div className='cart-item'>
+                  <div className='cart-item-container'>
+                    {/* <Link className='cart-item-image'><Image/></Link> */}
+                    <div className='cart-item-info'>
+                      <span>Name - Size</span>
+                    </div>
+                    <div className='cart-item-quantity'>
+                      <button></button>
+                      <span className='cart-item-quantity-tot'></span>
+                      <button></button>
+                    </div>
+                    <span className='cart-item-price'></span>
+                  </div>
+                  <div className='cart-line'></div>
+                </div>
+              </div>
+              <div className='cart-summary'></div>
+            </div>
+          </form>
         </div>
         {/* Menu list */}
         <div className='menu-list w-full relative flex flex-col'>
