@@ -81,7 +81,7 @@ Additionally, this overrides the original animations/transforms in the original 
 
 /* Following 2 css is responsible for snowboard-menu backdrop blur
 Within client code, utilize the state of onMouseEnter with conditional rendering
-to add snowboardMenuTrigger class the entire header div
+to add snowboardMenuTrigger class the entire header div, added the menuTrigger code to header div
 */
 /* Keepin mind, original positions snowboard/accessories/search menuTrigger is absolute */
 /* Removed the heights of each menuTrigger::after ???*/
@@ -139,6 +139,11 @@ to add searchMenuTrigger class the entire header div
   width: 100%;
   height: 100vh;
   z-index: -1;
+}
+
+/* CartForm Hover Trigger */
+.header.cartFormTrigger {
+  margin-top: -100vh
 }
 
 /* "Duct-Tape Fix" where margin-top: -925px solved issue of white space when mobileDropdownMenu activated */

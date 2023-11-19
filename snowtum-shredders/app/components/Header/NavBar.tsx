@@ -66,6 +66,7 @@ export default function NavBar(){
       setSnowboardHovered(false)
       setAccessoriesHovered(false)
       setSearchHovered(false)
+      setCartHovered(false)
       setSnowboardMobileMenu(false)
       setAccessoriesMobileMenu(false)
     }
@@ -131,6 +132,7 @@ export default function NavBar(){
         ${snowboardHovered ? 'snowboardMenuTrigger' : ''}
         ${accessoriesHovered ? 'accessoriesMenuTrigger' : ''}
         ${searchHovered ? 'searchMenuTrigger' : ''}
+        ${cartHovered ? 'cartFormTrigger' : ''}
         ${hamburgerToggle ? 'mobileDropdownMenuTrigger my-[-48px]' : ''}
         ${snowboardMobileMenu ? 'my-[-380px]' : ''}
         ${accessoriesMobileMenu ? 'my-[-380px]' : ''}
@@ -200,16 +202,18 @@ export default function NavBar(){
         `}
         onMouseLeave={onMouseLeave}>
         {/* Cart */}
-        <div className={`cart-form
-          lg:${cartHovered ? 'flex' : 'hidden'}`}>
-          <form className=''>
-            <div className='cart-container'>
-              <span className='msg-empty-cart hidden'>CART EMPTY</span>
+        <div className={`cart-form px-[120px] overflow-auto h-screen hovered:mt-[-h-screen]
+          ${cartHovered ? 'flex' : 'hidden'}`}
+          onMouseLeave={onMouseLeave}
+          >
+          <form className='block w-full'>
+            <div className='cart-container max-w-[1428px] mx-auto w-full'>
+              <span className='msg-empty-cart block py-[100px] text-center w-full'>CART EMPTY</span>
               <div id='cart-info-hidden' data-id='id + size' data-limit='sku'></div>
               <div id='cart-info'>
                 {/* //? This is going to be Dyanmic for each item added to cart */}
                 <div className='cart-item'>
-                  <div className='cart-item-container'>
+                  <div className='cart-item-container hidden'>
                     {/* <Link className='cart-item-image'><Image/></Link> */}
                     <div className='cart-item-info'>
                       <span>Name - Size</span>
