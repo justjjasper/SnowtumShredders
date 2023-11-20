@@ -49,3 +49,11 @@ type SnowboardProductType = {
   header_description: string,
   snowboard_meta_data: MetaDataType[],
 }
+
+type CartItemType = {
+  id: number,
+  name: string,
+  price: string,
+  size: string,
+  sku: number
+}

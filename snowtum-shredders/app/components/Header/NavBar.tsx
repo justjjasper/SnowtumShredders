@@ -8,7 +8,8 @@ import Cart from './Cart'
 
 // TODO Use redux selector to get the state of product name, quantity, price
 export default function NavBar(){
-  const[hamburgerToggle, setHamburgerToggle] = useState<boolean>(false)
+  const [cartItems, setCartItems] = useState<CartItemType[]>([])
+  const [hamburgerToggle, setHamburgerToggle] = useState<boolean>(false)
 
   // Regulate Category Mobile Menus
   const [snowboardMobileMenu, setSnowboardMobileMenu] = useState<boolean>(false)
@@ -124,7 +125,15 @@ export default function NavBar(){
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [])
+
+  useEffect(() => {
+    // Retrieve cart items from localStorage
+    const cartString = localStorage.getItem('cart')
+    const storedCart = cartString ? JSON.parse(cartString) : []
+
+    setCartItems(storedCart)
+  }, [cartHovered])
 
   return (
     // **To Implement individual backdrop blur of Snowboard/Accessory dropdown menu** When state of either snowboard/acessories is hovered via onMouseEnter, a class is added to entire header to create backdrop blur.
@@ -176,9 +185,9 @@ export default function NavBar(){
             onMouseEnter={onMouseEnterCart}>
             <span>
              {cartSVG('31')}
-             <span className='cart-count flex absolute top-[-5px] right-[-10px] bg-primary text-secondary rounded-[50%] w-[22px] h-[22px] items-center justify-center border-[1.5px]'>
-                2
-             </span>
+             { cartItems.length > 0 && <span className='cart-count flex absolute top-[-5px] right-[-10px] bg-primary text-secondary rounded-[50%] w-[22px] h-[22px] items-center justify-center border-[1.5px]'>
+                {cartItems.length}
+             </span> }
             </span>
 
           </button>
@@ -203,7 +212,7 @@ export default function NavBar(){
         `}
         onMouseLeave={onMouseLeave}>
         {/* Cart */}
-        <Cart cartHovered={cartHovered} onMouseLeave={onMouseLeave}/>
+        <Cart cartHovered={cartHovered} onMouseLeave={onMouseLeave} cartItems={cartItems}/>
         {/* Menu list */}
         <div className='menu-list w-full relative flex flex-col'>
 

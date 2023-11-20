@@ -19,15 +19,16 @@ export default function ProductInfoContainer( {productType}: {productType: strin
   const [sizeError, setSizeError] = useState<boolean>(false)
 
   const addToCart = () => {
-    if (selectedSize === null && !sizeError) {
+    const emptySku = selectedSize !== null && meta_data[selectedSize].sku === 0
+    if (emptySku || (selectedSize === null && !sizeError)) {
       setSizeError(true)
       setTimeout(() => {
         setSizeError(false)
       }, 4000)
+      return
     }
 
-    // ? useDispatch, add cartInfo to Cart Component
-    const cartInfo = {
+    const cartItem = {
       id,
       name,
       price,
@@ -35,7 +36,17 @@ export default function ProductInfoContainer( {productType}: {productType: strin
       sku: selectedSize !== null ? meta_data[selectedSize]?.sku : undefined,
     }
 
-    console.log(cartInfo)
+    // Retrieve existing cart items from local Storage
+    const cartString = localStorage.getItem('cart')
+    const existingCart = cartString ? JSON.parse(cartString) : []
+
+    // Add new item to the cart
+    const updatedCart = [...existingCart, cartItem]
+
+    // Save the updated cart back to localStorage
+    localStorage.setItem('cart', JSON.stringify(updatedCart))
+
+    console.log(cartItem)
   }
 
   const throttleAddToCart = throttle(addToCart, 3000)
