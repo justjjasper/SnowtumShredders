@@ -15,7 +15,7 @@ interface ProductReviewsProps {
 
 export default function ProductReviews ( {reviews, product_id, page, productName}: ProductReviewsProps ) {
   const ratingAvg = calcAvgStarRating(reviews)
-  console.log('producreviews', page)
+
   const [toggleForm, setToggleForm] = useState<boolean>(false)
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false)
 

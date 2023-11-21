@@ -4,9 +4,15 @@ import { useContext, useState } from 'react'
 import { ProductContext } from './ContentContainer'
 import { cartSVG } from '@/app/Misc/Icons'
 import { throttle } from '@/app/Misc/HelperFunc'
+import { useDispatch } from 'react-redux'
+import { AppDispatch } from '@/app/redux/store'
+import { addToCart } from '@/app/redux/features/cart-slice'
+
 import AverageStarRating from '@/app/products/[...product]/ProductComponents/AverageStarRating'
 
 export default function ProductInfoContainer( {productType}: {productType: string}) {
+  const dispatch = useDispatch<AppDispatch>()
+
   const { product: { id, header_description, name, price, reviews, meta_data }, mainSwiper, thumbsSwiper } = useContext(ProductContext)
 
   const handleSwipers = (index: number) => {
@@ -18,7 +24,7 @@ export default function ProductInfoContainer( {productType}: {productType: strin
   const [selectedSize, setSelectedSize] = useState<number | null>(null)
   const [sizeError, setSizeError] = useState<boolean>(false)
 
-  const addToCart = () => {
+  const handleAddToCart = () => {
     const emptySku = selectedSize !== null && meta_data[selectedSize].sku === 0
     if (emptySku || (selectedSize === null && !sizeError)) {
       setSizeError(true)
@@ -46,10 +52,11 @@ export default function ProductInfoContainer( {productType}: {productType: strin
     // Save the updated cart back to localStorage
     localStorage.setItem('cart', JSON.stringify(updatedCart))
 
-    console.log(cartItem)
+    // console.log(cartItem)
+    dispatch(addToCart(cartItem))
   }
 
-  const throttleAddToCart = throttle(addToCart, 3000)
+  const throttleAddToCart = throttle(handleAddToCart, 3000)
 
   return (
     <div className='product-info-container pt-6 border-0 max-w-[1920px]'>

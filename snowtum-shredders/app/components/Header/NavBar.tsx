@@ -5,10 +5,19 @@ import React, { useState, useEffect } from 'react'
 import Link from "next/link"
 import SearchForm from './SearchForm'
 import Cart from './Cart'
+import { AppDispatch, useAppSelector } from '@/app/redux/store'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '@/app/redux/features/cart-slice'
 
 // TODO Use redux selector to get the state of product name, quantity, price
 export default function NavBar(){
-  const [cartItems, setCartItems] = useState<CartItemType[]>([])
+  const cartItems = useAppSelector((state) => state.cart.value) || []
+
+  const cartString = window?.localStorage?.getItem('cart')
+  const tempCartItems = cartString ? JSON.parse(cartString) : []
+
+  // const cartString = window?.localStorage?.getItem('cart')
+  // const cartItems = cartString ? JSON.parse(cartString) : []
   const [hamburgerToggle, setHamburgerToggle] = useState<boolean>(false)
 
   // Regulate Category Mobile Menus
@@ -127,13 +136,13 @@ export default function NavBar(){
     };
   }, [])
 
-  useEffect(() => {
-    // Retrieve cart items from localStorage
-    const cartString = localStorage.getItem('cart')
-    const storedCart = cartString ? JSON.parse(cartString) : []
+  // useEffect(() => {
+  //   // Retrieve cart items from localStorage
+  //   const cartString = localStorage.getItem('cart')
+  //   const storedCart = cartString ? JSON.parse(cartString) : []
 
-    setCartItems(storedCart)
-  }, [cartHovered])
+  //   setCartItems(storedCart)
+  // }, [cartHovered])
 
   return (
     // **To Implement individual backdrop blur of Snowboard/Accessory dropdown menu** When state of either snowboard/acessories is hovered via onMouseEnter, a class is added to entire header to create backdrop blur.
@@ -185,9 +194,9 @@ export default function NavBar(){
             onMouseEnter={onMouseEnterCart}>
             <span>
              {cartSVG('31')}
-             { cartItems.length > 0 && <span className='cart-count flex absolute top-[-5px] right-[-10px] bg-primary text-secondary rounded-[50%] w-[22px] h-[22px] items-center justify-center border-[1.5px]'>
+             <span className={`cart-count flex absolute top-[-5px] right-[-10px] bg-primary text-secondary rounded-[50%] w-[22px] h-[22px] items-center justify-center border-[1.5px] ${cartItems.length === 0 ? 'hidden' : ''}`}>
                 {cartItems.length}
-             </span> }
+             </span>
             </span>
 
           </button>

@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google'
 // Components
 import NavBar from './components/Header/NavBar'
 import Footer from './components/Footer/Footer'
+import { ReduxProvider } from './redux/provider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -24,9 +25,11 @@ export default function RootLayout({
         <link rel='preload' as='image' href='https://res.cloudinary.com/jasjasper/image/upload/v1696808288/snowtum-shredders-banner_xcxkev.png'/>
       </head>
       <body className={inter.className}>
-        <NavBar/>
-        {children}
-        <Footer/>
+        <ReduxProvider>
+          <NavBar/>
+          {children}
+          <Footer/>
+        </ReduxProvider>
       </body>
     </html>
   )

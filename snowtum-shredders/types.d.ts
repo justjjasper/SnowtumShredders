@@ -54,6 +54,6 @@ type CartItemType = {
   id: number,
   name: string,
   price: string,
-  size: string,
-  sku: number
+  size: string | undefined,
+  sku: number | undefined
 }
