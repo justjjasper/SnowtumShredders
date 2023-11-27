@@ -5,9 +5,7 @@ import React, { useState, useEffect } from 'react'
 import Link from "next/link"
 import SearchForm from './SearchForm'
 import Cart from './Cart'
-import { AppDispatch, useAppSelector } from '@/app/redux/store'
-import { useDispatch } from 'react-redux'
-import { addToCart } from '@/app/redux/features/cart-slice'
+import { useAppSelector } from '@/app/redux/store'
 
 // TODO Use redux selector to get the state of product name, quantity, price
 export default function NavBar(){
