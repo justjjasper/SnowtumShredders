@@ -40,6 +40,9 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
                         width={100}
                       />
                     </Link>
+                    <div className='cart-item-info'>
+                      <span>{item.name} - {item.size}</span>
+                    </div>
                   </div>
                 </div>
               )

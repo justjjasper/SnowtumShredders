@@ -24,9 +24,22 @@ export const cartSlice = createSlice({
   initialState: initialState,
   reducers: {
     addToCart: (state, action:PayloadAction<CartItemType>) => {
-      state.value.push(action.payload)
+      const { id, size } = action.payload;
 
-      console.log('from redux store:', state.value)
+      // Check if the item is already in the cart
+      const existingCartItemIndex = state.value.findIndex(
+        (item) => item.id === id && item.size === size
+      );
+
+      if (existingCartItemIndex !== -1) {
+        // If the item is already in the cart, update the quantity
+        state.value[existingCartItemIndex].quantity += 1;
+      } else {
+        // If the item is not in the cart, add it with the initial quantity
+        state.value.push({ ...action.payload, quantity: 1 });
+      }
+
+      console.log('from redux store:', state.value);
     },
     removeFromCart: () => {}
   }
