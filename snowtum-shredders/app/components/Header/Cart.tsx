@@ -1,5 +1,7 @@
 'use client'
 import { useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
 
 interface CartProps {
   cartHovered: boolean;
@@ -8,20 +10,6 @@ interface CartProps {
 }
 
 export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) {
-
-// Create an array of unique objects based on the 'size' property
-const uniqueCartItems = cartItems.reduce((accumulator: CartItemType[], currentItem) => {
-  // Check if an object with the same 'size' property already exists in the accumulator
-  const existingItem = accumulator.find(item => item.size === currentItem.size);
-
-  // If not, add the current item to the accumulator
-  if (!existingItem) {
-    accumulator.push(currentItem);
-  }
-
-  return accumulator;
-}, []);
-
   return (
     <div className={`cart-form px-[120px] overflow-auto h-screen hovered:mt-[-h-screen]
       ${cartHovered ? 'flex' : 'hidden'}`}
@@ -31,7 +19,7 @@ const uniqueCartItems = cartItems.reduce((accumulator: CartItemType[], currentIt
         <div className='cart-container max-w-[1428px] mx-auto w-full'>
           { cartItems.length === 0 && <span className='msg-empty-cart block py-[100px] text-center w-full'>CART EMPTY</span> }
           <div id='cart-info-hidden invisible opacity-0 h-0' data-id='id + size' data-limit='sku'>
-            {uniqueCartItems.map((item, i:number) => {
+            {cartItems.map((item, i:number) => {
               return (
                 <span key={i} data-id={item.id + (item.size ? item.size : '')} data-limit={item.sku}></span>
               )
@@ -39,6 +27,23 @@ const uniqueCartItems = cartItems.reduce((accumulator: CartItemType[], currentIt
           </div>
           <div id='cart-info'>
             {/* //? This is going to be Dyanmic for each item added to cart */}
+            {cartItems.map((item, i) => {
+              const formattedName = item.name.replace(/\s+/g, '-').toLowerCase()
+              return (
+                <div className='cart-item' data-id={item.id + (item.size ? item.size : '')} key={i} data-limit={item.sku}>
+                  <div className='cart-item-container'>
+                    <Link href={`/products/${item.productType}/${formattedName}`}className='cart-item-image' onClick={onMouseLeave}>
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        height={100}
+                        width={100}
+                      />
+                    </Link>
+                  </div>
+                </div>
+              )
+            })}
             <div className='cart-item'>
               <div className='cart-item-container hidden'>
                 {/* <Link className='cart-item-image'><Image/></Link> */}

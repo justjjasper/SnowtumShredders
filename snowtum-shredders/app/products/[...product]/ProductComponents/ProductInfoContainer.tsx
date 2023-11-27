@@ -13,7 +13,7 @@ import AverageStarRating from '@/app/products/[...product]/ProductComponents/Ave
 export default function ProductInfoContainer( {productType}: {productType: string}) {
   const dispatch = useDispatch<AppDispatch>()
 
-  const { product: { id, header_description, name, price, reviews, meta_data }, mainSwiper, thumbsSwiper } = useContext(ProductContext)
+  const { product: { id, header_description, name, images, price, reviews, meta_data }, mainSwiper, thumbsSwiper } = useContext(ProductContext)
 
   const handleSwipers = (index: number) => {
     if (productType !== 'snowboard') return
@@ -37,7 +37,9 @@ export default function ProductInfoContainer( {productType}: {productType: strin
     const cartItem = {
       id,
       name,
+      image: selectedSize !== null ? images[selectedSize] : 'https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png?format=jpg&quality=90&v=1530129081',
       price,
+      productType,
       size: selectedSize !== null ? meta_data[selectedSize]?.size : undefined,
       sku: selectedSize !== null ? meta_data[selectedSize]?.sku : undefined,
       quantity: 1

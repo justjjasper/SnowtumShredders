@@ -14,6 +14,8 @@ export default function NavBar(){
   const cartString = window?.localStorage?.getItem('cart')
   const tempCartItems = cartString ? JSON.parse(cartString) : []
 
+  const cartItemQuant = cartItems.reduce((total, currItem) => total += currItem.quantity, 0)
+
   // const cartString = window?.localStorage?.getItem('cart')
   // const cartItems = cartString ? JSON.parse(cartString) : []
   const [hamburgerToggle, setHamburgerToggle] = useState<boolean>(false)
@@ -193,7 +195,7 @@ export default function NavBar(){
             <span>
              {cartSVG('31')}
              <span className={`cart-count flex absolute top-[-5px] right-[-10px] bg-primary text-secondary rounded-[50%] w-[22px] h-[22px] items-center justify-center border-[1.5px] ${cartItems.length === 0 ? 'hidden' : ''}`}>
-                {cartItems.length}
+                {cartItemQuant}
              </span>
             </span>
 
