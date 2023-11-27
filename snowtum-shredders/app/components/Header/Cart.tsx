@@ -29,6 +29,7 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
             {/* //? This is going to be Dyanmic for each item added to cart */}
             {cartItems.map((item, i) => {
               const formattedName = item.name.replace(/\s+/g, '-').toLowerCase()
+              const totalItemPrice = item.quantity * Number(item.price)
               return (
                 <div className='cart-item' data-id={item.id + (item.size ? item.size : '')} key={i} data-limit={item.sku}>
                   <div className='cart-item-container'>
@@ -43,25 +44,17 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
                     <div className='cart-item-info'>
                       <span>{item.name} - {item.size}</span>
                     </div>
+                    <div className='cart-item-quantity'>
+                      <button></button>
+                        <span className='cart-item-quantity-tot'>{item.quantity}</span>
+                      <button></button>
+                    </div>
+                    <span className='cart-item-price'>${totalItemPrice}</span>
                   </div>
+                  <div className='cart-line'></div>
                 </div>
               )
             })}
-            <div className='cart-item'>
-              <div className='cart-item-container hidden'>
-                {/* <Link className='cart-item-image'><Image/></Link> */}
-                <div className='cart-item-info'>
-                  <span>Name - Size</span>
-                </div>
-                <div className='cart-item-quantity'>
-                  <button></button>
-                  <span className='cart-item-quantity-tot'></span>
-                  <button></button>
-                </div>
-                <span className='cart-item-price'></span>
-              </div>
-              <div className='cart-line'></div>
-            </div>
           </div>
           <div className='cart-summary'></div>
         </div>
