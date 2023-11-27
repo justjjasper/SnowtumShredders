@@ -40,17 +40,27 @@ export default function ProductInfoContainer( {productType}: {productType: strin
       price,
       size: selectedSize !== null ? meta_data[selectedSize]?.size : undefined,
       sku: selectedSize !== null ? meta_data[selectedSize]?.sku : undefined,
+      quantity: 1
     }
 
     // Retrieve existing cart items from local Storage
     const cartString = localStorage.getItem('cart')
     const existingCart = cartString ? JSON.parse(cartString) : []
 
-    // Add new item to the cart
-    const updatedCart = [...existingCart, cartItem]
+    // Check if the item is already in the cart
+    const existingCartItemIndex = existingCart.findIndex(
+      (item: CartItemType) => item.id === cartItem.id && item.size === cartItem.size
+    );
 
+    if (existingCartItemIndex !== -1) {
+      // If the item is already in the cart, update the quantity
+      existingCart[existingCartItemIndex].quantity += 1;
+    } else {
+      // If the item is not in the cart, add it with the initial quantity
+      existingCart.push(cartItem);
+    }
     // Save the updated cart back to localStorage
-    localStorage.setItem('cart', JSON.stringify(updatedCart))
+    localStorage.setItem('cart', JSON.stringify(existingCart))
 
     // console.log(cartItem)
     dispatch(addToCart(cartItem))

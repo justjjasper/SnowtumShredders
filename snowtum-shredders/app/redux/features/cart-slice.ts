@@ -5,7 +5,8 @@ export type CartItemType = {
   name: string,
   price: string,
   size: string | undefined,
-  sku: number | undefined
+  sku: number | undefined,
+  quantity: number
 }
 
 type InitialState = {
