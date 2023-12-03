@@ -2,6 +2,8 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import './Cart.css'
+import { circleMinusSVG, circlePlusSVG } from "@/app/Misc/Icons";
 
 interface CartProps {
   cartHovered: boolean;
@@ -32,7 +34,8 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
               const totalItemPrice = item.quantity * Number(item.price)
               return (
                 <div className='cart-item' data-id={item.id + (item.size ? item.size : '')} key={i} data-limit={item.sku}>
-                  <div className='cart-item-container'>
+                  {/* //! Fix grid */}
+                  <div className='cart-item-container p-[35px]'>
                     <Link href={`/products/${item.productType}/${formattedName}`}className='cart-item-image' onClick={onMouseLeave}>
                       <Image
                         src={item.image}
@@ -41,17 +44,17 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
                         width={100}
                       />
                     </Link>
-                    <div className='cart-item-info'>
-                      <span>{item.name} - {item.size}</span>
+                    <div className='cart-item-info self-center'>
+                      <span className='text-xs'>{item.name} - {item.size}</span>
                     </div>
-                    <div className='cart-item-quantity'>
-                      <button></button>
+                    <div className='cart-item-quantity flex self-center justify-center text-sm gap-[20px]'>
+                      <button>{circleMinusSVG}</button>
                         <span className='cart-item-quantity-tot'>{item.quantity}</span>
-                      <button></button>
+                      <button>{circlePlusSVG}</button>
                     </div>
-                    <span className='cart-item-price'>${totalItemPrice}</span>
+                    <span className='cart-item-price self-center text-right text-sm'>${totalItemPrice}</span>
                   </div>
-                  <div className='cart-line'></div>
+                  <div className='cart-line h-[1px] bg-primary'></div>
                 </div>
               )
             })}

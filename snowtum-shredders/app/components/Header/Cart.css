@@ -1,0 +1,6 @@
+/* This one is for xl screen size*/
+.cart-item-container {
+  display: grid;
+  grid-template-columns: 160px 200px 1fr 360px;
+  gap: 17.5px 40px;
+}
