@@ -41,9 +41,26 @@ export const cartSlice = createSlice({
 
       console.log('from redux store:', state.value);
     },
-    removeFromCart: () => {}
+    removeItemFromCart: (state, action: PayloadAction<CartItemType>) => {
+      const { id, size } = action.payload
+      const itemIndex = state.value.findIndex(item => item.id === id && item.size === size)
+
+      if (itemIndex !== -1) {
+        // Check if the item exists before updating
+        if (state.value[itemIndex].quantity > 1) {
+          state.value[itemIndex].quantity -= 1;
+          console.log('backend triggered');
+        } else {
+          // If quantity is 1, remove the item from the cart
+          state.value.splice(itemIndex, 1);
+          console.log('backend triggered for removal');
+        }
+      }
+
+      console.log('blacen triggered after')
+    }
   }
 })
 
-export const { addToCart } = cartSlice.actions
+export const { addToCart, removeItemFromCart } = cartSlice.actions
 export const cartReducer = cartSlice.reducer

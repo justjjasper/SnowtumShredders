@@ -3,7 +3,10 @@ import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import './Cart.css'
-import { circleMinusSVG, circlePlusSVG } from "@/app/Misc/Icons";
+import { circleMinusSVG, circlePlusSVG } from '@/app/Misc/Icons';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/app/redux/store';
+import { addToCart, removeItemFromCart } from '@/app/redux/features/cart-slice';
 
 interface CartProps {
   cartHovered: boolean;
@@ -12,6 +15,46 @@ interface CartProps {
 }
 
 export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) {
+  const dispatch = useDispatch<AppDispatch>()
+
+  // Retrieve existing cart items from local Storage
+  const cartString = localStorage.getItem('cart')
+  const existingCart = cartString ? JSON.parse(cartString) : []
+
+  const handleMinusButton = (cartItem: CartItemType) => {
+    dispatch(removeItemFromCart(cartItem))
+
+    const itemIndex = existingCart.findIndex((item: CartItemType) => item.id === cartItem.id && item.size === cartItem.size)
+
+    if (itemIndex !== -1) {
+      // Check if the item exists before updating
+      if (existingCart[itemIndex].quantity > 1) {
+        existingCart[itemIndex].quantity -= 1;
+      } else {
+        // If quantity is 1, remove the item from the cart
+        existingCart.splice(itemIndex, 1);
+      }
+    }
+
+    // Save the updated cart back to localStorage
+    localStorage.setItem('cart', JSON.stringify(existingCart))
+  }
+
+  const handlePlusButton = (cartItem: CartItemType) => {
+    dispatch(addToCart(cartItem))
+
+    // Check if the item is already in the cart
+    const existingCartItemIndex = existingCart.findIndex(
+      (item: CartItemType) => item.id === cartItem.id && item.size === cartItem.size
+    );
+
+    // Update the quantity
+    existingCart[existingCartItemIndex].quantity += 1;
+
+    // Save the updated cart back to localStorage
+    localStorage.setItem('cart', JSON.stringify(existingCart))
+  }
+
   return (
     <div className={`cart-form px-[120px] overflow-auto h-screen hovered:mt-[-h-screen]
       ${cartHovered ? 'flex' : 'hidden'}`}
@@ -34,7 +77,7 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
               const totalItemPrice = item.quantity * Number(item.price)
               return (
                 <div className='cart-item' data-id={item.id + (item.size ? item.size : '')} key={i} data-limit={item.sku}>
-                  {/* //! Fix grid */}
+                  {/* //! Need to add padding at bottom of last div item before summary checkout div */}
                   <div className='cart-item-container p-[35px]'>
                     <Link href={`/products/${item.productType}/${formattedName}`}className='cart-item-image' onClick={onMouseLeave}>
                       <Image
@@ -48,9 +91,21 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
                       <span className='text-xs'>{item.name} - {item.size}</span>
                     </div>
                     <div className='cart-item-quantity flex self-center justify-center text-sm gap-[20px]'>
-                      <button>{circleMinusSVG}</button>
+                      <button className='cart-item-quantity-btn-minus'
+                      data-id={item.id + (item.size ? item.size : '')}
+                      type='button'
+                      onClick={() => handleMinusButton(item)}
+                      >
+                        {circleMinusSVG}
+                      </button>
                         <span className='cart-item-quantity-tot'>{item.quantity}</span>
-                      <button>{circlePlusSVG}</button>
+                      <button className={`cart-item-quantity-btn-plus ${item.sku === item.quantity ? 'opacity-40' : ''}`}
+                      data-id={item.id + (item.size ? item.size : '')}
+                      type='button'
+                      disabled={item.sku === item.quantity}
+                      onClick={() => handlePlusButton(item)}>
+                        {circlePlusSVG}
+                      </button>
                     </div>
                     <span className='cart-item-price self-center text-right text-sm'>${totalItemPrice}</span>
                   </div>
