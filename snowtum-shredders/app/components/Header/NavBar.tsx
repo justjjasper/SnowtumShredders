@@ -85,6 +85,13 @@ export default function NavBar(){
     console.log('onMouseLeave triggered')
   }
 
+  useEffect(() => {
+    if (cartHovered) {
+      document.body.classList.add('disable-scroll')
+    } else {
+      document.body.classList.remove('disable-scroll');
+    }
+  })
 
   // Contains X Positions for Dropdown Menu CSS Padding
   const [snowboardXPos, setSnowboardPos] = useState<number | undefined>()

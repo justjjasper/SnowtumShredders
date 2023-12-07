@@ -1,5 +1,5 @@
 'use client'
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import './Cart.css'
@@ -55,13 +55,36 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
     localStorage.setItem('cart', JSON.stringify(existingCart))
   }
 
+  const [navbarHeight, setNavbarHeight] = useState(0);
+
+  useEffect(() => {
+    // Get the height of the physical-navbar
+    const navbarElement = document.querySelector('.physical-navbar') as HTMLElement;
+    if (navbarElement) {
+      setNavbarHeight(navbarElement.offsetHeight);
+    }
+  }, []);
+
+    // Function to calculate the grand total
+  const calculateGrandTotal = () => {
+    let grandTotal = 0;
+
+    // Iterate through cartItems and sum up the total quantity for each item
+    cartItems.forEach((item) => {
+      grandTotal += Number(item.price)
+    });
+
+    return grandTotal;
+  };
+
   return (
-    <div className={`cart-form px-[120px] overflow-auto h-screen hovered:mt-[-h-screen]
+    <div className={`cart-container px-[120px] overflow-scroll
       ${cartHovered ? 'flex' : 'hidden'}`}
       onMouseLeave={onMouseLeave}
+      style={{ maxHeight: `calc(100vh - ${navbarHeight}px)` }}
       >
-      <form className='block w-full'>
-        <div className='cart-container max-w-[1428px] mx-auto w-full'>
+      <form className='cart-form  block w-full'>
+        <div className='cart-container max-w-[1428px] mx-auto w-full relative'>
           { cartItems.length === 0 && <span className='msg-empty-cart block py-[100px] text-center w-full'>CART EMPTY</span> }
           <div id='cart-info-hidden invisible opacity-0 h-0' data-id='id + size' data-limit='sku'>
             {cartItems.map((item, i:number) => {
@@ -114,7 +137,10 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
               )
             })}
           </div>
-          <div className='cart-summary'></div>
+          { cartItems.length !== 0 && <div className='cart-summary sticky bottom-0 flex flex-col pb-[40px] mt-[40px] w-full items-end text-secondary'>
+            <span className='uppercase'>total <b>${calculateGrandTotal()}</b></span>
+            <input className='cart-submit' type='button' name='checkout' value='CHECKOUT'/>
+          </div> }
         </div>
       </form>
     </div>
