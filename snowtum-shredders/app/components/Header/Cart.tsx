@@ -65,17 +65,16 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
     }
   }, []);
 
-    // Function to calculate the grand total
-  const calculateGrandTotal = () => {
-    let grandTotal = 0;
+  const [grandTotal, setGrandTotal] = useState<number>(0);
 
-    // Iterate through cartItems and sum up the total quantity for each item
+  // Use useEffect to recalculate the grand total when cartItems change
+  useEffect(() => {
+    let total = 0;
     cartItems.forEach((item) => {
-      grandTotal += Number(item.price)
+      total += Number(item.price) * item.quantity;
     });
-
-    return grandTotal;
-  };
+    setGrandTotal(Number(total.toFixed(2)));
+  }, [cartItems]);
 
   return (
     <div className={`cart-container px-[120px] overflow-scroll
@@ -138,7 +137,7 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
             })}
           </div>
           { cartItems.length !== 0 && <div className='cart-summary sticky bottom-0 flex flex-col pb-[40px] mt-[40px] w-full items-end text-secondary'>
-            <span className='uppercase text-primary'>total <b>${calculateGrandTotal()}</b></span>
+            <span className='uppercase text-primary'>total <b>{grandTotal}</b></span>
             <input className='cart-submit py-[15px] px-[34px] rounded-full cursor-pointer bg-primary mt-4' type='button' name='checkout' value='CHECKOUT'/>
           </div> }
         </div>

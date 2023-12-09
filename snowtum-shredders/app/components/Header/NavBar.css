@@ -143,7 +143,7 @@ to add searchMenuTrigger class the entire header div
 
 /* CartForm Hover Trigger */
 .header.cartFormTrigger {
-  margin-top: -100vh
+  margin-top: calc(-100vh + 97px)
 }
 
 /* "Duct-Tape Fix" where margin-top: -925px solved issue of white space when mobileDropdownMenu activated */
