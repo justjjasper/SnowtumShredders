@@ -54,7 +54,6 @@ export default function ProductReviewsForm ( {product_id, formSubmitted, setForm
   }
 
   return (
-    // ! Be wary that there are solo value attr with each input in the form
     <div className='spr-form mt-[24px] pt-[24px] border-t-[1px]' id={`form_${product_id}`}>
       {/* //TODO: Fill in server api later */}
       <form action={(e) => handleSubmit(e)} id={`new-review-form_${product_id}`} className='new-review-form pt-[24px]'>

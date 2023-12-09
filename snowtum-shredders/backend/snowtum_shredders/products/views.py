@@ -404,4 +404,4 @@ def post_review(request):
         except Exception as e:
             print(f'Error saving review: {e}')
 
-        return JsonResponse({ 'message': body}, status=201)
+        return JsonResponse({ 'data': body}, status=201)

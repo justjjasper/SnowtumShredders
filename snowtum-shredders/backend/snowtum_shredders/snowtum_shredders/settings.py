@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'products',
-    'rest_framework'
+    'payments',
+    'rest_framework',
+    'stripe'
 ]
 
 MIDDLEWARE = [
@@ -94,6 +96,8 @@ PG_PASSWORD = os.getenv('PG_PASSWORD')
 PG_HOST = os.getenv('PG_HOST')
 PG_DATABASE = os.getenv('PG_DATABASE')
 PG_PORT = os.getenv('PG_PORT')
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
+STRIPE_PRIVATE_KEY = os.getenv('STRIPE_PRIVATE_KEY')
 
 DATABASES = {
     'default': {

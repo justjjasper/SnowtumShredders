@@ -7,6 +7,7 @@ import { circleMinusSVG, circlePlusSVG } from '@/app/Misc/Icons';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/app/redux/store';
 import { addToCart, removeItemFromCart } from '@/app/redux/features/cart-slice';
+import { stripePaymentAPI } from "@/app/config";
 
 interface CartProps {
   cartHovered: boolean;
@@ -57,6 +58,7 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
 
   const [navbarHeight, setNavbarHeight] = useState(0);
 
+  // Adjusts the positioning of the cart-summary div
   useEffect(() => {
     // Get the height of the physical-navbar
     const navbarElement = document.querySelector('.physical-navbar') as HTMLElement;
@@ -75,6 +77,19 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
     });
     setGrandTotal(Number(total.toFixed(2)));
   }, [cartItems]);
+
+  const handleCheckout = async () => {
+    const results = await fetch(stripePaymentAPI, {
+      method: 'POST',
+      body: JSON.stringify({message: 'hi cutie'}),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+
+    const data = await results.json()
+    console.log('what is aresults checkout frontend', data)
+  }
 
   return (
     <div className={`cart-container px-[120px] overflow-scroll
@@ -99,7 +114,6 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
               const totalItemPrice = item.quantity * Number(item.price)
               return (
                 <div className='cart-item' data-id={item.id + (item.size ? item.size : '')} key={i} data-limit={item.sku}>
-                  {/* //! Need to add padding at bottom of last div item before summary checkout div */}
                   <div className='cart-item-container p-[35px]'>
                     <Link href={`/products/${item.productType}/${formattedName}`}className='cart-item-image' onClick={onMouseLeave}>
                       <Image
@@ -138,7 +152,7 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
           </div>
           { cartItems.length !== 0 && <div className='cart-summary sticky bottom-0 flex flex-col pb-[40px] mt-[40px] w-full items-end text-secondary'>
             <span className='uppercase text-primary'>total <b>{grandTotal}</b></span>
-            <input className='cart-submit py-[15px] px-[34px] rounded-full cursor-pointer bg-primary mt-4' type='button' name='checkout' value='CHECKOUT'/>
+            <input className='cart-submit py-[15px] px-[34px] rounded-full cursor-pointer bg-primary mt-4' type='button' name='checkout' value='CHECKOUT' onClick={handleCheckout}/>
           </div> }
         </div>
       </form>
