@@ -1,10 +1,9 @@
 import Link from "next/link"
 
 export default function Footer() {
-
   return (
     //Implemented negative margin top to compensate white space created from displacing certain pages with bottom-100px
-    <section className='footer flex flex-col items-center mt-[-100px] text-[14px] border-t-2 border-secondary py-10'>
+    <section className='footer flex flex-col items-center text-[14px] mt-[-100px] border-t-2 border-secondary py-10'>
       <div className='flex justify-between w-10/12'>
         <div className='first-column relative flex flex-col'>
           <Link href='/pages/contact'>Contact Us</Link>

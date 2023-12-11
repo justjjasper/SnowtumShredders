@@ -166,7 +166,7 @@ export default function NavBar(){
         onMouseLeave={onMouseLeave}>
 
       {/* "Physical" Navbar */}
-      <div className={`physical-navbar flex w-full items-center justify-between px-3 md:px-16 py-3 md:py-8
+      <div className={`physical-navbar flex w-full items-center justify-between px-3 md:px-16 py-3 md:py-8 max-h-280
         ${snowboardMobileMenu ? '' : ''}`}>
         <Link href='/' className='font-holtwood sm:text-[22px]' onMouseEnter={onMouseLeave}>SNOWTUM SHREDDERS</Link>
         <nav className='hidden lg:flex flex-grow justify-around'>

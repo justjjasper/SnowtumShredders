@@ -17,7 +17,8 @@ interface CartProps {
 
 export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) {
   const dispatch = useDispatch<AppDispatch>()
-
+  // ! console log
+  console.log('what are cart items', cartItems)
   // Retrieve existing cart items from local Storage
   const cartString = localStorage.getItem('cart')
   const existingCart = cartString ? JSON.parse(cartString) : []
