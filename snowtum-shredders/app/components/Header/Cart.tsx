@@ -80,16 +80,25 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
   }, [cartItems]);
 
   const handleCheckout = async () => {
-    const results = await fetch(stripePaymentAPI, {
-      method: 'POST',
-      body: JSON.stringify({message: 'hi cutie'}),
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    })
+    try {
+      const results = await fetch(stripePaymentAPI, {
+        method: 'POST',
+        body: JSON.stringify({message: 'hi cutie'}),
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
 
-    const data = await results.json()
-    console.log('what is aresults checkout frontend', data)
+      const data = await results.json()
+      console.log('what is aresults checkout frontend', data)
+      if (data.url) {
+        window.location.href = data.url
+      } else {
+        console.error('URL not found in the stripe response')
+      }
+    } catch(err) {
+      console.error('Error during frontend checkout', err)
+    }
   }
 
   return (

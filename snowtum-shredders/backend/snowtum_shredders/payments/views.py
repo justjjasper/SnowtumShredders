@@ -12,8 +12,8 @@ def stripe_payment(request):
     print('stripe-payment what is body', body)
 
     try:
+      # Declare stripe api key
       stripe.api_key = settings.STRIPE_PRIVATE_KEY
-      price_id = 'price_12'
 
       session =  stripe.checkout.Session.create(
         payment_method_types = ['card'],
@@ -31,7 +31,7 @@ def stripe_payment(request):
         success_url= 'http://localhost:3000/pages/success',
         cancel_url= 'http://localhost:3000/pages/cancel'
       )
-      print('what is session stripe payment', session.url)
+      print('what is checkoutid stripe payment', session.id)
       return JsonResponse({'url': session.url}, status=201)
     except Exception as e:
       print(f'Error creating Stripe session: {str(e)}')
