@@ -83,7 +83,7 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
     try {
       const results = await fetch(stripePaymentAPI, {
         method: 'POST',
-        body: JSON.stringify({message: 'hi cutie'}),
+        body: JSON.stringify({ cartItems }),
         headers: {
           'Content-Type': 'application/json',
         }

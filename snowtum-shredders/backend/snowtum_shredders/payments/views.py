@@ -15,19 +15,25 @@ def stripe_payment(request):
       # Declare stripe api key
       stripe.api_key = settings.STRIPE_PRIVATE_KEY
 
+      line_items = []
+
+      # Loop through cart items and convert them to Stripe line items
+      for cart_item in body.get('cartItems', []):
+          line_items.append({
+              'price_data': {
+                  'product_data': {
+                      'name': cart_item['name']
+                  },
+                  'currency': 'usd',
+                  'unit_amount': int(float(cart_item['price']) * 100),  # Convert price to cents
+              },
+              'quantity': cart_item['quantity'],
+          })
+
       session =  stripe.checkout.Session.create(
         payment_method_types = ['card'],
         mode='payment',
-        line_items=[{
-          'price_data': {
-            'product_data': {
-              'name': 'Item A',
-            },
-            'currency': 'usd',
-            'unit_amount': 1099,
-          },
-          'quantity': 3,
-        }],
+        line_items= line_items,
         success_url= 'http://localhost:3000/pages/success',
         cancel_url= 'http://localhost:3000/pages/cancel'
       )
