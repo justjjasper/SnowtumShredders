@@ -118,10 +118,9 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
             })}
           </div>
           <div id='cart-info'>
-            {/* //? This is going to be Dyanmic for each item added to cart */}
             {cartItems.map((item, i) => {
               const formattedName = item.name.replace(/\s+/g, '-').toLowerCase()
-              const totalItemPrice = item.quantity * Number(item.price)
+              const totalItemPrice = (item.quantity * Number(item.price)).toFixed(2);
               return (
                 <div className='cart-item' data-id={item.id + (item.size ? item.size : '')} key={i} data-limit={item.sku}>
                   <div className='cart-item-container p-[35px]'>
