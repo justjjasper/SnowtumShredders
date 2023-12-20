@@ -22,6 +22,16 @@ def stripe_payment(request):
                     product = Snowboard.objects.get(snowboard_id=cart_item['id'])
                     price = float(product.snowboard_price)
 
+                    # Update the SKU in the database (adjust the logic based on your model structure)
+                    product_sku = SnowboardSKU.objects.get(snowboard_id=cart_item['id'], snowboard_size=cart_item['size'])
+
+                    # Check if subtracting the quantity will result in a negative value
+                    if product_sku.snowboard_sku - cart_item['quantity'] < 0:
+                        raise ValueError('Insufficient stock')
+
+                    product_sku.snowboard_sku -= cart_item['quantity']
+                    product_sku.save()
+
                     line_items.append({
                         'price_data': {
                             'product_data': {
@@ -33,11 +43,6 @@ def stripe_payment(request):
                         'quantity': cart_item['quantity'],
                     })
 
-                    # Update the SKU in the database (adjust the logic based on your model structure)
-                    product_sku = SnowboardSKU.objects.get(snowboard_id=cart_item['id'], snowboard_size=cart_item['size'])
-                    product_sku.snowboard_sku -= cart_item['quantity']
-                    product_sku.save()
-
                 session = stripe.checkout.Session.create(
                     payment_method_types=['card'],
                     mode='payment',
@@ -48,6 +53,9 @@ def stripe_payment(request):
 
             print('what is checkoutid stripe payment', session.id)
             return JsonResponse({'url': session.url}, status=201)
+        except ValueError as ve:
+            print(f'Error creating Stripe session: {str(ve)}')
+            return JsonResponse({'message': 'Insufficient stock'}, status=400)
         except Exception as e:
             print(f'Error creating Stripe session: {str(e)}')
             return JsonResponse({'message': 'Stripe Payment failed from backend'}, status=500)

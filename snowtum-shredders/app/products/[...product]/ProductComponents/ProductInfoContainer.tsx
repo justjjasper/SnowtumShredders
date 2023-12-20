@@ -15,7 +15,6 @@ export default function ProductInfoContainer( {productType}: {productType: strin
   const dispatch = useDispatch<AppDispatch>()
 
   const { product: { id, header_description, name, images, price, reviews, meta_data }, mainSwiper, thumbsSwiper } = useContext(ProductContext)
-  console.log('front end log, meta_data', meta_data)
 
   const handleSwipers = (index: number) => {
     if (productType !== 'snowboard') return
@@ -25,13 +24,34 @@ export default function ProductInfoContainer( {productType}: {productType: strin
 
   const [selectedSize, setSelectedSize] = useState<number | null>(null)
   const [sizeError, setSizeError] = useState<boolean>(false)
+  const [skuError, setSkuError] = useState<boolean>(false)
 
   const handleAddToCart = () => {
+    // Retrieve existing cart items from local Storage
+    const cartString = localStorage.getItem('cart')
+    const existingCart = cartString ? JSON.parse(cartString) : []
+
     const emptySku = selectedSize !== null && meta_data[selectedSize].sku === 0
+  // Add a condition to check if the quantity in the existing cart is equal to the SKU
+  const selectedSizeObject = selectedSize !== null ? meta_data[selectedSize] : undefined;
+  const noMoreSkuAvail =
+    selectedSizeObject &&
+    existingCart.some(
+      (item: CartItemType) => item.size === selectedSizeObject.size && item.quantity === selectedSizeObject.sku
+    );
+
     if (emptySku || (selectedSize === null && !sizeError)) {
       setSizeError(true)
       setTimeout(() => {
         setSizeError(false)
+      }, 4000)
+      return
+    }
+
+    if (noMoreSkuAvail) {
+      setSkuError(true)
+      setTimeout(() => {
+        setSkuError(false)
       }, 4000)
       return
     }
@@ -46,10 +66,6 @@ export default function ProductInfoContainer( {productType}: {productType: strin
       sku: selectedSize !== null ? meta_data[selectedSize]?.sku : undefined,
       quantity: 1
     }
-
-    // Retrieve existing cart items from local Storage
-    const cartString = localStorage.getItem('cart')
-    const existingCart = cartString ? JSON.parse(cartString) : []
 
     // Check if the item is already in the cart
     const existingCartItemIndex = existingCart.findIndex(
@@ -87,6 +103,7 @@ export default function ProductInfoContainer( {productType}: {productType: strin
           <input type='hidden'/>
           <div className='product-info-sizes relative mt-[12px]'>
             { sizeError && <div className='border-error absolute border-[1px] rounded-lg'></div> }
+            { skuError && <div className='border-error absolute border-[1px] rounded-lg'></div> }
             {sortMetaData(meta_data).map((item, index) => {
               const noStock = item.sku === 0
 
@@ -116,7 +133,7 @@ export default function ProductInfoContainer( {productType}: {productType: strin
               )
             })}
           </div>
-          <span className={`variant-select relative top-[10px] ${sizeError ? 'visible' : 'invisible'}`}>Please select a variant.</span>
+          <span className={`variant-select relative top-[10px] ${sizeError || skuError ? 'visible' : 'invisible'}`}>{sizeError ? 'Please select a variant.' : ''} {skuError ? 'Item may be out of stock. Check inventory' : '' }</span>
           <button className='add-to-cart flex justify-center items-center rounded-full font-bold w-full mt-[20px] py-[19px] gap-2 bg-secondary text-primary hover:underline'
             onClick={throttleAddToCart}
             >
