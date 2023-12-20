@@ -34,11 +34,11 @@ export default function ProductInfoContainer( {productType}: {productType: strin
     const emptySku = selectedSize !== null && meta_data[selectedSize].sku === 0
   // Add a condition to check if the quantity in the existing cart is equal to the SKU
   const selectedSizeObject = selectedSize !== null ? meta_data[selectedSize] : undefined;
-  const noMoreSkuAvail =
-    selectedSizeObject &&
-    existingCart.some(
-      (item: CartItemType) => item.size === selectedSizeObject.size && item.quantity === selectedSizeObject.sku
-    );
+  // const noMoreSkuAvail =
+  //   selectedSizeObject &&
+  //   existingCart.some(
+  //     (item: CartItemType) => item.size === selectedSizeObject.size && item.quantity === selectedSizeObject.sku
+  //   );
 
     if (emptySku || (selectedSize === null && !sizeError)) {
       setSizeError(true)
@@ -48,13 +48,13 @@ export default function ProductInfoContainer( {productType}: {productType: strin
       return
     }
 
-    if (noMoreSkuAvail) {
-      setSkuError(true)
-      setTimeout(() => {
-        setSkuError(false)
-      }, 4000)
-      return
-    }
+    // if (noMoreSkuAvail) {
+    //   setSkuError(true)
+    //   setTimeout(() => {
+    //     setSkuError(false)
+    //   }, 4000)
+    //   return
+    // }
 
     const cartItem = {
       id,
