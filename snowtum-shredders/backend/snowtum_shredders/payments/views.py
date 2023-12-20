@@ -1,7 +1,7 @@
 from django.http import JsonResponse
-from django.db import DatabaseError
+from django.db import DatabaseError, transaction
 from django.conf import settings
-from products.models import Snowboard  # Import your model
+from products.models import Snowboard, SnowboardSKU
 import stripe
 from rest_framework.decorators import api_view
 
@@ -16,29 +16,35 @@ def stripe_payment(request):
 
             line_items = []
 
-            for cart_item in body.get('cartItems', []):
-                # Query the database to get the price based on product information
-                product = Snowboard.objects.get(snowboard_id=cart_item['id'])
-                price = float(product.snowboard_price)
+            with transaction.atomic():  # Use atomic transaction to ensure consistency
+                for cart_item in body.get('cartItems', []):
+                    # Query the database to get the product based on product information
+                    product = Snowboard.objects.get(snowboard_id=cart_item['id'])
+                    price = float(product.snowboard_price)
 
-                line_items.append({
-                    'price_data': {
-                        'product_data': {
-                            'name': cart_item['name']
+                    line_items.append({
+                        'price_data': {
+                            'product_data': {
+                                'name': cart_item['name']
+                            },
+                            'currency': 'usd',
+                            'unit_amount': int(price * 100),  # Convert price to cents
                         },
-                        'currency': 'usd',
-                        'unit_amount': int(price * 100),  # Convert price to cents
-                    },
-                    'quantity': cart_item['quantity'],
-                })
+                        'quantity': cart_item['quantity'],
+                    })
 
-            session = stripe.checkout.Session.create(
-                payment_method_types=['card'],
-                mode='payment',
-                line_items=line_items,
-                success_url='http://localhost:3000/pages/success',
-                cancel_url='http://localhost:3000/pages/cancel'
-            )
+                    # Update the SKU in the database (adjust the logic based on your model structure)
+                    product_sku = SnowboardSKU.objects.get(snowboard_id=cart_item['id'], snowboard_size=cart_item['size'])
+                    product_sku.snowboard_sku -= cart_item['quantity']
+                    product_sku.save()
+
+                session = stripe.checkout.Session.create(
+                    payment_method_types=['card'],
+                    mode='payment',
+                    line_items=line_items,
+                    success_url='http://localhost:3000/pages/success',
+                    cancel_url='http://localhost:3000/pages/cancel'
+                )
 
             print('what is checkoutid stripe payment', session.id)
             return JsonResponse({'url': session.url}, status=201)
