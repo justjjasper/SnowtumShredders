@@ -161,7 +161,7 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
             })}
           </div>
           { cartItems.length !== 0 && <div className='cart-summary sticky bottom-0 flex flex-col pb-[40px] mt-[40px] w-full items-end text-secondary'>
-            <span className='uppercase text-primary'>total <b>{grandTotal}</b></span>
+            <span className='uppercase text-primary'>total <b>${grandTotal}</b></span>
             <input className='cart-submit py-[15px] px-[34px] rounded-full cursor-pointer bg-primary mt-4' type='button' name='checkout' value='CHECKOUT' onClick={handleCheckout}/>
           </div> }
         </div>
