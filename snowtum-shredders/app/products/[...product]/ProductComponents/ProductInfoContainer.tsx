@@ -7,6 +7,7 @@ import { throttle } from '@/app/Misc/HelperFunc'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '@/app/redux/store'
 import { addToCart } from '@/app/redux/features/cart-slice'
+import { sortMetaData } from '@/app/Misc/HelperFunc'
 
 import AverageStarRating from '@/app/products/[...product]/ProductComponents/AverageStarRating'
 
@@ -14,6 +15,7 @@ export default function ProductInfoContainer( {productType}: {productType: strin
   const dispatch = useDispatch<AppDispatch>()
 
   const { product: { id, header_description, name, images, price, reviews, meta_data }, mainSwiper, thumbsSwiper } = useContext(ProductContext)
+  console.log('front end log, meta_data', meta_data)
 
   const handleSwipers = (index: number) => {
     if (productType !== 'snowboard') return
@@ -85,10 +87,9 @@ export default function ProductInfoContainer( {productType}: {productType: strin
           <input type='hidden'/>
           <div className='product-info-sizes relative mt-[12px]'>
             { sizeError && <div className='border-error absolute border-[1px] rounded-lg'></div> }
-            {meta_data.map((item, index) => {
+            {sortMetaData(meta_data).map((item, index) => {
               const noStock = item.sku === 0
 
-              // When creating a submit post, get the input value? and send that to the server only reason i can think of adding a data-for attached to a input radio
               return (
                 <div className={`product-info-size relative text-center border-[1px] rounded-full px-3 py-2 hover:text-primary hover:bg-secondary hover:cursor-pointer ${noStock ? 'disabled-size opacity-50 text-gray-400' : ''}
                 ${selectedSize === index ? 'bg-secondary text-primary' : ''}
