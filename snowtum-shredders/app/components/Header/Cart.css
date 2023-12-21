@@ -1,18 +1,46 @@
 /* This one is for xl screen size*/
 .cart-item-container {
   display: grid;
-  grid-template-columns: 160px 200px 1fr 360px;
-  gap: 15x 40px;
+  grid-template-areas:
+    "image info"
+    "image quantity"
+    "image price";
+  grid-template-columns: 94px 1fr;
+  gap: 15px 40px;
+  align-content: center;
+  align-items: center;
 }
-/*
-.cart-summary::after {
-  content: "";
-  display: block;
-  position: absolute;
-  z-index: 50;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(35px);
-} */
+
+/* Responsible for mobile 2 column layout (anything below 755 width)*/
+@media(max-width:755px) {
+  .cart-item-image {
+    grid-area: image;
+  }
+
+  .cart-item-info {
+    grid-area: info
+  }
+
+  .cart-item-quantity {
+    grid-area: quantity
+  }
+
+  .cart-item-price {
+    grid-area: price
+  }
+}
+
+/* Medium Screen */
+@media(min-width:768px) {
+  .cart-item-container {
+    grid-template-columns: 94px 150px 1fr 244px;
+  }
+}
+
+/* Large Screen */
+@media(min-width:1024px) {
+  .cart-item-container {
+    grid-template-columns: 160px 200px 1fr 250px;
+  }
+}
+

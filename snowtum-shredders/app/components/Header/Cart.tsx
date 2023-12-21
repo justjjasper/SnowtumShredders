@@ -101,7 +101,7 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
   }
 
   return (
-    <div className={`cart-container px-[120px] overflow-scroll
+    <div className={`cart-container px-[20px] md:px-[45px] lg:px-[120px] overflow-scroll h-screen sm:h-auto
       ${cartHovered ? 'flex' : 'hidden'}`}
       onMouseLeave={onMouseLeave}
       style={{ maxHeight: `calc(100vh - ${navbarHeight}px)` }}
@@ -123,7 +123,7 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
               return (
                 <div className='cart-item' data-id={item.id + (item.size ? item.size : '')} key={i} data-limit={item.sku}>
                   <div className='cart-item-container p-[35px]'>
-                    <Link href={`/products/${item.productType}/${formattedName}`}className='cart-item-image' onClick={onMouseLeave}>
+                    <Link href={`/products/${item.productType}/${formattedName}`} className='cart-item-image' onClick={onMouseLeave}>
                       <Image
                         src={item.image}
                         alt={item.name}
@@ -131,10 +131,10 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
                         width={100}
                       />
                     </Link>
-                    <div className='cart-item-info self-center'>
-                      <span className='text-xs'>{item.name} - {item.size}</span>
+                    <div className='cart-item-info'>
+                      <span className='text-[11px] sm:text-xs'>{item.name} - {item.size}</span>
                     </div>
-                    <div className='cart-item-quantity flex self-center justify-center text-sm gap-[20px]'>
+                    <div className='cart-item-quantity flex self-center md:justify-center text-[11px] sm:text-sm gap-[20px]'>
                       <button className='cart-item-quantity-btn-minus'
                       data-id={item.id + (item.size ? item.size : '')}
                       type='button'
@@ -142,7 +142,7 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
                       >
                         {circleMinusSVG}
                       </button>
-                        <span className='cart-item-quantity-tot'>{item.quantity}</span>
+                        <span className='cart-item-quantity-tot text-[11px] sm:text-xs'>{item.quantity}</span>
                       <button className={`cart-item-quantity-btn-plus ${item.sku === item.quantity ? 'opacity-40' : ''}`}
                       data-id={item.id + (item.size ? item.size : '')}
                       type='button'
@@ -151,14 +151,14 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
                         {circlePlusSVG}
                       </button>
                     </div>
-                    <span className='cart-item-price self-center text-right text-sm'>${totalItemPrice}</span>
+                    <span className='cart-item-price self-center md:text-right text-sm'>${totalItemPrice}</span>
                   </div>
                   <div className='cart-line h-[1px] bg-primary'></div>
                 </div>
               )
             })}
           </div>
-          { cartItems.length !== 0 && <div className='cart-summary sticky bottom-0 flex flex-col pb-[40px] mt-[40px] w-full items-end text-secondary'>
+          { cartItems.length !== 0 && <div className='cart-summary sticky bottom-0 flex flex-col pb-[40px] mt-[40px] w-full  items-center md:items-end text-secondary'>
             <span className='uppercase text-primary'>total <b>${Number(grandTotal).toFixed(2)}</b></span>
             <input className='cart-submit py-[15px] px-[34px] rounded-full cursor-pointer bg-primary mt-4' type='button' name='checkout' value='CHECKOUT' onClick={handleCheckout}/>
           </div> }
