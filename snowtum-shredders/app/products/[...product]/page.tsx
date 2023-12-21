@@ -44,16 +44,16 @@ export default async function Product({ params, searchParams }: ProductParams ) 
     return (
       <main className={`flex flex-col relative bottom-[100px] font-calibre ${product.flex ? '' : 'mt-[100px]'}`}>
         {productType === 'snowboard' &&
-          <section className='flex justify-center items-center'>
+          <section className='flex justify-center items-center mt-[95px] sm:mt-0'>
             <Image
               src={product.image}
               width={500}
               height={500}
               alt={`${product.name} Hero Banner`}
               priority={true}
-              className='w-full h-[35em]'
+              className='w-full lg:h-[35em]'
             />
-            <span className='flex absolute text-[6rem] font-bold tracking-tighter text-primary text-center leading-[6rem]'>{product.name}</span>
+            <span className='flex absolute text-3xl lg:text-[6rem] font-bold tracking-tighter text-primary text-center leading-[6rem]'>{product.name}</span>
           </section>}
 
           <main className='main-content'>
@@ -76,13 +76,3 @@ export default async function Product({ params, searchParams }: ProductParams ) 
     )
   }
 }
-
-
-
-
-// return (
-//   <div className={`${productType === 'snowboard' ? 'bottom-[100px] z-20' : ''} relative `}>
-//     {productName} snowboard is awesome.
-//     <Image src={`${product.images[0]}`} alt='beaitful board' width={200} height={450} priority={true}/>
-//   </div>
-// )

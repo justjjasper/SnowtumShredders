@@ -209,7 +209,10 @@ export default function NavBar(){
           </button>
           {hamburgerToggle === false && <button id='menu-link'
             className='block lg:hidden'
-            onClick={() => setHamburgerToggle(!hamburgerToggle)}
+            onClick={() => {
+              setHamburgerToggle(!hamburgerToggle)
+              setCartHovered(false)
+            }}
           >
             {hambugerSVG}
           </button>}
