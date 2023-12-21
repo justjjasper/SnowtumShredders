@@ -17,8 +17,7 @@ export default function Team() {
                         height={200}
                         width={200}
                         alt={`Picture of team member: ${team.name}`}
-                        objectFit="cover"
-                        className='w-full h-[200px] lg:h-[250px]'
+                        className='w-full h-auto aspect-square'
                         />
                     </div>
                     <span className='py-4 font-bold text-lg'>{team.name}</span>
