@@ -12,8 +12,8 @@ export default function ProductTech( {product}: ProductTechProps ) {
 
   return (
     <section className='content-container-product-tech max-w-[1920px]'> {/* <---- Responsible for max width of 1920px */}
-      <div className='content-wider lg:px-16'> {/* Responsible for px */}
-        <div className='product-tech py-[87px] px-[85px] rounded-[32px] border-[1px] mt-[40px]'> {/* Responsible for mt */}
+      <div className='content-wider px-[10px] md:px-[70px] lg:px-16'> {/* Responsible for px */}
+        <div className='product-tech py-[40px] px-[20px] xl:py-[87px] xl:px-[85px] rounded-[32px] border-[1px] mt-[40px]'> {/* Responsible for mt */}
 
           <div className='product-tech-left w-full h-auto'>
             <div className='product-tech-specs flex flex-col gap-7'>
@@ -46,7 +46,7 @@ export default function ProductTech( {product}: ProductTechProps ) {
                 <span className='spec-value'>{rider_type}</span>
               </div>
               <div className='product-tech-story '>
-                <div className='product-tech-subtitle uppercase'>camber</div>
+                <div className='spec-type product-tech-subtitle uppercase'>camber</div>
                 <div className='product-tech-title'>{camber_type}</div>
                 <div className='product-tech-text mt-[3px] text-[15px]'>{camber_description}</div>
             </div>
@@ -55,7 +55,7 @@ export default function ProductTech( {product}: ProductTechProps ) {
 
           <div className='product-tech-right w-full h-auto'>
             <div className='product-tech-story'>
-              <div className='product-tech-subtitle uppercase'>tech story</div>
+              <div className='spec-type product-tech-subtitle uppercase'>tech story</div>
               <div className='product-tech-title mb-[15px]'>{name}</div>
               <div className='product-tech-text text-[15px]'>
               {tech_story.split('\n').map((line, index) => (

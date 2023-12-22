@@ -67,21 +67,34 @@
 /* //? ProductTech css*/
 .product-tech {
   display: grid;
-  grid-template-columns: 456px 1fr;
-  grid-template-rows: minmax(0, auto);
   grid-gap: 40px;
 }
-/* Product Tech Video css */
-.product-tech-video {
-  grid-column: 1/span 2;
-   /* Same as
+
+@media(min-width:1024px) {
+  .product-tech {
+    grid-template-columns: 456px 1fr;
+    grid-template-rows: minmax(0, auto);
+  }
+
+  .product-tech-video {
+    grid-column: 1/span 2;
+    /* Same as
    grid-column-start: 1;
    grid-column-end: span 2;
    */
+  }
+}
+
+/* Product Tech Video css */
+.product-tech-video {
   aspect-ratio: 1434/772;
 }
 
 /* Product Tech Specs  */
+.spec-type {
+  font-size: 0.8rem;
+}
+
 .spec-type, .product-tech-subtitle {
   font-weight: 700;
   color: #666666;
@@ -89,7 +102,24 @@
 
 .spec-value, .product-tech-title {
   font-weight: 800;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.product-tech-text {
+  font-size: 13px;
+}
+
+@media(min-width: 1024px) {
+  .spec-value, .product-tech-title {
+    font-size: 1.5rem;
+  }
+  .spec-type {
+    font-size: 1rem;
+  }
+
+  .product-tech-text {
+    font-size: 1rem;
+  }
 }
 
 .spec-level {
