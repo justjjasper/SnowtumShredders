@@ -125,25 +125,25 @@ CREATE INDEX boardbag_images_boardbag_id_index ON boardbag_images(boardbag_id);
 FILE_PATH = os.getenv('FILE_PATH')
 
 copy_csv_files = f'''
-\COPY snowboards FROM '{FILE_PATH}snowboards/snowtum_shredders_snowboards.csv' CSV HEADER;
-\COPY snowboard_images FROM '{FILE_PATH}snowboards/snowtum_shredders_snowboard_images.csv' CSV HEADER;
+COPY snowboards FROM '{FILE_PATH}snowboards/snowtum_shredders_snowboards.csv' CSV HEADER;
+COPY snowboard_images FROM '{FILE_PATH}snowboards/snowtum_shredders_snowboard_images.csv' CSV HEADER;
 UPDATE snowboard_images
 SET snowboard_image = CONCAT('https://', snowboard_image);
-\COPY snowboard_reviews FROM '{FILE_PATH}snowboards/snowtum_shredders_snowboard_reviews.csv' CSV HEADER;
-\COPY snowboard_skus FROM '{FILE_PATH}snowboards/snowtum_shredders_snowboard_skus.csv' CSV HEADER;
-\COPY tshirts FROM '{FILE_PATH}tshirts/snowtum_shredders_tshirts.csv' CSV HEADER;
+COPY snowboard_reviews FROM '{FILE_PATH}snowboards/snowtum_shredders_snowboard_reviews.csv' CSV HEADER;
+COPY snowboard_skus FROM '{FILE_PATH}snowboards/snowtum_shredders_snowboard_skus.csv' CSV HEADER;
+COPY tshirts FROM '{FILE_PATH}tshirts/snowtum_shredders_tshirts.csv' CSV HEADER;
 UPDATE tshirts
 SET tshirt_image = CONCAT('https://', tshirt_image);
-\COPY tshirt_skus FROM '{FILE_PATH}tshirts/snowtum_shredders_tshirt_skus.csv' CSV HEADER;
-\COPY hoodies FROM '{FILE_PATH}hoodies/snowtum_shredders_hoodies.csv' CSV HEADER;
+COPY tshirt_skus FROM '{FILE_PATH}tshirts/snowtum_shredders_tshirt_skus.csv' CSV HEADER;
+COPY hoodies FROM '{FILE_PATH}hoodies/snowtum_shredders_hoodies.csv' CSV HEADER;
 UPDATE hoodies
 SET hoodie_image = CONCAT('https://', hoodie_image);
-\COPY hoodie_skus FROM '{FILE_PATH}hoodies/snowtum_shredders_hoodie_skus.csv' CSV HEADER;
-\COPY headgear FROM '{FILE_PATH}snowtum_shredders_headgear.csv' CSV HEADER;
+COPY hoodie_skus FROM '{FILE_PATH}hoodies/snowtum_shredders_hoodie_skus.csv' CSV HEADER;
+COPY headgear FROM '{FILE_PATH}snowtum_shredders_headgear.csv' CSV HEADER;
 UPDATE headgear
 SET headgear_image = CONCAT('https://', headgear_image);
-\COPY boardbag FROM '{FILE_PATH}boardbag/snowtum_shredders_boardbag.csv' CSV HEADER;
-\COPY boardbag_images FROM '{FILE_PATH}boardbag/snowtum_shredders_boardbag_image.csv' CSV HEADER;
+COPY boardbag FROM '{FILE_PATH}boardbag/snowtum_shredders_boardbag.csv' CSV HEADER;
+COPY boardbag_images FROM '{FILE_PATH}boardbag/snowtum_shredders_boardbag_image.csv' CSV HEADER;
 UPDATE boardbag_images
 SET boardbag_image = CONCAT('https://', boardbag_image);
 SELECT setval('snowboard_reviews_review_id_seq', (SELECT MAX(review_id) FROM snowboard_reviews));
