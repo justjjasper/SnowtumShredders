@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Thumbs, Navigation, Pagination } from 'swiper/modules'
 import { useContext } from "react"
 import { ProductContext } from "./ContentContainer"
+import 'swiper/css/pagination';
 
 export default function ProductMain() {
   const { product, thumbsSwiper, setMainSwiper, toggleGallery, setToggleGallery } = useContext(ProductContext)
@@ -11,8 +12,16 @@ export default function ProductMain() {
 
   return (
     <Swiper
-      className='product-main w-[100%] border-0 border-secondary'
-      modules= {[Thumbs, Navigation]}
+      style={{
+        "--swiper-pagination-color": "black",
+        "--swiper-pagination-bullet-inactive-color": "white",
+        "--swiper-pagination-bullet-inactive-opacity": "1",
+        "--swiper-pagination-bullet-size": "12px",
+        "--swiper-pagination-bullet-horizontal-gap": "6px",
+        "--swiper-pagination-pagination-top": "100px",
+      }}
+      className='product-main w-[100%] h-[725px] lg:h-auto'
+      modules= {[Thumbs, Navigation, Pagination]}
       thumbs={{
         swiper:
         thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null
@@ -22,6 +31,7 @@ export default function ProductMain() {
         prevEl: '.product-main-nav-prev',
         disabledClass: 'swiper-button-disabled' // <-- Disabled default navigation arrows
       }}
+      pagination={{ clickable: true }}
       onSwiper={setMainSwiper}
       onClick={() => setToggleGallery(!toggleGallery)}
       >
@@ -52,7 +62,6 @@ export default function ProductMain() {
       <button className='product-main-nav-next lg:hidden z-50 absolute right-0 top-[50%]' type='button'>
        {rightVectorSVG}
       </button>
-      {/* Insert pagination library here */}
     </Swiper>
   )
 }

@@ -30,8 +30,3 @@
 .footer a:hover {
   text-decoration: underline;
 }
-
-
-.disable-scrolsl {
-  overflow: hidden;
-}

@@ -213,3 +213,32 @@ textarea {
 /* .product-gallery {
   z-index: 9999;
 } */
+
+/* All Main bullet paginations */
+.swiper-pagination-bullet {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 3px;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: black;
+}
+
+.swiper-pagination {
+  width: '100%';
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  bottom: 5px !important;
+  position: static;
+}
+
+@media(min-width:1024px) {
+  .swiper-pagination{
+    display: none
+  }
+}
