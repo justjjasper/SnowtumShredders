@@ -237,6 +237,7 @@ textarea {
   position: static;
 }
 
+/* Hides pagination with screen more than 1024px */
 @media(min-width:1024px) {
   .swiper-pagination{
     display: none

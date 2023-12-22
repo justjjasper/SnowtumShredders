@@ -2,7 +2,7 @@ import Image from "next/image"
 import { leftVectorSVG, magnifyingPlusSVG, rightVectorSVG } from "@/app/Misc/Icons"
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Thumbs, Navigation, Pagination } from 'swiper/modules'
-import { useContext } from "react"
+import { CSSProperties, useContext } from "react"
 import { ProductContext } from "./ContentContainer"
 import 'swiper/css/pagination';
 
@@ -10,16 +10,27 @@ export default function ProductMain() {
   const { product, thumbsSwiper, setMainSwiper, toggleGallery, setToggleGallery } = useContext(ProductContext)
   const { images, name } = product
 
+  type SwiperStyle = {
+    "--swiper-pagination-color": string;
+    "--swiper-pagination-bullet-inactive-color": string;
+    "--swiper-pagination-bullet-inactive-opacity": string;
+    "--swiper-pagination-bullet-size": string;
+    "--swiper-pagination-bullet-horizontal-gap": string;
+    "--swiper-pagination-pagination-top": string;
+  };
+
+  const swiperStyle: SwiperStyle = {
+    "--swiper-pagination-color": "black",
+    "--swiper-pagination-bullet-inactive-color": "white",
+    "--swiper-pagination-bullet-inactive-opacity": "1",
+    "--swiper-pagination-bullet-size": "12px",
+    "--swiper-pagination-bullet-horizontal-gap": "6px",
+    "--swiper-pagination-pagination-top": "100px",
+  };
+
   return (
     <Swiper
-      style={{
-        "--swiper-pagination-color": "black",
-        "--swiper-pagination-bullet-inactive-color": "white",
-        "--swiper-pagination-bullet-inactive-opacity": "1",
-        "--swiper-pagination-bullet-size": "12px",
-        "--swiper-pagination-bullet-horizontal-gap": "6px",
-        "--swiper-pagination-pagination-top": "100px",
-      }}
+      style={swiperStyle as CSSProperties}
       className='product-main w-[100%] h-[725px] lg:h-auto'
       modules= {[Thumbs, Navigation, Pagination]}
       thumbs={{
