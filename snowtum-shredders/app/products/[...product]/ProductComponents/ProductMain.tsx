@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { leftVectorSVG, magnifyingPlusSVG, rightVectorSVG } from "@/app/Misc/Icons"
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Thumbs } from 'swiper/modules'
+import { Thumbs, Navigation, Pagination } from 'swiper/modules'
 import { useContext } from "react"
 import { ProductContext } from "./ContentContainer"
 
@@ -12,10 +12,15 @@ export default function ProductMain() {
   return (
     <Swiper
       className='product-main w-[100%] border-0 border-secondary'
-      modules= {[Thumbs]}
+      modules= {[Thumbs, Navigation]}
       thumbs={{
         swiper:
         thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null
+      }}
+      navigation={{
+        nextEl: '.product-main-nav-next',
+        prevEl: '.product-main-nav-prev',
+        disabledClass: 'swiper-button-disabled' // <-- Disabled default navigation arrows
       }}
       onSwiper={setMainSwiper}
       onClick={() => setToggleGallery(!toggleGallery)}
@@ -34,7 +39,7 @@ export default function ProductMain() {
                 height={200}
                 width={200}
                 alt={name}
-                className='h-[700px] lg:h-[530px] w-auto'
+                className='h-[680px] w-[450px] lg:h-[530px] lg:w-auto'
                 priority={true}
                 />
             </div>
