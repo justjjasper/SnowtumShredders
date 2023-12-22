@@ -26,7 +26,7 @@ export default function ProductReviews ( {reviews, product_id, page, productName
 
   return (
     <section className='content-container-product-reviews max-w-[1920px]'>  {/* <---- Responsible for max width of 1920px */}
-      <div className='content-wider lg:px-16'>  {/* Responsible for px */}
+      <div className='content-wider px-[20px] md:px-[70px] lg:px-16'>  {/* Responsible for px */}
         <div className='product-reviews border-[1px] rounded-[30px] tracking-normal my-[80px]'> {/* Responsible for my/border */}
           <div className='page-width'>
             <div className='reviews'>
@@ -39,10 +39,10 @@ export default function ProductReviews ( {reviews, product_id, page, productName
                       <AverageStarRating reviews={reviews} />
                     </span>
                     <span className='spr-summary-caption ml-2'>
-                      <span className='spr-summary-actions-togglereviews'>Read all {reviews.length === 1 ? reviews.length + ' review' : reviews.length + ' reviews'}</span>
+                      <span className='spr-summary-actions-togglereviews text-xs md:text-md lg:text-base'>Read all {reviews.length === 1 ? reviews.length + ' review' : reviews.length + ' reviews'}</span>
                     </span>
                     <span className={`spr-summary-actions ml-auto ${formSubmitted ? 'hidden' : ''}`}>
-                      <a href='#' className='spr-summary-actions-newreview uppercase underline font-bold' onClick={handleToggle}>Write a review</a>
+                      <a href='#' className='spr-summary-actions-newreview uppercase underline font-bold text-xs md:text-md lg:text-base' onClick={handleToggle}>Write a review</a>
                     </span>
                   </div>
                 </div>
