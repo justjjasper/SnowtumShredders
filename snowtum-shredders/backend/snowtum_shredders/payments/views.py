@@ -47,8 +47,8 @@ def stripe_payment(request):
                     payment_method_types=['card'],
                     mode='payment',
                     line_items=line_items,
-                    success_url='http://localhost:3000/pages/success',
-                    cancel_url='http://localhost:3000/pages/cancel'
+                    success_url='http://localhost:80/info/success',
+                    cancel_url='http://localhost:80/info/cancel'
                 )
 
             print('what is checkoutid stripe payment', session.id)
