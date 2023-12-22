@@ -91,9 +91,9 @@ export default function ProductInfoContainer( {productType}: {productType: strin
   return (
     <div className='product-info-container pt-6 border-0 max-w-[1920px]'>
       <div className='product-info flex flex-col'>
-        <span className='font-extrabold tracking-tighter'>{header_description || 'ACCESSORIES'}</span>
-        <span className='text-5xl font-black mt-[15px]'>{name}</span>
-        <span className='text-2xl font-bold mt-[20px]'>${price}</span>
+        <span className='text-sm lg:text-base font-extrabold tracking-tighter'>{header_description || 'ACCESSORIES'}</span>
+        <span className='text-3xl lg:text-5xl font-black mt-[10px] lg:mt-[15px]'>{name}</span>
+        <span className='text-lg lg:text-2xl font-bold mt-[15px] lg:mt-[20px]'>${price}</span>
         {reviews && <div className='product-info-review-container flex items-center my-[20px]'>
           <AverageStarRating reviews={reviews} />
           <span className='underline tracking-tighter text-sm font-bold pl-2'>{reviews.length} reviews</span>
