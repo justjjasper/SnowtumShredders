@@ -1,23 +1,35 @@
 .product-content{
   display: grid;
   grid-template-areas:
-    'thumb main info';
-  grid-template-columns: .3fr 1fr 400px;
+    "main main"
+    "info info";
+  grid-template-columns: auto auto;
   gap: 1.5rem;
 }
 
-.product-content:nth-child(1) {
-  grid-area: thumb;
+/* Default Desktop layout, anything larger than 1024px */
+@media(min-width:1024px) {
+  .product-content {
+    grid-template-areas:
+    'thumb main info';
+    grid-template-columns: .3fr 1fr 400px;
+  }
 }
 
-.product-content:nth-child(2) {
-  grid-area: main
+/* Make thumb section disappear when screen is below 1024px */
+@media(max-width:1024px) {
+  .product-thumbs {
+    display: none
+  }
 }
 
-.product-content:nth-child(3) {
+.product-info-container {
   grid-area: info
 }
 
+.product-main {
+  grid-area: main
+}
 
 /* //? Product Info Container css */
 .product-info-sizes {

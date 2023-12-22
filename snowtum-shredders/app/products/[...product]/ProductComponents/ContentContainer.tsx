@@ -91,7 +91,7 @@ export default function ContentContainer( {product, productType}: ContentContain
 
   return (
     <section className='content-container-product-main max-w-[1920px] overflow-hidden'> {/* <---- Responsible for max width of 1920px */}
-      <div className='content-wider lg:px-16'> {/* <---- Responsible for px */}
+      <div className='content-wider px-[20px] sm:px-[70px] lg:px-16'> {/* <---- Responsible for px */}
         <div className='product-container mt-[58px]'> {/* Responsible for top margin? */}
         <ProductContext.Provider value={store}>
           <ProductGallery images={images} name={name} toggleGallery={toggleGallery} setToggleGallery={setToggleGallery}/>
