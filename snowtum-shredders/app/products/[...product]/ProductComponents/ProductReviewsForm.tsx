@@ -109,7 +109,7 @@ export default function ProductReviewsForm ( {product_id, formSubmitted, setForm
           </fieldset>
 
           <fieldset className='spr-form-actions flex'>
-            <button className='spr-button uppercase flex h-[65px] bg-[#fff] border-[1px] min-w-[340px] py-[21px] px-[20px] rounded-[30px] ml-auto font-bold justify-center tracking-wide' type='submit'>Submit Review</button>
+            <button className='spr-button uppercase flex items-center h-[40px] lg:h-[65px] bg-[#fff] border-[1px] min-w-[300px] lg:min-w-[340px] py-[21px] px-[20px] rounded-[30px] ml-auto font-bold justify-center tracking-wide text-sm lg:text-base' type='submit'>Submit Review</button>
           </fieldset>
         </>
       )}
