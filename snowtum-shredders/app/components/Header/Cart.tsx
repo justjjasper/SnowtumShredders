@@ -89,7 +89,7 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
       })
 
       const data = await results.json()
-      // console.log('what is aresults checkout frontend', data)
+      console.log('what is session url checkout frontend', data)
       if (data.url) {
         window.location.href = data.url
       } else {

@@ -1,5 +1,5 @@
 import { starEmptySVG, starFilledSVG } from "../../../Misc/Icons";
-import { calcAvgStarRating } from "../page";
+import { calcAvgStarRating } from "@/app/Misc/HelperFunc"
 
 interface AverageStarRatingProp {
   reviews: ReviewType[]

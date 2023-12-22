@@ -5,6 +5,7 @@ import ContentContainer from "./ProductComponents/ContentContainer"
 import ProductTech from "./ProductComponents/ProductTech"
 import ProductAccessoryDetail from "./ProductComponents/ProductAccessoryDetail"
 import ProductReviews from "./ProductComponents/ProductReviews"
+import { calcAvgStarRating } from "@/app/Misc/HelperFunc"
 
 // May use unions to have product type be string | string[]
 interface ProductParams {
@@ -14,16 +15,6 @@ interface ProductParams {
   searchParams: {
     page: string
   }
-}
-
-export const calcAvgStarRating = (reviews: ReviewType[]) => {
-  if (reviews.length === 0) {
-    return 0
-  }
-
-  const totalRating = reviews.reduce((total, review) => total += review.snowboard_review_rating, 0)
-
-  return totalRating / reviews.length
 }
 
 // if productType is snowboard... conditional render that section

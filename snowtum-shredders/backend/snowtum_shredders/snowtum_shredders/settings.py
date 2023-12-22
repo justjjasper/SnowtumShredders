@@ -58,6 +58,7 @@ MIDDLEWARE = [
 # Only for Dev, change during production
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "http://localhost",
 ]
 
 ROOT_URLCONF = 'snowtum_shredders.urls'

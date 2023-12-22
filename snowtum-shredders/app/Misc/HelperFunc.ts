@@ -38,3 +38,13 @@ export function sortMetaData(metaData: MetaDataType[]) {
 
   return sortedMetaData;
 }
+
+export const calcAvgStarRating = (reviews: ReviewType[]) => {
+  if (reviews.length === 0) {
+    return 0
+  }
+
+  const totalRating = reviews.reduce((total, review) => total += review.snowboard_review_rating, 0)
+
+  return totalRating / reviews.length
+}
