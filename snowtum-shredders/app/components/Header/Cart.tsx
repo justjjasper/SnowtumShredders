@@ -101,7 +101,7 @@ export default function Cart({cartHovered, onMouseLeave, cartItems}: CartProps) 
   }
 
   return (
-    <div className={`cart-container px-[20px] md:px-[45px] lg:px-[120px] overflow-scroll h-screen sm:h-auto
+    <div className={`cart-container px-[20px] md:px-[45px] lg:px-[120px] overflow-scroll h-screen
       ${cartHovered ? 'flex' : 'hidden'}`}
       onMouseLeave={onMouseLeave}
       style={{ maxHeight: `calc(100vh - ${navbarHeight}px)` }}
