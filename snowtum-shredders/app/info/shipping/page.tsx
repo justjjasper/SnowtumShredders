@@ -1,6 +1,7 @@
 export default function Shipping() {
   return (
-    <div>Shipping Page</div>
-
+    <section>
+      <div>Shipping Page</div>
+    </section>
   )
 }
