@@ -32,7 +32,7 @@ export default async function Home() {
         </div> */}
 
           <Link href='/collections/all-snowboards'
-            className='absolute bottom-[5%] sm:bottom-[10%] w-3/12 flex justify-center self-end py-2 sm:py-4 rounded-full font-calibre font-bold tracking-tighter bg-primary hover:underline text-[9px] sm:text-xs md:text-base'
+            className='absolute bottom-[5%] xsm:bottom-[10%] w-3/12 flex justify-center self-end py-2 sm:py-4 rounded-full font-calibre font-bold tracking-tighter bg-primary hover:underline text-[9px] sm:text-xs md:text-base'
             >
               OPEN YOUR MIND
           </Link>
