@@ -28,7 +28,7 @@ export const teamInfo = [
     image: 'https://capitasnowboarding.com/cdn/shop/files/download_ebc5218d-bf83-4ecd-8322-2f63171cd42c.jpg?v=1691833813'
   },
   {
-    name: 'Elvis',
+    name: 'Deeder',
     image: 'https://capitasnowboarding.com/cdn/shop/files/Screenshot_2023-04-28_alle_11.23_2.jpg?v=1688813301'
   },
   {
@@ -39,4 +39,12 @@ export const teamInfo = [
     name: 'Lynn',
     image: 'https://capitasnowboarding.com/cdn/shop/files/download-1_1444f7e2-a56a-4548-8f0c-aeee67712a36.jpg?v=1691833820'
   },
+  {
+    name: 'Hannah',
+    image: 'https://capitasnowboarding.com/cdn/shop/files/Screenshot_2023-04-28_alle_11.05_1_26309927-eee1-44ad-8e56-2cab92bef987.jpg?v=1688814412'
+  },
+  {
+    name: 'Jules',
+    image: 'https://capitasnowboarding.com/cdn/shop/files/Screenshot_2023-04-28_alle_11.24_4_2.jpg?v=1688814816'
+  }
 ]
