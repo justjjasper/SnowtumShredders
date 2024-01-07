@@ -46,7 +46,7 @@ export default async function Home() {
              <span className='flex font-bold whitespace-nowrap md:text-[56px]'>{snowboard.name}</span>
             </div>
 
-            <div className="left-banner-card flex flex-col items-center font-calibre rounded-2xl border-[1px] md:translate-x-[70%] mt-[-42%] md:mt-[0px] bg-[url('https://capitasnowboarding.com/cdn/shop/files/000_GRID_PAPER_BG_1_77e3e65d-56ba-4a1f-a70b-76408f3b3cbf.png?v=1690637051')] md:w-[280px] md:h-[537px] h-[350px] w-[170px] -z-2">
+            <div className="left-banner-card flex flex-col items-center font-calibre rounded-2xl border-[1px] md:translate-x-[70%] mt-[-42%] md:mt-[0px] bg-[url('https://capitasnowboarding.com/cdn/shop/files/000_GRID_PAPER_BG_1_77e3e65d-56ba-4a1f-a70b-76408f3b3cbf.png?v=1690637051')] md:w-[280px] md:h-[537px] h-[350px] w-[170px]">
 
               <Link href='products/snowboard/indoor-survival' className='flex flex-col justify-between h-full'>
                 <Image
@@ -71,7 +71,7 @@ export default async function Home() {
               alt='Arthur Longo Picture'
               width={690}
               height={960}
-              className='flex w-full'
+              className='flex w-full -z-2'
             />
 
           </div>
