@@ -83,7 +83,7 @@ export default async function SnowboardCollection( { params, searchParams }: Sno
 
     return (
       // Don't forget the bottom-[100px] within the main tag
-      <main className='relative bottom-[100px]'>
+      <main className='relative bottom-[95px] sm:bottom-[100px]'>
         <div className={`relative pt-32 bg-[url('https://capitasnowboarding.com/cdn/shop/files/000_GRID_PAPER_BG_1_77e3e65d-56ba-4a1f-a70b-76408f3b3cbf.png?v=1690637051')]`}>
 
           <div className='content-container flex flex-col px-3 md:px-16 text-primary font-calibre'>
