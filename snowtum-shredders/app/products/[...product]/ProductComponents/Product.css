@@ -35,7 +35,13 @@
 .product-info-sizes {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem;
+  gap: 1.25rem
+}
+
+@media(max-width: 755px) {
+  .product-info-sizes {
+    gap: 1rem
+  }
 }
 
 /* In your CSS or in a Tailwind CSS class, disabled unavailable size */
