@@ -73,14 +73,14 @@ export default function NavBar(){
 
   // Temporary solution to fix clicking on link peristence bug, new bug issue when "entering back header". Not what we want since we want to re enter header for cart icon
   const onMouseLeave = () => {
-    if (!hamburgerToggle) {
+    // if (!hamburgerToggle) {
       setSnowboardHovered(false)
       setAccessoriesHovered(false)
       setSearchHovered(false)
       setCartHovered(false)
       setSnowboardMobileMenu(false)
       setAccessoriesMobileMenu(false)
-    }
+    // }
     setHamburgerToggle(false)
     console.log('onMouseLeave triggered')
   }
