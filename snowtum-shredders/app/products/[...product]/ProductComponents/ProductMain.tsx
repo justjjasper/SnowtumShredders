@@ -31,7 +31,7 @@ export default function ProductMain() {
   return (
     <Swiper
       style={swiperStyle as CSSProperties}
-      className='product-main w-[100%] h-[725px] lg:h-auto'
+      className='product-main w-[100%] h-[480px] sm:h-[725px] lg:h-auto'
       modules= {[Thumbs, Navigation, Pagination]}
       thumbs={{
         swiper:
@@ -60,7 +60,7 @@ export default function ProductMain() {
                 height={200}
                 width={200}
                 alt={name}
-                className='h-[680px] w-[450px] lg:h-[530px] lg:w-auto'
+                className='h-[400px] w-[240px] sm:h-[680px] sm:w-[450px] lg:h-[530px] lg:w-auto'
                 priority={true}
                 />
             </div>

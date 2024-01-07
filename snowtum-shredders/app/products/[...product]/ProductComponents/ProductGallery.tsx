@@ -73,7 +73,7 @@ export default function ProductGallery( {images, name, toggleGallery, setToggleG
                   height={200}
                   width={200}
                   alt= {name}
-                  className='mx-auto w-[50%] lg:w-[50%] h-auto lg:h-[150%]'
+                  className='mx-auto h-[500px] w-[300px] sm:w-[50%] sm:h-auto lg:w-[50%] lg:h-[150%]'
                   style={{ transform: transformStyle }}
                 />
               </div>
