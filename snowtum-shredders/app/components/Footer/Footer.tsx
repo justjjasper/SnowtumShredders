@@ -22,7 +22,7 @@ export default function Footer() {
 
       </div>
       <div className='w-10/12 pt-5'>
-        <span className='text-[12px]'>© 2023 Snowtum Shredders Snowboards</span>
+        <span className='text-[12px]'>© 2024 Snowtum Shredders Snowboards</span>
       </div>
     </section>
   )
