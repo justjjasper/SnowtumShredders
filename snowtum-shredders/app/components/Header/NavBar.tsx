@@ -315,7 +315,7 @@ export default function NavBar(){
           { /* Team Mobile Menu*/}
           <div className={`team-mobile-menu relative
                ${hamburgerToggle ? 'flex divider py-3' : 'hidden'}`}>
-              <Link href='/info/team' className='w-full'>
+              <Link href='/info/team' className='w-full' onClick={onMouseLeave}>
                 <span id='menu-link'>Team</span>
               </Link>
           </div>
