@@ -36,15 +36,15 @@ export const teamInfo = [
     image: 'https://capitasnowboarding.com/cdn/shop/files/Screenshot_2023-04-28_alle_11.05_1_1.jpg?v=1688814679'
   },
   {
-    name: 'Lynn',
-    image: 'https://capitasnowboarding.com/cdn/shop/files/download-1_1444f7e2-a56a-4548-8f0c-aeee67712a36.jpg?v=1691833820'
-  },
-  {
     name: 'Hannah',
     image: 'https://capitasnowboarding.com/cdn/shop/files/Screenshot_2023-04-28_alle_11.05_1_26309927-eee1-44ad-8e56-2cab92bef987.jpg?v=1688814412'
   },
   {
     name: 'Jules',
     image: 'https://capitasnowboarding.com/cdn/shop/files/Screenshot_2023-04-28_alle_11.24_4_2.jpg?v=1688814816'
+  },
+  {
+    name: 'Lynn',
+    image: 'https://capitasnowboarding.com/cdn/shop/files/download-1_1444f7e2-a56a-4548-8f0c-aeee67712a36.jpg?v=1691833820'
   }
 ]
