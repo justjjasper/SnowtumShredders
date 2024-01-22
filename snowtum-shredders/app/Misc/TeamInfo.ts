@@ -4,10 +4,6 @@ export const teamInfo = [
     image: 'https://capitasnowboarding.com/cdn/shop/files/Screenshot_2023-04-28_alle_11.23_1_1.jpg?v=1688814433'
   },
   {
-    name: 'Kimberly',
-    image: 'https://capitasnowboarding.com/cdn/shop/files/Screenshot_2023-04-28_alle_11.24_2_3.jpg?v=1688814967'
-  },
-  {
     name: 'Greg',
     image: 'https://capitasnowboarding.com/cdn/shop/files/Screenshot_2023-04-28_alle_11.23_2_2.jpg?v=1688814713'
   },
