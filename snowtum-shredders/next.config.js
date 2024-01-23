@@ -5,6 +5,12 @@ const nextConfig = {
   },
   experimental: {
     serverActions: true
+  },
+  serverOptions: {
+    https: {
+      key: '/home/ubuntu/key',
+      cert: '/home/ubuntu/cert'
+    }
   }
 }
 
