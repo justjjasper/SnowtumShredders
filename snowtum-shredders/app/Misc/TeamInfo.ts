@@ -1,7 +1,7 @@
 export const teamInfo = [
   {
     name: 'Jasper',
-    image: 'https://capitasnowboarding.com/cdn/shop/files/Screenshot_2023-04-28_alle_11.23_1_1.jpg?v=1688814433'
+    image: 'https://capitasnowboarding.com/cdn/shop/files/Screenshot_2023-04-28_alle_11.23_1_3.jpg?v=1688814868'
   },
   {
     name: 'Greg',
