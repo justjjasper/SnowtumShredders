@@ -7,8 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "pm2-start": "pm2 start 'sudo npm run dev' && pm2 start 'npm run local-ssl-proxy'",
-    "pm2-stop": "pm2 stop 'sudo npm run dev' && pm2 stop 'npm run local-ssl-proxy'",
+    "pm2-start": "pm2 start 'sudo npm run dev'",
+    "pm2-stop": "pm2 stop 'sudo npm run dev'",
+    "pm2-start-proxy": "pm2 start 'npm run local-ssl-proxy'",
+    "pm2-stop-proxy": "pm2 stop 'npm run local-ssl-proxy'",
     "local-ssl-proxy": "npx local-ssl-proxy --key /home/ubuntu/key --cert /home/ubuntu/cert --source 443 --target 80"
   },
   "dependencies": {
