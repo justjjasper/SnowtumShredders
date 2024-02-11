@@ -116,6 +116,12 @@ export default function NavBar(){
     snowboardResize()
     accessoriesResize()
 
+    // Trigger them again when the window has loaded
+    window.addEventListener('load', () => {
+      snowboardResize();
+      accessoriesResize();
+    });
+
     // Triggers Resize functions when browser size changes
     window.addEventListener('resize', snowboardResize)
     window.addEventListener('resize', accessoriesResize)
