@@ -28,7 +28,7 @@ export default function NavBar(){
   const [snowboardHovered, setSnowboardHovered] = useState<boolean>(false)
   const [accessoriesHovered, setAccessoriesHovered] = useState<boolean>(false)
   const [searchHovered, setSearchHovered] = useState<boolean>(false)
-  const [cartHovered, setCartHovered] = useState<boolean>(false)
+  const [cartHovered, setCartHovered] = useState<boolean>(false) // Changed functionality to cart clicked not hover
 
 
   const onMouseEnterSnowboard = () => {
@@ -204,7 +204,10 @@ export default function NavBar(){
             {searchSVG}
           </button>
           <button id='menu-link'
-            onClick={() => setCartHovered(!cartHovered)}>
+            onClick={() => {
+              setCartHovered(!cartHovered)
+              setHamburgerToggle(false)
+              }}>
             <span>
              {cartSVG('31')}
              <span className={`cart-count flex absolute top-[-5px] right-[-10px] bg-primary text-secondary rounded-[50%] w-[22px] h-[22px] items-center justify-center border-[1.5px] ${cartItems.length === 0 ? 'hidden' : ''}`}>
