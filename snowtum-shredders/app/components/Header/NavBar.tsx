@@ -116,7 +116,7 @@ export default function NavBar(){
     snowboardResize()
     accessoriesResize()
 
-    // Trigger them again when the window has loaded
+    // Trigger them again when the window has loaded, to band aid fix the paddding bug on intial load
     window.addEventListener('load', () => {
       snowboardResize();
       accessoriesResize();
@@ -204,7 +204,7 @@ export default function NavBar(){
             {searchSVG}
           </button>
           <button id='menu-link'
-            onMouseEnter={onMouseEnterCart}>
+            onClick={() => setCartHovered(!cartHovered)}>
             <span>
              {cartSVG('31')}
              <span className={`cart-count flex absolute top-[-5px] right-[-10px] bg-primary text-secondary rounded-[50%] w-[22px] h-[22px] items-center justify-center border-[1.5px] ${cartItems.length === 0 ? 'hidden' : ''}`}>
