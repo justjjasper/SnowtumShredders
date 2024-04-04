@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 // Components
 import NavBar from './components/Header/NavBar'
@@ -31,6 +32,7 @@ export default function RootLayout({
           <Footer/>
         </ReduxProvider>
       </body>
+      <GoogleAnalytics gaId='G-BY2MTYK4JT'/>
     </html>
   )
 }

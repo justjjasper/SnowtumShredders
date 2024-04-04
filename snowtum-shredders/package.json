@@ -12,6 +12,7 @@
     "local-ssl-proxy": "sudo npx local-ssl-proxy --key /home/ubuntu/key --cert /home/ubuntu/cert --source 443 --target 80"
   },
   "dependencies": {
+    "@next/third-parties": "^14.1.4",
     "@reduxjs/toolkit": "^1.9.7",
     "dotenv": "^16.3.1",
     "fuse.js": "^6.6.2",
