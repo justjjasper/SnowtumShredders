@@ -1,7 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { GoogleTagManager } from '@next/third-parties/google'
+import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google'
 
 // Components
 import NavBar from './components/Header/NavBar'
@@ -32,7 +32,8 @@ export default function RootLayout({
           <Footer/>
         </ReduxProvider>
       </body>
-      <GoogleTagManager gtmId='G-BY2MTYK4JT'/>
+      <GoogleAnalytics gaId='G-BY2MTYK4JT'/>
+      <GoogleTagManager gtmId='GTM-TBKJ9BD9'/>
     </html>
   )
 }
