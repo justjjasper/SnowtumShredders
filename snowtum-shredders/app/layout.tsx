@@ -32,7 +32,7 @@ export default function RootLayout({
           <Footer/>
         </ReduxProvider>
       </body>
-      <GoogleTagManager gtmId='GTM-TBKJ9BD9'/>
+      <GoogleTagManager gtmId='G-BY2MTYK4JT'/>
     </html>
   )
 }
