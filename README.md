@@ -4,7 +4,9 @@ Welcome to Snowtum Shredders, your one-stop destination for all things snowboard
 
 ## Live Demo
 
-Check out the live demo of Snowtum Shredders [here](https://snowtumshredders.com).
+Check out the live demo of Snowtum Shredders [here- https://snowtumshredders.com](https://snowtumshredders.com).
+![snowtumdemo](https://github.com/justjjasper/SnowtumShredders/assets/98243819/0e9515f9-6273-4e0d-94f6-b29c450d07c4)
+
 
 ## Technologies Used
 
