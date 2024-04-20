@@ -31,7 +31,7 @@ Check out the live demo of Snowtum Shredders [here- https://snowtumshredders.com
 - **User-friendly Interface**: Intuitive design for easy navigation and shopping.
 - **Responsive**: Optimized for various screen sizes for a consistent experience across devices.
 - **Web Scraping**: Data is scraped from various sources to provide accurate and up-to-date product information.
-- **Secure Transactions**: Built with security in mind to ensure safe transactions for users.
+- **Secure Transactions**: Built with security in mind to ensure safe transactions for users with STRIPE API.
 
 ## Deployment
 
