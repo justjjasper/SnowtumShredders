@@ -11,7 +11,7 @@ Check out the live demo of Snowtum Shredders [here- https://snowtumshredders.com
 ## Technologies Used
 
 - **Frontend**:
-  - React
+  - React/ TypeScript
   - Next.js
   - Tailwind CSS
 
